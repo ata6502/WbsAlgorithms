@@ -8,7 +8,7 @@ namespace WbsAlgorithms.Collections
     /// It allows users to iterate through the collection. 
     /// The order of item iteration is unspecified.
     /// 
-    /// [Sedgewick] p.154-155 Bag implementation with items stored in a singly-linked linked list
+    /// [Sedgewick] p.154-155 Bag implementation with items stored in a singly-linked list
     /// </summary>
     public class BagLinkedList<T>
     {

@@ -7,7 +7,7 @@ namespace WbsAlgorithms.Collections
     /// The queue collection allows users to add and remove items based on FIFO policy. The queue preserves
     /// the relative order of items: the items come out in the same order in which they were put in.
     /// 
-    /// [Sedgewick] p.150-152 - Queue implementation with items stored in a singly-linked linked list.
+    /// [Sedgewick] p.150-152 - Queue implementation with items stored in a singly-linked list.
     /// [Sedgewick] 1.3.6 p.162 - Reverse the order of elements in a queue.
     /// [Sedgewick] 1.3.41 p.169 - Copy a queue: Create a constructor that makes a new and independent copy of the given queue.
     /// </summary>

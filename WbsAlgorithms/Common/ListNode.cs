@@ -1,7 +1,7 @@
 ﻿namespace WbsAlgorithms.Common
 {
     /// <summary>
-    /// Defines a node of a singly-linked linked list.
+    /// Defines a node of a singly-linked list.
     /// </summary>
     public class ListNode<T>
     {
