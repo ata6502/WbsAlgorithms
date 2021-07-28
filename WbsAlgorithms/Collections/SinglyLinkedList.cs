@@ -25,6 +25,9 @@ namespace WbsAlgorithms.Collections
     /// [Sedgewick] 1.3.26 - Remove all the nodes with a given value (RemoveAllByValue using a while loop and a for loop).
     /// [Sedgewick] 1.3.27 - Find the maximum value iteratively (FindMaxValueIteratively).
     /// [Sedgewick] 1.3.28 - Find the maximum value recursively (FindMaxValueRecursively).
+    /// [Sedgewick] 1.3.30 - Reverse iteratively nodes in a linked list (ReverseIteratively).
+    /// [Sedgewick]          Reverse recursively nodes in a linked list (ReverseRecursively).
+    /// [Leetcode]  #206   - Reverse linked list (iteratively): https://leetcode.com/problems/reverse-linked-list/
     /// </summary>
     public class SinglyLinkedList
     {
@@ -409,6 +412,61 @@ namespace WbsAlgorithms.Collections
 
             max = Math.Max(max, node.Item);
             return FindMaxValueRecusively(node.Next, max);
+        }
+
+        /// <summary>
+        /// Reverses a linked list using an iterative approach. 
+        /// </summary>
+        /// <param name="head">The head of the linked list</param>
+        /// <returns>The head of the reversed linked list</returns>
+        public static ListNode<T> ReverseIteratively<T>(ListNode<T> head)
+        {
+            // Maintain references to three consecutive nodes in the linked list:
+            // reversed, first, and second.
+            // Also, maintain the invariant that:
+            // - 'first' is the node of what's left of the original list
+            // - 'second' is the second node of what's left of the original list
+            // - 'reversed' is the first node of the resulting list.
+
+            ListNode<T> reversed = null; // previous
+            ListNode<T> first = head;    // current
+            ListNode<T> second = null;   // next
+
+            while (first != null)
+            {
+                // Keep the pointer to the second node as we're going to override it.
+                second = first.Next;
+
+                // Insert the 'first' node at the beginning of the reversed list.
+                first.Next = reversed;
+                reversed = first;
+
+                // Advance to the next node by removing the first node from the original list.
+                first = second;
+            }
+
+            return reversed;
+        }
+
+        /// <summary>
+        /// Reverses a linked list using a recursive approach.
+        /// Note: There is a different solution in Sedgewick p.166
+        /// </summary>
+        /// <param name="head">The head of the linked list</param>
+        /// <returns>The head of the reversed linked list</returns>
+        public static ListNode<T> ReverseRecursively<T>(ListNode<T> first, ListNode<T> reversed = null)
+        {
+            // base case
+            if (first == null)
+                return reversed;
+
+            // This part of code is the same as in ReverseIteratively.
+            var second = first.Next;
+            first.Next = reversed;
+            reversed = first;
+            first = second;
+
+            return ReverseRecursively(first, reversed);
         }
     }
 }

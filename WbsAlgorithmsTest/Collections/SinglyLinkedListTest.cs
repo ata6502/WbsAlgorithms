@@ -428,5 +428,77 @@ namespace WbsAlgorithmsTest.Collections
             Assert.AreEqual(14, SinglyLinkedList.FindMaxValueIteratively(head));
             Assert.AreEqual(14, SinglyLinkedList.FindMaxValueRecusively(head));
         }
+
+        [Test]
+        public void ReverseIterativelyTest()
+        {
+            // Reverse an empty list.
+            ListNode<int> head = null;
+            var reversed = SinglyLinkedList.ReverseIteratively(head);
+
+            Assert.IsNull(reversed);
+
+            // Reverse a one-node list.
+            head = new ListNode<int>(0, null);
+            reversed = SinglyLinkedList.ReverseIteratively(head);
+
+            Assert.AreEqual(0, reversed.Item);
+            Assert.IsNull(reversed.Next);
+
+            // Reverse a two-node list.
+            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 0, 1 });
+            reversed = SinglyLinkedList.ReverseIteratively(head);
+
+            Assert.AreEqual(1, reversed.Item);
+            Assert.AreEqual(0, reversed.Next.Item);
+            Assert.IsNull(reversed.Next.Next);
+
+            // Reverse a five-node list.
+            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 0, 1, 2, 3, 4 });
+            reversed = SinglyLinkedList.ReverseIteratively(head);
+
+            Assert.AreEqual(4, reversed.Item);
+            Assert.AreEqual(3, reversed.Next.Item);
+            Assert.AreEqual(2, reversed.Next.Next.Item);
+            Assert.AreEqual(1, reversed.Next.Next.Next.Item);
+            Assert.AreEqual(0, reversed.Next.Next.Next.Next.Item);
+            Assert.IsNull(reversed.Next.Next.Next.Next.Next);
+        }
+
+        [Test]
+        public void ReverseRecursivelyTest()
+        {
+            // Reverse an empty list.
+            ListNode<int> head = null;
+            var reversed = SinglyLinkedList.ReverseRecursively(head);
+
+            Assert.IsNull(reversed);
+
+            // Reverse a one-node list.
+            head = new ListNode<int>(0, null);
+            reversed = SinglyLinkedList.ReverseRecursively(head);
+
+            Assert.AreEqual(0, reversed.Item);
+            Assert.IsNull(reversed.Next);
+
+            // Reverse a two-node list.
+            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 0, 1 });
+            reversed = SinglyLinkedList.ReverseRecursively(head);
+
+            Assert.AreEqual(1, reversed.Item);
+            Assert.AreEqual(0, reversed.Next.Item);
+            Assert.IsNull(reversed.Next.Next);
+
+            // Reverse a five-node list.
+            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 0, 1, 2, 3, 4 });
+            reversed = SinglyLinkedList.ReverseRecursively(head);
+
+            Assert.AreEqual(4, reversed.Item);
+            Assert.AreEqual(3, reversed.Next.Item);
+            Assert.AreEqual(2, reversed.Next.Next.Item);
+            Assert.AreEqual(1, reversed.Next.Next.Next.Item);
+            Assert.AreEqual(0, reversed.Next.Next.Next.Next.Item);
+            Assert.IsNull(reversed.Next.Next.Next.Next.Next);
+        }
     }
 }
