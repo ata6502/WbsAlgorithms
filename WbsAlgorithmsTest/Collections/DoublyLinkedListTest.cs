@@ -20,7 +20,7 @@ namespace WbsAlgorithmsTest.Collections
 
             // Insert a node to a one-node list.
             head = DoublyLinkedList.InsertFirst(
-                LinkedListBuilder.CreateDoublyLinkedList(new int[] { 2 }), 
+                DoublyLinkedList.Create(new int[] { 2 }), 
                 new DoubleListNode<int>(1));
             Assert.IsNull(head.Prev);
             Assert.AreEqual(1, head.Item);
@@ -30,7 +30,7 @@ namespace WbsAlgorithmsTest.Collections
 
             // Insert a node to a two-node list.
             head = DoublyLinkedList.InsertFirst(
-                LinkedListBuilder.CreateDoublyLinkedList(new int[] { 2, 3 }),
+                DoublyLinkedList.Create(new int[] { 2, 3 }),
                 new DoubleListNode<int>(1));
             Assert.IsNull(head.Prev);
             Assert.AreEqual(1, head.Item);
@@ -54,7 +54,7 @@ namespace WbsAlgorithmsTest.Collections
 
             // Insert a node to a one-node list.
             head = DoublyLinkedList.InsertLast(
-                LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1 }),
+                DoublyLinkedList.Create(new int[] { 1 }),
                 new DoubleListNode<int>(2));
             Assert.IsNull(head.Prev);
             Assert.AreEqual(1, head.Item);
@@ -64,7 +64,7 @@ namespace WbsAlgorithmsTest.Collections
 
             // Insert a node to a two-node list.
             head = DoublyLinkedList.InsertLast(
-                LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1, 2 }),
+                DoublyLinkedList.Create(new int[] { 1, 2 }),
                 new DoubleListNode<int>(3));
             Assert.IsNull(head.Prev);
             Assert.AreEqual(1, head.Item);
@@ -83,15 +83,15 @@ namespace WbsAlgorithmsTest.Collections
             head = DoublyLinkedList.RemoveFirst(head);
             Assert.IsNull(head);
 
-            head = DoublyLinkedList.RemoveFirst(LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1 }));
+            head = DoublyLinkedList.RemoveFirst(DoublyLinkedList.Create(new int[] { 1 }));
             Assert.IsNull(head);
 
-            head = DoublyLinkedList.RemoveFirst(LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1, 2 }));
+            head = DoublyLinkedList.RemoveFirst(DoublyLinkedList.Create(new int[] { 1, 2 }));
             Assert.IsNull(head.Prev);
             Assert.AreEqual(2, head.Item);
             Assert.IsNull(head.Next);
 
-            head = DoublyLinkedList.RemoveFirst(LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1, 2, 3 }));
+            head = DoublyLinkedList.RemoveFirst(DoublyLinkedList.Create(new int[] { 1, 2, 3 }));
             Assert.IsNull(head.Prev);
             Assert.AreEqual(2, head.Item);
             Assert.AreEqual(3, head.Next.Item);
@@ -107,15 +107,15 @@ namespace WbsAlgorithmsTest.Collections
             head = DoublyLinkedList.RemoveLast(head);
             Assert.IsNull(head);
 
-            head = DoublyLinkedList.RemoveLast(LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1 }));
+            head = DoublyLinkedList.RemoveLast(DoublyLinkedList.Create(new int[] { 1 }));
             Assert.IsNull(head);
 
-            head = DoublyLinkedList.RemoveLast(LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1, 2 }));
+            head = DoublyLinkedList.RemoveLast(DoublyLinkedList.Create(new int[] { 1, 2 }));
             Assert.IsNull(head.Prev);
             Assert.AreEqual(1, head.Item);
             Assert.IsNull(head.Next);
 
-            head = DoublyLinkedList.RemoveLast(LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1, 2, 3 }));
+            head = DoublyLinkedList.RemoveLast(DoublyLinkedList.Create(new int[] { 1, 2, 3 }));
             Assert.IsNull(head.Prev);
             Assert.AreEqual(1, head.Item);
             Assert.AreEqual(2, head.Next.Item);
@@ -129,7 +129,7 @@ namespace WbsAlgorithmsTest.Collections
             // If the node is null, InsertBefore should throw an exception.
             Assert.Throws<ArgumentNullException>(() => DoublyLinkedList.InsertBefore(null, new DoubleListNode<int>(1)));
 
-            var list = LinkedListBuilder.CreateDoublyLinkedList(new int[] { 2 });
+            var list = DoublyLinkedList.Create(new int[] { 2 });
             var newNode = DoublyLinkedList.InsertBefore(list, new DoubleListNode<int>(1));
             Assert.IsNull(newNode.Prev);
             Assert.AreEqual(1, newNode.Item);
@@ -137,7 +137,7 @@ namespace WbsAlgorithmsTest.Collections
             Assert.AreEqual(1, newNode.Next.Prev.Item);
             Assert.IsNull(newNode.Next.Next);
 
-            list = LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1, 3 });
+            list = DoublyLinkedList.Create(new int[] { 1, 3 });
             newNode = DoublyLinkedList.InsertBefore(list.Next, new DoubleListNode<int>(2)); // insert before 3
 
             Assert.IsNull(list.Prev);
@@ -161,7 +161,7 @@ namespace WbsAlgorithmsTest.Collections
             // If the node is null, InsertAfter should throw an exception.
             Assert.Throws<ArgumentNullException>(() => DoublyLinkedList.InsertAfter(null, new DoubleListNode<int>(1)));
 
-            var list = LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1 });
+            var list = DoublyLinkedList.Create(new int[] { 1 });
             var node = DoublyLinkedList.InsertAfter(list, new DoubleListNode<int>(2)); // node is the same as list
 
             Assert.IsNull(list.Prev);
@@ -176,7 +176,7 @@ namespace WbsAlgorithmsTest.Collections
             Assert.AreEqual(1, node.Next.Prev.Item);
             Assert.IsNull(node.Next.Next);
 
-            list = LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1, 2, 4 });
+            list = DoublyLinkedList.Create(new int[] { 1, 2, 4 });
             node = DoublyLinkedList.InsertAfter(list.Next, new DoubleListNode<int>(3)); // insert after 2; node is list.Next
 
             Assert.IsNull(list.Prev);
@@ -205,26 +205,26 @@ namespace WbsAlgorithmsTest.Collections
             Assert.IsNull(head);
 
             // Remove the only node in a list.
-            head = LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1 });
+            head = DoublyLinkedList.Create(new int[] { 1 });
             head = DoublyLinkedList.Remove(head, head);
             Assert.IsNull(head);
 
             // Remove the first node (the head).
-            head = LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1, 2 });
+            head = DoublyLinkedList.Create(new int[] { 1, 2 });
             head = DoublyLinkedList.Remove(head, head);
             Assert.IsNull(head.Prev);
             Assert.AreEqual(2, head.Item);
             Assert.IsNull(head.Next);
 
             // Remove the second element.
-            head = LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1, 2 });
+            head = DoublyLinkedList.Create(new int[] { 1, 2 });
             head = DoublyLinkedList.Remove(head, head.Next);
             Assert.IsNull(head.Prev);
             Assert.AreEqual(1, head.Item);
             Assert.IsNull(head.Next);
 
             // Remove the first node (the head).
-            head = LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1, 2, 3 });
+            head = DoublyLinkedList.Create(new int[] { 1, 2, 3 });
             head = DoublyLinkedList.Remove(head, head);
             Assert.IsNull(head.Prev);
             Assert.AreEqual(2, head.Item);
@@ -233,7 +233,7 @@ namespace WbsAlgorithmsTest.Collections
             Assert.IsNull(head.Next.Next);
 
             // Remove the second element.
-            head = LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1, 2, 3 });
+            head = DoublyLinkedList.Create(new int[] { 1, 2, 3 });
             head = DoublyLinkedList.Remove(head, head.Next);
             Assert.IsNull(head.Prev);
             Assert.AreEqual(1, head.Item);
@@ -242,7 +242,7 @@ namespace WbsAlgorithmsTest.Collections
             Assert.IsNull(head.Next.Next);
 
             // Remove the third element.
-            head = LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1, 2, 3 });
+            head = DoublyLinkedList.Create(new int[] { 1, 2, 3 });
             head = DoublyLinkedList.Remove(head, head.Next.Next);
             Assert.IsNull(head.Prev);
             Assert.AreEqual(1, head.Item);
@@ -251,7 +251,7 @@ namespace WbsAlgorithmsTest.Collections
             Assert.IsNull(head.Next.Next);
 
             // If the node is not found, InsertAfter should throw an exception.
-            head = LinkedListBuilder.CreateDoublyLinkedList(new int[] { 1, 2 });
+            head = DoublyLinkedList.Create(new int[] { 1, 2 });
             Assert.Throws<ArgumentException>(() => DoublyLinkedList.Remove(head, new DoubleListNode<int>(3)));
         }
     }

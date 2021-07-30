@@ -18,7 +18,7 @@ namespace WbsAlgorithms.Collections
     /// Linked-list exercises p.164-166
     /// [Sedgewick] 1.3.19 - Remove the last node (RemoveLast).
     /// [Sedgewick] 1.3.20 - Remove a node at a given index (RemoveByIndex).
-    ///                      Remove the first occurence of a node with the given value (RemoveByValue).
+    /// [Sedgewick] 1.3.20 - Remove the first occurence of a node with the given value (RemoveByValue).
     /// [Sedgewick] 1.3.21 - Returns true if a node with a given value exists. Otherwise, returns false (DoesNodeExist / Find).
     /// [Sedgewick] 1.3.24 - Remove the node immediately following a given node (RemoveAfter).
     /// [Sedgewick] 1.3.25 - Insert a new node after the given one (InsertAfter).
@@ -26,8 +26,8 @@ namespace WbsAlgorithms.Collections
     /// [Sedgewick] 1.3.27 - Find the maximum value iteratively (FindMaxValueIteratively).
     /// [Sedgewick] 1.3.28 - Find the maximum value recursively (FindMaxValueRecursively).
     /// [Sedgewick] 1.3.30 - Reverse iteratively nodes in a linked list (ReverseIteratively).
-    /// [Sedgewick]          Reverse recursively nodes in a linked list (ReverseRecursively).
-    /// [Leetcode]  #206   - Reverse linked list (iteratively): https://leetcode.com/problems/reverse-linked-list/
+    /// [Sedgewick] 1.3.30 - Reverse recursively nodes in a linked list (ReverseRecursively).
+    /// [Leetcode] #206 - Reverse linked list (iteratively): https://leetcode.com/problems/reverse-linked-list/
     /// </summary>
     public class SinglyLinkedList
     {
@@ -467,6 +467,31 @@ namespace WbsAlgorithms.Collections
             first = second;
 
             return ReverseRecursively(first, reversed);
+        }
+
+        /// <summary>
+        /// Creates a singly-linked list and populates it with given items.
+        /// </summary>
+        /// <param name="items">Items to populate the linked list</param>
+        /// <returns>The head of the newly created linked list</returns>
+        public static ListNode<T> Create<T>(T[] items)
+        {
+            ListNode<T> head = null;
+            ListNode<T> prev = null;
+
+            foreach (var item in items)
+            {
+                var node = new ListNode<T>(item);
+
+                if (prev == null)
+                    head = node;
+                else
+                    prev.Next = node;
+
+                prev = node;
+            }
+
+            return head;
         }
     }
 }

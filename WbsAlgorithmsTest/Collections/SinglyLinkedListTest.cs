@@ -118,44 +118,44 @@ namespace WbsAlgorithmsTest.Collections
             Assert.Throws<ArgumentException>(() => SinglyLinkedList.RemoveByIndex(head, 10)); // there is no element with index 10
 
             // A two-element list - remove first element.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 10, 20 });
+            head = SinglyLinkedList.Create(new int[] { 10, 20 });
             head = SinglyLinkedList.RemoveByIndex(head, 0);
             Assert.AreEqual(head.Item, 20);
             Assert.IsNull(head.Next);
 
             // A two-element list - remove second element.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 10, 20 });
+            head = SinglyLinkedList.Create(new int[] { 10, 20 });
             head = SinglyLinkedList.RemoveByIndex(head, 1);
             Assert.AreEqual(head.Item, 10);
             Assert.IsNull(head.Next);
 
             // A two-element list - element not found.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 10, 20 });
+            head = SinglyLinkedList.Create(new int[] { 10, 20 });
             Assert.Throws<ArgumentException>(() => SinglyLinkedList.RemoveByIndex(head, 10));
 
             // A three-element list - remove first element.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 10, 20, 30 });
+            head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
             head = SinglyLinkedList.RemoveByIndex(head, 0);
             Assert.AreEqual(head.Item, 20);
             Assert.AreEqual(head.Next.Item, 30);
             Assert.IsNull(head.Next.Next);
 
             // A three-element list - remove middle element.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 10, 20, 30 });
+            head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
             head = SinglyLinkedList.RemoveByIndex(head, 1);
             Assert.AreEqual(head.Item, 10);
             Assert.AreEqual(head.Next.Item, 30);
             Assert.IsNull(head.Next.Next);
 
             // A three-element list - remove last element.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 10, 20, 30 });
+            head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
             head = SinglyLinkedList.RemoveByIndex(head, 2);
             Assert.AreEqual(head.Item, 10);
             Assert.AreEqual(head.Next.Item, 20);
             Assert.IsNull(head.Next.Next);
 
             // A three-element list - element not found.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 10, 20, 30 });
+            head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
             Assert.Throws<ArgumentException>(() => SinglyLinkedList.RemoveByIndex(head, 10));
         }
 
@@ -178,44 +178,44 @@ namespace WbsAlgorithmsTest.Collections
             Assert.Throws<ArgumentException>(() => SinglyLinkedList.RemoveByValue(head, 999));
 
             // A two-element list - remove first element.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 10, 20 });
+            head = SinglyLinkedList.Create(new int[] { 10, 20 });
             head = SinglyLinkedList.RemoveByValue(head, 10);
             Assert.AreEqual(head.Item, 20);
             Assert.IsNull(head.Next);
 
             // A two-element list - remove second element.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 10, 20 });
+            head = SinglyLinkedList.Create(new int[] { 10, 20 });
             head = SinglyLinkedList.RemoveByValue(head, 20);
             Assert.AreEqual(head.Item, 10);
             Assert.IsNull(head.Next);
 
             // A two-element list - element not found.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 10, 20 });
+            head = SinglyLinkedList.Create(new int[] { 10, 20 });
             Assert.Throws<ArgumentException>(() => SinglyLinkedList.RemoveByValue(head, 999));
 
             // A three-element list - remove first element.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 10, 20, 30 });
+            head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
             head = SinglyLinkedList.RemoveByValue(head, 10);
             Assert.AreEqual(head.Item, 20);
             Assert.AreEqual(head.Next.Item, 30);
             Assert.IsNull(head.Next.Next);
 
             // A three-element list - remove middle element.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 10, 20, 30 });
+            head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
             head = SinglyLinkedList.RemoveByValue(head, 20);
             Assert.AreEqual(head.Item, 10);
             Assert.AreEqual(head.Next.Item, 30);
             Assert.IsNull(head.Next.Next);
 
             // A three-element list - remove last element.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 10, 20, 30 });
+            head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
             head = SinglyLinkedList.RemoveByValue(head, 30);
             Assert.AreEqual(head.Item, 10);
             Assert.AreEqual(head.Next.Item, 20);
             Assert.IsNull(head.Next.Next);
 
             // A three-element list - element not found.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 10, 20, 30 });
+            head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
             Assert.Throws<ArgumentException>(() => SinglyLinkedList.RemoveByValue(head, 999));
         }
 
@@ -232,28 +232,28 @@ namespace WbsAlgorithmsTest.Collections
             head = new ListNode<int>(1);
             Assert.IsFalse(SinglyLinkedList.DoesNodeExist(head, 8));
 
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 1, 2 });
+            head = SinglyLinkedList.Create(new int[] { 1, 2 });
             Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 1));
             Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 2));
             Assert.IsFalse(SinglyLinkedList.DoesNodeExist(head, 8));
 
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 1, 1 });
+            head = SinglyLinkedList.Create(new int[] { 1, 1 });
             Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 1));
             Assert.IsFalse(SinglyLinkedList.DoesNodeExist(head, 2));
 
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 1, 1, 1 });
+            head = SinglyLinkedList.Create(new int[] { 1, 1, 1 });
             Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 1));
             Assert.IsFalse(SinglyLinkedList.DoesNodeExist(head, 2));
 
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 2, 1, 1 });
+            head = SinglyLinkedList.Create(new int[] { 2, 1, 1 });
             Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 1));
             Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 2));
 
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 1, 2, 1 });
+            head = SinglyLinkedList.Create(new int[] { 1, 2, 1 });
             Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 1));
             Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 2));
 
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 1, 1, 2 });
+            head = SinglyLinkedList.Create(new int[] { 1, 1, 2 });
             Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 1));
             Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 2));
         }
@@ -347,49 +347,49 @@ namespace WbsAlgorithmsTest.Collections
             Assert.IsNull(head.Next);
 
             // Remove the first element from a two element list.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 1, 2 });
+            head = SinglyLinkedList.Create(new int[] { 1, 2 });
             head = removeAllByValue(head, 1);
             Assert.AreEqual(head.Item, 2);
             Assert.IsNull(head.Next);
 
             // Remove the second element from a two element list.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 1, 2 });
+            head = SinglyLinkedList.Create(new int[] { 1, 2 });
             head = removeAllByValue(head, 2);
             Assert.AreEqual(head.Item, 1);
             Assert.IsNull(head.Next);
 
             // Remove 2nd and 3rd element from a list.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 1, 2, 2 });
+            head = SinglyLinkedList.Create(new int[] { 1, 2, 2 });
             head = removeAllByValue(head, 2);
             Assert.AreEqual(head.Item, 1);
             Assert.IsNull(head.Next);
 
             // Remove 1st and 2nd element from a list.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 2, 2, 1 });
+            head = SinglyLinkedList.Create(new int[] { 2, 2, 1 });
             head = removeAllByValue(head, 2);
             Assert.AreEqual(head.Item, 1);
             Assert.IsNull(head.Next);
 
             // Remove 1st and 3rd element from a list.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 2, 1, 2 });
+            head = SinglyLinkedList.Create(new int[] { 2, 1, 2 });
             head = removeAllByValue(head, 2);
             Assert.AreEqual(head.Item, 1);
             Assert.IsNull(head.Next);
 
             // Remove 2nd element from a list.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 1, 2, 1 });
+            head = SinglyLinkedList.Create(new int[] { 1, 2, 1 });
             head = removeAllByValue(head, 2);
             Assert.AreEqual(head.Item, 1);
             Assert.AreEqual(head.Next.Item, 1);
             Assert.IsNull(head.Next.Next);
 
             // Remove all three elements from a list.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 2, 2, 2 });
+            head = SinglyLinkedList.Create(new int[] { 2, 2, 2 });
             head = removeAllByValue(head, 2);
             Assert.IsNull(head);
 
             // Do not remove anything from a list. 
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 3, 4, 5 });
+            head = SinglyLinkedList.Create(new int[] { 3, 4, 5 });
             head = removeAllByValue(head, 8);
             Assert.AreEqual(head.Item, 3);
             Assert.AreEqual(head.Next.Item, 4);
@@ -400,31 +400,31 @@ namespace WbsAlgorithmsTest.Collections
         [Test]
         public void FindMaxValueTest()
         {
-            ListNode<int> head = LinkedListBuilder.CreateSinglyLinkedList(new[] { 1 });
+            ListNode<int> head = SinglyLinkedList.Create(new[] { 1 });
             Assert.AreEqual(1, SinglyLinkedList.FindMaxValueIteratively(head));
             Assert.AreEqual(1, SinglyLinkedList.FindMaxValueRecusively(head));
 
-            head = LinkedListBuilder.CreateSinglyLinkedList(new[] { 1, 2 });
+            head = SinglyLinkedList.Create(new[] { 1, 2 });
             Assert.AreEqual(2, SinglyLinkedList.FindMaxValueIteratively(head));
             Assert.AreEqual(2, SinglyLinkedList.FindMaxValueRecusively(head));
 
-            head = LinkedListBuilder.CreateSinglyLinkedList(new[] { 2, 1 });
+            head = SinglyLinkedList.Create(new[] { 2, 1 });
             Assert.AreEqual(2, SinglyLinkedList.FindMaxValueIteratively(head));
             Assert.AreEqual(2, SinglyLinkedList.FindMaxValueRecusively(head));
 
-            head = LinkedListBuilder.CreateSinglyLinkedList(new[] { 1, 3, 2 });
+            head = SinglyLinkedList.Create(new[] { 1, 3, 2 });
             Assert.AreEqual(3, SinglyLinkedList.FindMaxValueIteratively(head));
             Assert.AreEqual(3, SinglyLinkedList.FindMaxValueRecusively(head));
 
-            head = LinkedListBuilder.CreateSinglyLinkedList(new[] { 1, 2, 3 });
+            head = SinglyLinkedList.Create(new[] { 1, 2, 3 });
             Assert.AreEqual(3, SinglyLinkedList.FindMaxValueIteratively(head));
             Assert.AreEqual(3, SinglyLinkedList.FindMaxValueRecusively(head));
 
-            head = LinkedListBuilder.CreateSinglyLinkedList(new[] { 3, 2, 1 });
+            head = SinglyLinkedList.Create(new[] { 3, 2, 1 });
             Assert.AreEqual(3, SinglyLinkedList.FindMaxValueIteratively(head));
             Assert.AreEqual(3, SinglyLinkedList.FindMaxValueRecusively(head));
 
-            head = LinkedListBuilder.CreateSinglyLinkedList(new[] { 3, 7, 4, 14, 6, 10, 13, 1 });
+            head = SinglyLinkedList.Create(new[] { 3, 7, 4, 14, 6, 10, 13, 1 });
             Assert.AreEqual(14, SinglyLinkedList.FindMaxValueIteratively(head));
             Assert.AreEqual(14, SinglyLinkedList.FindMaxValueRecusively(head));
         }
@@ -446,7 +446,7 @@ namespace WbsAlgorithmsTest.Collections
             Assert.IsNull(reversed.Next);
 
             // Reverse a two-node list.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 0, 1 });
+            head = SinglyLinkedList.Create(new int[] { 0, 1 });
             reversed = SinglyLinkedList.ReverseIteratively(head);
 
             Assert.AreEqual(1, reversed.Item);
@@ -454,7 +454,7 @@ namespace WbsAlgorithmsTest.Collections
             Assert.IsNull(reversed.Next.Next);
 
             // Reverse a five-node list.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 0, 1, 2, 3, 4 });
+            head = SinglyLinkedList.Create(new int[] { 0, 1, 2, 3, 4 });
             reversed = SinglyLinkedList.ReverseIteratively(head);
 
             Assert.AreEqual(4, reversed.Item);
@@ -482,7 +482,7 @@ namespace WbsAlgorithmsTest.Collections
             Assert.IsNull(reversed.Next);
 
             // Reverse a two-node list.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 0, 1 });
+            head = SinglyLinkedList.Create(new int[] { 0, 1 });
             reversed = SinglyLinkedList.ReverseRecursively(head);
 
             Assert.AreEqual(1, reversed.Item);
@@ -490,7 +490,7 @@ namespace WbsAlgorithmsTest.Collections
             Assert.IsNull(reversed.Next.Next);
 
             // Reverse a five-node list.
-            head = LinkedListBuilder.CreateSinglyLinkedList(new int[] { 0, 1, 2, 3, 4 });
+            head = SinglyLinkedList.Create(new int[] { 0, 1, 2, 3, 4 });
             reversed = SinglyLinkedList.ReverseRecursively(head);
 
             Assert.AreEqual(4, reversed.Item);

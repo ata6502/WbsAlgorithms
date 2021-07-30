@@ -246,5 +246,33 @@ namespace WbsAlgorithms.Collections
 
             return head;
         }
+
+        /// <summary>
+        /// Creates a doubly-linked list and populates it with given items.
+        /// </summary>
+        /// <param name="items">Items to populate the linked list</param>
+        /// <returns>The head of the newly created linked list</returns>
+        public static DoubleListNode<T> Create<T>(T[] items)
+        {
+            DoubleListNode<T> head = null;
+            DoubleListNode<T> prev = null;
+
+            foreach (var item in items)
+            {
+                var node = new DoubleListNode<T>(item);
+
+                if (prev == null)
+                    head = node;
+                else
+                {
+                    prev.Next = node;
+                    node.Prev = prev;
+                }
+
+                prev = node;
+            }
+
+            return head;
+        }
     }
 }
