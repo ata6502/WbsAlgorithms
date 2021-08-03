@@ -109,5 +109,27 @@ namespace WbsAlgorithmsTest.Collections
             Assert.AreEqual(2, queue.Dequeue());
             Assert.AreEqual(1, queue.Dequeue());
         }
+
+        [Test]
+        public void RandomQueueTest()
+        {
+            var queue = new QueueRandom<string>(2);
+
+            // Enqueue a few item.
+            queue.Enqueue("A");
+            queue.Enqueue("B");
+            queue.Enqueue("C");
+
+            var item = queue.Dequeue();
+
+            // The item can be any of the items.
+            Assert.IsTrue(item == "A" || item == "B" || item == "C");
+
+            // The Sample method may return any item in the queue
+            // except the the one that has been dequeued.
+            var sample = queue.Sample();
+
+            Assert.AreNotEqual(item, sample);
+        }
     }
 }
