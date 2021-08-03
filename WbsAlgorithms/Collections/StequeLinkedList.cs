@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using WbsAlgorithms.Common;
 
 namespace WbsAlgorithms.Collections
@@ -10,7 +8,7 @@ namespace WbsAlgorithms.Collections
     /// This implementation uses a singly-linked list to store items.
     /// Knuth calls the steque an output-restricted deque.
     /// 
-    /// [Sedgewick] 1.3.32 p.167 - Implement a steque data structure with the following operations:
+    /// [Sedgewick] 1.3.32 p.167 - Implement a steque data structure that supports the following API:
     /// - Add an item to the top of the steque (Push).
     /// - Remove the most recently added item (Pop).
     /// - Add an item to the bottom of the steque (Enqueue).
