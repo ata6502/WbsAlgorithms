@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using WbsAlgorithms.Collections;
 
 namespace WbsAlgorithms.Arithmetics
@@ -9,15 +7,14 @@ namespace WbsAlgorithms.Arithmetics
     public class InfixPostfix
     {
         /// <summary>
-        /// [Sedgewick] 1.3.10 p.162 - Convert an arithmetic expression from infix to postfix.
+        /// In postfix notation, the parentheses are optional and could be omitted. The ConvertToPostfix
+        /// method returns a fully parenthesised postfix expression for clarity.
         /// 
         /// Examples:
         /// x + y --> x y +
         /// ( ( 1 + 2 ) * ( ( 3 - 4 ) * ( 5 - 6 ) ) )  -->  ( ( 1 2 + ) ( ( 3 4 - ) ( 5 6 - ) * ) * ) --> the same as: 1 2 + 3 4 - 5 6 - * *
         /// 
-        /// In postfix notation, the parentheses are optional and could be omitted. The ConvertToPostfix
-        /// method returns a fully parenthesised postfix expression for clarity.
-        /// 
+        /// [Sedgewick] 1.3.10 p.162 - Convert an arithmetic expression from infix to postfix.
         /// Reference: http://www.cs.man.ac.uk/~pjj/cs212/fix.html
         /// </summary>
         /// <param name="expression">A fully parenthesised infix arithmetic expression</param>
