@@ -80,7 +80,7 @@ namespace WbsAlgorithms.Collections
             string.Join(' ', _array.Take(Size).Select(x => x.ToString()));
 
         /// <summary>
-        /// Moves a stack of Size <= newSize into an array of a different size.
+        /// Moves an array of Size <= newSize into an array of a different size.
         /// </summary>
         /// <param name="newSize">The size of the new array</param>
         private void Resize(int newSize)
