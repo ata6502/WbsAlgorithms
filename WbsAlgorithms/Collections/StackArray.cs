@@ -13,7 +13,7 @@ namespace WbsAlgorithms.Collections
         private T[] _array; // stack entries
 
         /// <summary>
-        /// Checks whether the stack is empty.
+        /// Indicates whether the stack is empty.
         /// </summary>
         public bool IsEmpty => (Size == 0);
 
