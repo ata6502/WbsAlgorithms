@@ -4,10 +4,9 @@ using WbsAlgorithms.Common;
 namespace WbsAlgorithms.Collections
 {
     /// <summary>
-    /// A circular linked list has no null links and the value of the tail.next pointer
-    /// points to the head whenever the list is not empty.
+    /// A queue implementation using a circular linked list.
     /// 
-    /// [Sedgewick] 1.3.29 p.165 - A queue implementation using a circular linked list.
+    /// [Sedgewick] 1.3.29 p.165 - Implementation a queue using a circular linked list.
     /// </summary>
     public class QueueCircularLinkedList<T>
     {
@@ -63,7 +62,7 @@ namespace WbsAlgorithms.Collections
                 throw new ArgumentException("The queue is empty.");
 
             // Keep the value from the first node in the queue (tail.Next points to the first node).
-            // We can use head.Next.Item because head.Next is never null in a circular linked list.
+            // We can use tail.Next.Item because tail.Next is never null in a circular linked list.
             // It always points to the linked list's head.
             var item = _tail.Next.Item;
 
