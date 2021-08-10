@@ -74,7 +74,7 @@ namespace WbsAlgorithms.Arithmetics
             ListNode<int> dummyHead = new ListNode<int>(0);
             ListNode<int> p = l1, q = l2, curr = dummyHead;
             var carry = 0;
-            int sum = 0;
+            var sum = 0;
 
             while (p != null || q != null)
             {
