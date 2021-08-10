@@ -1,16 +1,31 @@
-﻿using WbsAlgorithms.Collections;
+﻿using System.Text;
+using WbsAlgorithms.Collections;
 
 namespace WbsAlgorithms.Arithmetics
 {
     /// <summary>
-    /// [Sedgewick] 1.3.5 p.161 - Convert decimal numbers to their binary representation.
+    /// [Sedgewick] 1.1.9 p.55 - Convert a decimal number to its binary representation. Provide a concise implementation.
+    /// [Sedgewick] 1.3.5 p.161 - Convert a decimal number to its binary representation using a stack.
     /// 
     /// Example: GetBinary(50) returns 110010
     /// </summary>
     public class BinaryRepresentation
     {
         /// <summary>
-        /// Convert the input decimal number into its binary representation.
+        /// Converts a decimal number into its binary representation.
+        /// </summary>
+        /// <param name="n">The input number</param>
+        /// <returns>Binary represenation of the input number as a string of 0s and 1s</returns>
+        public static string GetBinary(int n)
+        {
+            var sb = new StringBuilder();
+            for (var i = n; i > 0; i /= 2)
+                sb.Insert(0, i % 2);
+            return sb.Length == 0 ? "0" : sb.ToString();
+        }
+
+        /// <summary>
+        /// Converts a decimal number into its binary representation using a stack.
         /// </summary>
         /// <param name="n">The input number</param>
         /// <returns>Binary represenation of the input number as a string of 0s and 1s</returns>

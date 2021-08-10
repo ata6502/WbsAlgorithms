@@ -17,9 +17,11 @@ namespace WbsAlgorithmsTest.Arithmetics
         [TestCase(256, "100000000")]
         public void GetBinaryUsingStackTest(int inputNumber, string expectedBinary)
         {
-            var actualBinary = BinaryRepresentation.GetBinaryUsingStack(inputNumber);
+            var actualBinary1 = BinaryRepresentation.GetBinary(inputNumber);
+            var actualBinary2 = BinaryRepresentation.GetBinaryUsingStack(inputNumber);
 
-            Assert.AreEqual(expectedBinary, actualBinary);
+            Assert.AreEqual(expectedBinary, actualBinary1);
+            Assert.AreEqual(expectedBinary, actualBinary2);
         }
     }
 }
