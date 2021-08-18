@@ -23,8 +23,10 @@ namespace WbsAlgorithmsTest.DivideAndConquer
         public void FindElementIndexTest(int[] inputArray, int inputElement, int expectedIndex)
         {
             var actualIndexIteratively = BinarySearch.FindElementIteratively(inputElement, inputArray);
+            var actualIndexRecusively = BinarySearch.FindElementRecursively(inputElement, inputArray);
 
             Assert.AreEqual(expectedIndex, actualIndexIteratively);
+            Assert.AreEqual(expectedIndex, actualIndexRecusively);
         }
     }
 }
