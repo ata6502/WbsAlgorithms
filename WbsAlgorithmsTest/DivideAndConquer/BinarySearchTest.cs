@@ -22,8 +22,8 @@ namespace WbsAlgorithmsTest.DivideAndConquer
         [TestCase(new int[] { 2, 3, 4, 5 }, 1, -1, TestName = "FourElementsNotFound")]
         public void FindElementIndexTest(int[] inputArray, int inputElement, int expectedIndex)
         {
-            var actualIndexIteratively = BinarySearch.FindElementIteratively(inputElement, inputArray);
-            var actualIndexRecusively = BinarySearch.FindElementRecursively(inputElement, inputArray);
+            var actualIndexIteratively = BinarySearch.FindIndexIteratively(inputElement, inputArray);
+            var actualIndexRecusively = BinarySearch.FindIndexRecursively(inputElement, inputArray);
 
             Assert.AreEqual(expectedIndex, actualIndexIteratively);
             Assert.AreEqual(expectedIndex, actualIndexRecusively);

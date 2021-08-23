@@ -13,7 +13,7 @@ namespace WbsAlgorithms.DivideAndConquer
         /// <param name="element">An element whose index we are looking for</param>
         /// <param name="array">A sorted array</param>
         /// <returns>If the element found, an index of the input element. Otherwise, -1.</returns>
-        public static int FindElementIteratively<T>(T element, T[] array) 
+        public static int FindIndexIteratively<T>(T element, T[] array) 
             where T : IComparable<T>
         {
             var low = 0;
@@ -42,13 +42,13 @@ namespace WbsAlgorithms.DivideAndConquer
         /// <param name="element">An element whose index we are looking for</param>
         /// <param name="array">A sorted array</param>
         /// <returns>If the element found, an index of the input element. Otherwise, -1.</returns>
-        public static int FindElementRecursively<T>(T element, T[] array)
+        public static int FindIndexRecursively<T>(T element, T[] array)
             where T : IComparable<T>
         {
-            return FindElementRecursivelyInternal(element, array, 0, array.Length - 1);
+            return FindIndexRecursivelyInternal(element, array, 0, array.Length - 1);
         }
 
-        private static int FindElementRecursivelyInternal<T>(T element, T[] array, int low, int high)
+        private static int FindIndexRecursivelyInternal<T>(T element, T[] array, int low, int high)
             where T : IComparable<T>
         {
             if (high < low)
@@ -56,9 +56,9 @@ namespace WbsAlgorithms.DivideAndConquer
 
             var mid = (low + high) / 2;
             if (element.CompareTo(array[mid]) < 0) // key < a[mid]
-                return FindElementRecursivelyInternal(element, array, low, mid - 1);
+                return FindIndexRecursivelyInternal(element, array, low, mid - 1);
             else if (element.CompareTo(array[mid]) > 0) // key > a[mid]
-                return FindElementRecursivelyInternal(element, array, mid + 1, high);
+                return FindIndexRecursivelyInternal(element, array, mid + 1, high);
             else
                 return mid;
         }
