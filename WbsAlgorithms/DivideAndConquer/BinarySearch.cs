@@ -62,5 +62,27 @@ namespace WbsAlgorithms.DivideAndConquer
             else
                 return mid;
         }
+
+        /// <summary>
+        /// Returns the number of elements that are smaller than the input element.
+        /// 
+        /// [Sedgewick] 1.1.29 p.59 - Implement the Rank method.
+        /// </summary>
+        /// <param name="element">The input element</param>
+        /// <param name="array">A sorted array of elements some of which may be equal</param>
+        /// <returns>The number of elements that are smaller than the input element</returns>
+        public static int RankRecursively<T>(T element, T[] array, int low, int high)
+            where T : IComparable<T>
+        {
+            if (high < low)
+                return low;
+
+            var mid = (low + high) / 2;
+
+            if (element.CompareTo(array[mid]) > 0) // key > a[mid]
+                return RankRecursively(element, array, mid + 1, high);
+            else // key <= a[mid]
+                return RankRecursively(element, array, low, mid - 1);
+        }
     }
 }
