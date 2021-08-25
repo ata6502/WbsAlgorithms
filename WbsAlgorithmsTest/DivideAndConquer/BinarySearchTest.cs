@@ -44,6 +44,8 @@ namespace WbsAlgorithmsTest.DivideAndConquer
         [TestCase(new int[] { 1, 1, 1 }, 1, 0, TestName = "Rank_ThreeTheSame1")]
         [TestCase(new int[] { 2, 2, 2 }, 2, 0, TestName = "Rank_ThreeTheSame2")]
         [TestCase(new int[] { 3, 3, 3 }, 3, 0, TestName = "Rank_ThreeTheSame2")]
+        [TestCase(new int[] { 1, 1, 2, 3 }, 2, 2, TestName = "Rank_Four1")]
+        [TestCase(new int[] { 1, 1, 2, 3 }, 3, 3, TestName = "Rank_Four2")]
         [TestCase(new int[] { 1, 1, 2 }, 8, 3, TestName = "Rank_Greater1")]
         [TestCase(new int[] { 3, 4, 5 }, 8, 3, TestName = "Rank_Greater2")]
         [TestCase(new int[] { 1, 3, 5, 5, 6, 8, 8, 10, 10, 10, 15 }, 1, 0, TestName = "Rank_More1")]
