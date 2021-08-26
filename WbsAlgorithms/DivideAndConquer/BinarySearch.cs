@@ -71,7 +71,35 @@ namespace WbsAlgorithms.DivideAndConquer
         /// <param name="element">The input element</param>
         /// <param name="array">A sorted array of elements some of which may be equal</param>
         /// <returns>The number of elements that are smaller than the input element</returns>
-        public static int RankRecursively<T>(T element, T[] array, int low, int high)
+        public static int Rank<T>(T element, T[] array)
+            where T : IComparable<T>
+            => GetLessThanElement(element, array, 0, array.Length - 1);
+
+        /// <summary>
+        /// Returns the number of elements that are equal to the input element.
+        /// 
+        /// [Sedgewick] 1.1.29 p.59 - Implement the Count method.
+        /// </summary>
+        /// <param name="element">The input element</param>
+        /// <param name="array">A sorted array of elements some of which may be equal</param>
+        /// <returns>The number of elements that are equal to the input element</returns>
+        public static int Count<T>(T element, T[] array)
+            where T : IComparable<T>
+        {
+            var lessThanElementCount = GetLessThanElement(element, array, 0, array.Length - 1);
+            var greaterThanElementCount = GetGreaterThanElement(element, array, 0, array.Length - 1);
+            var allElementsCount = array.Length;
+
+            return allElementsCount - (lessThanElementCount + greaterThanElementCount);
+        }
+
+        /// <summary>
+        /// Returns the number of elements that are smaller than the input element.
+        /// </summary>
+        /// <param name="element">The input element</param>
+        /// <param name="array">A sorted array of elements some of which may be equal</param>
+        /// <returns>The number of elements that are smaller than the input element</returns>
+        private static int GetLessThanElement<T>(T element, T[] array, int low, int high)
             where T : IComparable<T>
         {
             if (high < low)
@@ -80,9 +108,29 @@ namespace WbsAlgorithms.DivideAndConquer
             var mid = (low + high) / 2;
 
             if (element.CompareTo(array[mid]) > 0) // key > a[mid]
-                return RankRecursively(element, array, mid + 1, high);
+                return GetLessThanElement(element, array, mid + 1, high);
             else // key <= a[mid]
-                return RankRecursively(element, array, low, mid - 1);
+                return GetLessThanElement(element, array, low, mid - 1);
+        }
+
+        /// <summary>
+        /// Returns the number of elements that are greater than the input element.
+        /// </summary>
+        /// <param name="element">The input element</param>
+        /// <param name="array">A sorted array of elements some of which may be equal</param>
+        /// <returns>The number of elements that are greater than the input element</returns>
+        private static int GetGreaterThanElement<T>(T element, T[] array, int low, int high)
+            where T : IComparable<T>
+        {
+            if (high < low)
+                return array.Length - high - 1;
+
+            var mid = (low + high) / 2;
+
+            if (element.CompareTo(array[mid]) < 0) // key < a[mid]
+                return GetGreaterThanElement(element, array, low, mid - 1);
+            else // key >= a[mid]
+                return GetGreaterThanElement(element, array, mid + 1, high);
         }
     }
 }

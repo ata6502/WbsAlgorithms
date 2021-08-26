@@ -32,8 +32,8 @@ namespace WbsAlgorithmsTest.DivideAndConquer
         [TestCase(new int[] { 1 }, 1, 0, TestName = "Rank_OneElement")]
         [TestCase(new int[] { 1, 2 }, 1, 0, TestName = "Rank_TwoDifferent1")]
         [TestCase(new int[] { 1, 2 }, 2, 1, TestName = "Rank_TwoDifferent2")]
-        [TestCase(new int[] { 1, 1 }, 1, 0, TestName = "Rank_TheSame1")]
-        [TestCase(new int[] { 2, 2 }, 2, 0, TestName = "Rank_TheSame1")]
+        [TestCase(new int[] { 1, 1 }, 1, 0, TestName = "Rank_TwoTheSame1")]
+        [TestCase(new int[] { 2, 2 }, 2, 0, TestName = "Rank_TwoTheSame1")]
         [TestCase(new int[] { 1, 2, 3 }, 1, 0, TestName = "Rank_ThreeDifferent1")]
         [TestCase(new int[] { 1, 2, 3 }, 2, 1, TestName = "Rank_ThreeDifferent2")]
         [TestCase(new int[] { 1, 2, 3 }, 3, 2, TestName = "Rank_ThreeDifferent3")]
@@ -61,7 +61,37 @@ namespace WbsAlgorithmsTest.DivideAndConquer
         [TestCase(new int[] { 1, 3, 5, 5, 6, 8, 8, 10, 10, 10, 15 }, 20, 11, TestName = "Rank_More11")]
         public void RankTest(int[] inputArray, int inputElement, int expectedCount)
         {
-            var actualCount = BinarySearch.RankRecursively(inputElement, inputArray, 0, inputArray.Length-1);
+            var actualCount = BinarySearch.Rank(inputElement, inputArray);
+
+            Assert.AreEqual(expectedCount, actualCount);
+        }
+
+        [TestCase(new int[] { 1 }, 1, 1, TestName = "Count_OneElement")]
+        [TestCase(new int[] { 1, 2 }, 1, 1, TestName = "Count_TwoDifferent1")]
+        [TestCase(new int[] { 1, 2 }, 2, 1, TestName = "Count_TwoDifferent2")]
+        [TestCase(new int[] { 1, 1 }, 1, 2, TestName = "Count_TwoTheSame1")]
+        [TestCase(new int[] { 1, 2, 3 }, 1, 1, TestName = "Count_ThreeDifferent1")]
+        [TestCase(new int[] { 1, 2, 3 }, 2, 1, TestName = "Count_ThreeDifferent2")]
+        [TestCase(new int[] { 1, 2, 3 }, 3, 1, TestName = "Count_ThreeDifferent3")]
+        [TestCase(new int[] { 1, 1, 2 }, 1, 2, TestName = "Count_ThreeDifferent4")]
+        [TestCase(new int[] { 1, 2, 2 }, 2, 2, TestName = "Count_ThreeDifferent6")]
+        [TestCase(new int[] { 1, 1, 1 }, 1, 3, TestName = "Count_ThreeTheSame1")]
+        [TestCase(new int[] { 1, 1, 2, 2 }, 1, 2, TestName = "Count_Four1")]
+        [TestCase(new int[] { 1, 1, 2, 2 }, 2, 2, TestName = "Count_Four2")]
+        [TestCase(new int[] { 1, 1, 2 }, 8, 0, TestName = "Count_Greater1")]
+        [TestCase(new int[] { 3, 4, 15 }, 8, 0, TestName = "Count_Greater2")]
+        [TestCase(new int[] { 1, 3, 5, 5, 6, 8, 8, 10, 10, 10, 15 }, 1, 1, TestName = "Count_More1")]
+        [TestCase(new int[] { 1, 3, 5, 5, 6, 8, 8, 10, 10, 10, 15 }, 3, 1, TestName = "Count_More2")]
+        [TestCase(new int[] { 1, 3, 5, 5, 6, 8, 8, 10, 10, 10, 15 }, 5, 2, TestName = "Count_More3")]
+        [TestCase(new int[] { 1, 3, 5, 5, 6, 8, 8, 10, 10, 10, 15 }, 6, 1, TestName = "Count_More4")]
+        [TestCase(new int[] { 1, 3, 5, 5, 6, 8, 8, 10, 10, 10, 15 }, 8, 2, TestName = "Count_More6")]
+        [TestCase(new int[] { 1, 3, 5, 5, 6, 8, 8, 10, 10, 10, 15 }, 9, 0, TestName = "Count_More7")]
+        [TestCase(new int[] { 1, 3, 5, 5, 6, 8, 8, 10, 10, 10, 15 }, 10, 3, TestName = "Count_More8")]
+        [TestCase(new int[] { 1, 3, 5, 5, 6, 8, 8, 10, 10, 10, 15 }, 15, 1, TestName = "Count_More10")]
+        [TestCase(new int[] { 1, 3, 5, 5, 6, 8, 8, 10, 10, 10, 15 }, 20, 0, TestName = "Count_More11")]
+        public void CountTest(int[] inputArray, int inputElement, int expectedCount)
+        {
+            var actualCount = BinarySearch.Count(inputElement, inputArray);
 
             Assert.AreEqual(expectedCount, actualCount);
         }
