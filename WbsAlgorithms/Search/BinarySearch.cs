@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WbsAlgorithms.DivideAndConquer
+namespace WbsAlgorithms.Search
 {
     public static class BinarySearch
     {

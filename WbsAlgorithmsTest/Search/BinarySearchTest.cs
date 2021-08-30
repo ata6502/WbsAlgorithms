@@ -1,7 +1,7 @@
 using NUnit.Framework;
-using WbsAlgorithms.DivideAndConquer;
+using WbsAlgorithms.Search;
 
-namespace WbsAlgorithmsTest.DivideAndConquer
+namespace WbsAlgorithmsTest.Search
 {
     [TestFixture]
     public class BinarySearchTest
