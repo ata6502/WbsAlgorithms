@@ -24,9 +24,11 @@ namespace WbsAlgorithmsTest.Search
         {
             var actualIndexIteratively = BinarySearch.FindIndexIteratively(inputElement, inputArray);
             var actualIndexRecusively = BinarySearch.FindIndexRecursively(inputElement, inputArray);
+            var actualIndexLinearly = BinarySearch.FindIndexLinearly(inputElement, inputArray);
 
             Assert.AreEqual(expectedIndex, actualIndexIteratively);
             Assert.AreEqual(expectedIndex, actualIndexRecusively);
+            Assert.AreEqual(expectedIndex, actualIndexLinearly);
         }
 
         [TestCase(new int[] { 1 }, 1, 0, TestName = "Rank_OneElement")]

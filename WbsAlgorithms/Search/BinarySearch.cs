@@ -64,6 +64,24 @@ namespace WbsAlgorithms.Search
         }
 
         /// <summary>
+        /// Finds an index of an element in a sorted array using brute-force i.e., linear search.
+        /// 
+        /// [Sedgewick] 1.1.38 p.61 - Binary search implemented using brute-force search.
+        /// </summary>
+        /// <typeparam name="T">A type that supports IComparable</typeparam>
+        /// <param name="element">An element whose index we are looking for</param>
+        /// <param name="array">A sorted array</param>
+        /// <returns>If the element found, an index of the input element. Otherwise, -1.</returns>
+        public static int FindIndexLinearly<T>(T element, T[] array)
+            where T : IComparable<T>
+        {
+            for (var i = 0; i < array.Length; ++i)
+                if (array[i].CompareTo(element) == 0)
+                    return i;
+            return -1;
+        }
+
+        /// <summary>
         /// Returns the number of elements that are smaller than the input element.
         /// 
         /// [Sedgewick] 1.1.29 p.59 - Implement the Rank method.
