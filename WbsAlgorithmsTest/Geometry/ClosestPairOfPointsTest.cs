@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using WbsAlgorithms.Geometry;
 
 namespace WbsAlgorithmsTest.Geometry
@@ -27,9 +29,28 @@ namespace WbsAlgorithmsTest.Geometry
             yield return new TestCaseData(CreatePoints(1, 5, 4, 4, 2, 3.5, 2.5, 7, 2, 2, 3, 3, 4, 6, 7, 5, 6, 3, 9, 5, 7, 7, 8, 2), CreatePoints(2, 3.5, 3, 3), 1.1180339887).SetName("LeftHalfPair");
             yield return new TestCaseData(CreatePoints(1, 5, 4, 4, 2.5, 7, 2, 2, 3, 3, 4, 6, 7, 5, 6, 3, 9, 5, 7, 7, 8, 2, 7, 1.5), CreatePoints(8, 2, 7, 1.5), 1.1180339887).SetName("RightHalfPair");
             yield return new TestCaseData(CreatePoints(1, 5, 4, 4, 2.5, 7, 2, 2, 3, 3, 4.5, 6, 7, 5, 6, 3, 9, 5, 7, 7, 8, 2, 5.5, 5.5), CreatePoints(4.5, 6, 5.5, 5.5), 1.1180339887).SetName("SplitPair");
+            yield return new TestCaseData(CreatePoints(@"Data\Points50.txt"), CreatePoints(3.0, 29.3, 3.1, 30.7), 1.4035668848).SetName("Points50");
         }
 
         #region Private helpers
+        private static Point[] CreatePoints(string filename)
+        {
+            var str = File.ReadAllText(filename).Split(',');
+            var coordinates = new double[str.Length];
+            var i = 0;
+
+            foreach(var s in str)
+            {
+                if (double.TryParse(s, out var n))
+                    coordinates[i] = n;
+                else
+                    throw new FormatException($"The string '{s}' in the position {i+1} is not correctly formatted number.");
+                ++i;
+            }
+
+            return CreatePoints(coordinates);
+        }
+
         private static Point[] CreatePoints(params double[] coordinates)
         {
             Debug.Assert(coordinates.Length % 2 == 0);

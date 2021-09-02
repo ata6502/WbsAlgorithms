@@ -13,7 +13,7 @@
 
         public override string ToString()
         {
-            return $"({X:N2},{Y:N2})";
+            return $"({X:N1},{Y:N1})";
         }
     }
 }
