@@ -30,6 +30,9 @@ namespace WbsAlgorithmsTest.Geometry
             yield return new TestCaseData(CreatePoints(1, 5, 4, 4, 2.5, 7, 2, 2, 3, 3, 4, 6, 7, 5, 6, 3, 9, 5, 7, 7, 8, 2, 7, 1.5), CreatePoints(8, 2, 7, 1.5), 1.1180339887).SetName("RightHalfPair");
             yield return new TestCaseData(CreatePoints(1, 5, 4, 4, 2.5, 7, 2, 2, 3, 3, 4.5, 6, 7, 5, 6, 3, 9, 5, 7, 7, 8, 2, 5.5, 5.5), CreatePoints(4.5, 6, 5.5, 5.5), 1.1180339887).SetName("SplitPair");
             yield return new TestCaseData(CreatePoints(@"Data\Points50.txt"), CreatePoints(3.0, 29.3, 3.1, 30.7), 1.4035668848).SetName("Points50");
+            yield return new TestCaseData(CreatePoints(@"Data\Points100.txt"), CreatePoints(73.8, 93.0, 73.2, 92.9), 0.6082762530).SetName("Points100");
+            yield return new TestCaseData(CreatePoints(@"Data\Points200.txt"), CreatePoints(11.9, 83.1, 11.4, 83.1), 0.5).SetName("Points200");
+            yield return new TestCaseData(CreatePoints(@"Data\Points500.txt"), CreatePoints(28.0, 96.9, 27.9, 96.9), 0.1).SetName("Points500");
         }
 
         #region Private helpers
