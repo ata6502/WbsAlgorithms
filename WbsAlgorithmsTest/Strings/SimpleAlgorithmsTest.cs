@@ -25,8 +25,28 @@ namespace WbsAlgorithmsTest.Strings
         public void AreStringsCircularRotationsTest(string s1, string s2, bool expectedResult)
         {
             var actualResult = SimpleAlgorithms.AreStringsCircularRotations(s1, s2);
-
             Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestCase("a", "a", TestName = "Reverse1")]
+        [TestCase("ab", "ba", TestName = "Reverse2")]
+        [TestCase("aa", "aa", TestName = "Reverse3")]
+        [TestCase("abc", "cba", TestName = "Reverse4")]
+        [TestCase("abb", "bba", TestName = "Reverse5")]
+        [TestCase("abcd", "dcba", TestName = "Reverse6")]
+        [TestCase("aabb", "bbaa", TestName = "Reverse7")]
+        [TestCase("abcde", "edcba", TestName = "Reverse8")]
+        [TestCase("aboba", "aboba", TestName = "Reverse9")]
+        [TestCase("baobab", "baboab", TestName = "Reverse10")]
+        [TestCase("eqreqesa", "aseqerqe", TestName = "Reverse11")]
+        [TestCase("ghfgdhsst", "tsshdgfhg", TestName = "Reverse12")]
+        [TestCase("bzdgghthgx", "xghthggdzb", TestName = "Reverse13")]
+        [TestCase("ffsaggahsfs", "sfshaggasff", TestName = "Reverse14")]
+        [TestCase("fgdadgethfgskjfj.lwjkfwlfj", "jflwfkjwl.jfjksgfhtegdadgf", TestName = "Reverse15")]
+        public void ReverseStringRecursivelyTest(string inputString, string expectedString)
+        {
+            var reversedString = SimpleAlgorithms.ReverseStringRecursively(inputString);
+            Assert.AreEqual(expectedString, reversedString);
         }
     }
 }
