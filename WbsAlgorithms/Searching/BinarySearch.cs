@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WbsAlgorithms.Search
+namespace WbsAlgorithms.Searching
 {
     public static class BinarySearch
     {

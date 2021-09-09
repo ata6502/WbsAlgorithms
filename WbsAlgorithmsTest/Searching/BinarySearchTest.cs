@@ -1,7 +1,7 @@
 using NUnit.Framework;
-using WbsAlgorithms.Search;
+using WbsAlgorithms.Searching;
 
-namespace WbsAlgorithmsTest.Search
+namespace WbsAlgorithmsTest.Searching
 {
     [TestFixture]
     public class BinarySearchTest
