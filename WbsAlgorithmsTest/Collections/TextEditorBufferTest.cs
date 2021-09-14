@@ -7,6 +7,86 @@ namespace WbsAlgorithmsTest.Collections
     public class TextEditorBufferTest
     {
         [Test]
+        public void EmptyBufferTest()
+        {
+            var b = new TextEditorBuffer();
+            Assert.AreEqual(0, b.Size);
+            Assert.AreEqual(" | ", b.ToString());
+
+            b.Insert('A');
+            Assert.AreEqual(1, b.Size);
+
+            Assert.AreEqual('A', b.Delete());
+            Assert.AreEqual(0, b.Size);
+            Assert.AreEqual(" | ", b.ToString());
+
+            Assert.AreEqual(default(char), b.Delete());
+            Assert.AreEqual(0, b.Size);
+            Assert.AreEqual(" | ", b.ToString());
+        }
+
+        [Test]
+        public void OneElementTest()
+        {
+            var b = new TextEditorBuffer();
+
+            b.Insert('A');
+            Assert.AreEqual(1, b.Size);
+            Assert.AreEqual("A | ", b.ToString());
+
+            b.Right(1);
+            Assert.AreEqual("A | ", b.ToString());
+
+            b.Left(1);
+            Assert.AreEqual(" | A", b.ToString());
+
+            b.Left(1);
+            Assert.AreEqual(" | A", b.ToString());
+
+            b.Delete();
+            Assert.AreEqual(1, b.Size);
+            Assert.AreEqual(" | A", b.ToString());
+
+            b.Right(1);
+            Assert.AreEqual("A | ", b.ToString());
+
+            Assert.AreEqual('A', b.Delete());
+            Assert.AreEqual(0, b.Size);
+            Assert.AreEqual(" | ", b.ToString());
+        }
+
+        [Test]
+        public void TwoElementsTest()
+        {
+            var b = new TextEditorBuffer();
+
+            b.Insert('A');
+            b.Insert('B');
+            Assert.AreEqual(2, b.Size);
+            Assert.AreEqual("A B | ", b.ToString());
+
+            b.Right(1);
+            Assert.AreEqual("A B | ", b.ToString());
+
+            b.Left(1);
+            Assert.AreEqual("A | B", b.ToString());
+
+            b.Left(1);
+            Assert.AreEqual(" | A B", b.ToString());
+
+            Assert.AreEqual(default(char), b.Delete());
+            Assert.AreEqual(2, b.Size);
+            Assert.AreEqual(" | A B", b.ToString());
+
+            b.Right(1);
+            Assert.AreEqual("A | B", b.ToString());
+
+            Assert.AreEqual('A', b.Delete());
+            Assert.AreEqual(1, b.Size);
+            Assert.AreEqual(" | B", b.ToString());
+        }
+
+        [Test]
         public void MixedTest()
         {
             var b = new TextEditorBuffer();
