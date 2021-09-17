@@ -70,7 +70,7 @@ namespace Shuffling
         }
 
         /// <summary>
-        /// Randomly shuffle elements in an array.
+        /// Randomly shuffles elements in an array.
         /// </summary>
         /// <param name="a">The input array</param>
         private static void Shuffle(int[] a)

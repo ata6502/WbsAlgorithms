@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiceSimulation", "Experimen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shuffling", "Experiments\Shuffling\Shuffling.csproj", "{DFBEAE9A-9285-4653-9D9B-A4465BE94BA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoublingRatio", "Experiments\DoublingRatio\DoublingRatio.csproj", "{EB9F4157-05AD-4667-A749-32B843B5458C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{DFBEAE9A-9285-4653-9D9B-A4465BE94BA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFBEAE9A-9285-4653-9D9B-A4465BE94BA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFBEAE9A-9285-4653-9D9B-A4465BE94BA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB9F4157-05AD-4667-A749-32B843B5458C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB9F4157-05AD-4667-A749-32B843B5458C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB9F4157-05AD-4667-A749-32B843B5458C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB9F4157-05AD-4667-A749-32B843B5458C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D4E28CD1-4805-45CB-946B-AC5D3BDC8343} = {77521571-6896-467A-9764-CE6A6AE35AC1}
 		{DFBEAE9A-9285-4653-9D9B-A4465BE94BA2} = {77521571-6896-467A-9764-CE6A6AE35AC1}
+		{EB9F4157-05AD-4667-A749-32B843B5458C} = {77521571-6896-467A-9764-CE6A6AE35AC1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F9E973A8-4BE8-4E45-A4B1-92165375D219}
