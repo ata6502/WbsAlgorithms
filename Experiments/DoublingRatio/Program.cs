@@ -12,7 +12,7 @@ namespace DoublingRatio
         /// [Sedgewick] p.173, p.192-193 - Doubling ratio experiments.
         /// 
         /// The doubling ratio experiment generates a sequence of random arrays, doubling the array size at each step. 
-        /// Each array serves as an input to one of the procedures: RunThreeSum, RunTwoSum, or RunTwoEqual (TODO). 
+        /// Each array serves as an input to one of the procedures: RunThreeSum, RunTwoSum, or RunTwoEqual. 
         /// The program measures the running times for each input size. It also calculates the ratio of each running 
         /// time with the previous time.
         ///
@@ -38,7 +38,7 @@ namespace DoublingRatio
             // Double the size of the array with each iteration.
             while (true)
             {
-                elapsedTime = RunExperiment(arraySize, RunThreeSum);
+                elapsedTime = RunExperiment(arraySize, RunTwoEqualQuadratic);
 
                 // The ratio approaches a constant value.
                 if (previousTime > 0.0)
@@ -89,6 +89,26 @@ namespace DoublingRatio
                     for (var k = j + 1; k < len; ++k)
                         if (a[i] + a[j] + a[k] == 0)
                             ++cnt;
+            return cnt;
+        }
+
+        /// <summary>
+        /// Counts the number pairs that are equal. Complexity O(n^2)
+        /// 
+        /// [Sedgewick] 1.4.8 p.209 - Determine the number pairs of values
+        /// that are equal.
+        /// </summary>
+        /// <param name="a">An array of integers</param>
+        /// <returns>The number of pairs of values that are equal</returns>
+        private static int RunTwoEqualQuadratic(int[] a)
+        {
+            var len = a.Length;
+            var cnt = 0;
+
+            for (var i = 0; i < len; ++i)
+                for (var j = i + 1; j < len; ++j)
+                    if (a[i] == a[j])
+                        ++cnt;
             return cnt;
         }
     }
