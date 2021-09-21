@@ -38,7 +38,7 @@ namespace DoublingRatio
             // Double the size of the array with each iteration.
             while (true)
             {
-                elapsedTime = RunExperiment(arraySize, RunTwoEqualQuadratic);
+                elapsedTime = RunExperiment(arraySize, RunTwoEqualLinearithmic);
 
                 // The ratio approaches a constant value.
                 if (previousTime > 0.0)
@@ -57,7 +57,7 @@ namespace DoublingRatio
         /// <returns>The elapsed time of the experiment in seconds</returns>
         private static double RunExperiment(int arraySize, Func<int[], int> experiment)
         {
-            const int Max = 999999;
+            const int Max = 9999;
 
             // Create an array of random numbers.
             int[] a = new int[arraySize];
@@ -109,6 +109,34 @@ namespace DoublingRatio
                 for (var j = i + 1; j < len; ++j)
                     if (a[i] == a[j])
                         ++cnt;
+            return cnt;
+        }
+
+        /// <summary>
+        /// Counts the number pairs that are equal. Complexity O(n ln(n))
+        /// 
+        /// [Sedgewick] 1.4.8 p.209 - Sort the input array to develop 
+        /// a linearithmic solution.
+        /// </summary>
+        /// <param name="a">An array of integers</param>
+        /// <returns>The number of pairs of values that are equal</returns>
+        private static int RunTwoEqualLinearithmic(int[] a)
+        {
+            Array.Sort(a);
+
+            var len = a.Length;
+            var cnt = 0;
+
+            for (var i = 0; i < len - 1; ++i)
+            {
+                var start = i + 1;
+                while (Array.BinarySearch(a, start, len - start, a[i]) > -1)
+                {
+                    ++cnt;
+                    ++start;
+                }
+            }
+
             return cnt;
         }
     }
