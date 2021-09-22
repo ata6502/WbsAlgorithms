@@ -1,5 +1,7 @@
 using NUnit.Framework;
+using System;
 using WbsAlgorithms.Searching;
+using WbsAlgorithmsTest.Utilities;
 
 namespace WbsAlgorithmsTest.Searching
 {
@@ -139,6 +141,18 @@ namespace WbsAlgorithmsTest.Searching
         [TestCase(new int[] { 2, 3, 5, 7, 8 }, 4, -1, TestName = "FirstIndex_NotFound7")]
         public void FindFirstIndexTest(int[] inputArray, int inputElement, int expectedIndex)
         {
+            var actualIndex = BinarySearch.FirstFirstIndex(inputElement, inputArray);
+
+            Assert.AreEqual(expectedIndex, actualIndex);
+        }
+
+        [TestCase(@"Data\IntegersWithRepetitions.txt", 752524, 867, TestName = "FirstIndex_BigDataSet")]
+        public void FindFirstIndexBigDataSetTest(string filename, int inputElement, int expectedIndex)
+        {
+            // The number 752524 occupies indexes from 867 to 871 in the sorted array.
+            var inputArray = DataReader.ReadIntegers(filename);
+            Array.Sort(inputArray);
+
             var actualIndex = BinarySearch.FirstFirstIndex(inputElement, inputArray);
 
             Assert.AreEqual(expectedIndex, actualIndex);
