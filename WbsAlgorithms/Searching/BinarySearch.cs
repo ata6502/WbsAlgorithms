@@ -150,5 +150,51 @@ namespace WbsAlgorithms.Searching
             else // key >= a[mid]
                 return GetGreaterThanElement(element, array, mid + 1, high);
         }
+
+        /// <summary>
+        /// Returns the smallest index of an element that matches the search element.
+        /// 
+        /// [Sedgewick] 1.4.10 p.209 - Return the smallest index of an element that matches 
+        /// the search element.
+        /// </summary>
+        /// <param name="key">The input element</param>
+        /// <param name="array">A sorted array of elements some of which may be equal</param>
+        /// <returns>The smallest index of an element that the input element</returns>
+        public static int FirstFirstIndex<T>(T key, T[] array)
+            where T : IComparable<T>
+        {
+            var low = 0;
+            var high = array.Length - 1;
+
+            while (low <= high)
+            {
+                var mid = (low + high) / 2;
+
+                // This part is the same as for binary search.
+                if (key.CompareTo(array[mid]) < 0) // key < a[mid]
+                    high = mid - 1;
+                else if (key.CompareTo(array[mid]) > 0) // key > a[mid]
+                    low = mid + 1;
+
+                // At this point we know that key == a[mid].
+
+                // Check if the element before a[mid] is smaller than the key.
+                // If so, we know that it is the index we are looking for.
+                else if (mid > 0 && key.CompareTo(array[mid - 1]) > 0) // key == a[mid]
+                    return mid;
+
+                // Check if the key is the first element in the array. If so, it has
+                // the lowest index and we can stop searching.
+                else if (mid == 0) // key == a[mid]
+                    return mid;
+
+                // Otherwise, we are somewhere in the middle of a sequence of keys.
+                // We need to keep searching for the first element in that sequence.
+                else
+                    high = mid - 1;
+            }
+
+            return -1;
+        }
     }
 }

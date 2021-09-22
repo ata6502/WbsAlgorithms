@@ -97,5 +97,51 @@ namespace WbsAlgorithmsTest.Searching
 
             Assert.AreEqual(expectedCount, actualCount);
         }
+
+        [TestCase(new int[] { 1 }, 1, 0, TestName = "FirstIndex_OneElement")]
+        [TestCase(new int[] { 1, 1 }, 1, 0, TestName = "FirstIndex_TwoElements1")]
+        [TestCase(new int[] { 1, 2 }, 1, 0, TestName = "FirstIndex_TwoElements2")]
+        [TestCase(new int[] { 1, 2 }, 2, 1, TestName = "FirstIndex_TwoElements3")]
+        [TestCase(new int[] { 1, 1, 1 }, 1, 0, TestName = "FirstIndex_ThreeElements1")]
+        [TestCase(new int[] { 1, 2, 2 }, 1, 0, TestName = "FirstIndex_ThreeElements2")]
+        [TestCase(new int[] { 1, 2, 2 }, 2, 1, TestName = "FirstIndex_ThreeElements3")]
+        [TestCase(new int[] { 1, 1, 2 }, 2, 2, TestName = "FirstIndex_ThreeElements4")]
+        [TestCase(new int[] { 1, 2, 3 }, 1, 0, TestName = "FirstIndex_ThreeElements5")]
+        [TestCase(new int[] { 1, 2, 3 }, 2, 1, TestName = "FirstIndex_ThreeElements6")]
+        [TestCase(new int[] { 1, 2, 3 }, 3, 2, TestName = "FirstIndex_ThreeElements7")]
+        [TestCase(new int[] { 1, 2, 2, 2 }, 2, 1, TestName = "FirstIndex_FourElements1")]
+        [TestCase(new int[] { 1, 1, 2, 2 }, 2, 2, TestName = "FirstIndex_FourElements2")]
+        [TestCase(new int[] { 1, 1, 1, 2 }, 2, 3, TestName = "FirstIndex_FourElements3")]
+        [TestCase(new int[] { 1, 2, 2, 3 }, 2, 1, TestName = "FirstIndex_FourElements4")]
+        [TestCase(new int[] { 1, 2, 2, 2, 2 }, 1, 0, TestName = "FirstIndex_FiveElements1")]
+        [TestCase(new int[] { 1, 1, 2, 2, 2 }, 1, 0, TestName = "FirstIndex_FiveElements2")]
+        [TestCase(new int[] { 1, 1, 1, 2, 2 }, 1, 0, TestName = "FirstIndex_FiveElements3")]
+        [TestCase(new int[] { 1, 1, 1, 1, 2 }, 1, 0, TestName = "FirstIndex_FiveElements4")]
+        [TestCase(new int[] { 1, 2, 2, 2, 2 }, 2, 1, TestName = "FirstIndex_FiveElements5")]
+        [TestCase(new int[] { 1, 1, 2, 2, 2 }, 2, 2, TestName = "FirstIndex_FiveElements6")]
+        [TestCase(new int[] { 1, 1, 1, 2, 2 }, 2, 3, TestName = "FirstIndex_FiveElements7")]
+        [TestCase(new int[] { 1, 1, 1, 1, 2 }, 2, 4, TestName = "FirstIndex_FiveElements8")]
+        [TestCase(new int[] { 1, 2, 3, 3, 3 }, 3, 2, TestName = "FirstIndex_FiveElements9")]
+        [TestCase(new int[] { 1, 2, 2, 3, 3 }, 3, 3, TestName = "FirstIndex_FiveElements10")]
+        [TestCase(new int[] { 2, 2, 3, 3, 3, 4, 4, 5, 6, 7, 7, 7, 7, 7, 8, 8 }, 2, 0, TestName = "FirstIndex_Mixed1")]
+        [TestCase(new int[] { 2, 2, 3, 3, 3, 4, 4, 5, 6, 7, 7, 7, 7, 7, 8, 8 }, 3, 2, TestName = "FirstIndex_Mixed2")]
+        [TestCase(new int[] { 2, 2, 3, 3, 3, 4, 4, 5, 6, 7, 7, 7, 7, 7, 8, 8 }, 4, 5, TestName = "FirstIndex_Mixed3")]
+        [TestCase(new int[] { 2, 2, 3, 3, 3, 4, 4, 5, 6, 7, 7, 7, 7, 7, 8, 8 }, 5, 7, TestName = "FirstIndex_Mixed4")]
+        [TestCase(new int[] { 2, 2, 3, 3, 3, 4, 4, 5, 6, 7, 7, 7, 7, 7, 8, 8 }, 6, 8, TestName = "FirstIndex_Mixed5")]
+        [TestCase(new int[] { 2, 2, 3, 3, 3, 4, 4, 5, 6, 7, 7, 7, 7, 7, 8, 8 }, 7, 9, TestName = "FirstIndex_Mixed6")]
+        [TestCase(new int[] { 2, 2, 3, 3, 3, 4, 4, 5, 6, 7, 7, 7, 7, 7, 8, 8 }, 8, 14, TestName = "FirstIndex_Mixed7")]
+        [TestCase(new int[] { 1 }, 2, -1, TestName = "FirstIndex_NotFound1")]
+        [TestCase(new int[] { 1, 2 }, 3, -1, TestName = "FirstIndex_NotFound2")]
+        [TestCase(new int[] { 1, 2, 4 }, 3, -1, TestName = "FirstIndex_NotFound3")]
+        [TestCase(new int[] { 1, 2, 3, 5 }, 4, -1, TestName = "FirstIndex_NotFound4")]
+        [TestCase(new int[] { 2, 3, 5, 7, 8 }, 1, -1, TestName = "FirstIndex_NotFound5")]
+        [TestCase(new int[] { 2, 3, 5, 7, 8 }, 9, -1, TestName = "FirstIndex_NotFound6")]
+        [TestCase(new int[] { 2, 3, 5, 7, 8 }, 4, -1, TestName = "FirstIndex_NotFound7")]
+        public void FindFirstIndexTest(int[] inputArray, int inputElement, int expectedIndex)
+        {
+            var actualIndex = BinarySearch.FirstFirstIndex(inputElement, inputArray);
+
+            Assert.AreEqual(expectedIndex, actualIndex);
+        }
     }
 }
