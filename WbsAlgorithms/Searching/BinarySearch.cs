@@ -97,6 +97,8 @@ namespace WbsAlgorithms.Searching
         /// Returns the number of elements that are equal to the input element.
         /// 
         /// [Sedgewick] 1.1.29 p.59 - Implement the Count method.
+        /// [Sedgewick] 1.4.11 p.209 - Implement a method that finds the number of occurrences of a given
+        /// input element in time proportional to log(N) in the worst case.
         /// </summary>
         /// <param name="element">The input element</param>
         /// <param name="array">A sorted array of elements some of which may be equal</param>
