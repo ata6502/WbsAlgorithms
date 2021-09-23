@@ -153,14 +153,15 @@ namespace WbsAlgorithms.Searching
 
         /// <summary>
         /// Returns the smallest index of an element that matches the search element.
+        /// This method uses an iterative approach.
         /// 
         /// [Sedgewick] 1.4.10 p.209 - Return the smallest index of an element that matches 
         /// the search element.
         /// </summary>
         /// <param name="key">The input element</param>
         /// <param name="array">A sorted array of elements some of which may be equal</param>
-        /// <returns>The smallest index of an element that the input element</returns>
-        public static int FirstFirstIndex<T>(T key, T[] array)
+        /// <returns>The smallest index of an element that matches the input element</returns>
+        public static int FirstFirstIndexIteratively<T>(T key, T[] array)
             where T : IComparable<T>
         {
             var low = 0;
@@ -195,6 +196,42 @@ namespace WbsAlgorithms.Searching
             }
 
             return -1;
+        }
+
+        /// <summary>
+        /// Returns the smallest index of an element that matches the search element.
+        /// This method uses a recursive approach.
+        /// 
+        /// [Sedgewick] 1.4.10 p.209 - Return the smallest index of an element that matches 
+        /// the search element.
+        /// </summary>
+        /// <param name="key">The input element</param>
+        /// <param name="array">A sorted array of elements some of which may be equal</param>
+        /// <returns>The smallest index of an element that matches the input element</returns>
+        public static int FindFirstIndexRecursively<T>(T key, T[] array)
+            where T : IComparable<T>
+        {
+            return FindFirstIndexRecursivelyInternal(key, array, 0, array.Length - 1);
+        }
+
+        public static int FindFirstIndexRecursivelyInternal<T>(T key, T[] array, int low, int high)
+            where T : IComparable<T>
+        {
+            if (high < low)
+                return -1;
+
+            var mid = (low + high) / 2;
+
+            if (key.CompareTo(array[mid]) < 0) // key < a[mid]
+                return FindFirstIndexRecursivelyInternal(key, array, low, mid - 1);
+            else if (key.CompareTo(array[mid]) > 0) // key > a[mid]
+                return FindFirstIndexRecursivelyInternal(key, array, mid + 1, high);
+            else if (mid > 0 && key.CompareTo(array[mid - 1]) > 0) // key == a[mid]
+                return mid;
+            else if (mid == 0) // key == a[mid]
+                return mid;
+            else
+                return FindFirstIndexRecursivelyInternal(key, array, low, mid - 1);
         }
     }
 }

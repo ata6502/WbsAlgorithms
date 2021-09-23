@@ -141,9 +141,11 @@ namespace WbsAlgorithmsTest.Searching
         [TestCase(new int[] { 2, 3, 5, 7, 8 }, 4, -1, TestName = "FirstIndex_NotFound7")]
         public void FindFirstIndexTest(int[] inputArray, int inputElement, int expectedIndex)
         {
-            var actualIndex = BinarySearch.FirstFirstIndex(inputElement, inputArray);
+            var actualIndexIteratively = BinarySearch.FirstFirstIndexIteratively(inputElement, inputArray);
+            var actualIndexRecursively = BinarySearch.FindFirstIndexRecursively(inputElement, inputArray);
 
-            Assert.AreEqual(expectedIndex, actualIndex);
+            Assert.AreEqual(expectedIndex, actualIndexIteratively);
+            Assert.AreEqual(expectedIndex, actualIndexRecursively);
         }
 
         [TestCase(@"Data\IntegersWithRepetitions.txt", 752524, 867, TestName = "FirstIndex_BigDataSet")]
@@ -153,9 +155,11 @@ namespace WbsAlgorithmsTest.Searching
             var inputArray = DataReader.ReadIntegers(filename);
             Array.Sort(inputArray);
 
-            var actualIndex = BinarySearch.FirstFirstIndex(inputElement, inputArray);
+            var actualIndexIteratively = BinarySearch.FirstFirstIndexIteratively(inputElement, inputArray);
+            var actualIndexRecursively = BinarySearch.FindFirstIndexRecursively(inputElement, inputArray);
 
-            Assert.AreEqual(expectedIndex, actualIndex);
+            Assert.AreEqual(expectedIndex, actualIndexIteratively);
+            Assert.AreEqual(expectedIndex, actualIndexRecursively);
         }
     }
 }
