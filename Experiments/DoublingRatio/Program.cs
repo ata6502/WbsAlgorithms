@@ -25,7 +25,6 @@ namespace DoublingRatio
         /// - The order of growth of the running time is approximately N^b.
         /// - To predict running times, multiply the last observed running time by 2^b and double N, continuing as long as desired.
         /// - If you want to predict for an input size that is not a power of 2 times N, you can adjust ratios accordingly.
-        ///
         /// </summary>
         static void Main(string[] args)
         {
@@ -38,7 +37,7 @@ namespace DoublingRatio
             // Double the size of the array with each iteration.
             while (true)
             {
-                elapsedTime = RunExperiment(arraySize, RunTwoEqualLinearithmic);
+                elapsedTime = RunExperiment(arraySize, RunFourSum);
 
                 // The ratio approaches a constant value.
                 if (previousTime > 0.0)
@@ -75,6 +74,23 @@ namespace DoublingRatio
         }
 
         /// <summary>
+        /// Counts pairs that sum to 0.
+        /// </summary>
+        /// <param name="a">An array of integers</param>
+        /// <returns>The number of pairs that sum to 0</returns>
+        private static int RunTwoSum(int[] a)
+        {
+            var len = a.Length;
+            var cnt = 0;
+
+            for (var i = 0; i < len; ++i)
+                for (var j = i + 1; j < len; ++j)
+                    if (a[i] + a[j] == 0)
+                        ++cnt;
+            return cnt;
+        }
+
+        /// <summary>
         /// Counts triples that sum to 0.
         /// </summary>
         /// <param name="a">An array of integers</param>
@@ -93,10 +109,31 @@ namespace DoublingRatio
         }
 
         /// <summary>
+        /// Counts quadruplets that sum to 0. Complexity O(n^4); ratio 2^4 = 16
+        /// 
+        /// [Sedgewick] 1.4.14 p.210 - Develop an algorithm for the 4-sum problem.
+        /// For now, just a brute-force approach.
+        /// </summary>
+        /// <param name="a">An array of integers</param>
+        /// <returns>The number of quadruplets that sum to 0</returns>
+        private static int RunFourSum(int[] a)
+        {
+            var len = a.Length;
+            var cnt = 0;
+
+            for (var i = 0; i < len; ++i)
+                for (var j = i + 1; j < len; ++j)
+                    for (var k = j + 1; k < len; ++k)
+                        for (var l = k + 1; l < len; ++l)
+                            if (a[i] + a[j] + a[k] + a[l] == 0)
+                                ++cnt;
+            return cnt;
+        }
+
+        /// <summary>
         /// Counts the number pairs that are equal. Complexity O(n^2)
         /// 
-        /// [Sedgewick] 1.4.8 p.209 - Determine the number pairs of values
-        /// that are equal.
+        /// [Sedgewick] 1.4.8 p.209 - Determine the number pairs of values that are equal.
         /// </summary>
         /// <param name="a">An array of integers</param>
         /// <returns>The number of pairs of values that are equal</returns>
@@ -115,8 +152,7 @@ namespace DoublingRatio
         /// <summary>
         /// Counts the number pairs that are equal. Complexity O(n ln(n))
         /// 
-        /// [Sedgewick] 1.4.8 p.209 - Sort the input array to develop 
-        /// a linearithmic solution.
+        /// [Sedgewick] 1.4.8 p.209 - Sort the input array to develop a linearithmic solution.
         /// </summary>
         /// <param name="a">An array of integers</param>
         /// <returns>The number of pairs of values that are equal</returns>
