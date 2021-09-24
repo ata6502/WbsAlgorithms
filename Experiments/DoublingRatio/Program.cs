@@ -33,11 +33,15 @@ namespace DoublingRatio
             var arraySize = InitialArraySize;
             var elapsedTime = 0.0;
             var previousTime = 0.0;
+            var selectedExperiment = GetSelectedExperiment();
+
+            if (selectedExperiment == null)
+                return;
 
             // Double the size of the array with each iteration.
             while (true)
             {
-                elapsedTime = RunExperiment(arraySize, RunFourSum);
+                elapsedTime = RunExperiment(arraySize, selectedExperiment);
 
                 // The ratio approaches a constant value.
                 if (previousTime > 0.0)
@@ -174,6 +178,41 @@ namespace DoublingRatio
             }
 
             return cnt;
+        }
+
+        private static Func<int[], int> GetSelectedExperiment()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Select a doubling experiment");
+            Console.WriteLine("----------------------------");
+            Console.WriteLine("[1] - TwoSum");
+            Console.WriteLine("[2] - ThreeSum");
+            Console.WriteLine("[3] - FourSum");
+            Console.WriteLine("[4] - TwoEqual (quadratic)");
+            Console.WriteLine("[5] - TwoEqual (linearithmic)");
+            var key = Console.ReadKey(true);
+
+            switch(key.KeyChar)
+            {
+                case '1':
+                    Console.WriteLine("\nRunning TwoSum experiment...");
+                    return RunTwoSum;
+                case '2':
+                    Console.WriteLine("\nRunning ThreeSum experiment...");
+                    return RunThreeSum;
+                case '3':
+                    Console.WriteLine("\nRunning FourSum experiment...");
+                    return RunFourSum;
+                case '4':
+                    Console.WriteLine("\nRunning TwoEqual (quadratic) experiment...");
+                    return RunTwoEqualQuadratic;
+                case '5':
+                    Console.WriteLine("\nRunning TwoEqual (linearithmic) experiment...");
+                    return RunTwoEqualLinearithmic;
+                default:
+                    Console.WriteLine("\nIncorrect selection.");
+                    return null;
+            }
         }
     }
 }
