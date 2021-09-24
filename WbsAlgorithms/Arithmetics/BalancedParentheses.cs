@@ -6,6 +6,9 @@ namespace WbsAlgorithms.Arithmetics
     public class BalancedParentheses
     {
         /// <summary>
+        /// Verifies if a provided string contains properly balanced parentheses. 
+        /// The program uses a stack to analyze the input string.
+        /// 
         /// [Sedgewick] 1.3.4 p.161 - Determine whether the input parentheses are balanced.
         /// 
         /// Examples:

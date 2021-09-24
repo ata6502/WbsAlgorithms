@@ -155,7 +155,7 @@ namespace WbsAlgorithms.Searching
 
         /// <summary>
         /// Returns the smallest index of an element that matches the search element.
-        /// This method uses an iterative approach.
+        /// This method uses an iterative approach and guarantees logarithmic running time.
         /// 
         /// [Sedgewick] 1.4.10 p.209 - Return the smallest index of an element that matches 
         /// the search element.
@@ -202,7 +202,7 @@ namespace WbsAlgorithms.Searching
 
         /// <summary>
         /// Returns the smallest index of an element that matches the search element.
-        /// This method uses a recursive approach.
+        /// This method uses a recursive approach and guarantees logarithmic running time.
         /// 
         /// [Sedgewick] 1.4.10 p.209 - Return the smallest index of an element that matches 
         /// the search element.

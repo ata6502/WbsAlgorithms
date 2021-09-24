@@ -12,7 +12,7 @@ namespace DoublingRatio
         /// [Sedgewick] p.173, p.192-193 - Doubling ratio experiments.
         /// 
         /// The doubling ratio experiment generates a sequence of random arrays, doubling the array size at each step. 
-        /// Each array serves as an input to one of the procedures: RunThreeSum, RunTwoSum, or RunTwoEqual. 
+        /// Each array serves as an input to one of the procedures: RunThreeSum, RunTwoSum, RunTwoEqual, etc.
         /// The program measures the running times for each input size. It also calculates the ratio of each running 
         /// time with the previous time.
         ///
@@ -79,6 +79,21 @@ namespace DoublingRatio
 
         /// <summary>
         /// Counts pairs that sum to 0.
+        /// The order of growth is N^2. To predict running times, multiply the last observed running time by 2^b = 2^2 = 4
+        /// 
+        /// Size: 250   Elapsed time: 0.00 sec Ratio: NaN
+        /// Size: 500   Elapsed time: 0.00 sec Ratio: NaN
+        /// Size: 1000   Elapsed time: 0.00 sec Ratio: 8
+        /// Size: 2000   Elapsed time: 0.01 sec Ratio: 4.00
+        /// Size: 4000   Elapsed time: 0.03 sec Ratio: 3.38
+        /// Size: 8000   Elapsed time: 0.11 sec Ratio: 3.96
+        /// Size: 16000   Elapsed time: 0.36 sec Ratio: 3.36
+        /// Size: 32000   Elapsed time: 1.57 sec Ratio: 4.38
+        /// Size: 64000   Elapsed time: 5.58 sec Ratio: 3.55
+        /// Size: 128000   Elapsed time: 22.24 sec Ratio: 3.99
+        /// Size: 256000   Elapsed time: 89.86 sec Ratio: 4.04
+        /// Size: 512000   Elapsed time: 356.99 sec Ratio: 3.97
+        /// Size: 1024000   Elapsed time: 1420.49 sec Ratio: 3.98
         /// </summary>
         /// <param name="a">An array of integers</param>
         /// <returns>The number of pairs that sum to 0</returns>
@@ -96,6 +111,15 @@ namespace DoublingRatio
 
         /// <summary>
         /// Counts triples that sum to 0.
+        /// The order of growth is N^3. To predict running times, multiply the last observed running time by 2^b = 2^3 = 8
+        ///
+        /// Size: 250   Elapsed time: 0.01 sec Ratio: 11.00
+        /// Size: 500   Elapsed time: 0.08 sec Ratio: 7.18
+        /// Size: 1000   Elapsed time: 0.58 sec Ratio: 7.35
+        /// Size: 2000   Elapsed time: 4.43 sec Ratio: 7.62
+        /// Size: 4000   Elapsed time: 33.62 sec Ratio: 7.59
+        /// Size: 8000   Elapsed time: 269.00 sec Ratio: 8.00
+        /// Size: 16000   Elapsed time: 2144.69 sec Ratio: 7.97
         /// </summary>
         /// <param name="a">An array of integers</param>
         /// <returns>The number of triplets that sum to 0</returns>
@@ -114,6 +138,12 @@ namespace DoublingRatio
 
         /// <summary>
         /// Counts quadruplets that sum to 0. Complexity O(n^4); ratio 2^4 = 16
+        /// The order of growth is N^4. To predict running times, multiply the last observed running time by 2^b = 2^4 = 16
+        /// 
+        /// Size: 250   Elapsed time: 0.73 sec Ratio: 13.70
+        /// Size: 500   Elapsed time: 10.27 sec Ratio: 14.14
+        /// Size: 1000   Elapsed time: 157.90 sec Ratio: 15.38
+        /// Size: 2000   Elapsed time: 2461.19 sec Ratio: 15.59
         /// 
         /// [Sedgewick] 1.4.14 p.210 - Develop an algorithm for the 4-sum problem.
         /// For now, just a brute-force approach.
@@ -136,6 +166,20 @@ namespace DoublingRatio
 
         /// <summary>
         /// Counts the number pairs that are equal. Complexity O(n^2)
+        /// The order of growth is N^2. To predict running times, multiply the last observed running time by 2^b = 2^2 = 4
+        /// 
+        /// Size: 250   Elapsed time: 0.00 sec Ratio: NaN
+        /// Size: 500   Elapsed time: 0.00 sec Ratio: NaN
+        /// Size: 1000   Elapsed time: 0.00 sec Ratio: 8
+        /// Size: 2000   Elapsed time: 0.01 sec Ratio: 4.00
+        /// Size: 4000   Elapsed time: 0.03 sec Ratio: 4.25
+        /// Size: 8000   Elapsed time: 0.10 sec Ratio: 3.06
+        /// Size: 16000   Elapsed time: 0.40 sec Ratio: 3.87
+        /// Size: 32000   Elapsed time: 1.42 sec Ratio: 3.53
+        /// Size: 64000   Elapsed time: 5.54 sec Ratio: 3.90
+        /// Size: 128000   Elapsed time: 22.49 sec Ratio: 4.06
+        /// Size: 256000   Elapsed time: 90.50 sec Ratio: 4.02
+        /// Size: 512000   Elapsed time: 362.00 sec Ratio: 4.00 
         /// 
         /// [Sedgewick] 1.4.8 p.209 - Determine the number pairs of values that are equal.
         /// </summary>
