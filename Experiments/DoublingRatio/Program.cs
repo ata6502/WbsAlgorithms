@@ -81,19 +81,16 @@ namespace DoublingRatio
         /// Counts pairs that sum to 0.
         /// The order of growth is N^2. To predict running times, multiply the last observed running time by 2^b = 2^2 = 4
         /// 
-        /// Size: 250   Elapsed time: 0.00 sec Ratio: NaN
-        /// Size: 500   Elapsed time: 0.00 sec Ratio: NaN
-        /// Size: 1000   Elapsed time: 0.00 sec Ratio: 8
-        /// Size: 2000   Elapsed time: 0.01 sec Ratio: 4.00
-        /// Size: 4000   Elapsed time: 0.03 sec Ratio: 3.38
-        /// Size: 8000   Elapsed time: 0.11 sec Ratio: 3.96
-        /// Size: 16000   Elapsed time: 0.36 sec Ratio: 3.36
-        /// Size: 32000   Elapsed time: 1.57 sec Ratio: 4.38
-        /// Size: 64000   Elapsed time: 5.58 sec Ratio: 3.55
-        /// Size: 128000   Elapsed time: 22.24 sec Ratio: 3.99
-        /// Size: 256000   Elapsed time: 89.86 sec Ratio: 4.04
-        /// Size: 512000   Elapsed time: 356.99 sec Ratio: 3.97
-        /// Size: 1024000   Elapsed time: 1420.49 sec Ratio: 3.98
+        /// Size: 500       Time: 0.00 sec      Ratio: 0.00
+        /// Size: 4000      Time: 0.00 sec      Ratio: 4.00
+        /// Size: 8000      Time: 0.01 sec      Ratio: 3.75
+        /// Size: 16000     Time: 0.06 sec      Ratio: 3.80
+        /// Size: 32000     Time: 0.23 sec      Ratio: 4.00
+        /// Size: 64000     Time: 0.92 sec      Ratio: 4.04
+        /// Size: 128000    Time: 3.68 sec      Ratio: 3.99
+        /// Size: 256000    Time: 14.48 sec     Ratio: 3.93
+        /// Size: 512000    Time: 57.87 sec     Ratio: 4.00
+        /// Size: 1024000   Time: 231.55 sec    Ratio: 4.00
         /// </summary>
         /// <param name="a">An array of integers</param>
         /// <returns>The number of pairs that sum to 0</returns>
