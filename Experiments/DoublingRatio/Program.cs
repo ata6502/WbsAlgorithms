@@ -243,6 +243,36 @@ namespace DoublingRatio
             return cnt;
         }
 
+        /// <summary>
+        /// Counts the number pairs that are equal. Complexity O(n)
+        /// </summary>
+        /// <param name="a">An array of integers</param>
+        /// <returns>The number of pairs of values that are equal. The input array remains sorted.</returns>
+        private static int RunTwoEqualLinear(int[] a)
+        {
+            var vals = new Dictionary<int, int>();
+
+            var len = a.Length;
+            var cnt = 0; // the number of pairs of values that are equal
+
+            // Collect distinct values and their frequencies i.e., create a histogram.
+            for (var i = 0; i < len; ++i)
+            {
+                if (!vals.TryGetValue(a[i], out _))
+                    vals.Add(a[i], 0);
+                vals[a[i]]++;
+            }
+
+            // Loop over the histogram and calculate the number of pairs.
+            foreach (var v in vals)
+            {
+                if (vals.TryGetValue(v.Key, out var num))
+                    cnt += (num - 1) * num / 2;
+            }
+
+            return cnt;
+        }
+
         private static Func<int[], int> GetSelectedExperiment()
         {
             Console.WriteLine();
@@ -253,6 +283,7 @@ namespace DoublingRatio
             Console.WriteLine("[3] - FourSum");
             Console.WriteLine("[4] - TwoEqual (quadratic)");
             Console.WriteLine("[5] - TwoEqual (linearithmic)");
+            Console.WriteLine("[6] - TwoEqual (linear)");
             var key = Console.ReadKey(true);
 
             switch(key.KeyChar)
@@ -272,6 +303,9 @@ namespace DoublingRatio
                 case '5':
                     Console.WriteLine("\nRunning TwoEqual (linearithmic) experiment...");
                     return RunTwoEqualLinearithmic;
+                case '6':
+                    Console.WriteLine("\nRunning TwoEqual (linear) experiment...");
+                    return RunTwoEqualLinear;
                 default:
                     Console.WriteLine("\nIncorrect selection.");
                     return null;
