@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace DoublingRatio
@@ -58,7 +59,7 @@ namespace DoublingRatio
         /// <param name="arraySize">The size of an array used for this experiment</param>
         /// <param name="experiment">The experiment function</param>
         /// <returns>The elapsed time of the experiment in seconds</returns>
-        private static double RunExperiment(int arraySize, Func<int[], int> experiment)
+        private static double RunExperiment(int arraySize, Func<int[], int> runExperiment)
         {
             const int Max = 9999;
 
@@ -71,7 +72,7 @@ namespace DoublingRatio
             _stopwatch.Start();
 
             // Run the experiment.
-            var cnt = experiment(a);
+            var cnt = runExperiment(a);
 
             // Return the time elapsed.
             return (_stopwatch.ElapsedMilliseconds / 1000.0);
@@ -165,6 +166,8 @@ namespace DoublingRatio
         /// Counts the number pairs that are equal. Complexity O(n^2)
         /// The order of growth is N^2. To predict running times, multiply the last observed running time by 2^b = 2^2 = 4
         /// 
+        /// An example of an experiment run:
+        /// 
         /// Size: 250   Elapsed time: 0.00 sec Ratio: NaN
         /// Size: 500   Elapsed time: 0.00 sec Ratio: NaN
         /// Size: 1000   Elapsed time: 0.00 sec Ratio: 8
@@ -197,26 +200,45 @@ namespace DoublingRatio
         /// <summary>
         /// Counts the number pairs that are equal. Complexity O(n ln(n))
         /// 
-        /// [Sedgewick] 1.4.8 p.209 - Sort the input array to develop a linearithmic solution.
+        /// The method uses the following formula to calculate the number of pairs 
+        /// in a given set: cnt = (n - 1) * n / 2, where n is the number of elements 
+        /// in the set.
+        /// 
+        /// n  cnt - the number of possible pairs
+        /// -  ---
+        /// 1  0
+        /// 2  1
+        /// 3  3
+        /// 4  6
+        /// 5  10 
+        /// etc.
+        /// 
+        /// [Sedgewick] 1.4.8 p.209 - Develop a linearithmic solution on a sorted array.
         /// </summary>
         /// <param name="a">An array of integers</param>
-        /// <returns>The number of pairs of values that are equal</returns>
+        /// <returns>The number of pairs of values that are equal. The input array remains sorted.</returns>
         private static int RunTwoEqualLinearithmic(int[] a)
         {
             Array.Sort(a);
 
             var len = a.Length;
-            var cnt = 0;
+            var num = 1; // the number of the equal consecutive numbers
+            var cnt = 0; // the number of pairs of values that are equal
 
-            for (var i = 0; i < len - 1; ++i)
+            for (var i = 1; i < len; ++i)
             {
-                var start = i + 1;
-                while (Array.BinarySearch(a, start, len - start, a[i]) > -1)
+                if (a[i] == a[i - 1])
+                    ++num;
+                else if (num > 1)
                 {
-                    ++cnt;
-                    ++start;
+                    cnt += (num - 1) * num / 2;
+                    num = 1;
                 }
             }
+
+            // Adjustment the last sequence.
+            if (num > 1)
+                cnt += (num - 1) * num / 2;
 
             return cnt;
         }
