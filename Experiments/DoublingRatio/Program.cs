@@ -79,7 +79,7 @@ namespace DoublingRatio
         }
 
         /// <summary>
-        /// Counts pairs that sum to 0.
+        /// Counts pairs that sum to 0. Complexity O(n^2)
         /// The order of growth is N^2. To predict running times, multiply the last observed running time by 2^b = 2^2 = 4
         /// 
         /// Size: 500       Time: 0.00 sec      Ratio: 0.00
@@ -95,7 +95,7 @@ namespace DoublingRatio
         /// </summary>
         /// <param name="a">An array of integers</param>
         /// <returns>The number of pairs that sum to 0</returns>
-        private static int RunTwoSum(int[] a)
+        private static int RunTwoSumQuadratic(int[] a)
         {
             var len = a.Length;
             var cnt = 0;
@@ -104,6 +104,78 @@ namespace DoublingRatio
                 for (var j = i + 1; j < len; ++j)
                     if (a[i] + a[j] == 0)
                         ++cnt;
+            return cnt;
+        }
+
+        /// <summary>
+        /// Counts pairs that sum to 0. Complexity O(n ln(n)) because of sorting.
+        /// This algorithm is identical to WbsAlgorithms.Arithmetics.ZeroSum.CountPairsLinear
+        /// Refer to CountPairsLinear for description and more comments.
+        /// </summary>
+        /// <param name="a">An array of integers</param>
+        /// <returns>The number of pairs that sum to zero. The input array remains sorted.</returns>
+        private static int RunTwoSumLinearithmic(int[] a)
+        {
+            Array.Sort(a);
+
+            var cnt = 0;            // the number of pairs that sum to zero
+            var i = 0;              // lower index
+            var j = a.Length - 1;   // upper index
+
+            while (i < j)
+            {
+                if (a[i] == 0 || a[j] == 0)
+                {
+                    while (a[i] != 0)
+                        ++i;
+                    while (a[j] != 0)
+                        --j;
+
+                    if (j - i > 0)
+                    {
+                        var n = j - i + 1;
+                        cnt += n * (n - 1) / 2;
+                    }
+
+                    // Stop the while loop.
+                    j = 0;
+                    i = 1;
+                }
+                else if (Math.Abs(a[i]) == a[j])
+                {
+                    if (a[i] < 0)
+                    {
+                        var num = a[j];
+                        var neg = 0;
+                        var pos = 0;
+
+                        while (Math.Abs(a[i]) == num && a[i] < 0)
+                        {
+                            ++i;
+                            ++neg;
+                        }
+
+                        while (a[j] == num)
+                        {
+                            --j;
+                            ++pos;
+                        }
+
+                        cnt += neg * pos;
+                    }
+                    else
+                    {
+                        // Stop the while loop.
+                        j = 0;
+                        i = 1;
+                    }
+                }
+                else if (Math.Abs(a[i]) > a[j])
+                    ++i;
+                else if (Math.Abs(a[i]) < a[j])
+                    --j;
+            }
+
             return cnt;
         }
 
@@ -236,7 +308,7 @@ namespace DoublingRatio
                 }
             }
 
-            // Adjustment the last sequence.
+            // Adjust the last sequence.
             if (num > 1)
                 cnt += (num - 1) * num / 2;
 
@@ -278,32 +350,36 @@ namespace DoublingRatio
             Console.WriteLine();
             Console.WriteLine("Select a doubling experiment");
             Console.WriteLine("----------------------------");
-            Console.WriteLine("[1] - TwoSum");
-            Console.WriteLine("[2] - ThreeSum");
-            Console.WriteLine("[3] - FourSum");
-            Console.WriteLine("[4] - TwoEqual (quadratic)");
-            Console.WriteLine("[5] - TwoEqual (linearithmic)");
-            Console.WriteLine("[6] - TwoEqual (linear)");
+            Console.WriteLine("[1] - TwoSum (quadratic)");
+            Console.WriteLine("[2] - TwoSum (linearithmic)");
+            Console.WriteLine("[3] - ThreeSum");
+            Console.WriteLine("[4] - FourSum");
+            Console.WriteLine("[5] - TwoEqual (quadratic)");
+            Console.WriteLine("[6] - TwoEqual (linearithmic)");
+            Console.WriteLine("[7] - TwoEqual (linear)");
             var key = Console.ReadKey(true);
 
             switch(key.KeyChar)
             {
                 case '1':
-                    Console.WriteLine("\nRunning TwoSum experiment...");
-                    return RunTwoSum;
+                    Console.WriteLine("\nRunning TwoSum (quadratic) experiment...");
+                    return RunTwoSumQuadratic;
                 case '2':
+                    Console.WriteLine("\nRunning TwoSum (linearithmic) experiment...");
+                    return RunTwoSumLinearithmic;
+                case '3':
                     Console.WriteLine("\nRunning ThreeSum experiment...");
                     return RunThreeSum;
-                case '3':
+                case '4':
                     Console.WriteLine("\nRunning FourSum experiment...");
                     return RunFourSum;
-                case '4':
+                case '5':
                     Console.WriteLine("\nRunning TwoEqual (quadratic) experiment...");
                     return RunTwoEqualQuadratic;
-                case '5':
+                case '6':
                     Console.WriteLine("\nRunning TwoEqual (linearithmic) experiment...");
                     return RunTwoEqualLinearithmic;
-                case '6':
+                case '7':
                     Console.WriteLine("\nRunning TwoEqual (linear) experiment...");
                     return RunTwoEqualLinear;
                 default:
