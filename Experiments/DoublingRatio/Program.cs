@@ -109,74 +109,13 @@ namespace DoublingRatio
 
         /// <summary>
         /// Counts pairs that sum to 0. Complexity O(n ln(n)) because of sorting.
-        /// This algorithm is identical to WbsAlgorithms.Arithmetics.ZeroSum.CountPairsLinear
-        /// Refer to CountPairsLinear for description and more comments.
         /// </summary>
         /// <param name="a">An array of integers</param>
         /// <returns>The number of pairs that sum to zero. The input array remains sorted.</returns>
         private static int RunTwoSumLinearithmic(int[] a)
         {
             Array.Sort(a);
-
-            var cnt = 0;            // the number of pairs that sum to zero
-            var i = 0;              // lower index
-            var j = a.Length - 1;   // upper index
-
-            while (i < j)
-            {
-                if (a[i] == 0 || a[j] == 0)
-                {
-                    while (a[i] != 0)
-                        ++i;
-                    while (a[j] != 0)
-                        --j;
-
-                    if (j - i > 0)
-                    {
-                        var n = j - i + 1;
-                        cnt += n * (n - 1) / 2;
-                    }
-
-                    // Stop the while loop.
-                    j = 0;
-                    i = 1;
-                }
-                else if (Math.Abs(a[i]) == a[j])
-                {
-                    if (a[i] < 0)
-                    {
-                        var num = a[j];
-                        var neg = 0;
-                        var pos = 0;
-
-                        while (Math.Abs(a[i]) == num && a[i] < 0)
-                        {
-                            ++i;
-                            ++neg;
-                        }
-
-                        while (a[j] == num)
-                        {
-                            --j;
-                            ++pos;
-                        }
-
-                        cnt += neg * pos;
-                    }
-                    else
-                    {
-                        // Stop the while loop.
-                        j = 0;
-                        i = 1;
-                    }
-                }
-                else if (Math.Abs(a[i]) > a[j])
-                    ++i;
-                else if (Math.Abs(a[i]) < a[j])
-                    --j;
-            }
-
-            return cnt;
+            return CountPairs(a);
         }
 
         /// <summary>
@@ -193,7 +132,7 @@ namespace DoublingRatio
         /// </summary>
         /// <param name="a">An array of integers</param>
         /// <returns>The number of triplets that sum to 0</returns>
-        private static int RunThreeSum(int[] a)
+        private static int RunThreeSumCubic(int[] a)
         {
             var len = a.Length;
             var cnt = 0;
@@ -204,6 +143,17 @@ namespace DoublingRatio
                         if (a[i] + a[j] + a[k] == 0)
                             ++cnt;
             return cnt;
+        }
+
+        /// <summary>
+        /// Counts triplets that sum to 0. Complexity O(n^2).
+        /// </summary>
+        /// <param name="a">An array of integers</param>
+        /// <returns>The number of triplets that sum to zero. The input array remains sorted.</returns>
+        private static int RunThreeSumQuadratic(int[] a)
+        {
+            Array.Sort(a);
+            return CountTriplets(a);
         }
 
         /// <summary>
@@ -345,6 +295,169 @@ namespace DoublingRatio
             return cnt;
         }
 
+        #region Algorithms
+        /// <summary>
+        /// Counts pairs that sum to zero. Complexity O(n)
+        /// The input array needs to be sorted.
+        /// 
+        /// This algorithm is identical to WbsAlgorithms.Arithmetics.ZeroSum.CountPairsLinear
+        /// Refer to CountPairsLinear for description and more comments.
+        /// </summary>
+        /// <param name="a">An array of integers</param>
+        /// <returns>The number of pairs that sum to zero.</returns>
+        private static int CountPairs(int[] a)
+        {
+            var cnt = 0;            // the number of pairs that sum to zero
+            var i = 0;              // lower index
+            var j = a.Length - 1;   // upper index
+
+            while (i < j)
+            {
+                // A special case - a sequence of zeroes.
+                if (a[i] == 0 || a[j] == 0)
+                {
+                    // Find the boundary of the sequence of zeroes [i,j]
+                    while (a[i] != 0)
+                        ++i;
+                    while (a[j] != 0)
+                        --j;
+
+                    // Check if there are at least two zeroes in the array: j-i+1 > 1 => j-i > 0
+                    if (j - i > 0)
+                    {
+                        // There are j - i + 1 zeros in the array.
+                        var n = j - i + 1;
+
+                        // Calculate the number of pairs of zeroes.
+                        cnt += n * (n - 1) / 2;
+                    }
+
+                    // Stop the while loop.
+                    j = 0;
+                    i = 1;
+                }
+                else if (Math.Abs(a[i]) == a[j])
+                {
+                    // The lower number has to be negative.
+                    if (a[i] < 0)
+                    {
+                        var num = a[j];
+                        var neg = 0;
+                        var pos = 0;
+
+                        // Count the negative numbers.
+                        while (Math.Abs(a[i]) == num && a[i] < 0)
+                        {
+                            ++i;
+                            ++neg;
+                        }
+
+                        // Count the corresponding positive numbers.
+                        while (a[j] == num)
+                        {
+                            --j;
+                            ++pos;
+                        }
+
+                        // Calculate the number of pairs that sum to zero.
+                        cnt += neg * pos;
+                    }
+                    else
+                    {
+                        // If the lower number is positive it means that there is just
+                        // a sequence of equal positive numbers between a[i] and a[j].
+                        // We can stop the while loop.
+                        j = 0;
+                        i = 1;
+                    }
+                }
+                else if (Math.Abs(a[i]) > a[j])
+                    ++i;
+                else if (Math.Abs(a[i]) < a[j])
+                    --j;
+            }
+
+            return cnt;
+        }
+
+        /// <summary>
+        /// Counts triples that sum to zero. Complexity O(n^2)
+        /// The input array needs to be sorted.
+        /// 
+        /// This algorithm is identical to WbsAlgorithms.Arithmetics.ZeroSum.CountTripletsQuadratic
+        /// Refer to CountTripletsQuadratic for description and more comments.
+        /// </summary>
+        /// <param name="a">A sorted array of integers</param>
+        /// <returns>The number of pairs that sum to zero</returns>
+        private static int CountTriplets(int[] a)
+        {
+            var cnt = 0;
+
+            for (var k = 0; k < a.Length; ++k)
+            {
+                var i = k + 1;
+                var j = a.Length - 1;
+
+                while (i < j)
+                {
+                    if (a[i] == 0 && a[j] == 0)
+                    {
+                        // Stop the while loop.
+                        j = 0;
+                        i = 1;
+                    }
+                    else if (a[i] + a[j] + a[k] == 0)
+                    {
+                        if (a[i] == a[j])
+                        {
+                            var n = j - i + 1;
+                            cnt += n * (n - 1) / 2;
+
+                            // Stop the while loop.
+                            j = 0;
+                            i = 1;
+                        }
+                        else
+                        {
+                            var start_i = i;
+                            var start_j = j;
+
+                            while (a[i] + a[start_j] + a[k] == 0 && i < start_j)
+                                ++i;
+
+                            while (a[start_i] + a[j] + a[k] == 0 && j > start_i)
+                                --j;
+
+                            cnt += (i - start_i) * (start_j - j);
+                        }
+                    }
+                    else if (a[i] + a[j] + a[k] < 0)
+                        ++i;
+                    else
+                        --j;
+                }
+            }
+
+            cnt += CountZeroTriplets(a);
+
+            return cnt;
+        }
+
+        private static int CountZeroTriplets(int[] a)
+        {
+            var n = 0;
+            var i = 0;
+            while (i < a.Length && a[i] <= 0)
+            {
+                if (a[i] == 0)
+                    ++n;
+                ++i;
+            }
+
+            return (n - 2) * (n - 1) * n / 6;
+        }
+        #endregion
+
         private static Func<int[], int> GetSelectedExperiment()
         {
             Console.WriteLine();
@@ -352,11 +465,12 @@ namespace DoublingRatio
             Console.WriteLine("----------------------------");
             Console.WriteLine("[1] - TwoSum (quadratic)");
             Console.WriteLine("[2] - TwoSum (linearithmic)");
-            Console.WriteLine("[3] - ThreeSum");
-            Console.WriteLine("[4] - FourSum");
-            Console.WriteLine("[5] - TwoEqual (quadratic)");
-            Console.WriteLine("[6] - TwoEqual (linearithmic)");
-            Console.WriteLine("[7] - TwoEqual (linear)");
+            Console.WriteLine("[3] - ThreeSum (cubic)");
+            Console.WriteLine("[4] - ThreeSum (quadratic)");
+            Console.WriteLine("[5] - FourSum");
+            Console.WriteLine("[6] - TwoEqual (quadratic)");
+            Console.WriteLine("[7] - TwoEqual (linearithmic)");
+            Console.WriteLine("[8] - TwoEqual (linear)");
             var key = Console.ReadKey(true);
 
             switch(key.KeyChar)
@@ -368,18 +482,21 @@ namespace DoublingRatio
                     Console.WriteLine("\nRunning TwoSum (linearithmic) experiment...");
                     return RunTwoSumLinearithmic;
                 case '3':
-                    Console.WriteLine("\nRunning ThreeSum experiment...");
-                    return RunThreeSum;
+                    Console.WriteLine("\nRunning ThreeSum (cubic) experiment...");
+                    return RunThreeSumCubic;
                 case '4':
+                    Console.WriteLine("\nRunning ThreeSum (quadratic) experiment...");
+                    return RunThreeSumQuadratic;
+                case '5':
                     Console.WriteLine("\nRunning FourSum experiment...");
                     return RunFourSum;
-                case '5':
+                case '6':
                     Console.WriteLine("\nRunning TwoEqual (quadratic) experiment...");
                     return RunTwoEqualQuadratic;
-                case '6':
+                case '7':
                     Console.WriteLine("\nRunning TwoEqual (linearithmic) experiment...");
                     return RunTwoEqualLinearithmic;
-                case '7':
+                case '8':
                     Console.WriteLine("\nRunning TwoEqual (linear) experiment...");
                     return RunTwoEqualLinear;
                 default:
