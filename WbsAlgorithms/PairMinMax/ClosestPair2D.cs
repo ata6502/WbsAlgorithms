@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace WbsAlgorithms.Geometry
+namespace WbsAlgorithms.PairMinMax
 {
     /// <summary>
     /// [Sedgewick] 1.2.1 p.114 - Compute the distance separating the closest pair of points.
     /// </summary>
-    public class ClosestPairOfPoints
+    public class ClosestPair2D
     {
         /// <summary>
         /// Computes the distance separating the closest pair of points by iterating through 

@@ -3,25 +3,25 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using WbsAlgorithms.Geometry;
+using WbsAlgorithms.PairMinMax;
 
-namespace WbsAlgorithmsTest.Geometry
+namespace WbsAlgorithmsTest.PairMinMax
 {
     [TestFixture]
-    public class ClosestPairOfPointsTest
+    public class ClosestPair2DTest
     {
-        [TestCaseSource(nameof(ComputeClosestPairOfPointsTestCases))]
-        public void ComputeClosestPairOfPointsTest(Point[] points, Point[] expectedClosestPair, double expectedDistance)
+        [TestCaseSource(nameof(ComputeClosestPair2DTestCases))]
+        public void ComputeClosestPair2DTest(Point[] points, Point[] expectedClosestPair, double expectedDistance)
         {
             const double Tolerance = 0.0000000001;
 
-            var result = ClosestPairOfPoints.ComputeBruteForce(points);
+            var result = ClosestPair2D.ComputeBruteForce(points);
 
             CollectionAssert.AreEqual(expectedClosestPair, result.ClosestPair);
             Assert.AreEqual(expectedDistance, result.Distance, Tolerance);
         }
 
-        private static IEnumerable<TestCaseData> ComputeClosestPairOfPointsTestCases()
+        private static IEnumerable<TestCaseData> ComputeClosestPair2DTestCases()
         {
             yield return new TestCaseData(CreatePoints(1, 1, 4, 2), CreatePoints(1, 1, 4, 2), 3.1622776602).SetName("TwoPoints");
             yield return new TestCaseData(CreatePoints(3, 5, 1, 4, -1, 2), CreatePoints(3, 5, 1, 4), 2.2360679775).SetName("ThreePoints");
