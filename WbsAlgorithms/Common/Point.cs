@@ -1,4 +1,4 @@
-﻿namespace WbsAlgorithms.PairMinMax
+﻿namespace WbsAlgorithms.Common
 {
     public struct Point
     {

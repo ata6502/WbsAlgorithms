@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using WbsAlgorithms.Common;
 
 namespace WbsAlgorithms.PairMinMax
 {
