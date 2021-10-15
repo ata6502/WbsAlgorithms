@@ -29,7 +29,7 @@ namespace DoublingRatio
         /// </summary>
         static void Main(string[] args)
         {
-            const int InitialArraySize = 250;
+            const long InitialArraySize = 250;
 
             var arraySize = InitialArraySize;
             var elapsedTime = 0.0;
@@ -59,13 +59,13 @@ namespace DoublingRatio
         /// <param name="arraySize">The size of an array used for this experiment</param>
         /// <param name="experiment">The experiment function</param>
         /// <returns>The elapsed time of the experiment in seconds</returns>
-        private static double RunExperiment(int arraySize, Func<int[], int> runExperiment)
+        private static double RunExperiment(long arraySize, Func<int[], int> runExperiment)
         {
             const int Max = 9999;
 
             // Create an array of random numbers.
             int[] a = new int[arraySize];
-            for (var i = 0; i < arraySize; ++i)
+            for (long i = 0; i < arraySize; ++i)
                 a[i] = _rnd.Next(-Max, Max + 1);
 
             _stopwatch.Reset();
