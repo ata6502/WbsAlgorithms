@@ -82,7 +82,6 @@ namespace DoublingRatio
         /// Counts pairs that sum to 0. Complexity O(n^2)
         /// The order of growth is N^2. To predict running times, multiply the last observed running time by 2^b = 2^2 = 4
         /// 
-        /// Size: 500       Time: 0.00 sec      Ratio: 0.00
         /// Size: 4000      Time: 0.00 sec      Ratio: 4.00
         /// Size: 8000      Time: 0.01 sec      Ratio: 3.75
         /// Size: 16000     Time: 0.06 sec      Ratio: 3.80
@@ -108,7 +107,21 @@ namespace DoublingRatio
         }
 
         /// <summary>
-        /// Counts pairs that sum to 0. Complexity O(n ln(n)) because of sorting.
+        /// Counts pairs that sum to 0. Complexity O(n*ln(n)) because of sorting.
+        /// 
+        /// Size: 128000    Time: 0.01 sec      Ratio: 2.00
+        /// Size: 256000    Time: 0.01 sec      Ratio: 2.00
+        /// Size: 512000    Time: 0.02 sec      Ratio: 2.00
+        /// Size: 1024000   Time: 0.05 sec      Ratio: 2.00
+        /// Size: 2048000   Time: 0.10 sec      Ratio: 2.06
+        /// Size: 4096000   Time: 0.20 sec      Ratio: 1.97
+        /// Size: 8192000   Time: 0.39 sec      Ratio: 2.01
+        /// Size: 16384000  Time: 0.79 sec      Ratio: 2.03
+        /// Size: 32768000  Time: 1.61 sec      Ratio: 2.03
+        /// Size: 65536000  Time: 3.21 sec      Ratio: 1.99
+        /// Size: 131072000 Time: 6.51 sec      Ratio: 2.03
+        /// Size: 262144000 Time: 13.05 sec     Ratio: 2.00
+        /// Size: 524288000 Time: 26.49 sec     Ratio: 2.03
         /// </summary>
         /// <param name="a">An array of integers</param>
         /// <returns>The number of pairs that sum to zero. The input array remains sorted.</returns>
