@@ -29,7 +29,7 @@ namespace DoublingRatio
         /// </summary>
         static void Main(string[] args)
         {
-            const long InitialArraySize = 250;
+            const int InitialArraySize = 250;
 
             var arraySize = InitialArraySize;
             var elapsedTime = 0.0;
@@ -59,13 +59,13 @@ namespace DoublingRatio
         /// <param name="arraySize">The size of an array used for this experiment</param>
         /// <param name="experiment">The experiment function</param>
         /// <returns>The elapsed time of the experiment in seconds</returns>
-        private static double RunExperiment(long arraySize, Func<int[], int> runExperiment)
+        private static double RunExperiment(int arraySize, Func<int[], int> runExperiment)
         {
             const int Max = 9999;
 
             // Create an array of random numbers.
             int[] a = new int[arraySize];
-            for (long i = 0; i < arraySize; ++i)
+            for (var i = 0; i < arraySize; ++i)
                 a[i] = _rnd.Next(-Max, Max + 1);
 
             _stopwatch.Reset();
@@ -135,13 +135,11 @@ namespace DoublingRatio
         /// Counts triples that sum to 0.
         /// The order of growth is N^3. To predict running times, multiply the last observed running time by 2^b = 2^3 = 8
         ///
-        /// Size: 250   Elapsed time: 0.01 sec Ratio: 11.00
-        /// Size: 500   Elapsed time: 0.08 sec Ratio: 7.18
-        /// Size: 1000   Elapsed time: 0.58 sec Ratio: 7.35
-        /// Size: 2000   Elapsed time: 4.43 sec Ratio: 7.62
-        /// Size: 4000   Elapsed time: 33.62 sec Ratio: 7.59
-        /// Size: 8000   Elapsed time: 269.00 sec Ratio: 8.00
-        /// Size: 16000   Elapsed time: 2144.69 sec Ratio: 7.97
+        /// Size: 1000      Time: 0.13 sec      Ratio: 7.88
+        /// Size: 2000      Time: 1.04 sec      Ratio: 7.78
+        /// Size: 4000      Time: 8.01 sec      Ratio: 7.68
+        /// Size: 8000      Time: 62.44 sec     Ratio: 7.79
+        /// Size: 16000     Time: 499.08 sec    Ratio: 7.99
         /// </summary>
         /// <param name="a">An array of integers</param>
         /// <returns>The number of triplets that sum to 0</returns>
@@ -160,6 +158,19 @@ namespace DoublingRatio
 
         /// <summary>
         /// Counts triplets that sum to 0. Complexity O(n^2).
+        /// 
+        /// An experiment run shows that performance of this algorithm is 
+        /// slightly better than quadratic:
+        /// 
+        /// Size: 4000      Time: 0.02 sec      Ratio: 3.67
+        /// Size: 8000      Time: 0.09 sec      Ratio: 3.95
+        /// Size: 16000     Time: 0.38 sec      Ratio: 4.40
+        /// Size: 32000     Time: 1.45 sec      Ratio: 3.78
+        /// Size: 64000     Time: 4.21 sec      Ratio: 2.91
+        /// Size: 128000    Time: 12.42 sec     Ratio: 2.95
+        /// Size: 256000    Time: 38.24 sec     Ratio: 3.08
+        /// Size: 512000    Time: 130.50 sec    Ratio: 3.41
+        /// Size: 1024000   Time: 481.50 sec    Ratio: 3.69
         /// </summary>
         /// <param name="a">An array of integers</param>
         /// <returns>The number of triplets that sum to zero. The input array remains sorted.</returns>
@@ -173,10 +184,9 @@ namespace DoublingRatio
         /// Counts quadruplets that sum to 0. Complexity O(n^4); ratio 2^4 = 16
         /// The order of growth is N^4. To predict running times, multiply the last observed running time by 2^b = 2^4 = 16
         /// 
-        /// Size: 250   Elapsed time: 0.73 sec Ratio: 13.70
-        /// Size: 500   Elapsed time: 10.27 sec Ratio: 14.14
-        /// Size: 1000   Elapsed time: 157.90 sec Ratio: 15.38
-        /// Size: 2000   Elapsed time: 2461.19 sec Ratio: 15.59
+        /// Size: 500       Time: 1.88 sec          Ratio: 15.07
+        /// Size: 1000      Time: 29.37 sec         Ratio: 15.59
+        /// Size: 2000      Time: 462.45 sec        Ratio: 15.74
         /// 
         /// [Sedgewick] 1.4.14 p.210 - Develop an algorithm for the 4-sum problem.
         /// For now, just a brute-force approach.
@@ -203,18 +213,13 @@ namespace DoublingRatio
         /// 
         /// An example of an experiment run:
         /// 
-        /// Size: 250   Elapsed time: 0.00 sec Ratio: NaN
-        /// Size: 500   Elapsed time: 0.00 sec Ratio: NaN
-        /// Size: 1000   Elapsed time: 0.00 sec Ratio: 8
-        /// Size: 2000   Elapsed time: 0.01 sec Ratio: 4.00
-        /// Size: 4000   Elapsed time: 0.03 sec Ratio: 4.25
-        /// Size: 8000   Elapsed time: 0.10 sec Ratio: 3.06
-        /// Size: 16000   Elapsed time: 0.40 sec Ratio: 3.87
-        /// Size: 32000   Elapsed time: 1.42 sec Ratio: 3.53
-        /// Size: 64000   Elapsed time: 5.54 sec Ratio: 3.90
-        /// Size: 128000   Elapsed time: 22.49 sec Ratio: 4.06
-        /// Size: 256000   Elapsed time: 90.50 sec Ratio: 4.02
-        /// Size: 512000   Elapsed time: 362.00 sec Ratio: 4.00 
+        /// Size: 8000      Time: 0.03 sec      Ratio: 4.17
+        /// Size: 16000     Time: 0.10 sec      Ratio: 4.00
+        /// Size: 32000     Time: 0.40 sec      Ratio: 3.95
+        /// Size: 64000     Time: 1.64 sec      Ratio: 4.15
+        /// Size: 128000    Time: 6.64 sec      Ratio: 4.05
+        /// Size: 256000    Time: 26.86 sec     Ratio: 4.04
+        /// Size: 512000    Time: 108.68 sec    Ratio: 4.05
         /// 
         /// [Sedgewick] 1.4.8 p.209 - Determine the number pairs of values that are equal.
         /// </summary>
@@ -248,6 +253,21 @@ namespace DoublingRatio
         /// 5  10 
         /// etc.
         /// 
+        /// Size: 128000        Time: 0.01 sec      Ratio: 2.00
+        /// Size: 256000        Time: 0.01 sec      Ratio: 2.00
+        /// Size: 512000        Time: 0.03 sec      Ratio: 2.08
+        /// Size: 1024000       Time: 0.05 sec      Ratio: 1.96
+        /// Size: 2048000       Time: 0.10 sec      Ratio: 2.04
+        /// Size: 4096000       Time: 0.20 sec      Ratio: 1.98
+        /// Size: 8192000       Time: 0.40 sec      Ratio: 1.99
+        /// Size: 16384000      Time: 0.80 sec      Ratio: 2.03
+        /// Size: 32768000      Time: 1.62 sec      Ratio: 2.02
+        /// Size: 65536000      Time: 3.28 sec      Ratio: 2.03
+        /// Size: 131072000     Time: 6.59 sec      Ratio: 2.01
+        /// Size: 262144000     Time: 13.34 sec     Ratio: 2.03
+        /// Size: 524288000     Time: 26.79 sec     Ratio: 2.01
+        /// Size: 1048576000    Time: 54.19 sec     Ratio: 2.02
+        /// 
         /// [Sedgewick] 1.4.8 p.209 - Develop a linearithmic solution on a sorted array.
         /// </summary>
         /// <param name="a">An array of integers</param>
@@ -280,6 +300,21 @@ namespace DoublingRatio
 
         /// <summary>
         /// Counts the number pairs that are equal. Complexity O(n)
+        /// 
+        /// Size: 128000        Time: 0.01 sec      Ratio: 2.00
+        /// Size: 256000        Time: 0.01 sec      Ratio: 1.50
+        /// Size: 512000        Time: 0.02 sec      Ratio: 2.00
+        /// Size: 1024000       Time: 0.04 sec      Ratio: 2.00
+        /// Size: 2048000       Time: 0.07 sec      Ratio: 1.92
+        /// Size: 4096000       Time: 0.13 sec      Ratio: 1.90
+        /// Size: 8192000       Time: 0.26 sec      Ratio: 1.96
+        /// Size: 16384000      Time: 0.51 sec      Ratio: 1.98
+        /// Size: 32768000      Time: 1.02 sec      Ratio: 2.00
+        /// Size: 65536000      Time: 2.03 sec      Ratio: 1.99
+        /// Size: 131072000     Time: 4.08 sec      Ratio: 2.01
+        /// Size: 262144000     Time: 8.12 sec      Ratio: 1.99
+        /// Size: 524288000     Time: 16.23 sec     Ratio: 2.00
+        /// Size: 1048576000    Time: 32.69 sec     Ratio: 2.01
         /// </summary>
         /// <param name="a">An array of integers</param>
         /// <returns>The number of pairs of values that are equal. The input array remains sorted.</returns>
