@@ -33,6 +33,14 @@ namespace WbsAlgorithms.PairMinMax
                 }
             }
 
+            // Swap indices if the first value is greater than the second one.
+            if (a[minX] > a[minY])
+            {
+                var tmp = minX;
+                minX = minY;
+                minY = tmp;
+            }
+
             return new Point(a[minX], a[minY]);
         }
 
