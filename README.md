@@ -1,7 +1,7 @@
 # WbsAlgorithms
 
 This repository contains C# implementations of selected data structures and algorithms each with a set of unit tests. Majority of code
-contains solutions to exercises from the book "Algorithms" by Robert Sedgewick (chapters 1.1, 1.2, and 1.3). There are also algorithms 
+contains solutions to exercises from the book "Algorithms" by Robert Sedgewick (chapters 1.1, 1.2, 1.3, and partially 1.4). There are also algorithms 
 from other sources.
 
 # References
