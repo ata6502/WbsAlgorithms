@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using WbsAlgorithms.PairMinMax;
+using WbsAlgorithmsTest.Utilities;
 
 namespace WbsAlgorithmsTest.PairMinMax
 {
@@ -30,12 +31,43 @@ namespace WbsAlgorithmsTest.PairMinMax
         public void LocalMinimumInArrayTest(int[] inputArray, int expectedIndex)
         {
             // The method finds one local minimum. It's always the same minimum.
-            var result = LocalMinimum.FindLocalMinimumIndexInArray(inputArray);
+            var result = LocalMinimum.FindLocalMinimumInArray(inputArray);
 
             // In some cases the number of comparisons is greater than 2*lg(n), n = inputArray.Length
             Console.WriteLine($"#of compares: {result.Counter} ~ 2*lg(n)={2*Math.Log(inputArray.Length, 2.0):F0}");
 
             Assert.AreEqual(expectedIndex, result.Index);
+        }
+
+        [TestCase("1", 0, 0)]                   // a[0,0] = 1
+        [TestCase("1,2,3 ; 4,5,6", 0, 0)]       // a[0,0] = 1
+        [TestCase("7,2,3 ; 4,5,6", 0, 1)]       // a[0,1] = 2 -or- a[1,0] = 4
+        [TestCase("6,5,1 ; 7,8,4", 0, 2)]       // a[0,2] = 1
+        [TestCase("7,8,9 ; 4,5,6", 1, 0)]       // a[1,0] = 4
+        [TestCase("4,5,6 ; 2,1,3", 1, 1)]       // a[1,1] = 1
+        [TestCase("6,4,3 ; 5,2,1", 1, 2)]       // a[1,2] = 1
+        [TestCase("7,1 ; 3,-1", 1, 1)]          // a[1,1] = -1
+        [TestCase("5,2,3 ; 4,6,1 ; 7,8,9", 0, 1)] // a[0,1] = 2 -or- a[1,0] = 4 -or- a[1,2] = 1
+        [TestCase("5,90,3,10 ; 4,-9,1,15 ; 7,-1,9,19 ; 12,8,13,99", 1, 1)] // a[1,1] = -9
+        [TestCase("5,90,3,10 ; 4,1,-7,15 ; 7,-1,-8,19 ; 12,8,13,99", 2, 2)] // a[2,2] = -8
+        [TestCase("20,100,12,11,10,101,2 ; 19,102,13,103,9,104,3 ; 18,105,14,106,8,107,4 ; 17,16,15,108,7,6,5", 0, 6)] // a[0,6] = 2
+        [TestCase(@"180, 181, 39,  102, 103, 50, 104, 105, 106, 107, 108 ; 
+                    179, 110, 38,  111, 112, 49, 113, 114, 115, 116, 117 ; 
+                    37,  36,  33,  34,  35,  48, 118, 119, 120, 121, 122 ; 
+                    123, 124, 32,  125, 1,   10, 126, 127, 128, 129, 130 ; 
+                    131, 132, 31,  133, 134, 47, 135, 136, 137, 138, 139 ; 
+                    46,  45,  30,  44,  43,  60, 51,  52,  53,  54,  55  ; 
+                    140, 141, 2,   142, 143, 56, 144, 145, 146, 147, 148 ; 
+                    149, 150, 151, 152, 153, 57, 154, 155, 156, 157, 158 ; 
+                    159, 160, 161, 162, 163, 58, 164, 165, 166, 167, 168 ; 
+                    169, 170, 171, 172, 173, 59, 174, 175, 176, 177, 178", 6, 2)] // a[6,2] = 2 -or- a[3,4] = 1
+        public void LocalMinimumInMatrixTest(string matrixAsString, int expectedRowIndex, int expectedColIndex)
+        {
+            var inputMatrix = DataReader.ConvertStringToMatrix(matrixAsString);
+            var (actualRowIndex, actualColIndex) = LocalMinimum.FindLocalMinimumInMatrixSimple(inputMatrix);
+
+            Assert.AreEqual(expectedRowIndex, actualRowIndex);
+            Assert.AreEqual(expectedColIndex, actualColIndex);
         }
     }
 }

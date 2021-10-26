@@ -15,7 +15,7 @@
         /// </summary>
         /// <param name="a">An array containing distinct integer values</param>
         /// <returns>An index of a local minimum and the number of comparisons</returns>
-        public static (int Index, int Counter) FindLocalMinimumIndexInArray(int[] a)
+        public static (int Index, int Counter) FindLocalMinimumInArray(int[] a)
         {
             _comparisonCounter = 0;
 
@@ -27,11 +27,11 @@
             if (a.Length == 2)
                 return (a[0] < a[1] ? 0 : 1, _comparisonCounter);
 
-            var index = FindLocalMinimumIndexInArrayRecursive(a, 0, a.Length);
+            var index = FindLocalMinimumInArrayRecursive(a, 0, a.Length);
             return (index, _comparisonCounter);
         }
 
-        private static int FindLocalMinimumIndexInArrayRecursive(int[] a, int low, int high)
+        private static int FindLocalMinimumInArrayRecursive(int[] a, int low, int high)
         {
             int mid = (low + high) / 2;
 
@@ -72,18 +72,102 @@
 
                 if (a[mid] < a[mid + 1])
                     return mid;
-                return FindLocalMinimumIndexInArrayRecursive(a, mid + 1, high);
+                return FindLocalMinimumInArrayRecursive(a, mid + 1, high);
             }
             else
             {
                 _comparisonCounter++;
 
                 if (a[mid - 1] < a[mid + 1])
-                    return FindLocalMinimumIndexInArrayRecursive(a, low, mid - 1);
+                    return FindLocalMinimumInArrayRecursive(a, low, mid - 1);
                 else
-                    return FindLocalMinimumIndexInArrayRecursive(a, mid + 1, high);
+                    return FindLocalMinimumInArrayRecursive(a, mid + 1, high);
             }
 
+        }
+
+        /// <summary>
+        /// Returns indices of one of the local minimums in a matrix. The local minimum a[i,j] is 
+        /// a pair of indices i and j such that:
+        /// a[i,j] < a[i+1,j] and a[i,j] < a[i,j+1] and a[i,j] < a[i-1,j] and a[i,j] < a[i,j-1]
+        /// 
+        /// We call the elements a[i+1,j], a[i,j+1], a[i-1,j], and a[i,j-1] the neighbours of 
+        /// the element a[i,j]. If a[i,j] is located on one of the edges of the matrix or in 
+        /// the corners, then it has fewer neighbours.
+        ///  
+        /// This is a sketch of an algorithm to find a local minimum in a matrix:
+        /// 1. Start with an element in the left-top corner of the matrix. 
+        /// 2. Check if the element is a local minimum.
+        /// 3. If so, we are done.
+        /// 4. Otherwise, take the smallest of the element's neighbours and go back to Step 2.
+        /// 5. Eventually, the loop 2,3,4 terminates because every step leads to a smaller element.
+        ///
+        /// Although the algorithm does not check all elements, its running time is greater 
+        /// than linear. In fact, the values in the matrix may meander up/down (or left/right etc.) 
+        /// This results in the running time of this algorithm to be O(n^2)
+        /// </summary>
+        /// <param name="a">An N-by-N matrix represented by a two-dimensional array</param>
+        /// <returns>A pair (row, column) of 0-based indices pointing to a local minimum in the input matrix</returns>
+        public static (int, int) FindLocalMinimumInMatrixSimple(int[,] a)
+        {
+            // A helper method that returns indices of a minimum value
+            // in the neighbourhood of the given element m. If the element m
+            // is the smallest element, the method returns its indices.
+            (int, int) GetMinimum(int[,] a, (int, int) m)
+            {
+                var (i, j) = m;
+                var rowCount = a.GetUpperBound(0) + 1;
+                var colCount = a.GetUpperBound(1) + 1;
+                var rowMin = i;
+                var colMin = j;
+
+                // Test a[i,j] < a[i+1,j]
+                if (i < rowCount - 1 && a[i + 1, j] < a[i, j])
+                {
+                    rowMin = i + 1;
+                    colMin = j;
+                }
+
+                // Test a[i,j] < a[i,j+1]
+                if (j < colCount - 1 && a[i, j + 1] < a[i, j])
+                {
+                    rowMin = i;
+                    colMin = j + 1;
+                }
+
+                // Test a[i,j] < a[i-1,j]
+                if (i > 0 && a[i - 1, j] < a[i, j])
+                {
+                    rowMin = i - 1;
+                    colMin = j;
+                }
+
+                // Test a[i,j] < a[i,j-1]
+                if (j > 0 && a[i, j - 1] < a[i, j])
+                {
+                    rowMin = i;
+                    colMin = j - 1;
+                }
+
+                return (rowMin, colMin);
+            }
+
+            var i = 0;
+            var j = 0;
+
+            // We use an infinite loop because the matrix guarantees that there is at least one
+            // local minimum. It ensures that the loop terminates at some point. The local minimum
+            // always exists because the values in the matrix are distinct.
+            while (true)
+            {
+                var (rowMin, colMin) = GetMinimum(a, (i, j));
+
+                if (rowMin == i && colMin == j)
+                    return (i, j);
+
+                i = rowMin;
+                j = colMin;
+            }
         }
     }
 }
