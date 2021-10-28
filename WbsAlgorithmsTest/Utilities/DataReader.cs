@@ -64,7 +64,7 @@ namespace WbsAlgorithmsTest.Utilities
         {
             Debug.Assert(!string.IsNullOrEmpty(matrix));
 
-            var rows = matrix.Split(';');
+            var rows = matrix.Replace("\r\n", "").Split(';');
             var cols = rows.First().Split(',');
 
             // Determine dimensions.
