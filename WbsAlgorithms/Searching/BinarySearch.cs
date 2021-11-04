@@ -37,6 +37,7 @@ namespace WbsAlgorithms.Searching
         /// Finds an index of an element in a sorted array using a recursive approach.
         /// 
         /// [Sedgewick] 1.1.22 p.58 - Binary search implemented recursively.
+        /// [Sedgewick] 1.4.21 p.210 - Binary search on distinct values.
         /// </summary>
         /// <typeparam name="T">A type that supports IComparable</typeparam>
         /// <param name="element">An element whose index we are looking for</param>
