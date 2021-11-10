@@ -8,29 +8,47 @@ namespace WbsAlgorithmsTest.Searching
     [TestFixture]
     public class BinarySearchTest
     {
-        [TestCase(new int[] { 1 }, 1, 0, TestName = "OneElement")]
-        [TestCase(new int[] { 1, 2 }, 1, 0, TestName = "TwoElementsIndex0")]
-        [TestCase(new int[] { 1, 2 }, 2, 1, TestName = "TwoElementsIndex1")]
-        [TestCase(new int[] { 1, 2, 3 }, 1, 0, TestName = "ThreeElementsIndex0")]
-        [TestCase(new int[] { 1, 2, 3 }, 2, 1, TestName = "ThreeElementsIndex1")]
-        [TestCase(new int[] { 1, 2, 3 }, 3, 2, TestName = "ThreeElementsIndex2")]
-        [TestCase(new int[] { 1, 2, 3, 4 }, 1, 0, TestName = "FourElementsIndex0")]
-        [TestCase(new int[] { 1, 2, 3, 4 }, 2, 1, TestName = "FourElementsIndex1")]
-        [TestCase(new int[] { 1, 2, 3, 4 }, 3, 2, TestName = "FourElementsIndex2")]
-        [TestCase(new int[] { 1, 2, 3, 4 }, 4, 3, TestName = "FourElementsIndex3")]
-        [TestCase(new int[] { 1 }, 2, -1, TestName = "OneElementNotFound")]
-        [TestCase(new int[] { 2, 3 }, 1, -1, TestName = "TwoElementsNotFound")]
-        [TestCase(new int[] { 1, 2, 3 }, 4, -1, TestName = "ThreeElementsNotFound")]
-        [TestCase(new int[] { 2, 3, 4, 5 }, 1, -1, TestName = "FourElementsNotFound")]
+        [TestCase(new int[] { 1 }, 1, 0, TestName = "Search_OneElement")]
+        [TestCase(new int[] { 1, 2 }, 1, 0, TestName = "Search_TwoElementsIndex0")]
+        [TestCase(new int[] { 1, 2 }, 2, 1, TestName = "Search_TwoElementsIndex1")]
+        [TestCase(new int[] { 1, 2, 3 }, 1, 0, TestName = "Search_ThreeElementsIndex0")]
+        [TestCase(new int[] { 1, 2, 3 }, 2, 1, TestName = "Search_ThreeElementsIndex1")]
+        [TestCase(new int[] { 1, 2, 3 }, 3, 2, TestName = "Search_ThreeElementsIndex2")]
+        [TestCase(new int[] { 1, 2, 3, 4 }, 1, 0, TestName = "Search_FourElementsIndex0")]
+        [TestCase(new int[] { 1, 2, 3, 4 }, 2, 1, TestName = "Search_FourElementsIndex1")]
+        [TestCase(new int[] { 1, 2, 3, 4 }, 3, 2, TestName = "Search_FourElementsIndex2")]
+        [TestCase(new int[] { 1, 2, 3, 4 }, 4, 3, TestName = "Search_FourElementsIndex3")]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 1, 0, TestName = "Search_FiveElementsIndex0")]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 2, 1, TestName = "Search_FiveElementsIndex1")]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 3, 2, TestName = "Search_FiveElementsIndex2")]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 4, 3, TestName = "Search_FiveElementsIndex3")]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 5, 4, TestName = "Search_FiveElementsIndex4")]
+        [TestCase(new int[] { 1 }, 2, -1, TestName = "Search_OneElementNotFound")]
+        [TestCase(new int[] { 2, 3 }, 1, -1, TestName = "Search_TwoElementsNotFound")]
+        [TestCase(new int[] { 1, 2, 3 }, 4, -1, TestName = "Search_ThreeElementsNotFound")]
+        [TestCase(new int[] { 2, 3, 4, 5 }, 1, -1, TestName = "Search_FourElementsNotFound")]
+        [TestCase(new int[] { -2, -1, 0, 1, 2, 3, 4, 5, 6, 7 }, -2, 0, TestName = "Search_TenElements1")]
+        [TestCase(new int[] { -2, -1, 0, 1, 2, 3, 4, 5, 6, 7 }, -1, 1, TestName = "Search_TenElements2")]
+        [TestCase(new int[] { -2, -1, 0, 1, 2, 3, 4, 5, 6, 7 }, 0, 2, TestName = "Search_TenElements3")]
+        [TestCase(new int[] { -2, -1, 0, 1, 2, 3, 4, 5, 6, 7 }, 1, 3, TestName = "Search_TenElements4")]
+        [TestCase(new int[] { -2, -1, 0, 1, 2, 3, 4, 5, 6, 7 }, 2, 4, TestName = "Search_TenElements5")]
+        [TestCase(new int[] { -2, -1, 0, 1, 2, 3, 4, 5, 6, 7 }, 3, 5, TestName = "Search_TenElements6")]
+        [TestCase(new int[] { -2, -1, 0, 1, 2, 3, 4, 5, 6, 7 }, 4, 6, TestName = "Search_TenElements7")]
+        [TestCase(new int[] { -2, -1, 0, 1, 2, 3, 4, 5, 6, 7 }, 5, 7, TestName = "Search_TenElements8")]
+        [TestCase(new int[] { -2, -1, 0, 1, 2, 3, 4, 5, 6, 7 }, 6, 8, TestName = "Search_TenElements9")]
+        [TestCase(new int[] { -2, -1, 0, 1, 2, 3, 4, 5, 6, 7 }, 7, 9, TestName = "Search_TenElements10")]
+        [TestCase(new int[] { -2, -1, 0, 1, 2, 3, 4, 5, 6, 7 }, 9, -1, TestName = "Search_TenElements11")]
         public void FindElementIndexTest(int[] inputArray, int inputElement, int expectedIndex)
         {
             var actualIndexIteratively = BinarySearch.FindIndexIteratively(inputElement, inputArray);
             var actualIndexRecusively = BinarySearch.FindIndexRecursively(inputElement, inputArray);
             var actualIndexLinearly = BinarySearch.FindIndexLinearly(inputElement, inputArray);
+            var actualIndexFibonacci = BinarySearch.FindIndexUsingFibonacci(inputElement, inputArray);
 
             Assert.AreEqual(expectedIndex, actualIndexIteratively);
             Assert.AreEqual(expectedIndex, actualIndexRecusively);
             Assert.AreEqual(expectedIndex, actualIndexLinearly);
+            Assert.AreEqual(expectedIndex, actualIndexFibonacci);
         }
 
         [TestCase(new int[] { 1 }, 1, 0, TestName = "Rank_OneElement")]

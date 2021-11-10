@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace WbsAlgorithms.Searching
 {
@@ -235,6 +236,81 @@ namespace WbsAlgorithms.Searching
                 return mid;
             else
                 return FindFirstIndexRecursivelyInternal(key, array, low, mid - 1);
+        }
+
+        /// <summary>
+        /// Finds an index of a given integer in a sorted array. Instead of searching based on 
+        /// powers of two (binary search) we use Fibonacci numbers:
+        /// 
+        /// F(0)=0, F(1)=1 and F(n) = F(n-1) + F(n-2) for n > 1
+        /// The sequence starts: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ... 
+        /// 
+        /// [Sedgewick] 1.4.22 p.211 - Binary search with only addition and subtraction.
+        /// Given an array of N distinct values in ascending order, determine whether a given
+        /// integer is in the array. You may use only additions and subtractions and a constant
+        /// amount of extra memory. The running time should be O(lg(N)).
+        /// </summary>
+        /// <param name="key">An element whose index we are looking for</param>
+        /// <param name="array">A sorted array of distinct integer values in ascending order</param>
+        /// <returns>If the element found, the element's index. Otherwise, -1.</returns>
+        public static int FindIndexUsingFibonacci(int key, int[] array)
+        {
+            // Computes the greatest Fibonacci number that is smaller than the size of the input array.
+
+            int tmp;
+            var fk = 1; // F(k)
+            var fk_prev = 0; // F(k-1)
+
+            // Find a Fibonacci number F(k) that is equal or greater than the size
+            // of the input array. Also, keep the previous Fibonacci number F(k-1).
+            while (fk < array.Length)
+            {
+                tmp = fk;
+                fk = fk_prev + fk;
+                fk_prev = tmp;
+            }
+
+            // Initialize the interval of indices [low, high] in the array.
+            var low = 0;
+            var high = array.Length - 1;
+
+            while (low <= high)
+            {
+                // Find a Fibonacci number F(k) that is less than the width of
+                // the interval [low, high]. We will use F(k-1) to determine
+                // the index of an element we want to test.
+                // The condition F(k-1) > 0 ensures that the smallest F(k) is 1.
+                // We are using subtraction to "go back" in the Fibonacci
+                // sequence e.g., 13, 8, 5, 3, 2, 1, 1, 0
+                while (fk_prev > 0 && fk >= high - low)
+                {
+                    tmp = fk_prev;
+                    fk_prev = fk - fk_prev; // F(k-1)
+                    fk = tmp; // F(k)
+                }
+
+                // Calculate the index low + F(k-1). This is analogous to dividing
+                // the interval [low, high] by 2 in the binary search. We just
+                // use smaller and smaller Fibonacci numbers instead.
+                int index = low + fk_prev;
+
+                if (key < array[index])
+                {
+                    // Update the current range to [low, low + F(k-1)]
+                    high = index - 1;
+                }
+                else if (key > array[index])
+                {
+                    // Update the current range to [low + F(k-1), high]
+                    low = index + 1;
+                }
+                else
+                {
+                    return index;
+                }
+            }
+
+            return -1;
         }
     }
 }
