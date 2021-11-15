@@ -9,7 +9,8 @@ from other sources.
 Below, there is a list of sources used to create the C# code. The names in brackets indicate a comment in the code that references 
 a particular source. For example, for exercises from the Robert Sedgewick's book "Algorithms" search for the comment ``[Sedgewick]``.
 
-- ``[Sedgewick]`` "Algorithms" 4th edition - Robert Sedgewick and Kevin Wayne, Addison-Wesley 2011
+- ``[Sedgewick]`` Robert Sedgewick, Kevin Wayne (2011) "Algorithms" 4th edition; Addison-Wesley Professional
+- ``[AlgoIlluminated-1]`` Tim Roughgarden (2017) "Algorithms Illuminated: Part 1: The Basics"; Soundlikeyourself Publishing
 - ``[Leetcode]`` https://leetcode.com/problemset/all/
 
 
