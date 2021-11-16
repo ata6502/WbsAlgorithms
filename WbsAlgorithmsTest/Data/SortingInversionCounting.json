@@ -1,0 +1,162 @@
+﻿[
+    {
+        "TestName": "SimpleExample1",
+        "InputArray": [ 5, 2, 4, 6, 1, 3 ],
+        "InversionCount": 9
+    },
+    {
+        "TestName": "SimpleExample2",
+        "InputArray": [ 31, 41, 59, 26, 42, 58 ],
+        "InversionCount": 5
+    },
+    {
+        "TestName": "BookExample",
+        "InputArray": [ 5, 4, 1, 8, 7, 2, 6, 3 ],
+        "InversionCount": 15
+    },
+    {
+        "TestName": "FromWebsite_SortedAscending",
+        "InputArray": [ 1, 2, 3, 4, 5, 6, 7, 8 ],
+        "InversionCount": 0
+    },
+    {
+        "TestName": "FromWebsite_SortedDescending",
+        "InputArray": [ 8, 7, 6, 5, 4, 3, 2, 1 ],
+        "InversionCount": 28
+    },
+    {
+        "TestName": "FromWebsite_TenNumbers2",
+        "InputArray": [ 54044, 14108, 79294, 29649, 25260, 60660, 2995, 53777, 49689, 9083 ],
+        "InversionCount": 28
+    },
+    {
+        "TestName": "2Sorted",
+        "InputArray": [ 1, 2 ],
+        "InversionCount": 0
+    },
+    {
+        "TestName": "2Unsorted",
+        "InputArray": [ 2, 1 ],
+        "InversionCount": 1
+    },
+    {
+        "TestName": "3Sorted",
+        "InputArray": [ 1, 2, 3 ],
+        "InversionCount": 0
+    },
+    {
+        "TestName": "3Unsorted1",
+        "InputArray": [ 2, 1, 3 ],
+        "InversionCount": 1
+    },
+    {
+        "TestName": "3Unsorted2",
+        "InputArray": [ 3, 1, 2 ],
+        "InversionCount": 2
+    },
+    {
+        "TestName": "3Unsorted3",
+        "InputArray": [ 2, 3, 1 ],
+        "InversionCount": 2
+    },
+    {
+        "TestName": "3Reversed",
+        "InputArray": [ 3, 2, 1 ],
+        "InversionCount": 3
+    },
+    {
+        "TestName": "4Sorted",
+        "InputArray": [ 1, 2, 3, 4 ],
+        "InversionCount": 0
+    },
+    {
+        "TestName": "4Unsorted1",
+        "InputArray": [ 2, 1, 3, 4 ],
+        "InversionCount": 1
+    },
+    {
+        "TestName": "4Unsorted2",
+        "InputArray": [ 3, 1, 2, 4 ],
+        "InversionCount": 2
+    },
+    {
+        "TestName": "4Unsorted3",
+        "InputArray": [ 4, 1, 2, 3 ],
+        "InversionCount": 3
+    },
+    {
+        "TestName": "4Unsorted4",
+        "InputArray": [ 2, 3, 1, 4 ],
+        "InversionCount": 2
+    },
+    {
+        "TestName": "4Unsorted5",
+        "InputArray": [ 3, 2, 1, 4 ],
+        "InversionCount": 3
+    },
+    {
+        "TestName": "4Unsorted6",
+        "InputArray": [ 4, 2, 3, 1 ],
+        "InversionCount": 5
+    },
+    {
+        "TestName": "4Unsorted7",
+        "InputArray": [ 3, 2, 4, 1 ],
+        "InversionCount": 4
+    },
+    {
+        "TestName": "4Reversed",
+        "InputArray": [ 4, 3, 2, 1 ],
+        "InversionCount": 6
+    },
+    {
+        "TestName": "5Unsorted1",
+        "InputArray": [ 1, 5, 3, 2, 4 ],
+        "InversionCount": 4
+    },
+    {
+        "TestName": "5Reversed",
+        "InputArray": [ 5, 4, 3, 2, 1 ],
+        "InversionCount": 10
+    },
+    {
+        "TestName": "6Unsorted1",
+        "InputArray": [ 1, 3, 5, 2, 4, 6 ],
+        "InversionCount": 3
+    },
+    {
+        "TestName": "6Unsorted2",
+        "InputArray": [ 1, 6, 3, 2, 4, 5 ],
+        "InversionCount": 5
+    },
+    {
+        "TestName": "8Unsorted1",
+        "InputArray": [ 1, 8, 2, 6, 3, 7, 5, 4 ],
+        "InversionCount": 12
+    },
+    {
+        "TestName": "8Unsorted2",
+        "InputArray": [ 3, 2, 1, 4, 8, 7, 6, 5 ],
+        "InversionCount": 9
+    },
+    {
+        "TestName": "8Unsorted3",
+        "InputArray": [ 7, 8, 6, 5, 2, 3, 4, 1 ],
+        "InversionCount": 24
+    },
+    {
+        "TestName": "Long1",
+        "InputArray": [ 9, 12, 3, 1, 6, 8, 2, 5, 14, 13, 11, 7, 10, 4, 0 ],
+        "InversionCount": 56
+    },
+    {
+        "TestName": "Long2",
+        "InputArray": [ 37, 7, 2, 14, 35, 47, 10, 24, 44, 17, 34, 11, 16, 48, 1, 39, 6, 33, 43, 26, 40, 4, 28, 5, 38, 41, 42, 12, 13, 21, 29, 18, 3, 19, 0, 32, 46, 27, 31, 25, 15, 36, 20, 8, 9, 49, 22, 23, 30, 45 ],
+        "InversionCount": 590
+    },
+    {
+        "TestName": "Long3",
+        "InputArray": [ 4, 80, 70, 23, 9, 60, 68, 27, 66, 78, 12, 40, 52, 53, 44, 8, 49, 28, 18, 46, 21, 39, 51, 7, 87, 99, 69, 62, 84, 6, 79, 67, 14, 98, 83, 0, 96, 5, 82, 10, 26, 48, 3, 2, 15, 92, 11, 55, 63, 97, 43, 45, 81, 42, 95, 20, 25, 74, 24, 72, 91, 35, 86, 19, 75, 58, 71, 47, 76, 59, 64, 93, 17, 50, 56, 94, 90, 89, 32, 37, 34, 65, 1, 73, 41, 36, 57, 77, 30, 22, 13, 29, 38, 16, 88, 61, 31, 85, 33, 54 ],
+        "InversionCount": 2372
+    }
+]

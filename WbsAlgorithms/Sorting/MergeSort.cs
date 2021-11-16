@@ -21,7 +21,7 @@
         }
 
         // i = the first index in the subarray (inclusive)
-        // j = the last index in the subarray (inclusive).
+        // j = the last index in the subarray (inclusive)
         private static int[] SortRecursively(int[] a, int i, int j)
         {
             // Base case: a one-element array is already sorted.
@@ -29,7 +29,7 @@
                 return new int[] { a[i] };
             else
             {
-                // Two recursive calls split the input array into two subarrays and sorts 
+                // Two recursive calls split the input array into two subarrays and sort 
                 // each subarray with the help of the merge step.
                 var mid = i + (j - i) / 2;
                 var c = SortRecursively(a, i, mid);        // the first half of the array a

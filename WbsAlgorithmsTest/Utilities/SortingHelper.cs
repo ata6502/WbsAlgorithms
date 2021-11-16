@@ -1,12 +1,10 @@
-﻿using System;
-using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
 using WbsAlgorithmsTest.Utilities;
 
 namespace WbsAlgorithmsTests.Utilities
 {
-    internal class SortingHelpers
+    internal class SortingHelper
     {
         public static void AssertAscendingOrder(int[] values)
         {
@@ -24,11 +22,18 @@ namespace WbsAlgorithmsTests.Utilities
             }
         }
 
-        public static IEnumerable<TestCaseData> TestCases(string jsonDataFilename, string testMethodPrefix)
+        public static IEnumerable<TestCaseData> SortTestCases(string jsonDataFilename, string testMethodPrefix)
         {
             var testData = DataReader.ReadJsonArray<SortingData>(jsonDataFilename);
             foreach(var d in testData)
                 yield return new TestCaseData(d.InputArray).SetName($"{testMethodPrefix}_{d.TestName}");
+        }
+
+        public static IEnumerable<TestCaseData> InversionCountingTestCases(string jsonDataFilename)
+        {
+            var testData = DataReader.ReadJsonArray<InversionCountingData>(jsonDataFilename);
+            foreach (var d in testData)
+                yield return new TestCaseData(d.InputArray, d.InversionCount).SetName($"InversionCounting_{d.TestName}");
         }
     }
 }
