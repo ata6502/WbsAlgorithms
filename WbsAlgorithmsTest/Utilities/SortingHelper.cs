@@ -29,11 +29,11 @@ namespace WbsAlgorithmsTests.Utilities
                 yield return new TestCaseData(d.InputArray).SetName($"{testMethodPrefix}_{d.TestName}");
         }
 
-        public static IEnumerable<TestCaseData> InversionCountingTestCases(string jsonDataFilename)
+        public static IEnumerable<TestCaseData> InversionCountingTestCases(string jsonDataFilename, string testMethodPrefix)
         {
             var testData = DataReader.ReadJsonArray<InversionCountingData>(jsonDataFilename);
             foreach (var d in testData)
-                yield return new TestCaseData(d.InputArray, d.InversionCount).SetName($"InversionCounting_{d.TestName}");
+                yield return new TestCaseData(d.InputArray, d.InversionCount).SetName($"{testMethodPrefix}_{d.TestName}");
         }
     }
 }

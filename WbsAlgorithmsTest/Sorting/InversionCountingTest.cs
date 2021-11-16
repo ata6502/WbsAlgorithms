@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
 using WbsAlgorithms.Sorting;
+using WbsAlgorithmsTest.Utilities;
 using WbsAlgorithmsTests.Utilities;
 
 namespace WbsAlgorithmsTest.Sorting
@@ -20,6 +21,17 @@ namespace WbsAlgorithmsTest.Sorting
             Assert.AreEqual(expectedInversionCount, inversionCountSortAndCount.InversionCount);
         }
 
-        private static IEnumerable<TestCaseData> CountInversionsTestCases() => SortingHelper.InversionCountingTestCases(JsonDataFilename);
+        [TestCase(@"Data\SortingMediumDataset.txt", 2379u, TestName = "InversionCounting_SortingMediumDataset")]
+        [TestCase(@"Data\SortingLargeDataset1.txt", 23948130u, TestName = "InversionCounting_LargeDataset1")]
+        [TestCase(@"Data\SortingLargeDataset2.txt", 2407905288u, TestName = "InversionCounting_LargeDataset2")]
+        public void CountInversionsUsingLargeDataset(string filename, uint expectedInversionCount)
+        {
+            var inputArray = DataReader.ReadIntegers(filename);
+
+            var inversionCount = InversionCounting.SortAndCountInversions(inputArray, 0, inputArray.Length - 1);
+            Assert.AreEqual(expectedInversionCount, inversionCount.InversionCount);
+        }
+
+        private static IEnumerable<TestCaseData> CountInversionsTestCases() => SortingHelper.InversionCountingTestCases(JsonDataFilename, "InversionCounting");
     }
 }
