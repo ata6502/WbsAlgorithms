@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using WbsAlgorithms.Common;
 
 namespace WbsAlgorithmsTest.Utilities
@@ -91,6 +92,12 @@ namespace WbsAlgorithmsTest.Utilities
             }
 
             return a;
+        }
+
+        public static T[] ReadJsonArray<T>(string filename)
+        {
+            var json = File.ReadAllText(filename);
+            return JsonSerializer.Deserialize<T[]>(json);
         }
     }
 }
