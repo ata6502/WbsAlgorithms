@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace WbsAlgorithms.DivideAndConquer
+namespace WbsAlgorithms.Arithmetics
 {
     public class MatrixMultiplication
     {
@@ -93,10 +93,10 @@ namespace WbsAlgorithms.DivideAndConquer
                 return new double[,] { { x[0, 0] * y[0, 0] } }; // 1x1 matrix
             else
             {
-                // Half the matrix dimension.
+                // Half the matrix size.
                 n = n / 2;
 
-                // Eight recursive calls, each on an input of half the dimension. 
+                // Eight recursive calls, each on an input of half the size. 
                 var a = SubMatrix(x, 0, 0, n, n);
                 var b = SubMatrix(x, 0, n, n, n);
                 var c = SubMatrix(x, n, 0, n, n);
@@ -188,7 +188,7 @@ namespace WbsAlgorithms.DivideAndConquer
             return o;
         }
 
-        // n - dimension of the matrices; both matrices must be n x n
+        // n - size of the matrices; both matrices must be n x n
         // a,b - input square matrices
         private static double[,] AddMatrices(double[,] a, double[,] b)
         {
@@ -197,7 +197,7 @@ namespace WbsAlgorithms.DivideAndConquer
             Debug.Assert(b.GetLength(0) == b.GetLength(1));
             Debug.Assert(a.GetLength(0) == b.GetLength(0));
 
-            int n = a.GetLength(0); // any dimension would do
+            int n = a.GetLength(0); // any dimension (# of columns or # of rows) would do
 
             var o = new double[n, n];
             for (int i = 0; i < n; ++i)
@@ -213,7 +213,7 @@ namespace WbsAlgorithms.DivideAndConquer
             Debug.Assert(b.GetLength(0) == b.GetLength(1));
             Debug.Assert(a.GetLength(0) == b.GetLength(0));
 
-            int n = a.GetLength(0); // any dimension would do
+            int n = a.GetLength(0); // any dimension (# of columns or # of rows) would do
 
             var o = new double[n, n];
             for (int i = 0; i < n; ++i)

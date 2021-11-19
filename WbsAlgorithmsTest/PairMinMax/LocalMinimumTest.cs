@@ -84,7 +84,7 @@ namespace WbsAlgorithmsTest.PairMinMax
                     169, 170, 171, 172, 173, 59, 174, 175, 176, 177, 178", 2, 1)]
         public void LocalMinimumInMatrixTest(string inputMatrixAsString, int expectedValueSimple, int expectedValueLinear)
         {
-            var a = DataReader.ConvertStringToMatrix(inputMatrixAsString);
+            var a = DataConverter.ConvertStringToMatrix<int>(inputMatrixAsString);
 
             var (i, j) = LocalMinimum.FindLocalMinimumInMatrixSimple(a);
             Assert.AreEqual(expectedValueSimple, a[i,j]);

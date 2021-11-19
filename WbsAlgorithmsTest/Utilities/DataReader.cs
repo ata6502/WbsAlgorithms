@@ -61,39 +61,6 @@ namespace WbsAlgorithmsTest.Utilities
             return points;
         }
 
-        public static int[,] ConvertStringToMatrix(string matrix)
-        {
-            Debug.Assert(!string.IsNullOrEmpty(matrix));
-
-            var rows = matrix.Replace("\r\n", "").Split(';');
-            var cols = rows.First().Split(',');
-
-            // Determine dimensions.
-            var rowCount = rows.Length;
-            var colCount = cols.Length;
-
-            var a = new int[rowCount, colCount];
-            for(var i = 0; i < rowCount; ++i)
-            {
-                var strNums = rows[i].Split(',');
-
-                // Check if all rows have the same number of columns.
-                Debug.Assert(strNums.Length == colCount);
-
-                var j = 0;
-                foreach(var str in strNums)
-                {
-                    var isValidInt = int.TryParse(str, out var num);
-                    Debug.Assert(isValidInt);
-
-                    a[i, j] = num;
-                    ++j;
-                }
-            }
-
-            return a;
-        }
-
         public static T[] ReadJsonArray<T>(string filename)
         {
             var json = File.ReadAllText(filename);
