@@ -41,7 +41,7 @@ namespace WbsAlgorithmsTest.Utilities
             return a;
         }
 
-        public static string ConvertMatrixToString<T>(T[,] matrix)
+        public static string ConvertMatrixToString<T>(T[,] matrix, int numberOfDecimalPlaces = 0)
         {
             var maxRowIndex = matrix.GetUpperBound(0);
             var maxColIndex = matrix.GetUpperBound(1);
@@ -51,7 +51,7 @@ namespace WbsAlgorithmsTest.Utilities
             {
                 for (var j = 0; j <= maxColIndex; ++j)
                 {
-                    sb.Append(matrix[i, j]);
+                    sb.Append(ApplyTolerance(matrix[i, j], numberOfDecimalPlaces));
                     if (j < maxColIndex)
                         sb.Append(",");
                 }
@@ -77,5 +77,8 @@ namespace WbsAlgorithmsTest.Utilities
                 return (default(T), false);
             }
         }
+
+        private static object ApplyTolerance(object num, int numberOfDecimalPlaces)
+            => num is double ? Math.Round((double)num, numberOfDecimalPlaces) : num;
     }
 }
