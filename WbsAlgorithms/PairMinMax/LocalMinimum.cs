@@ -142,6 +142,7 @@
         /// [Sedgewick] 1.4.19 p.210 - Given an N-by-N matrix of N^2 distinct integers, 
         /// design an algorithm that finds a local minimum. The running time of your algorithm 
         /// should be proportional to N in the worst case.
+        /// [AlgoIlluminated-1] p.91 Problem 3.4 Find a local minimum in a matrix.
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>

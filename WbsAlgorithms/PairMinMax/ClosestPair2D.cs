@@ -20,10 +20,10 @@ namespace WbsAlgorithms.PairMinMax
         /// http://www.youtube.com/watch?v=vS4Zn1a9KUc 
         /// https://www.cs.mcgill.ca/~cs251/ClosestPair/ClosestPairDQ.html
         /// 
-        /// [AlgoIlluminated-1] p.77- 3.4 An O(n log(n))-Time Algorithm for the Closest Pair of Points.
+        /// [AlgoIlluminated-1] p.77-88 3.4 An O(n log(n))-Time Algorithm for the Closest Pair of Points.
         /// </summary>
         /// <param name="points">A set of 2D points</param>
-        /// <returns>The pair of points with the smallest Euclidean distance and the pair of points itself</returns>
+        /// <returns>The pair of points with the smallest Euclidean distance</returns>
         public static (double Distance, Point[] ClosestPair) ComputeRecursive(Point[] points)
         {
             Debug.Assert(points.Length >= 2);
@@ -42,34 +42,48 @@ namespace WbsAlgorithms.PairMinMax
         }
 
         /// <summary>
-        /// TODO: Add comments.
+        /// Computes a distance separating the closest pair of points recursively.
         /// </summary>
-        /// <param name="px"></param>
-        /// <param name="py"></param>
-        /// <returns></returns>
+        /// <param name="Px">Points sorted by their x-coordinate</param>
+        /// <param name="Py">Points sorted by their y-coordinate</param>
+        /// <returns>The pair of points with the smallest Euclidean distance</returns>
         private static (double Distance, Point[] ClosestPair) FindClosestPair(Point[] Px, Point[] Py)
         {
+            Debug.Assert(Px.Length >= 2);
+            Debug.Assert(Py.Length >= 2);
             Debug.Assert(Px.Length == Py.Length);
+
             var size = Px.Length;
 
-            // Base case: sort up to three points using brute-force.
+            // Base case: find the closest pair among two or three points using brute-force.
+            // Because there are only two or three points, the time to find the closest
+            // pair is constant O(1).
             if (size <= 3)
                 return ComputeBruteForce(Px);
 
             var halfSize = size / 2;
 
+            // The first half of Px, sorted by x-coordinate.
             var Lx = new Point[halfSize];
-            Array.Copy(Px, Lx, Lx.Length);
+            Array.Copy(Px, Lx, Lx.Length); // copy the first half of Px to Lx
 
+            // The second half of Px, sorted by x-coordinate.
             var Rx = new Point[size - halfSize];
-            Array.Copy(Px, halfSize, Rx, 0, Rx.Length);
+            Array.Copy(Px, halfSize, Rx, 0, Rx.Length); // copy the second half of Px to Rx
 
+            // The first half of Px, sorted by y-coordinate.
             var Ly = new Point[halfSize];
-            var Ry = new Point[size - halfSize];
-            var medianX = Lx[halfSize - 1].X;
 
+            // The second half of Px, sorted by y-coordinate.
+            var Ry = new Point[size - halfSize];
+
+            var medianX = Lx[halfSize - 1].X;
             int i = 0, l = 0, r = 0;
 
+            // Perform a linear scan over Py and populate Ly and Ry.
+            // Note that Py contains the same points as Px just sorted by 
+            // y-coordinate rather than by x-coordinate.
+            // Because this is a linear scan, its running time is O(n).
             while(i < Py.Length)
             {
                 if (Py[i].X <= medianX)
@@ -86,10 +100,18 @@ namespace WbsAlgorithms.PairMinMax
                 ++i;
             }
 
+            // A pair of points is called
+            // - leftPair if both points belong to the left half of the input point set
+            // - rightPair if both points belong to the right half of the input point set
+            // - splitPair if the points belong to different halves of the input point set
+
+            // Find the best leftPair and the best rightPair recursively.
             var leftPair = FindClosestPair(Lx, Ly);
             var rightPair = FindClosestPair(Rx, Ry);
 
             var minDistance = Math.Min(leftPair.Distance, rightPair.Distance);
+
+            // Find the best splitPair.
             var splitPair = FindClosestSplitPair(Px, Py, minDistance);
 
             // Return a pair with the shortest distance among leftPair, rightPair, and splitPair.
@@ -103,14 +125,29 @@ namespace WbsAlgorithms.PairMinMax
                 throw new NotImplementedException("Ties are not implemented.");
         }
 
+        /// <summary>
+        /// Finds a split pair whose distance is less than the input minDistance. 
+        /// Time complexity: O(n)
+        /// </summary>
+        /// <param name="Px">Points sorted by their x-coordinate</param>
+        /// <param name="Py">Points sorted by their y-coordinate</param>
+        /// <param name="minDistance">A minimum distance found so far from the leftPair or rightPair</param>
+        /// <returns>A split pair whose distance is less than the minDistance. If there is no such a split pair, returns null.</returns>
         private static (double Distance, Point[] ClosestPair) FindClosestSplitPair(Point[] Px, Point[] Py, double minDistance)
         {
             Debug.Assert(Px.Length == Py.Length);
             var size = Px.Length;
 
             var halfSize = size / 2;
+
+            // medianX is the largest x-coordinate in the left half. A pair of points is a split pair
+            // if one point has x <= mediaX and the other point x > medianX.
             var medianX = Px[halfSize - 1].X;
 
+            // Sy is a set of points with x-coordinate between [mx-d, mx+d] sorted by y-coordinate
+            // where mx is medianX, d is minDistance. We scan through Py and remove any points with
+            // x-coordinate outside of the range [mx-d, mx+d].
+            // Refer to [AlgoIlluminated-1] p.85 3.4.7 for correctness proof.
             var Sy = new List<Point>(6); // at most 6-points
             foreach(var p in Py)
             {
@@ -118,6 +155,12 @@ namespace WbsAlgorithms.PairMinMax
                     Sy.Add(p);
             }
 
+            // TODO: For some test cases (Points50 and Points500) Sy.Count is greater than 6.
+            //if (Sy.Count > 6)
+            //    throw new IndexOutOfRangeException();
+
+            // Use brute-force to find the closest pair. There are up to 6 points which means
+            // we can consider running time of this code as O(n).
             if (Sy.Count >= 2)
             {
                 var pair = ComputeBruteForce(Sy.ToArray());
@@ -135,7 +178,7 @@ namespace WbsAlgorithms.PairMinMax
         /// [Sedgewick] 1.2.1 p.114 - Compute the distance separating the closest pair of points.
         /// </summary>
         /// <param name="points">A set of 2D points</param>
-        /// <returns>The pair of points with the smallest Euclidean distance and the pair of points itself</returns>
+        /// <returns>The pair of points with the smallest Euclidean distance</returns>
         public static (double Distance, Point[] ClosestPair) ComputeBruteForce(Point[] points)
         {
             Debug.Assert(points.Length >= 2);
