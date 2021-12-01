@@ -6,9 +6,6 @@ using WbsAlgorithms.Common;
 
 namespace WbsAlgorithms.PairMinMax
 {
-    /// <summary>
-    /// [Sedgewick] 1.2.1 p.114 - Compute the distance separating the closest pair of points.
-    /// </summary>
     public class ClosestPair2D
     {
         /// <summary>
@@ -121,17 +118,21 @@ namespace WbsAlgorithms.PairMinMax
                     Sy.Add(p);
             }
 
-            var pair = ComputeBruteForce(Sy.ToArray());
+            if (Sy.Count >= 2)
+            {
+                var pair = ComputeBruteForce(Sy.ToArray());
+                if (pair.Distance < minDistance)
+                    return pair;
+            }
 
-            if (pair.Distance < minDistance)
-                return pair;
-            else
-                return (double.MaxValue, null);
+            return (double.MaxValue, null);
         }
 
         /// <summary>
         /// Computes a distance separating the closest pair of points by iterating through all the pairs. 
         /// Time complexity: O(n^2)
+        /// 
+        /// [Sedgewick] 1.2.1 p.114 - Compute the distance separating the closest pair of points.
         /// </summary>
         /// <param name="points">A set of 2D points</param>
         /// <returns>The pair of points with the smallest Euclidean distance and the pair of points itself</returns>

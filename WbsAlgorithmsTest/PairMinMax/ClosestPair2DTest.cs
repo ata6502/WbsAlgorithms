@@ -40,11 +40,10 @@ namespace WbsAlgorithmsTest.PairMinMax
             yield return new TestCaseData(CreatePoints(1, 5, 4, 4, 2, 3.5, 2.5, 7, 1.9, 2, 3, 3, 4.1, 6, 7, 5, 6, 2.9, 9, 5.1, 7.1, 7.1, 8, 1.8), CreatePoints(2, 3.5, 3, 3), 1.1180339887).SetName("LeftHalfPair");
             yield return new TestCaseData(CreatePoints(1, 5, 4, 4, 2.5, 6.9, 2, 1.9, 3, 3, 4.1, 6, 7, 5.1, 6, 3.1, 9, 5.2, 7.1, 7.1, 8, 2, 7, 1.5), CreatePoints(8, 2, 7, 1.5), 1.1180339887).SetName("RightHalfPair");
             yield return new TestCaseData(CreatePoints(1, 5, 4, 4, 2.5, 7, 2, 2, 3, 3, 4.5, 6, 7.1, 4.9, 6, 3.1, 9, 5.1, 7, 7.1, 8, 2.1, 5.5, 5.5), CreatePoints(4.5, 6, 5.5, 5.5), 1.1180339887).SetName("SplitPair");
-            // TODO: Add more tests.
-            //yield return new TestCaseData(CreatePoints(@"Data\Points50.txt"), CreatePoints(3.0, 29.3, 3.1, 30.7), 1.4035668848).SetName("Points50");
-            //yield return new TestCaseData(CreatePoints(@"Data\Points100.txt"), CreatePoints(73.8, 93.0, 73.2, 92.9), 0.6082762530).SetName("Points100");
-            //yield return new TestCaseData(CreatePoints(@"Data\Points200.txt"), CreatePoints(11.9, 83.1, 11.4, 83.1), 0.5).SetName("Points200");
-            //yield return new TestCaseData(CreatePoints(@"Data\Points500.txt"), CreatePoints(28.0, 96.9, 27.9, 96.9), 0.1).SetName("Points500");
+            yield return new TestCaseData(CreatePoints(@"Data\Points50.txt"), CreatePoints(6.3, 0.6, 5.9, 0.1), 0.6403124237).SetName("Points50");
+            yield return new TestCaseData(CreatePoints(@"Data\Points100.txt"), CreatePoints(18.7, 23.0, 17.5, 20.9), 2.4186773245).SetName("Points100");
+            yield return new TestCaseData(CreatePoints(@"Data\Points200.txt"), CreatePoints(28.3, 16.0, 29.2, 15.3), 1.1401754251).SetName("Points200");
+            yield return new TestCaseData(CreatePoints(@"Data\Points500.txt"), CreatePoints(-29.8, 12.5, -29.5, 13.0), 0.5830951895).SetName("Points500");
         }
     }
 }
