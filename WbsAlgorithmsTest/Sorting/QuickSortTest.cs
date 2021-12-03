@@ -23,6 +23,27 @@ namespace WbsAlgorithmsTest.Sorting
             SortingHelper.AssertAscendingOrder(copyArray);
         }
 
-        private static IEnumerable<TestCaseData> TestCases() => SortingHelper.SortTestCases(JsonDataFilename, nameof(MergeSort));
+        [TestCaseSource(nameof(TestCasesWithStrategy))]
+        public void SortWithStrategyTest(int[] inputArray)
+        {
+            void SortWithStrategy(PivotStrategy strategy)
+            {
+                var copyArray = new int[inputArray.Length];
+                inputArray.CopyTo(copyArray, 0);
+
+                QuickSort.Sort(copyArray, strategy);
+
+                Assert.AreEqual(inputArray.Length, copyArray.Length);
+                SortingHelper.AssertAscendingOrder(copyArray);
+            }
+
+            SortWithStrategy(PivotStrategy.First);
+            SortWithStrategy(PivotStrategy.Last);
+            SortWithStrategy(PivotStrategy.Random);
+            SortWithStrategy(PivotStrategy.Median);
+        }
+
+        private static IEnumerable<TestCaseData> TestCases() => SortingHelper.SortTestCases(JsonDataFilename, nameof(QuickSort));
+        private static IEnumerable<TestCaseData> TestCasesWithStrategy() => SortingHelper.SortTestCases(JsonDataFilename, "QuickSortWithStrategy");
     }
 }

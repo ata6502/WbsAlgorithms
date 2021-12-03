@@ -2,9 +2,23 @@
 
 namespace WbsAlgorithms.Sorting
 {
+    /// <summary>
+    /// PivotStrategy represents different ways of choosing a pivot. 
+    /// </summary>
+    public enum PivotStrategy
+    {
+        First,  // always use the first element as the pivot
+        Last,   // always use the last element as the pivot
+        Random, // use a random element as the pivot
+        Median  // use the median-of-three as the pivot
+    }
+
     public class QuickSort
     {
         private static Random _rnd = new Random(Guid.NewGuid().GetHashCode());
+        private static int _comparisonCount = 0;
+
+        // TODO: Add comments.
 
         // Sorts an input array in-place.
         public static void Sort(int[] a)
@@ -34,6 +48,41 @@ namespace WbsAlgorithms.Sorting
 
             // Recursively sort the second part of the array.
             SortRecursively(a, j + 1, r);
+        }
+
+        // Sorts an input array in-place. Returns the number of comparisons.
+        public static int Sort(int[] a, PivotStrategy strategy)
+        {
+            _comparisonCount = 0;
+            SortRecursively(a, 0, a.Length - 1, strategy);
+            return _comparisonCount;
+        }
+
+        private static void SortRecursively(int[] a, int l, int r, PivotStrategy strategy)
+        {
+            // Base case. A 0- or 1-element subarray.
+            if (l >= r)
+                return;
+
+            // Count the number of comparisons: rightIndex - leftIndex
+            _comparisonCount += r - l;
+
+            // Choose a pivot randomly.
+            int i = ChoosePivotIndex(a, l, r, strategy);
+
+            // Make the pivot first.
+            int tmp = a[l];
+            a[l] = a[i];
+            a[i] = tmp;
+
+            // Get the new pivot position.
+            int j = Partition(a, l, r);
+
+            // Recursively sort the first part of the array.
+            SortRecursively(a, l, j - 1, strategy);
+
+            // Recursively sort the second part of the array.
+            SortRecursively(a, j + 1, r, strategy);
         }
 
         private static int Partition(int[] a, int l, int r)
@@ -73,6 +122,58 @@ namespace WbsAlgorithms.Sorting
 
             // Return the final pivot position.
             return i - 1;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a">an array of n distinct integers</param>
+        /// <param name="l">left endpoints l = {1,2,...,n}, l<=r</param>
+        /// <param name="r">right endpoints r = {1,2,...,n}, l<=r</param>
+        /// <param name="strategy">a way to choose a pivot</param>
+        /// <returns></returns>
+        private static int ChoosePivotIndex(int[] a, int l, int r, PivotStrategy strategy)
+        {
+            int GetMiddle(int[] a, int l, int r)
+            {
+                int m = (r + l) / 2;
+
+                // Determine the first, middle, and last elements of a given subarray.
+                int x = a[l]; // first
+                int y = a[m]; // middle
+                int z = a[r]; // last
+
+                // Determine the median-of-three element - an element whose value is in 
+                // between the other two.
+                if ((x > y && x < z) || (x > z && x < y))
+                    return l;
+                if ((y > x && y < z) || (y > z && y < x))
+                    return m;
+                if ((z > x && z < y) || (z > y && z < x))
+                    return r;
+
+                throw new ArgumentException("invalid arguments");
+            }
+
+            switch (strategy)
+            {
+                // Pick the first element.
+                case PivotStrategy.First:
+                    return l;
+                // Pick the last element.
+                case PivotStrategy.Last:
+                    return r;
+                case PivotStrategy.Random:
+                    return _rnd.Next(l, r + 1);
+                // Pick the median element. This is the most perfectly balanced split.
+                case PivotStrategy.Median:
+                    if (r - l + 1 <= 2)
+                        return l;
+                    else
+                        return GetMiddle(a, l, r);
+                default:
+                    throw new ArgumentException("strategy");
+            }
         }
     }
 }
