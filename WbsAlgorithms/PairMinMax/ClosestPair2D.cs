@@ -59,7 +59,7 @@ namespace WbsAlgorithms.PairMinMax
             // Because there are only two or three points, the time to find the closest
             // pair is constant O(1).
             if (size <= 3)
-                return ComputeBruteForce(Px);
+                return FindClosestPairBruteForce(Px);
 
             var halfSize = size / 2;
 
@@ -147,28 +147,64 @@ namespace WbsAlgorithms.PairMinMax
             // Sy is a set of points with x-coordinate between [mx-d, mx+d] sorted by y-coordinate
             // where mx is medianX, d is minDistance. We scan through Py and remove any points with
             // x-coordinate outside of the range [mx-d, mx+d].
-            // Refer to [AlgoIlluminated-1] p.85 3.4.7 for correctness proof.
-            var Sy = new List<Point>(6); // at most 6-points
+            // Refer to [AlgoIlluminated-1] p.85 3.4.7 for the proof of correctness.
+            var Sy = new List<Point>();
             foreach(var p in Py)
             {
                 if (p.X > medianX - minDistance && p.X < medianX + minDistance)
                     Sy.Add(p);
             }
 
-            // TODO: For some test cases (Points50 and Points500) Sy.Count is greater than 6.
-            //if (Sy.Count > 6)
-            //    throw new IndexOutOfRangeException();
-
-            // Use brute-force to find the closest pair. There are up to 6 points which means
-            // we can consider running time of this code as O(n).
+            // Use brute-force to find the closest split pair.
             if (Sy.Count >= 2)
             {
-                var pair = ComputeBruteForce(Sy.ToArray());
-                if (pair.Distance < minDistance)
-                    return pair;
+                var distance = minDistance;
+                Point[] bestPair = null;
+
+                for(var i = 0; i <= Sy.Count - 2; ++i)
+                {
+                    // Note that we iterate over 6 points at most.
+                    for(var j = 1; j <= Math.Min(6, Sy.Count - i - 1); ++j)
+                    {
+                        var d = Math.Sqrt(GetSquaredDistance(Sy[i], Sy[i + j]));
+                        if (d < distance)
+                        {
+                            distance = d;
+                            bestPair = new Point[] { Sy[i], Sy[i + j] };
+                        }
+                    }
+                }
+
+                if (bestPair != null)
+                    return (distance, bestPair);
             }
 
             return (double.MaxValue, null);
+        }
+
+        /// <summary>
+        /// Finds a closest pair between two or three points.
+        /// </summary>
+        /// <param name="points">An array containing 2 or 3 points</param>
+        /// <returns>The pair of points with the smallest Euclidean distance</returns>
+        private static (double Distance, Point[] ClosestPair) FindClosestPairBruteForce(Point[] points)
+        {
+            Debug.Assert(points.Length == 2 || points.Length == 3);
+
+            var d1 = Math.Sqrt(GetSquaredDistance(points[0], points[1]));
+
+            if (points.Length == 2)
+                return (d1, points);
+
+            var d2 = Math.Sqrt(GetSquaredDistance(points[0], points[2]));
+            var d3 = Math.Sqrt(GetSquaredDistance(points[1], points[2]));
+
+            if (d1 < d2 && d1 < d3)
+                return (d1, new Point[] { points[0], points[1] });
+            else if (d2 < d1 && d2 < d3)
+                return (d2, new Point[] { points[0], points[2] });
+            else
+                return (d3, new Point[] { points[1], points[2] });
         }
 
         /// <summary>
