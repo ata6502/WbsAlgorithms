@@ -18,14 +18,25 @@ namespace WbsAlgorithms.Sorting
         private static Random _rnd = new Random(Guid.NewGuid().GetHashCode());
         private static int _comparisonCount = 0;
 
-        // TODO: Add comments.
-
-        // Sorts an input array in-place.
+        /// <summary>
+        /// Sorts an input array in-place using the QuickSort algorithm.
+        /// Assumption: The input array has only distict elements, with no duplicates.
+        /// 
+        /// [AlgoIlluminated-1] p.117-151 QuickSort
+        /// </summary>
+        /// <param name="a">An array containing distinct integers</param>
         public static void Sort(int[] a)
         {
             SortRecursively(a, 0, a.Length - 1);
         }
 
+        /// <summary>
+        /// Sorts an input array in-place using the QuickSort algorithm.
+        /// Postcondition: Elements of the subarray a[l],a[l+1],...,a[r] are sorted from smallest to largest.
+        /// </summary>
+        /// <param name="a">An array of n distinct integers</param>
+        /// <param name="l">left endpoints l = {1,2,...,n}, l<=r</param>
+        /// <param name="r">right endpoints r = {1,2,...,n}, l<=r</param>
         private static void SortRecursively(int[] a, int l, int r)
         {
             // Base case. A 0- or 1-element subarray.
@@ -50,7 +61,14 @@ namespace WbsAlgorithms.Sorting
             SortRecursively(a, j + 1, r);
         }
 
-        // Sorts an input array in-place. Returns the number of comparisons.
+        /// <summary>
+        /// Sorts an input array in-place using the QuickSort algorithm and a specified strategy.
+        /// 
+        /// [AlgoIlluminated-1] p.153 Problem 5.6 Implement the QuickSort algorithm.
+        /// </summary>
+        /// <param name="a">An array of n distinct integers</param>
+        /// <param name="strategy">A way of choosing a pivot</param>
+        /// <returns>The number of comparisons performed during execution of the QuickSort algorithm</returns>
         public static int Sort(int[] a, PivotStrategy strategy)
         {
             _comparisonCount = 0;
@@ -85,6 +103,14 @@ namespace WbsAlgorithms.Sorting
             SortRecursively(a, j + 1, r, strategy);
         }
 
+        /// <summary>
+        /// Partitions elements of an array around a pivot.
+        /// Postcondition: Elements of the subarray a[l],a[l+1],...,a[r] are partitioned around a[l].
+        /// </summary>
+        /// <param name="a">An array of n distinct integers. The Partition method operates only on a subarray a[l],a[l+1],...,a[r]</param>
+        /// <param name="l">Left endpoints l = {1,2,...,n}, l<=r</param>
+        /// <param name="r">Right endpoints r = {1,2,...,n}, l<=r</param>
+        /// <returns>The final position of the pivot element.</returns>
         private static int Partition(int[] a, int l, int r)
         {
             // Get the pivot from the first element of the subarray. 
@@ -125,13 +151,13 @@ namespace WbsAlgorithms.Sorting
         }
 
         /// <summary>
-        /// 
+        /// Chooses a pivot from the input array using a given strategy.
         /// </summary>
         /// <param name="a">an array of n distinct integers</param>
         /// <param name="l">left endpoints l = {1,2,...,n}, l<=r</param>
         /// <param name="r">right endpoints r = {1,2,...,n}, l<=r</param>
         /// <param name="strategy">a way to choose a pivot</param>
-        /// <returns></returns>
+        /// <returns>An index of a pivot element chosen from the input array</returns>
         private static int ChoosePivotIndex(int[] a, int l, int r, PivotStrategy strategy)
         {
             int GetMiddle(int[] a, int l, int r)
@@ -172,7 +198,7 @@ namespace WbsAlgorithms.Sorting
                     else
                         return GetMiddle(a, l, r);
                 default:
-                    throw new ArgumentException("strategy");
+                    throw new ArgumentException(nameof(strategy));
             }
         }
     }
