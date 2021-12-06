@@ -34,7 +34,7 @@ namespace WbsAlgorithmsTest.PairMinMax
             var result = LocalMinimum.FindLocalMinimumInArray(inputArray);
 
             // In some cases the number of comparisons is greater than 2*lg(n), n = inputArray.Length
-            Console.WriteLine($"#of compares: {result.Counter} ~ 2*lg(n)={2*Math.Log(inputArray.Length, 2.0):F0}");
+            TestContext.Out.WriteLine($"#of compares: {result.Counter} ~ 2*lg(n)={2*Math.Log(inputArray.Length, 2.0):F0}");
 
             Assert.AreEqual(expectedIndex, result.Index);
         }
