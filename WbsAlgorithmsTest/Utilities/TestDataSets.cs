@@ -16,4 +16,21 @@
 
         public override string ToString() => $"{TestName}: {InputArray.Length} elements";
     }
+
+    internal class QuickSortComparisonCountingData
+    {
+        public string TestName { get; set; }
+        public string InputFile { get; set; }
+
+        // The number of comparisons if the first element is used as the pivot.
+        public int ComparisonCountFirstElement { get; set; }
+
+        // The number of comparisons if the last element is used as the pivot.
+        public int ComparisonCountLastElement { get; set; }
+
+        // The number of comparisons if the median-of-three is used as the pivot.
+        public int ComparisonCountMedianElement { get; set; }
+
+        public override string ToString() => $"{TestName}: {InputFile} file";
+    }
 }

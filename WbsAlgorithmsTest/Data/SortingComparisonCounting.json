@@ -1,0 +1,30 @@
+﻿[
+    {
+        "TestName": "Small",
+        "InputFile": "Data\\SortingSmallDataset.txt",
+        "ComparisonCountFirstElement": 25,
+        "ComparisonCountLastElement": 31,
+        "ComparisonCountMedianElement": 21
+    },
+    {
+        "TestName": "Medium",
+        "InputFile": "Data\\SortingMediumDataset.txt",
+        "ComparisonCountFirstElement": 620,
+        "ComparisonCountLastElement": 573,
+        "ComparisonCountMedianElement": 502
+    },
+    {
+        "TestName": "Large1",
+        "InputFile": "Data\\SortingLargeDataset1.txt",
+        "ComparisonCountFirstElement": 162085,
+        "ComparisonCountLastElement": 164123,
+        "ComparisonCountMedianElement": 138382
+    },
+    {
+        "TestName": "Large2",
+        "InputFile": "Data\\SortingLargeDataset2.txt",
+        "ComparisonCountFirstElement": 1954287,
+        "ComparisonCountLastElement": 2047196,
+        "ComparisonCountMedianElement": 1697653
+    }
+]

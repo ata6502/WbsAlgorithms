@@ -9,6 +9,7 @@ namespace WbsAlgorithmsTest.Sorting
     public class QuickSortTest
     {
         private const string JsonDataFilename = @"Data\Sorting.json";
+        private const string JsonComparisonCountingDataFilename = @"Data\SortingComparisonCounting.json";
 
         [TestCaseSource(nameof(TestCases))]
         public void SortTest(int[] inputArray)
@@ -43,7 +44,25 @@ namespace WbsAlgorithmsTest.Sorting
             SortWithStrategy(PivotStrategy.Median);
         }
 
+        [TestCaseSource(nameof(TestCasesComparisonCounting))]
+        public void ComparisonCountingTest(int[] inputArray, int expectedComparisonCountFirstElement, int expectedComparisonCountLastElement, int expectedComparisonCountMedianElement)
+        {
+            int SortAndCountComparisons(PivotStrategy strategy)
+            {
+                var copyArray = new int[inputArray.Length];
+                inputArray.CopyTo(copyArray, 0);
+
+                // Return the comparison count for a given strategy.
+                return QuickSort.Sort(copyArray, strategy);
+            }
+
+            Assert.AreEqual(expectedComparisonCountFirstElement, SortAndCountComparisons(PivotStrategy.First));
+            Assert.AreEqual(expectedComparisonCountLastElement, SortAndCountComparisons(PivotStrategy.Last));
+            Assert.AreEqual(expectedComparisonCountMedianElement, SortAndCountComparisons(PivotStrategy.Median));
+        }
+
         private static IEnumerable<TestCaseData> TestCases() => SortingHelper.SortTestCases(JsonDataFilename, nameof(QuickSort));
         private static IEnumerable<TestCaseData> TestCasesWithStrategy() => SortingHelper.SortTestCases(JsonDataFilename, "QuickSortWithStrategy");
+        private static IEnumerable<TestCaseData> TestCasesComparisonCounting() => SortingHelper.ComparisonCountingTestCases(JsonComparisonCountingDataFilename, "QuickSortComparisonCounting");
     }
 }
