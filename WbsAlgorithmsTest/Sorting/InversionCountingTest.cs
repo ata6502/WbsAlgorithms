@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using WbsAlgorithms.Sorting;
 using WbsAlgorithmsTest.Utilities;
-using WbsAlgorithmsTests.Utilities;
 
 namespace WbsAlgorithmsTest.Sorting
 {
@@ -32,6 +31,6 @@ namespace WbsAlgorithmsTest.Sorting
             Assert.AreEqual(expectedInversionCount, inversionCount.InversionCount);
         }
 
-        private static IEnumerable<TestCaseData> CountInversionsTestCases() => SortingHelper.InversionCountingTestCases(JsonDataFilename, "InversionCounting");
+        private static IEnumerable<TestCaseData> CountInversionsTestCases() => TestCaseHelper.InversionCountingTestCases(JsonDataFilename, "InversionCounting");
     }
 }

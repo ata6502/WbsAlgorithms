@@ -1,4 +1,4 @@
-﻿namespace WbsAlgorithmsTests.Utilities
+﻿namespace WbsAlgorithmsTest.Utilities
 {
     internal class SortingData
     {

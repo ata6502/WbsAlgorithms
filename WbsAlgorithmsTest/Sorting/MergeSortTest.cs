@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
 using WbsAlgorithms.Sorting;
-using WbsAlgorithmsTests.Utilities;
+using WbsAlgorithmsTest.Utilities;
 
 namespace WbsAlgorithmsTest.Sorting
 {
@@ -19,6 +19,6 @@ namespace WbsAlgorithmsTest.Sorting
             SortingHelper.AssertAscendingOrder(sortedArray);
         }
 
-        private static IEnumerable<TestCaseData> TestCases() => SortingHelper.SortTestCases(JsonDataFilename, nameof(MergeSort));
+        private static IEnumerable<TestCaseData> TestCases() => TestCaseHelper.SortTestCases(JsonDataFilename, nameof(MergeSort));
     }
 }

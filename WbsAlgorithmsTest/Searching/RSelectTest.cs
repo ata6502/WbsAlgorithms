@@ -17,6 +17,6 @@ namespace WbsAlgorithmsTest.Searching
             Assert.AreEqual(expectedOrderStatistic, actualOrderStatistic);
         }
 
-        private static IEnumerable<TestCaseData> TestCases() => TestDataHelper.SelectionTestCases(JsonDataFilename, nameof(RSelect));
+        private static IEnumerable<TestCaseData> TestCases() => TestCaseHelper.SelectionTestCases(JsonDataFilename, nameof(RSelect));
     }
 }

@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
 using WbsAlgorithms.Sorting;
-using WbsAlgorithmsTests.Utilities;
+using WbsAlgorithmsTest.Utilities;
 
 namespace WbsAlgorithmsTest.Sorting
 {
@@ -61,8 +61,8 @@ namespace WbsAlgorithmsTest.Sorting
             Assert.AreEqual(expectedComparisonCountMedianElement, SortAndCountComparisons(PivotStrategy.Median));
         }
 
-        private static IEnumerable<TestCaseData> TestCases() => SortingHelper.SortTestCases(JsonDataFilename, nameof(QuickSort));
-        private static IEnumerable<TestCaseData> TestCasesWithStrategy() => SortingHelper.SortTestCases(JsonDataFilename, "QuickSortWithStrategy");
-        private static IEnumerable<TestCaseData> TestCasesComparisonCounting() => SortingHelper.ComparisonCountingTestCases(JsonComparisonCountingDataFilename, "QuickSortComparisonCounting");
+        private static IEnumerable<TestCaseData> TestCases() => TestCaseHelper.SortTestCases(JsonDataFilename, nameof(QuickSort));
+        private static IEnumerable<TestCaseData> TestCasesWithStrategy() => TestCaseHelper.SortTestCases(JsonDataFilename, "QuickSortWithStrategy");
+        private static IEnumerable<TestCaseData> TestCasesComparisonCounting() => TestCaseHelper.ComparisonCountingTestCases(JsonComparisonCountingDataFilename, "QuickSortComparisonCounting");
     }
 }
