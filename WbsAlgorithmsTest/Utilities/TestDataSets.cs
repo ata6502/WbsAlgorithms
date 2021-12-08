@@ -33,4 +33,14 @@
 
         public override string ToString() => $"{TestName}: {InputFile} file";
     }
+
+    internal class SelectionData
+    {
+        public string TestName { get; set; }
+        public int[] InputArray { get; set; }
+        public int InputOrderStatistic { get; set; }
+        public int ExpectedOrderStatistic { get; set; }
+
+        public override string ToString() => $"{TestName}: {InputArray.Length} elements";
+    }
 }

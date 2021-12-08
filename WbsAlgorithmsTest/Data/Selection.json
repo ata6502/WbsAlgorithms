@@ -1,0 +1,56 @@
+[
+    {
+        "TestName": "Simple1",
+        "InputArray": [ 6, 8, 9, 2 ],
+        "InputOrderStatistic": 0,
+        "ExpectedOrderStatistic": 2
+    },
+    {
+        "TestName": "Simple2",
+        "InputArray": [ 6, 8, 9, 2 ],
+        "InputOrderStatistic": 1,
+        "ExpectedOrderStatistic": 6
+    },
+    {
+        "TestName": "Simple3",
+        "InputArray": [ 6, 8, 9, 2 ],
+        "InputOrderStatistic": 2,
+        "ExpectedOrderStatistic": 8
+    },
+    {
+        "TestName": "Simple4",
+        "InputArray": [ 6, 8, 9, 2 ],
+        "InputOrderStatistic": 3,
+        "ExpectedOrderStatistic": 9
+    },
+    {
+        "TestName": "Simple5",
+        "InputArray": [ 3, 6, 1, 9, 4, 7 ],
+        "InputOrderStatistic": 3,
+        "ExpectedOrderStatistic": 6
+    },
+    {
+        "TestName": "Simple6",
+        "InputArray": [ 3, 4, 1, 2, 9, 8 ],
+        "InputOrderStatistic": 5,
+        "ExpectedOrderStatistic": 9
+    },
+    {
+        "TestName": "Simple7",
+        "InputArray": [ 5, 6, 9, 7, 3, 2 ],
+        "InputOrderStatistic": 2,
+        "ExpectedOrderStatistic": 5
+    },
+    {
+        "TestName": "Simple8",
+        "InputArray": [ 1, 2, 3, 4, 5, 6 ],
+        "InputOrderStatistic": 4,
+        "ExpectedOrderStatistic": 5
+    },
+    {
+        "TestName": "Median",
+        "InputArray": [ 2148, 9058, 7742, 3153, 6324, 609, 7628, 5469, 7017, 504 ],
+        "InputOrderStatistic": 4,
+        "ExpectedOrderStatistic": 5469
+    }
+]
