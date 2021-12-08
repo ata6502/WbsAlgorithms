@@ -17,6 +17,15 @@ namespace WbsAlgorithmsTest.Searching
             Assert.AreEqual(expectedOrderStatistic, actualOrderStatistic);
         }
 
+        [TestCase(@"Data\Selection100.txt", 49, 4715, TestName = "RSelect_100numbers")]
+        public void GetValueTest(string filename, int inputOrderStatistic, int expectedOrderStatistic)
+        {
+            var inputArray = DataReader.ReadIntegers(filename);
+
+            var actualOrderStatistic = RSelect.GetValue(inputArray, inputOrderStatistic);
+            Assert.AreEqual(expectedOrderStatistic, actualOrderStatistic);
+        }
+
         private static IEnumerable<TestCaseData> TestCases() => TestCaseHelper.SelectionTestCases(JsonDataFilename, nameof(RSelect));
     }
 }
