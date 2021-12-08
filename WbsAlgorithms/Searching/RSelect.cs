@@ -2,21 +2,28 @@
 
 namespace WbsAlgorithms.Searching
 {
+    /// <summary>
+    /// RSelect - Randomized linear-time selection algorithm
+    /// - Identifies the i-th smallest element (the order statistic) in an unsorted array.
+    /// - Based on QuickSort but only with one recursive call.
+    /// - Operates in-place.    
+    /// </summary>
     public class RSelect
     {
         private static Random _rnd = new Random(Guid.NewGuid().GetHashCode());
 
-        // TODO: Add comments.
-
-        // Input: An array A of n distinct number in arbitrary order.
-        //        The order statistic we are looking for: an integer 0<=i<=n-1
-        // Output: The i-th order statistic i.e., the i-th smallest element in the input array A.
-        public static int GetValue(int[] a, int orderStatistic)
+        /// <summary>
+        /// Finds the i-th order statistic in the input array.
+        /// </summary>
+        /// <param name="a">An array of n distinct number in arbitrary order</param>
+        /// <param name="orderStatistic">The order statistic we are looking for: an integer i such that  0 <= i <= n-1</param>
+        /// <returns>The i-th order statistic i.e., the i-th smallest element in the input array</returns>
+        public static int FindValue(int[] a, int orderStatistic)
         {
-            return GetValue(a, 0, a.Length - 1, orderStatistic);
+            return FindValueRecursively(a, 0, a.Length - 1, orderStatistic);
         }
 
-        private static int GetValue(int[] a, int l, int r, int orderStatistic)
+        private static int FindValueRecursively(int[] a, int l, int r, int orderStatistic)
         {
             // base case
             if (l >= r)
@@ -42,14 +49,16 @@ namespace WbsAlgorithms.Searching
                 return a[j];
             // [2] The pivot is greater than the element we are looking for.
             else if (j > orderStatistic)
-                return GetValue(a, l, j - 1, orderStatistic);
+                return FindValueRecursively(a, l, j - 1, orderStatistic);
             // [3] The pivot is smaller than the element we are looking for.
             else
                 // We do not need to modify the order statistic we are looking for because 
                 // the algorithm works in-place and the indices of elements are preserved.
-                return GetValue(a, j + 1, r, orderStatistic);
+                return FindValueRecursively(a, j + 1, r, orderStatistic);
         }
 
+        // The Partition method is identical to the one in QuickSort.
+        // Refer to QuickSort for argument description and comments.
         private static int Partition(int[] a, int l, int r)
         {
             int p = a[l];

@@ -11,18 +11,18 @@ namespace WbsAlgorithmsTest.Searching
         private const string JsonDataFilename = @"Data\Selection.json";
 
         [TestCaseSource(nameof(TestCases))]
-        public void GetValueTest(int[] inputArray, int inputOrderStatistic, int expectedOrderStatistic)
+        public void FindValueTest(int[] inputArray, int inputOrderStatistic, int expectedOrderStatistic)
         {
-            var actualOrderStatistic = RSelect.GetValue(inputArray, inputOrderStatistic);
+            var actualOrderStatistic = RSelect.FindValue(inputArray, inputOrderStatistic);
             Assert.AreEqual(expectedOrderStatistic, actualOrderStatistic);
         }
 
         [TestCase(@"Data\Selection100.txt", 49, 4715, TestName = "RSelect_100numbers")]
-        public void GetValueTest(string filename, int inputOrderStatistic, int expectedOrderStatistic)
+        public void FindValueTest(string filename, int inputOrderStatistic, int expectedOrderStatistic)
         {
             var inputArray = DataReader.ReadIntegers(filename);
 
-            var actualOrderStatistic = RSelect.GetValue(inputArray, inputOrderStatistic);
+            var actualOrderStatistic = RSelect.FindValue(inputArray, inputOrderStatistic);
             Assert.AreEqual(expectedOrderStatistic, actualOrderStatistic);
         }
 
