@@ -14,6 +14,8 @@ namespace WbsAlgorithms.Searching
 
         /// <summary>
         /// Finds the i-th order statistic in the input array.
+        /// 
+        /// [AlgoIlluminated-1] p.155-167 Linear-Time Selection - RSelect
         /// </summary>
         /// <param name="a">An array of n distinct number in arbitrary order</param>
         /// <param name="orderStatistic">The order statistic we are looking for: an integer i such that  0 <= i <= n-1</param>

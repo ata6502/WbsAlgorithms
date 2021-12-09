@@ -48,7 +48,13 @@
         "ExpectedOrderStatistic": 5
     },
     {
-        "TestName": "Median",
+        "TestName": "Selection10_1",
+        "InputArray": [ 5, 2, 7, 10, 1, 6, 3, 9, 8, 4 ],
+        "InputOrderStatistic": 4,
+        "ExpectedOrderStatistic": 5
+    },
+    {
+        "TestName": "Selection10_2",
         "InputArray": [ 2148, 9058, 7742, 3153, 6324, 609, 7628, 5469, 7017, 504 ],
         "InputOrderStatistic": 4,
         "ExpectedOrderStatistic": 5469
