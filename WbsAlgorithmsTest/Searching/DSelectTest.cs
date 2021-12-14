@@ -1,0 +1,31 @@
+﻿using NUnit.Framework;
+using System.Collections.Generic;
+using WbsAlgorithms.Searching;
+using WbsAlgorithmsTest.Utilities;
+
+namespace WbsAlgorithmsTest.Searching
+{
+    [TestFixture]
+    public class DSelectTest
+    {
+        private const string JsonDataFilename = @"Data\Selection.json";
+
+        [TestCaseSource(nameof(TestCases))]
+        public void FindValueTest(int[] inputArray, int inputOrderStatistic, int expectedOrderStatistic)
+        {
+            var actualOrderStatistic = DSelect.FindValue(inputArray, inputOrderStatistic);
+            Assert.AreEqual(expectedOrderStatistic, actualOrderStatistic);
+        }
+
+        //[TestCase(@"Data\Selection100.txt", 49, 4715, TestName = "DSelect_100numbers")]
+        //public void FindValueTest(string filename, int inputOrderStatistic, int expectedOrderStatistic)
+        //{
+        //    var inputArray = DataReader.ReadIntegers(filename);
+
+        //    var actualOrderStatistic = DSelect.FindValue(inputArray, inputOrderStatistic);
+        //    Assert.AreEqual(expectedOrderStatistic, actualOrderStatistic);
+        //}
+
+        private static IEnumerable<TestCaseData> TestCases() => TestCaseHelper.SelectionTestCases(JsonDataFilename, nameof(DSelect));
+    }
+}
