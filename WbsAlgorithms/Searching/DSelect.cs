@@ -44,10 +44,11 @@ namespace WbsAlgorithms.Searching
             for (var h = 0; h < C.Length; ++h)
                 C[h] = GetMedian(a, l, r, h); 
 
+            // TODO: Add comments.
             var p = FindValueRecursively(C, 0, C.Length - 1, n / 10);
             var j = Array.FindIndex(a, num => num == p);
 
-            // Make the pivot first.
+            // Make the pivot first in the subarray a[l..r]
             int tmp = a[l];
             a[l] = a[j];
             a[j] = tmp;
@@ -69,12 +70,14 @@ namespace WbsAlgorithms.Searching
         /// Finds the middle element of a given group of 5.
         /// </summary>
         /// <param name="a">An array of n distinct number in arbitrary order</param>
-        /// <param name="begin">The left boundary of a subarray of A</param>
-        /// <param name="end">The right boundary of a subarray of A</param>
+        /// <param name="begin">The left boundary of a subarray a[begin..end]</param>
+        /// <param name="end">The right boundary of a subarray a[begin..end]</param>
         /// <param name="h">The group number of 5 elements in the input array A</param>
         /// <returns>The middle element from the h-th group of 5</returns>
         private static int GetMedian(int[] a, int begin, int end, int h)
         {
+            // Calculate a boundary a[l..r] of a subarray for the group h within a[begin..end]
+            // The length of the subarray a[l..r] may have at most 5.
             var l = begin + 5 * h;
             var r = Math.Min(l + 4 , end);
 
@@ -106,6 +109,7 @@ namespace WbsAlgorithms.Searching
             else // n == 4 or n == 5
             {
                 // TODO: Figure out a way to find a median without sorting.
+                // TODO: For n ==3 and 4 you can find "the second smallest element".
                 var copy = new int[n];
                 Array.Copy(a, l, copy, 0, n);
                 Array.Sort(copy);
