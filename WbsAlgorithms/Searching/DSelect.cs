@@ -94,27 +94,54 @@ namespace WbsAlgorithms.Searching
                 return a[l];
             else if (n == 2)
                 return Math.Min(a[l], a[r]);
-            else if (n == 3)
+            else if (n == 3 || n == 4)
             {
-                int x = a[l], y = a[l+1], z = a[l+2];
-                if ((x < z && x > y) || (x > z && x < y))
-                    return x;
-                else if ((y < z && y > x) || (y > z && y < x))
-                    return y;
-                else if ((z < y && z > x) || (z > y && z < x))
-                    return z;
-                else
-                    throw new ArgumentException("Elements in the input array A are not distinct.");
-            }
-            else // n == 4 or n == 5
-            {
-                // TODO: Figure out a way to find a median without sorting.
-                // TODO: For n ==3 and 4 you can find "the second smallest element".
-                var copy = new int[n];
-                Array.Copy(a, l, copy, 0, n);
-                Array.Sort(copy);
+                // In the 3 or 4-element array, the median is the second smallest element.
+                var min1 = int.MaxValue; // the smallest element
+                var min2 = int.MaxValue; // the second smallest element
 
-                return n == 4 ? copy[1] : copy[2];
+                for(var i = l; i < l + n; ++i)
+                {
+                    if (a[i] < min1)
+                    {
+                        min2 = min1;
+                        min1 = a[i];
+                    }
+                    else if (a[i] < min2)
+                    {
+                        min2 = a[i];
+                    }
+                }
+
+                return min2;
+            }
+            else // n == 5
+            {
+                // In the 5-element array, the median is the third smallest element.
+                var min1 = int.MaxValue; // the smallest element
+                var min2 = int.MaxValue; // the second smallest element
+                var min3 = int.MaxValue; // the third smallest element
+
+                for (var i = l; i < l + n; ++i)
+                {
+                    if (a[i] < min1)
+                    {
+                        min3 = min2;
+                        min2 = min1;
+                        min1 = a[i];
+                    }
+                    else if (a[i] < min2)
+                    {
+                        min3 = min2;
+                        min2 = a[i];
+                    }
+                    else if (a[i] < min3)
+                    {
+                        min3 = a[i];
+                    }
+                }
+
+                return min3;
             }
         }
 
