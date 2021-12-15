@@ -20,7 +20,7 @@ namespace WbsAlgorithms.Searching
         /// 
         /// [AlgoIlluminated-1] p.167-179 Linear-Time Selection - DSelect
         /// </summary>
-        /// <param name="a">An array of n distinct number in arbitrary order</param>
+        /// <param name="a">An array of n distinct numbers in arbitrary order</param>
         /// <param name="orderStatistic">The order statistic we are looking for: an integer i such that  0 <= i <= n-1</param>
         /// <returns>The i-th order statistic i.e., the i-th smallest element in the input array</returns>
         public static int FindValue(int[] a, int orderStatistic)
@@ -34,28 +34,42 @@ namespace WbsAlgorithms.Searching
             if (l >= r)
                 return a[r];
 
+            // Calculate the size of the subarray a[l..r]
             var n = r - l + 1;
 
-            // Find the median-of-medians of the input array A.
+            //
+            // Find the median-of-medians of the subarray a[l..r]
+            //
 
+            // Calculate the number of 5-element groups. The last group may have
+            // fewer elements.
             var size = n / 5 + (n % 5 == 0 ? 0 : 1);
-            var C = new int[size];
 
-            for (var h = 0; h < C.Length; ++h)
-                C[h] = GetMedian(a, l, r, h); 
+            // The m array contains medians for each 5-element group.
+            var m = new int[size];
 
-            // TODO: Add comments.
-            var p = FindValueRecursively(C, 0, C.Length - 1, n / 10);
+            // Caclulate the medians.
+            for (var h = 0; h < m.Length; ++h)
+                m[h] = GetMedian(a, l, r, h);
+
+            // Find the median-of-medians. Since the length of the array M is roughly n/5,
+            // the median-of-medians is the M's n/10-th order statistic.
+            // Refer to [AlgoIlluminated-1] p.169-170 
+            var p = FindValueRecursively(m, 0, m.Length - 1, n / 10);
+
+            // Determine the index of the median-of-medians in the input array A.
+            // TODO: This operation is O(n). Try to avoid it.
             var j = Array.FindIndex(a, num => num == p);
 
-            // Make the pivot first in the subarray a[l..r]
+            // Treat the median-of-medians as a pivot. Move the pivot to
+            // the first position in the subarray a[l..r]
             int tmp = a[l];
             a[l] = a[j];
             a[j] = tmp;
 
             // The rest of the algorithm is identical with RSelect.
 
-            // Partition the input array A around the pivot p. 
+            // Partition the subarray a[l..r] around the pivot p. 
             j = Partition(a, l, r);
 
             if (j == orderStatistic)
@@ -69,7 +83,7 @@ namespace WbsAlgorithms.Searching
         /// <summary>
         /// Finds the middle element of a given group of 5.
         /// </summary>
-        /// <param name="a">An array of n distinct number in arbitrary order</param>
+        /// <param name="a">An array of n distinct numbers in arbitrary order</param>
         /// <param name="begin">The left boundary of a subarray a[begin..end]</param>
         /// <param name="end">The right boundary of a subarray a[begin..end]</param>
         /// <param name="h">The group number of 5 elements in the input array A</param>
@@ -77,7 +91,7 @@ namespace WbsAlgorithms.Searching
         private static int GetMedian(int[] a, int begin, int end, int h)
         {
             // Calculate a boundary a[l..r] of a subarray for the group h within a[begin..end]
-            // The length of the subarray a[l..r] may have at most 5.
+            // The subarray a[l..r] may have at most 5 elements.
             var l = begin + 5 * h;
             var r = Math.Min(l + 4 , end);
 
