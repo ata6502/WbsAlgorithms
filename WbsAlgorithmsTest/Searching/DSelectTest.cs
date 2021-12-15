@@ -17,14 +17,14 @@ namespace WbsAlgorithmsTest.Searching
             Assert.AreEqual(expectedOrderStatistic, actualOrderStatistic);
         }
 
-        //[TestCase(@"Data\Selection100.txt", 49, 4715, TestName = "DSelect_100numbers")]
-        //public void FindValueTest(string filename, int inputOrderStatistic, int expectedOrderStatistic)
-        //{
-        //    var inputArray = DataReader.ReadIntegers(filename);
+        [TestCase(@"Data\Selection100.txt", 49, 4715, TestName = "DSelect_100numbers")]
+        public void FindValueTest(string filename, int inputOrderStatistic, int expectedOrderStatistic)
+        {
+            var inputArray = DataReader.ReadIntegers(filename);
 
-        //    var actualOrderStatistic = DSelect.FindValue(inputArray, inputOrderStatistic);
-        //    Assert.AreEqual(expectedOrderStatistic, actualOrderStatistic);
-        //}
+            var actualOrderStatistic = DSelect.FindValue(inputArray, inputOrderStatistic);
+            Assert.AreEqual(expectedOrderStatistic, actualOrderStatistic);
+        }
 
         private static IEnumerable<TestCaseData> TestCases() => TestCaseHelper.SelectionTestCases(JsonDataFilename, nameof(DSelect));
     }
