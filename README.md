@@ -2,14 +2,15 @@
 
 This repository contains C# implementations of selected algorithms and data structures each with a set of unit tests. Majority of code
 contains solutions to exercises from the book "Algorithms" by Robert Sedgewick (chapters 1.1, 1.2, 1.3, and partially 1.4) as well as
-from the series "Algorithms Illuminated" by Tim Roughgarden. Below, there are a few examples of algorithms implemented in this
-repository:
+from the series "Algorithms Illuminated" by Tim Roughgarden. 
 
-* [Karatsuba Integer Multiplication](./WbsAlgorithms/Arithmetics/IntegerMultiplication.cs)
-* [Strassen's Matrix Multiplication](./WbsAlgorithms/Arithmetics/MatrixMultiplication.cs)
-* Sorting algoritms: [MergeSort](./WbsAlgorithms/Sorting/MergeSort.cs), [QuickSort](./WbsAlgorithms/Sorting/QuickSort.cs)
-* [Finding the closest pair of points in O(n&#183;log(n))](./WbsAlgorithms/PairMinMax/ClosestPair2D.cs)
-* [RSelect](./WbsAlgorithms/Searching/RSelect.cs) (Randomized Selection) and [DSelect](./WbsAlgorithms/Searching/DSelect.cs) (Deterministic Selection)
+Below, there are a few examples of algorithms implemented in this repository:
+
+* [Karatsuba Integer Multiplication](./WbsAlgorithms/Arithmetics/IntegerMultiplication.cs) with [tests](./WbsAlgorithmsTest/Arithmetics/IntegerMultiplicationTest.cs)
+* [Strassen's Matrix Multiplication](./WbsAlgorithms/Arithmetics/MatrixMultiplication.cs) with [tests](./WbsAlgorithmsTest/Arithmetics/MatrixMultiplicationTest.cs)
+* Sorting algoritms: [MergeSort](./WbsAlgorithms/Sorting/MergeSort.cs) with [tests](./WbsAlgorithmsTest/Sorting/MergeSortTest.cs), [QuickSort](./WbsAlgorithms/Sorting/QuickSort.cs) with [tests](./WbsAlgorithmsTest/Sorting/QuickSortTest.cs)
+* [Finding the closest pair of points in O(n&#183;log(n))](./WbsAlgorithms/PairMinMax/ClosestPair2D.cs) with [tests](./WbsAlgorithmsTest/PairMinMax/ClosestPair2DTest.cs)
+* [RSelect](./WbsAlgorithms/Searching/RSelect.cs) (Randomized Selection) with [tests](./WbsAlgorithmsTest/Searching/RSelectTest.cs) and [DSelect](./WbsAlgorithms/Searching/DSelect.cs) (Deterministic Selection) with [tests](./WbsAlgorithmsTest/Searching/DSelectTest.cs)
 
 
 # References
