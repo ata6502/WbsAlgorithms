@@ -48,7 +48,7 @@ namespace WbsAlgorithms.Searching
             // The m array contains medians for each 5-element group.
             var m = new int[size];
 
-            // Caclulate the medians.
+            // Calculate the medians.
             for (var h = 0; h < m.Length; ++h)
                 m[h] = GetMedian(a, l, r, h);
 
@@ -58,8 +58,8 @@ namespace WbsAlgorithms.Searching
             var p = FindValueRecursively(m, 0, m.Length - 1, n / 10);
 
             // Determine the index of the median-of-medians in the input array A.
-            // TODO: This operation is O(n). Try to avoid it.
-            var j = Array.FindIndex(a, num => num == p);
+            // This operation is O(n). Try to avoid it.
+            var j = Array.FindIndex(a, l, num => num == p);
 
             // Treat the median-of-medians as a pivot. Move the pivot to
             // the first position in the subarray a[l..r]
@@ -69,7 +69,8 @@ namespace WbsAlgorithms.Searching
 
             // The rest of the algorithm is identical with RSelect.
 
-            // Partition the subarray a[l..r] around the pivot p. 
+            // Partition the subarray a[l..r] around the pivot p.
+            // Return the pivot position in the partitioned array.
             j = Partition(a, l, r);
 
             if (j == orderStatistic)
