@@ -1,4 +1,6 @@
-﻿namespace WbsAlgorithms.Searching
+﻿using System;
+
+namespace WbsAlgorithms.Searching
 {
     public class ThrowingEggsProblem
     {
@@ -25,6 +27,20 @@
                 return GetHighestFloorRecursive(floors, mid + 1, high);
             else
                 return GetHighestFloorRecursive(floors, low, mid - 1);
+        }
+
+        public static int GetHighestFloorFaster(bool[] floors)
+        {
+            var low = 1;
+            var high = 1;
+
+            while (floors[high - 1] && high < floors.Length)
+            {
+                low = high;
+                high = Math.Max(high << 1, floors.Length);
+            }
+
+            return GetHighestFloorRecursive(floors, low - 1, high - 1);
         }
     }
 }
