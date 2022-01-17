@@ -4,7 +4,7 @@ using WbsAlgorithms.Searching;
 namespace WbsAlgorithmsTest.Searching
 {
     [TestFixture]
-    public class ThrowingEggsProblemTest
+    public class EggThrowingProblemTest
     {
         [TestCase("x", -1, TestName = "1Floor_None")]
         [TestCase(".", 1, TestName = "1Floor")]
@@ -51,10 +51,10 @@ namespace WbsAlgorithmsTest.Searching
         [TestCase(".....................................", 37, TestName = "37Floors_37")]
         public void GetHighestFloorTest(string floors, int expectedFloor)
         {
-            var actualFloor = ThrowingEggsProblem.GetHighestFloor(ConvertToBoolArray(floors));
+            var actualFloor = EggThrowingProblem.GetHighestFloor(ConvertToBoolArray(floors));
             Assert.AreEqual(expectedFloor, actualFloor);
 
-            var actualFloorFaster = ThrowingEggsProblem.GetHighestFloorFaster(ConvertToBoolArray(floors));
+            var actualFloorFaster = EggThrowingProblem.GetHighestFloorFaster(ConvertToBoolArray(floors));
             Assert.AreEqual(expectedFloor, actualFloorFaster);
         }
 
