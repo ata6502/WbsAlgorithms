@@ -1,10 +1,10 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
 using WbsAlgorithms.Common;
-using WbsAlgorithms.PairMinMax;
+using WbsAlgorithms.PairPointMinMax;
 using static WbsAlgorithmsTest.Utilities.DataReader;
 
-namespace WbsAlgorithmsTest.PairMinMax
+namespace WbsAlgorithmsTest.PairPointMinMax
 {
     [TestFixture]
     public class ClosestPair2DTest

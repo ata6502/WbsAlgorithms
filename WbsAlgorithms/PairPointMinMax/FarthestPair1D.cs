@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using WbsAlgorithms.Common;
 
-namespace WbsAlgorithms.PairMinMax
+namespace WbsAlgorithms.PairPointMinMax
 {
     public class FarthestPair1D
     {

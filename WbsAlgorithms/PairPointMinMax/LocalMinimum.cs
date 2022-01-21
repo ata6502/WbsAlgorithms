@@ -1,4 +1,4 @@
-﻿namespace WbsAlgorithms.PairMinMax
+﻿namespace WbsAlgorithms.PairPointMinMax
 {
     public class LocalMinimum
     {
