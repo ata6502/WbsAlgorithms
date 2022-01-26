@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using WbsAlgorithms.Common;
 
 namespace WbsAlgorithms.PairPointMinMax
@@ -15,6 +16,7 @@ namespace WbsAlgorithms.PairPointMinMax
     ///
     /// References: 
     /// https://stackoverflow.com/questions/2734301/given-a-set-of-points-find-if-any-of-the-three-points-are-collinear
+    /// https://stackoverflow.com/questions/3813681/checking-to-see-if-3-points-are-on-the-same-line
     /// https://stackoverflow.com/questions/4179581/what-is-the-most-efficient-algorithm-to-find-a-straight-line-that-goes-through-m
     public class CollinearPoints
     {
@@ -23,9 +25,9 @@ namespace WbsAlgorithms.PairPointMinMax
         /// </summary>
         /// <param name="points">A set of points in the plane</param>
         /// <returns>The number of triples that fall on the same line</returns>
-        public static int GetNumberOfTriplesBruteForce(Point[] points)
+        public static int CountTriplesBruteForce(Point[] points)
         {
-            var cnt = 0;
+            var tripletCount = 0;
             var len = points.Length;
 
             for (var i = 0; i < len; ++i)
@@ -34,20 +36,79 @@ namespace WbsAlgorithms.PairPointMinMax
                 {
                     var A = points[i];
                     var B = points[j];
-                    var m1 = (B.Y - A.Y) / (B.X - A.X);
+                    var denominator1 = B.X - A.X;
+                    var m1 = Math.Abs(denominator1) <= double.Epsilon ? 0.0 : (B.Y - A.Y) / denominator1;
 
                     for (var k = j + 1; k < len; ++k)
                     {
                         var C = points[k];
-                        var m2 = (C.Y - B.Y) / (C.X - B.X);
+                        var denominator2 = C.X - B.X;
+                        var m2 = Math.Abs(denominator2) <= double.Epsilon ? 0.0 : (C.Y - B.Y) / denominator2;
 
                         if (Math.Abs(m2 - m1) < double.Epsilon)
-                            ++cnt;
+                            ++tripletCount;
                     }
                 }
             }
 
-            return cnt;
+            return tripletCount;
+        }
+
+        public static int CountTriplesUsingSlopes(Point[] points)
+        {
+            // The points are collinear if (y1-y2) * (x1-x3) == (y1-y3) * (x1-x2)
+
+            var len = points.Length;
+
+            // Group pairs of points with the same slope.
+            var slopes = new Dictionary<double, List<int>>();
+            for (var i = 0; i < len; ++i)
+            {
+                for (var j = i + 1; j < len; ++j)
+                {
+                    var A = points[i];
+                    var B = points[j];
+                    var denominator = B.X - A.X;
+                    var slope = Math.Abs(denominator) <= double.Epsilon ? 0.0 : (B.Y - A.Y) / denominator;
+
+                    if (slopes.TryGetValue(slope, out var indices))
+                    {
+                        if (!indices.Contains(i))
+                            indices.Add(i);
+
+                        if (!indices.Contains(j))
+                            indices.Add(j);
+                    }
+                    else
+                    {
+                        var newIndices = new List<int> { i, j };
+                        slopes[slope] = newIndices;
+                    }
+                }
+            }
+
+            var tripletCount = 0;
+            for (var i = 0; i < len; ++i)
+            {
+                for (var j = i + 1; j < len; ++j)
+                {
+                    var A = points[i];
+                    var B = points[j];
+                    var denominator = B.X - A.X;
+                    var slope = Math.Abs(denominator) <= double.Epsilon ? 0.0 : (B.Y - A.Y) / denominator;
+
+                    if (slopes.TryGetValue(slope, out var indices))
+                    {
+                        foreach(var index in indices)
+                        {
+                            if (index > i && index > j)
+                                ++tripletCount;
+                        }
+                    }
+                }
+            }
+
+            return tripletCount;
         }
     }
 }

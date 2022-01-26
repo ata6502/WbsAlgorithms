@@ -10,10 +10,17 @@ namespace WbsAlgorithmsTest.PairPointMinMax
     public class CollinearPointsTest
     {
         [TestCaseSource(nameof(TestCases))]
-        public void GetNumberOfTriplesTest(Point[] points, int expectedNumberOfTriples)
+        public void CountTripletsBruteForceTest(Point[] points, int expectedTripletCount)
         {
-            var actualNumberOfTriples = CollinearPoints.GetNumberOfTriplesBruteForce(points);
-            Assert.AreEqual(expectedNumberOfTriples, actualNumberOfTriples);
+            var actualTripletCount = CollinearPoints.CountTriplesBruteForce(points);
+            Assert.AreEqual(expectedTripletCount, actualTripletCount);
+        }
+
+        [TestCaseSource(nameof(TestCases))]
+        public void CountTriplesUsingSlopesTest(Point[] points, int expectedTripletCount)
+        {
+            var actualTripletCount = CollinearPoints.CountTriplesUsingSlopes(points);
+            Assert.AreEqual(expectedTripletCount, actualTripletCount);
         }
 
         private static IEnumerable<TestCaseData> TestCases()
