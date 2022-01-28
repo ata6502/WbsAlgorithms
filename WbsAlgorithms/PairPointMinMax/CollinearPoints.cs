@@ -12,12 +12,13 @@ namespace WbsAlgorithms.PairPointMinMax
     /// 
     /// Three points A,B,C are collinear if the lines AB and BC have the same slopes.
     /// Having A=(x1,y1), B=(x2,y2), C=(x3,y3) we need to check if 
-    /// (y2-y1) / (x2-x1) = (y3-y2) / (x3-x2)
+    /// (y2-y1) / (x2-x1) = (y3-y2) / (x3-x2)  -or-  (y2-y1) / (x2-x1) = (y3-y1) / (x3-x1)
     ///
     /// References: 
     /// https://stackoverflow.com/questions/2734301/given-a-set-of-points-find-if-any-of-the-three-points-are-collinear
     /// https://stackoverflow.com/questions/3813681/checking-to-see-if-3-points-are-on-the-same-line
     /// https://stackoverflow.com/questions/4179581/what-is-the-most-efficient-algorithm-to-find-a-straight-line-that-goes-through-m
+    /// https://www.algebra.com/algebra/homework/Length-and-distance/Length-and-distance.faq.question.530663.html
     public class CollinearPoints
     {
         /// <summary>
@@ -56,7 +57,7 @@ namespace WbsAlgorithms.PairPointMinMax
 
         public static int CountTriplesUsingSlopes(Point[] points)
         {
-            // The points are collinear if (y1-y2) * (x1-x3) == (y1-y3) * (x1-x2)
+            // The points are collinear if (y2-y1) / (x2-x1) = (y3-y1) / (x3-x1)
 
             var len = points.Length;
 
@@ -81,8 +82,7 @@ namespace WbsAlgorithms.PairPointMinMax
                     }
                     else
                     {
-                        var newIndices = new List<int> { i, j };
-                        slopes[slope] = newIndices;
+                        slopes[slope] = new List<int> { i, j };
                     }
                 }
             }
@@ -100,6 +100,40 @@ namespace WbsAlgorithms.PairPointMinMax
                     if (slopes.TryGetValue(slope, out var indices))
                     {
                         foreach(var index in indices)
+                        {
+                            if (index > i && index > j)
+                                ++tripletCount;
+                        }
+                    }
+                }
+            }
+
+            return tripletCount;
+        }
+
+        public static int CountTriplesWithCubicY(Point[] points)
+        {
+            var len = points.Length;
+
+            var pointsX = new Dictionary<double, List<int>>();
+            for (var i = 0; i < len; ++i)
+            {
+                if (pointsX.TryGetValue(points[i].X, out var indices))
+                    indices.Add(i);
+                else
+                    pointsX[points[i].X] = new List<int> { i };
+            }
+
+            var tripletCount = 0;
+            for (var i = 0; i < len; ++i)
+            {
+                for (var j = i + 1; j < len; ++j)
+                {
+                    var complementPoint = -1.0 * (points[i].X + points[j].X);
+
+                    if (pointsX.TryGetValue(complementPoint, out var indices))
+                    {
+                        foreach (var index in indices)
                         {
                             if (index > i && index > j)
                                 ++tripletCount;
