@@ -55,6 +55,12 @@ namespace WbsAlgorithms.PairPointMinMax
             return tripletCount;
         }
 
+        /// <summary>
+        /// Determines the number of triples that fall on the same line by comparing slopes
+        /// between the lines given by pairs of points.
+        /// </summary>
+        /// <param name="points">A set of points in the plane</param>
+        /// <returns>The number of triples that fall on the same line</returns>
         public static int CountTriplesUsingSlopes(Point[] points)
         {
             // The points are collinear if (y2-y1) / (x2-x1) = (y3-y1) / (x3-x1)
@@ -111,10 +117,25 @@ namespace WbsAlgorithms.PairPointMinMax
             return tripletCount;
         }
 
+        /// <summary>
+        /// Determines the number of triples that fall on the same line.
+        /// If x + y + z = 0 then:
+        /// - the slope of the line from x to y is (y^3 - x^3) / (y - x) = y^2 + yx + x^2
+        /// - the slope of the line from x to z is (z^3 - x^3) / (z - x) = z^2 + zx + x^2
+        /// 
+        /// Therefore, if the slope from x to y equals the slope from x to z then 
+        /// y^2 + yx + x^2 = z^2 + zx + x^2
+        /// 
+        /// This implies that (y - z) (x + y + z) = 0
+        /// i.e., either y = z or z = -x - y.
+        /// </summary>
+        /// <param name="points">A set of points in the plane</param>
+        /// <returns>The number of triples that fall on the same line</returns>
         public static int CountTriplesWithCubicY(Point[] points)
         {
             var len = points.Length;
 
+            // Check if there are any duplicates in pointsX.
             var pointsX = new Dictionary<double, List<int>>();
             for (var i = 0; i < len; ++i)
             {
