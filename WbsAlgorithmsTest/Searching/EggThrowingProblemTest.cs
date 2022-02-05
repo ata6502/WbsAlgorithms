@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Collections;
 using WbsAlgorithms.Searching;
 
 namespace WbsAlgorithmsTest.Searching
@@ -51,16 +52,16 @@ namespace WbsAlgorithmsTest.Searching
         [TestCase(".....................................", 37, TestName = "37Floors_37")]
         public void GetHighestFloorTest(string floors, int expectedFloor)
         {
-            var actualFloor = EggThrowingProblem.GetHighestFloor(ConvertToBoolArray(floors));
+            var actualFloor = EggThrowingProblem.GetHighestFloor(ConvertToBitArray(floors));
             Assert.AreEqual(expectedFloor, actualFloor);
 
-            var actualFloorFaster = EggThrowingProblem.GetHighestFloorFaster(ConvertToBoolArray(floors));
+            var actualFloorFaster = EggThrowingProblem.GetHighestFloorFaster(ConvertToBitArray(floors));
             Assert.AreEqual(expectedFloor, actualFloorFaster);
         }
 
-        private bool[] ConvertToBoolArray(string s)
+        private BitArray ConvertToBitArray(string s)
         {
-            var a = new bool[s.Length];
+            var a = new BitArray(s.Length);
             for (var i = 0; i < s.Length; ++i)
                 a[i] = s[i] == '.';
             return a;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace WbsAlgorithms.Searching
 {
@@ -28,12 +29,12 @@ namespace WbsAlgorithms.Searching
         /// <returns>
         /// The highest "egg intact floor". If a floor like that has not been found, the method returns -1.
         /// </returns>
-        public static int GetHighestFloor(bool[] floors)
+        public static int GetHighestFloor(BitArray floors)
         {
             return GetHighestFloorRecursive(floors, 0, floors.Length - 1);
         }
 
-        private static int GetHighestFloorRecursive(bool[] floors, int low, int high)
+        private static int GetHighestFloorRecursive(BitArray floors, int low, int high)
         {
             if (low > high)
             {
@@ -71,7 +72,7 @@ namespace WbsAlgorithms.Searching
         /// <returns>
         /// The highest "egg intact floor". If a floor like that has not been found, the method returns -1.
         /// </returns>
-        public static int GetHighestFloorFaster(bool[] floors)
+        public static int GetHighestFloorFaster(BitArray floors)
         {
             var low = 1;
             var high = 1;
