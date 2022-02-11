@@ -11,15 +11,27 @@ namespace WbsAlgorithms.Common
         private List<Edge> _edges { get; } = new List<Edge>();
 
         /// <summary>
-        /// TODO: Add comment
+        /// The number of vertices in the graph.
         /// </summary>
         public int VertexCount => _vertices.Count;
 
         /// <summary>
-        /// TODO: Add comment
+        /// The graph's vertices.
         /// </summary>
-        /// <param name="vertex"></param>
-        /// <returns></returns>
+        public IEnumerable<int> Vertices
+        {
+            get
+            {
+                foreach (var v in _vertices)
+                    yield return v.Key;
+            }
+        }
+
+        /// <summary>
+        /// Returns the list of adjacent vertices to a given vertex.
+        /// </summary>
+        /// <param name="vertex">The vertex</param>
+        /// <returns>The list of adjacent vertices</returns>
         public List<int> this[int vertex]
         {
             get
@@ -32,10 +44,10 @@ namespace WbsAlgorithms.Common
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// Adds an edge to the graph.
         /// </summary>
-        /// <param name="u"></param>
-        /// <param name="v"></param>
+        /// <param name="u">A vertex representing the tail of the edge</param>
+        /// <param name="v">A vertex representing the head of the edge</param>
         public void AddEdge(int u, int v)
         {
             if (_vertices.TryGetValue(u, out var incidentVertices))
