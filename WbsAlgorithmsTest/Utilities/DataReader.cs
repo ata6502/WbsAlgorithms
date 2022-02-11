@@ -65,5 +65,37 @@ namespace WbsAlgorithmsTest.Utilities
             var json = File.ReadAllText(filename);
             return JsonSerializer.Deserialize<T[]>(json);
         }
+
+        public static Graph ReadGraph(string filename)
+        {
+            var graph = new Graph();
+
+            string[] lines = File.ReadAllLines(filename);
+
+            foreach (var line in lines)
+            {
+                (int u, int v) = GetVertices(line);
+                graph.AddEdge(u, v);
+            }
+
+            return graph;
+
+            (int u, int v) GetVertices(string line)
+            {
+                char[] VertexSeparator = new char[] { ' ', '\t' };
+
+                string[] nums = line.Split(VertexSeparator);
+                Debug.Assert(nums.Length == 2);
+
+                return (GetInt(nums[0]), GetInt(nums[1]));
+
+                int GetInt(string str)
+                {
+                    if (!int.TryParse(str, out var n))
+                        throw new ArgumentException("not a number");
+                    return n;
+                }
+            }
+        }
     }
 }
