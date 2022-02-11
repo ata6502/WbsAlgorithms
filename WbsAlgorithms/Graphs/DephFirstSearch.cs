@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using WbsAlgorithms.Common;
 
 namespace WbsAlgorithms.Graphs
@@ -7,11 +8,13 @@ namespace WbsAlgorithms.Graphs
     public class DephFirstSearch
     {
         /// <summary>
-        /// TODO: Add comment
+        /// Perfroms Deph-First Search on the given graph. Uses an iterative approach.
+        /// 
+        /// [AlgoIlluminated-2] p.42 Depth-First Search - Iterative Implementation
         /// </summary>
-        /// <param name="g"></param>
-        /// <param name="sourceVertex"></param>
-        /// <returns></returns>
+        /// <param name="g">A graph in adjacency-list represenation</param>
+        /// <param name="sourceVertex">One of the graph's vertices</param>
+        /// <returns>A list of explored vertices</returns>
         public static List<int> ExploreIteratively(Graph g, int sourceVertex)
         {
             Debug.Assert(g.VertexCount > 0);
@@ -20,19 +23,18 @@ namespace WbsAlgorithms.Graphs
 
             s.Push(sourceVertex);
 
-            // An collection of explored/unexplored vertices.
-            var e = new Dictionary<int, bool>(g.VertexCount);
+            // An collection of explored vertices.
+            var e = new HashSet<int>(g.VertexCount);
 
             while (s.Count > 0)
             {
                 var v = s.Pop();
 
                 // Check if the vertex v is unexplored.
-                e.TryGetValue(v, out var explored);
-                if (!explored)
+                if (!e.TryGetValue(v, out _))
                 {
                     // Mark the vertex v as explored.
-                    e[v] = true;
+                    e.Add(v);
 
                     // Traverse each edge in the v's adjacency list.
                     foreach (var w in g[v])
@@ -44,45 +46,42 @@ namespace WbsAlgorithms.Graphs
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// Perfroms Deph-First Search on the given graph. Uses a recursive approach.
+        ///
+        /// [AlgoIlluminated-2] p.43 Depth-First Search - Recursive Implementation
         /// </summary>
-        /// <param name="g"></param>
-        /// <param name="sourceVertex"></param>
-        /// <returns></returns>
+        /// <param name="g">A graph in adjacency-list represenation</param>
+        /// <param name="sourceVertex">One of the graph's vertices</param>
+        /// <returns>A list of explored vertices</returns>
         public static List<int> ExploreRecursively(Graph g, int sourceVertex)
         {
-            // An collection of explored/unexplored vertices.
-            var e = new Dictionary<int, bool>(g.VertexCount);
+            // An collection of explored vertices.
+            var e = new HashSet<int>(g.VertexCount);
 
             ExploreRecursivelyInternal(g, sourceVertex, e);
 
             return ConvertAndSort(e);
-        }
 
-        private static Dictionary<int, bool> ExploreRecursivelyInternal(Graph g, int v, Dictionary<int, bool> e)
-        {
-            e[v] = true;
-
-            foreach (var w in g[v])
+            HashSet<int> ExploreRecursivelyInternal(Graph g, int v, HashSet<int> e)
             {
-                e.TryGetValue(w, out var explored);
-                if (!explored)
-                    ExploreRecursivelyInternal(g, w, e);
-            }
+                e.Add(v);
 
-            return e;
+                foreach (var w in g[v])
+                {
+                    if (!e.TryGetValue(w, out _))
+                        ExploreRecursivelyInternal(g, w, e);
+                }
+
+                return e;
+            }
         }
 
-        // Convert the dictionary of explored vertices to a list and sort it.
-        private static List<int> ConvertAndSort(Dictionary<int, bool> e)
+        // Convert a HashSet containing explored vertices to a sorted list.
+        private static List<int> ConvertAndSort(HashSet<int> e)
         {
-            var exploredVertices = new List<int>(e.Count);
-
-            foreach (var v in e)
-                exploredVertices.Add(v.Key);
-            exploredVertices.Sort();
-
-            return exploredVertices;
+            var list = e.ToList();
+            list.Sort();
+            return list;
         }
     }
 }
