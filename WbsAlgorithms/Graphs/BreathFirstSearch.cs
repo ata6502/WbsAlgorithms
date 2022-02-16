@@ -34,7 +34,7 @@ namespace WbsAlgorithms.Graphs
                 foreach (var w in g[v])
                 {
                     // Check if the vertex w is unexplored.
-                    if (!e.TryGetValue(w, out var explored))
+                    if (!e.TryGetValue(w, out _))
                     {
                         // Mark the vertex w as explored.
                         e.Add(w);
