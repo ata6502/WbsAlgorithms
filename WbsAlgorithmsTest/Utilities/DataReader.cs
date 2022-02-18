@@ -74,20 +74,26 @@ namespace WbsAlgorithmsTest.Utilities
 
             foreach (var line in lines)
             {
-                (int u, int v) = GetVertices(line);
-                graph.AddEdge(u, v);
+                (int v, List<int> AdjacentVertices) = GetVertices(line);
+                foreach(var w in AdjacentVertices)
+                    graph.AddEdge(v, w);
             }
 
             return graph;
 
-            (int u, int v) GetVertices(string line)
+            (int v, List<int> AdjacentVertices) GetVertices(string line)
             {
                 char[] VertexSeparator = new char[] { ' ', '\t' };
 
                 string[] nums = line.Split(VertexSeparator);
-                Debug.Assert(nums.Length == 2);
+                Debug.Assert(nums.Length >= 2);
 
-                return (GetInt(nums[0]), GetInt(nums[1]));
+                var v = GetInt(nums[0]);
+                var vertices = new List<int>(nums.Length - 1);
+                for (var i = 1; i < nums.Length; ++i)
+                    vertices.Add(GetInt(nums[i]));
+
+                return (v, vertices);
 
                 int GetInt(string str)
                 {
