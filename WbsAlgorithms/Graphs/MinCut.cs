@@ -7,13 +7,24 @@ using WbsAlgorithms.Common;
 
 namespace WbsAlgorithms.Graphs
 {
-    // MinCut implements the Karger's contraction algorithm that solves
-    // the minimum cut problem.
+    /// <summary>
+    /// MinCut implements the Karger's Random Contraction algorithm that solves
+    /// the minimum cut problem.
+    /// </summary>
     public class MinCut
     {
         private static Random _rnd = new Random(Guid.NewGuid().GetHashCode());
 
-        // The vertices in the returned cut are sorted in asceding order.
+        /// <summary>
+        /// Finds minimum cuts of a graph using the Karger's Random Contraction algorithm.
+        /// 
+        /// Reference:
+        /// https://www.youtube.com/watch?v=RSokM08eQms "Random Contraction Algorithm"
+        /// </summary>
+        /// <param name="inputGraph">An undirected graph</param>
+        /// <returns>A cut of the input graph as a partition (grouping) of the graph's vertices into
+        /// two non-empty sets; the number of crossing edges of the cut. Although the order of elements
+        /// in the sets is irrelevant, the algorithm returns the vertices in asceding order.</returns>
         public static (List<int> SetA, List<int> SetB, int CrossingEdgeCount) GetCut(Graph inputGraph)
         {
             // Convert the inputGraph to MinCutGraph. This allows us to contract 
@@ -23,7 +34,7 @@ namespace WbsAlgorithms.Graphs
             // Loop as long as the number of remaning vertices in the graph is greater than two.
             while (g.VertexCount > 2)
             {
-                // Pick randomly an edge from all remaining edges.
+                // Pick an edge from all remaining edges randomly.
                 var e = GetRandomEdge(g);
 
                 // Merge the vertices (u,v) of the random edge e into a single vertex.
@@ -44,7 +55,7 @@ namespace WbsAlgorithms.Graphs
             // Make sure the input edge exists in the graph.
             ValidateEdge(g, e);
 
-            // Remove the undirectional edge from the graph:
+            // Remove the input undirectional edge from the graph:
             // - the input edge e
             // - the edge correspoding to e with the head and the tail reversed
             g[e.U].AdjacentVertices.Remove(e.V);
