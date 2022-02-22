@@ -89,7 +89,7 @@ namespace WbsAlgorithmsTest.Utilities
                 Debug.Assert(nums.Length >= 2);
 
                 var v = GetInt(nums[0]);
-                var vertices = new List<int>(nums.Length - 1);
+                var vertices = new List<int>(nums.Length - 1); // adjacent vertices
                 for (var i = 1; i < nums.Length; ++i)
                     vertices.Add(GetInt(nums[i]));
 

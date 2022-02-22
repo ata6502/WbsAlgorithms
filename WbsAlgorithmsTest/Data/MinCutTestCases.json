@@ -1,0 +1,51 @@
+﻿[
+    {
+        "TestName": "Simple1",
+        "Description": "A triangle graph with three vertices",
+        "InputFile": "Data\\UndirectedGraph1.txt",
+        "MinCut": 2,
+        "Cuts": [ "1,2 3", "2,1 3", "3,1 2", "1 2,3", "1 3,2", "2 3,1" ]
+    },
+    {
+        "TestName": "Simple2",
+        "Description": "A square graph with four vertices",
+        "InputFile": "Data\\UndirectedGraph2.txt",
+        "MinCut": 2,
+        "Cuts": [ "1,2 3 4", "2,1 3 4", "3,1 2 4", "4,1 2 3", "1 2,3 4", "2 3,1 4", "3 4,1 2", "1 4,2 3", "2 3 4,1", "1 3 4,2", "1 2 4,3", "1 2 3,4" ]
+    },
+    {
+        "TestName": "Simple3",
+        "Description": "A square graph with one diagonal",
+        "InputFile": "Data\\UndirectedGraph3.txt",
+        "MinCut": 2,
+        "Cuts": [ "1,2 3 4", "2,1 3 4", "3,1 2 4", "4,1 2 3", "1 2,3 4", "2 3,1 4", "3 4,1 2", "1 4,2 3", "2 3 4,1", "1 3 4,2", "1 2 4,3", "1 2 3,4" ]
+    },
+    {
+        "TestName": "Simple4",
+        "Description": "A square graph with two diagonals",
+        "InputFile": "Data\\UndirectedGraph4.txt",
+        "MinCut": 3,
+        "Cuts": [ "1,2 3 4", "2,1 3 4", "3,1 2 4", "4,1 2 3", "1 2,3 4", "2 3,1 4", "3 4,1 2", "1 4,2 3", "2 3 4,1", "1 3 4,2", "1 2 4,3", "1 2 3,4", "1 3,2 4", "2 4,1 3" ]
+    },
+    {
+        "TestName": "TwoSquares",
+        "Description": "Two squares with both diagonals connected with two edges",
+        "InputFile": "Data\\UndirectedGraph5.txt",
+        "MinCut": 2,
+        "Cuts": null
+    },
+    {
+        "TestName": "EightCycle",
+        "Description": "8-cycle graph with 8 vertices",
+        "InputFile": "Data\\UndirectedGraph6.txt",
+        "MinCut": 2,
+        "Cuts": null
+    },
+    {
+        "TestName": "Large",
+        "Description": "A graph with 200 vertices (verify the min-cut 17)",
+        "InputFile": "Data\\UndirectedGraphBig.txt",
+        "MinCut": 17,
+        "Cuts": null
+    }
+]
