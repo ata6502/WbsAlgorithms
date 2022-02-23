@@ -54,6 +54,10 @@ namespace WbsAlgorithms.Common
                 incidentVertices.Add(v);
             else
                 _vertices[u] = new List<int> { v };
+
+            // The vertex v may be a sink. Add it to the graph.
+            if (!_vertices.TryGetValue(v, out _))
+                _vertices[v] = new List<int>();
         }
     }
 }
