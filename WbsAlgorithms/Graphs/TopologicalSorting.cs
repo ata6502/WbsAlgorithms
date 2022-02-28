@@ -13,9 +13,13 @@ namespace WbsAlgorithms.Graphs
         /// (from right to left).
         /// </summary>
         /// <param name="g">A directed acycling graph in adjacency list represenation</param>
+        /// <param name="vertexOrder"> An optional array that determines the order of exploration of the vertices.
+        /// All orders of exploration should return the same topological ordering. If not specified, the vertices
+        /// are explored from left to right.</param>
         /// <returns>A collection of vertices that constitutes a topological ordering of the input graph. 
-        /// The dictionary's key is a vertex label and the dictionary's value is an ordering index</returns>
-        public static Dictionary<int, int> Sort(Graph g)
+        /// The return dictionary's key is a vertex label and the dictionary's value is an ordering starting
+        /// from VertexCount down to 1.</returns>
+        public static Dictionary<int, int> Sort(Graph g, int[] vertexOrder = null)
         {
             // Initialize the current ordering position to be the index of the last vertex.
             _ordinalPosition = g.VertexCount;
@@ -27,11 +31,20 @@ namespace WbsAlgorithms.Graphs
             var f = new Dictionary<int, int>(g.VertexCount);
 
             // Iterate over all vertex labels.
-            foreach (var v in g.Vertices)
+            if (vertexOrder == null)
             {
-                // Check if the vertex v is unexplored.
-                if (!e.TryGetValue(v, out _))
-                    DFSTopo(g, v, e, f);
+                foreach (var v in g.Vertices)
+                {
+                    // Check if the vertex v is unexplored.
+                    if (!e.TryGetValue(v, out _))
+                        DFSTopo(g, v, e, f);
+                }
+            }
+            else
+            {
+                foreach (var v in vertexOrder)
+                    if (!e.TryGetValue(v, out _))
+                        DFSTopo(g, v, e, f);
             }
 
             return f;
