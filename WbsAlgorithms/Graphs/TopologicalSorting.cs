@@ -5,11 +5,12 @@ namespace WbsAlgorithms.Graphs
 {
     public class TopologicalSorting
     {
-        // Keeps track of ordering.
+        // Keeps track of where we are in topological ordering.
         private static int _ordinalPosition;
 
         /// <summary>
-        /// Finds one of topological orderings of a graph.
+        /// Finds one of topological orderings of a graph. Computes an ordering in reverse order
+        /// (from right to left).
         /// </summary>
         /// <param name="g">A directed acycling graph in adjacency list represenation</param>
         /// <returns>A collection of vertices that constitutes a topological ordering of the input graph. 
