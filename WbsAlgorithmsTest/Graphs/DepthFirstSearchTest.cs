@@ -11,7 +11,7 @@ namespace WbsAlgorithmsTest.Graphs
         [Test]
         public void SingleComponentTest()
         {
-            // GraphDAG2 contains three components.
+            // GraphDAG2 contains one component.
             var g = DataReader.ReadGraph(@"Data\GraphDAG2.txt");
 
             // The vertex 1 is the source vertex. We can reach the entire graph from this vertex.

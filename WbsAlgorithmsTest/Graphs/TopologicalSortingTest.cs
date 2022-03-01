@@ -50,14 +50,45 @@ namespace WbsAlgorithmsTest.Graphs
 
                 Assert.AreEqual(1, f[1]);
 
-                if (f[2] == 2) // tests { 1,1 }, { 2,2 }, { 3,3 }, { 4,4 }
+                if (f[2] == 2) // tests {1,1}, {2,2}, {3,3}, {4,4}
                     Assert.AreEqual(3, f[3]);
-                else if (f[2] == 3) // tests { 1,1 }, { 2,3 }, { 3,2 }, { 4,4 }
+                else if (f[2] == 3) // tests {1,1}, {2,3}, {3,2}, {4,4}
                     Assert.AreEqual(2, f[3]);
                 else
                     Assert.Fail($"f[2]={f[2]}; expected 2 or 3");
 
                 Assert.AreEqual(4, f[4]);
+            }
+        }
+
+        // Test all possible orders of exploration of vertices in a 6-vertex DAG (GraphDAG2.txt).
+        // There are 6! = 720 possibilities.
+        [Test]
+        public void SixVertexOrderTest()
+        {
+            var vertices = new int[] { 1, 2, 3, 4, 5, 6 };
+
+            foreach (var vertexOrderString in HeapPermutation(vertices))
+            {
+                var vertexOrder = Array.ConvertAll(vertexOrderString.Split(' '), s => int.Parse(s));
+                var f = TopologicalSorting.Sort(_graphSixVertices, vertexOrder);
+
+                // There are two possible orderings:
+                // { {1,1}, {2,2}, {3,3}, {4,4}, {5,5}, {6,6} }
+                // { {1,1}, {2,3}, {3,2}, {4,4}, {5,5}, {6,6} }
+
+                Assert.AreEqual(1, f[1]);
+
+                if (f[2] == 2) // tests {1,1}, {2,2}, {3,3}, {4,4}, {5,5}, {6,6}
+                    Assert.AreEqual(3, f[3]);
+                else if (f[2] == 3) // tests {1,1}, {2,3}, {3,2}, {4,4}, {5,5}, {6,6}
+                    Assert.AreEqual(2, f[3]);
+                else
+                    Assert.Fail($"f[2]={f[2]}; expected 2 or 3");
+
+                Assert.AreEqual(4, f[4]);
+                Assert.AreEqual(5, f[5]);
+                Assert.AreEqual(6, f[6]);
             }
         }
 
