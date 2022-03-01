@@ -22,9 +22,11 @@ namespace WbsAlgorithms.Graphs
             var q = new Queue<int>();
             q.Enqueue(sourceVertex);
 
-            // An collection of explored vertices.
-            var e = new HashSet<int>(g.VertexCount);
-            e.Add(sourceVertex);
+            // An collection of explored vertices. Vertex indices are 1-based.
+            var e = new bool[g.VertexCount + 1];
+
+            // Mark the source vertex as explored.
+            e[sourceVertex] = true;
 
             while (q.Count > 0)
             {
@@ -34,10 +36,10 @@ namespace WbsAlgorithms.Graphs
                 foreach (var w in g[v])
                 {
                     // Check if the vertex w is unexplored.
-                    if (!e.TryGetValue(w, out _))
+                    if (!e[w])
                     {
                         // Mark the vertex w as explored.
-                        e.Add(w);
+                        e[w] = true;
 
                         // Add the vertex w to the end of the queue.
                         q.Enqueue(w);
@@ -45,15 +47,17 @@ namespace WbsAlgorithms.Graphs
                 }
             }
 
-            return ConvertAndSort(e);
+            return GetVertexList(e);
         }
 
-        // Convert a HashSet containing explored vertices to a sorted list.
-        private static List<int> ConvertAndSort(HashSet<int> e)
+        // Convert a collection of explored vertices to a list of 1-based vertex indices.
+        private static List<int> GetVertexList(bool[] e)
         {
-            var list = e.ToList();
-            list.Sort();
-            return list;
+            var exploredVertices = new List<int>();
+            for (var i = 1; i < e.Length; ++i)
+                if (e[i])
+                    exploredVertices.Add(i);
+            return exploredVertices;
         }
     }
 }
