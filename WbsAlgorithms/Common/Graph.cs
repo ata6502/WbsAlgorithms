@@ -1,63 +1,70 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace WbsAlgorithms.Common
 {
     public class Graph
     {
-        // The list of graph's vertices: key - a vertex's index, value - the list of incident vertices
-        private Dictionary<int, List<int>> _vertices { get; } = new Dictionary<int, List<int>>();
-
-        // TODO: Do we need to keep the list of graph's edges?
-        private List<Edge> _edges { get; } = new List<Edge>();
+        // A list of adjacent vertices. Vertex indices are 1-based.
+        private List<List<int>> _vertices { get; } = new List<List<int>>();
 
         /// <summary>
         /// The number of vertices in the graph.
         /// </summary>
-        public int VertexCount => _vertices.Count;
+        public int VertexCount => _vertices.Count - 1; // we need to subtract 1 because the list of indices is 1-based
+
+        public Graph()
+        {
+            _vertices.Add(null);
+        }
 
         /// <summary>
-        /// The graph's vertices.
+        /// The graph's vertices enumerated from index 1 to VertexCount.
         /// </summary>
         public IEnumerable<int> Vertices
         {
             get
             {
-                foreach (var v in _vertices)
-                    yield return v.Key;
+                for (var i = 1; i <= VertexCount; ++i)
+                    yield return i;
             }
         }
 
         /// <summary>
         /// Returns the list of adjacent vertices to a given vertex.
         /// </summary>
-        /// <param name="vertex">The vertex</param>
+        /// <param name="vertex">The vertex index</param>
         /// <returns>The list of adjacent vertices</returns>
         public List<int> this[int vertex]
         {
             get
             {
-                if (_vertices.TryGetValue(vertex, out var incidentVertices))
-                    return incidentVertices;
-                else
-                    return new List<int>();
+                if (vertex < 1 || vertex > VertexCount)
+                    throw new IndexOutOfRangeException(nameof(vertex));
+
+                return _vertices[vertex];
             }
         }
 
         /// <summary>
         /// Adds an edge to the graph.
         /// </summary>
-        /// <param name="u">A vertex representing the tail of the edge</param>
-        /// <param name="v">A vertex representing the head of the edge</param>
+        /// <param name="u">A vertex index representing the tail of the edge</param>
+        /// <param name="v">A vertex index representing the head of the edge</param>
         public void AddEdge(int u, int v)
         {
-            if (_vertices.TryGetValue(u, out var incidentVertices))
-                incidentVertices.Add(v);
-            else
-                _vertices[u] = new List<int> { v };
+            var maxVertexIndex = Math.Max(u, v);
 
-            // The vertex v may be a sink. Add it to the graph.
-            if (!_vertices.TryGetValue(v, out _))
-                _vertices[v] = new List<int>();
+            if (VertexCount < maxVertexIndex)
+            {
+                // Resize the list if needed.
+                _vertices.Capacity = maxVertexIndex + 1; // +1 because indices are 1-based
+                var sizeIncrease = maxVertexIndex - VertexCount;
+                for (var i = 1; i <= sizeIncrease; ++i)
+                    _vertices.Add(new List<int>());
+            }
+
+            _vertices[u].Add(v);
         }
     }
 }
