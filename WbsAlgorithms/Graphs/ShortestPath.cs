@@ -14,8 +14,8 @@ namespace WbsAlgorithms.Graphs
         /// </summary>
         /// <param name="g">A graph in adjacency-list represenation</param>
         /// <param name="sourceVertex">A starting vertex</param>
-        /// <returns>The list of the shortest paths from the starting vertex to every vertex of the graph. -1 if a vertex is not reachable from the starting vertex</returns>
-        public static Dictionary<int, int> FindShortestPaths(Graph g, int sourceVertex)
+        /// <returns>The 0-based list of the shortest paths from the starting vertex to every vertex of the graph. -1 if a vertex is not reachable from the starting vertex</returns>
+        public static int[] FindShortestPaths(Graph g, int sourceVertex)
         {
             Debug.Assert(g.VertexCount > 0);
 
@@ -23,19 +23,17 @@ namespace WbsAlgorithms.Graphs
             var q = new Queue<int>();
             q.Enqueue(sourceVertex);
 
-            // An collection of explored vertices.
-            var e = new HashSet<int>(g.VertexCount);
-            e.Add(sourceVertex);
+            // A collection of explored vertices. Vertex indices are 1-based.
+            var e = new bool[g.VertexCount + 1];
+            e[sourceVertex] = true;
 
-            // A collection of distances:
-            // key - vertex
-            // value - a distance from the sourceVertex to the vertex inticated by the key
-            var l = new Dictionary<int, int>(g.VertexCount);
+            // A collection of distances from the sourceVertex to the vertex inticated by the index.
+            var l = new int[g.VertexCount];
 
             // Initialize the collections of distances.
             // Initially, assume that all the vertices except the starting vertex are unreachable.
             foreach(var v in g.Vertices)
-                l[v] = (v == sourceVertex ? 0 : -1);
+                l[v - 1] = v == sourceVertex ? 0 : -1;
 
             // While the queue is not empty.
             while (q.Count > 0)
@@ -46,14 +44,14 @@ namespace WbsAlgorithms.Graphs
                 foreach (var w in g[v])
                 {
                     // Check if the vertex w is unexplored.
-                    if (!e.TryGetValue(w, out _))
+                    if (!e[w])
                     {
                         // Mark the vertex w as explored.
-                        e.Add(w);
+                        e[w] = true;
 
                         // The vertex w is discovered for the first time. Set the w's shortest
                         // path as one more than that of the vertex v that triggered w's discovery.
-                        l[w] = l[v] + 1;
+                        l[w - 1] = l[v - 1] + 1;
 
                         // Add the vertex w to the end of the queue.
                         q.Enqueue(w);

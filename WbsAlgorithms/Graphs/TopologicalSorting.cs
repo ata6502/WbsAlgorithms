@@ -16,19 +16,17 @@ namespace WbsAlgorithms.Graphs
         /// <param name="vertexOrder"> An optional array that determines the order of exploration of the vertices.
         /// All orders of exploration should return the same topological ordering. If not specified, the vertices
         /// are explored from left to right.</param>
-        /// <returns>A collection of vertices that constitutes a topological ordering of the input graph. 
-        /// The return dictionary's key is a vertex label and the dictionary's value is an ordering starting
-        /// from VertexCount down to 1.</returns>
-        public static Dictionary<int, int> Sort(Graph g, int[] vertexOrder = null)
+        /// <returns>A collection of vertices that constitutes a topological ordering of the input graph.</returns>
+        public static int[] Sort(Graph g, int[] vertexOrder = null)
         {
             // Initialize the current ordering position to be the index of the last vertex.
             _ordinalPosition = g.VertexCount;
 
-            // A collection of explored vertices.
-            var e = new HashSet<int>(g.VertexCount);
+            // A collection of explored vertices. Vertex indices are 1-based.
+            var e = new bool[g.VertexCount + 1];
 
-            // A collection of vertices that constitutes a topological ordering.
-            var f = new Dictionary<int, int>(g.VertexCount);
+            // A collection of vertices that constitutes a topological ordering. Vertex indices are 0-based.
+            var f = new int[g.VertexCount];
 
             // Iterate over all vertex labels.
             if (vertexOrder == null)
@@ -36,14 +34,14 @@ namespace WbsAlgorithms.Graphs
                 foreach (var v in g.Vertices)
                 {
                     // Check if the vertex v is unexplored.
-                    if (!e.TryGetValue(v, out _))
+                    if (!e[v])
                         DFSTopo(g, v, e, f);
                 }
             }
             else
             {
                 foreach (var v in vertexOrder)
-                    if (!e.TryGetValue(v, out _))
+                    if (!e[v])
                         DFSTopo(g, v, e, f);
             }
 
@@ -58,19 +56,19 @@ namespace WbsAlgorithms.Graphs
         /// <param name="s">A vertex that belogs to V</param>
         /// <param name="e">A collection of explored vertices</param>
         /// <param name="f">A collection of vertices that constitutes a topological ordering</param>
-        private static void DFSTopo(Graph g, int s, HashSet<int> e, Dictionary<int, int> f)
+        private static void DFSTopo(Graph g, int s, bool[] e, int[] f)
         {
             // Mark the vertex s as explored.
-            e.Add(s);
+            e[s] = true;
 
             // For each edge (s,v) in the s's outgoing adjacency list.
             foreach (var v in g[s])
-                if (!e.TryGetValue(v, out _)) // if v is unexplored
+                if (!e[v]) // if v is unexplored
                     DFSTopo(g, v, e, f);
 
             // This is additional code in DFS to determine topological ordering.
-            f.Add(s, _ordinalPosition); // keep the s's position in ordering
-            --_ordinalPosition;         // work right-to-left in recursive DFS
+            f[s-1] = _ordinalPosition; // keep the s's position in ordering
+            --_ordinalPosition;        // work right-to-left in recursive DFS
         }
     }
 }
