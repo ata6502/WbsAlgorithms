@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using WbsAlgorithms.Common;
 
 namespace WbsAlgorithms.Graphs
@@ -23,18 +22,18 @@ namespace WbsAlgorithms.Graphs
 
             s.Push(sourceVertex);
 
-            // An collection of explored vertices.
-            var e = new HashSet<int>(g.VertexCount);
+            // A collection of explored vertices. Vertex indices are 1-based.
+            var e = new bool[g.VertexCount + 1];
 
             while (s.Count > 0)
             {
                 var v = s.Pop();
 
                 // Check if the vertex v is unexplored.
-                if (!e.TryGetValue(v, out _))
+                if (!e[v])
                 {
                     // Mark the vertex v as explored.
-                    e.Add(v);
+                    e[v] = true;
 
                     // Traverse each edge in the v's adjacency list.
                     foreach (var w in g[v])
@@ -42,7 +41,7 @@ namespace WbsAlgorithms.Graphs
                 }
             }
 
-            return ConvertAndSort(e);
+            return GetVertexList(e);
         }
 
         /// <summary>
@@ -55,20 +54,20 @@ namespace WbsAlgorithms.Graphs
         /// <returns>A list of explored vertices</returns>
         public static List<int> ExploreRecursively(Graph g, int sourceVertex)
         {
-            // An collection of explored vertices.
-            var e = new HashSet<int>(g.VertexCount);
+            // A collection of explored vertices. Vertex indices are 1-based.
+            var e = new bool[g.VertexCount + 1];
 
             ExploreRecursivelyInternal(g, sourceVertex, e);
 
-            return ConvertAndSort(e);
+            return GetVertexList(e);
 
-            HashSet<int> ExploreRecursivelyInternal(Graph g, int v, HashSet<int> e)
+            bool[] ExploreRecursivelyInternal(Graph g, int v, bool[] e)
             {
-                e.Add(v);
+                e[v] = true;
 
                 foreach (var w in g[v])
                 {
-                    if (!e.TryGetValue(w, out _))
+                    if (!e[w])
                         ExploreRecursivelyInternal(g, w, e);
                 }
 
@@ -76,12 +75,14 @@ namespace WbsAlgorithms.Graphs
             }
         }
 
-        // Convert a HashSet containing explored vertices to a sorted list.
-        private static List<int> ConvertAndSort(HashSet<int> e)
+        // Convert a collection of explored vertices to a list of 1-based vertex indices.
+        private static List<int> GetVertexList(bool[] e)
         {
-            var list = e.ToList();
-            list.Sort();
-            return list;
+            var exploredVertices = new List<int>();
+            for (var i = 1; i < e.Length; ++i)
+                if (e[i])
+                    exploredVertices.Add(i);
+            return exploredVertices;
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using WbsAlgorithms.Common;
 
 namespace WbsAlgorithms.Graphs
@@ -22,7 +21,7 @@ namespace WbsAlgorithms.Graphs
             var q = new Queue<int>();
             q.Enqueue(sourceVertex);
 
-            // An collection of explored vertices. Vertex indices are 1-based.
+            // A collection of explored vertices. Vertex indices are 1-based.
             var e = new bool[g.VertexCount + 1];
 
             // Mark the source vertex as explored.
