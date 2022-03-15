@@ -1,0 +1,168 @@
+﻿using System.Linq;
+using System.Collections.Generic;
+using System.Diagnostics;
+using WbsAlgorithms.Common;
+using System.Collections;
+
+namespace WbsAlgorithms.Graphs
+{
+    /// <summary>
+    /// [AlgoIlluminated-2] p.55 SCC (Strongly Connected Component) Definition
+    /// An SCC of a directed graph is a maximal subset S ⊆ V of vertices such that there is a directed 
+    /// path from any vertex in S to any other vertex in S.
+    /// 
+    /// [AlgoIlluminated-2] p.54- Computing Strongly Connected Components
+    /// </summary>
+    public class StronglyConnectedComponents
+    {
+        // Finishing time used in the first pass of DFS. It contains the number of
+        // vertices explored so far.
+        private static int t;
+
+        /// <summary>
+        /// TODO: Comment
+        /// </summary>
+        /// <param name="graph"></param>
+        /// <param name="graphReversed"></param>
+        /// <returns></returns>
+        public static int[] GetComponents(Graph graph, Graph graphReversed)
+        {
+            Debug.Assert(graph.VertexCount == graphReversed.VertexCount);
+
+            // Reset the global state.
+            t = 1;
+
+            // Collections' indices are 1-based.
+            var size = graph.VertexCount + 1;
+
+            // A collection of explored vertices.
+            var explored = new BitArray(size);
+
+            // Finishing times of the vertices.
+            var ft = new int[size];
+
+            // Call DFS from every vertex in the reversed graph in decreasing order.
+            // The first DFS pass computes finishing time ft(v) for each vertex.
+            foreach (var vertex in graphReversed.ReversedVertices)
+            {
+                if (!explored[vertex])
+                    DFS(graphReversed, vertex, explored, ft);
+            }
+
+            // Reset the collection of explored vertices.
+            explored = new BitArray(size);
+
+            // Create a map: finishing time to a vertex in the original graph.
+            var map = new int[size];
+            foreach (var vertex in graph.ReversedVertices)
+                map[ft[vertex]] = vertex;
+
+            // Leaders of the strongly connected components.
+            var leaders = new int[size];
+
+            // Process vertices in the decreasing order of finishing times.
+            // We use the ft-to-vertex map to do that in the second DFS pass.
+            foreach (var vertex in graph.ReversedVertices)
+            {
+                // Each invocation of DFS discovers a new strongly connected component.
+                if (!explored[vertex])
+                    DFS(graph, vertex, explored, ft, map, leaders);
+            }
+
+            // Vertices with the same leader constitute a stronlgy connected component.
+            return leaders;
+        }
+
+        // 1st pass - compute finishing times.
+        private static void DFS(Graph g, int sourceVertex, BitArray explored, int[] ft)
+        {
+            // A stack used to discover vertices in the graph and mark them as explored.
+            var s = new Stack<int>();
+
+            // A stack used to keep a path from the sourceVertex to the current vertex.
+            // It is used to determine finishing times.
+            var p = new Stack<int>();
+
+            s.Push(sourceVertex);
+
+            while (s.Count > 0)
+            {
+                var v = s.Pop();
+
+                // Check if the vertex v is unexplored.
+                if (!explored[v])
+                {
+                    // Mark the vertex v as explored.
+                    explored[v] = true;
+
+                    // Traverse each edge in the v's adjacency list.
+                    foreach (var w in g[v])
+                        s.Push(w);
+
+                    // Check if all the v's adjacent vertices have been explored.
+                    var allExplored = g[v].All(i => explored[i]);
+                    if (allExplored)
+                    {
+                        // If so, assign the finishing time to the vertex v.
+                        ft[v] = t;
+                        ++t;
+                    }
+                    else
+                    {
+                        // If not, add the vertex v to the path.
+                        p.Push(v);
+                    }
+
+                    while (allExplored && p.Count > 0)
+                    {
+                        // Check the latest vertex in the path.
+                        var w = p.Peek();
+
+                        // Check if all the adjacent vertices of w have been explored.
+                        allExplored = g[w].All(i => explored[i]);
+
+                        // If all the adjacent vertices have been explored, remove 
+                        // the vertex w from the path and set its finishing time.
+                        if (allExplored)
+                        {
+                            p.Pop();
+                            ft[w] = t;
+                            ++t;
+                        }
+                    }
+                }
+            }
+        }
+
+        // 2nd pass - find leaders.
+        private static void DFS(Graph g, int sourceVertex, BitArray explored, int[] ft, int[] map, int[] leaders)
+        {
+            var s = new Stack<int>();
+
+            s.Push(sourceVertex);
+
+            // The most recent vertex from which DFS was initiated.
+            var leader = sourceVertex;
+
+            while (s.Count > 0)
+            {
+                var v = s.Pop();
+
+                // Check if the vertex v is unexplored.
+                if (!explored[v])
+                {
+                    // Mark the vertex v as explored.
+                    explored[v] = true;
+
+                    // Keep the leader of the vertex v. Vertices with the same
+                    // leader constitute a stronlgy connected component.
+                    leaders[v] = leader;
+
+                    // Traverse each edge in the v's adjacency list.
+                    foreach (var w in g[map[v]])
+                        s.Push(ft[w]);
+                }
+            }
+        }
+    }
+}
