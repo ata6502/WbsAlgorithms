@@ -31,6 +31,18 @@ namespace WbsAlgorithms.Common
         }
 
         /// <summary>
+        /// The graph's vertices enumerated from index VertexCount down to 1.
+        /// </summary>
+        public IEnumerable<int> ReversedVertices
+        {
+            get
+            {
+                for (var i = VertexCount; i >= 1; --i)
+                    yield return i;
+            }
+        }
+
+        /// <summary>
         /// Returns the list of adjacent vertices to a given vertex.
         /// </summary>
         /// <param name="vertex">The vertex index</param>
