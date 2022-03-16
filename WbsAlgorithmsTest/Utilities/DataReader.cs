@@ -75,7 +75,8 @@ namespace WbsAlgorithmsTest.Utilities
             foreach (var line in lines)
             {
                 (int v, List<int> AdjacentVertices) = GetVertices(line);
-                foreach(var w in AdjacentVertices)
+
+                foreach (var w in AdjacentVertices)
                     graph.AddEdge(v, w);
             }
 
@@ -85,7 +86,7 @@ namespace WbsAlgorithmsTest.Utilities
             {
                 char[] VertexSeparator = new char[] { ' ', '\t' };
 
-                string[] nums = line.Split(VertexSeparator);
+                string[] nums = line.Trim().Split(VertexSeparator);
                 Debug.Assert(nums.Length >= 2);
 
                 var v = GetInt(nums[0]);
@@ -102,6 +103,20 @@ namespace WbsAlgorithmsTest.Utilities
                     return n;
                 }
             }
+        }
+
+        public static Graph ReverseGraph(Graph graph)
+        {
+            var reversed = new Graph(graph.VertexCount);
+
+            foreach (var v in graph.Vertices)
+            {
+                var adjacentVertices = graph[v];
+                foreach (var w in adjacentVertices)
+                    reversed.AddEdge(w, v);
+            }
+
+            return reversed;
         }
     }
 }

@@ -6,7 +6,7 @@ namespace WbsAlgorithms.Common
     public class Graph
     {
         // A list of adjacent vertices. Vertex indices are 1-based.
-        private List<List<int>> _vertices { get; } = new List<List<int>>();
+        private List<List<int>> _vertices { get; }
 
         /// <summary>
         /// The number of vertices in the graph.
@@ -15,6 +15,13 @@ namespace WbsAlgorithms.Common
 
         public Graph()
         {
+            _vertices = new List<List<int>>();
+            _vertices.Add(null);
+        }
+
+        public Graph(int capacity)
+        {
+            _vertices = new List<List<int>>(capacity + 1);
             _vertices.Add(null);
         }
 
