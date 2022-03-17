@@ -16,7 +16,9 @@ namespace WbsAlgorithmsTest.Graphs
             var reversed = DataReader.ReverseGraph(graph);
             var components = StronglyConnectedComponents.GetComponents(graph, reversed);
 
-            // Grab the sizes of the biggest five strongly connected components. 
+            // Grab the sizes of the biggest five strongly connected components.
+            // Skip the first "dummy" element. The elements in the components collection
+            // have 1-based indices.
             var topFive = (from c in components.Skip(1)
                            group c by c into g
                            orderby g.Count() descending

@@ -1,17 +1,23 @@
-﻿using System.Linq;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using WbsAlgorithms.Common;
-using System.Collections;
 
 namespace WbsAlgorithms.Graphs
 {
     /// <summary>
-    /// [AlgoIlluminated-2] p.55 SCC (Strongly Connected Component) Definition
-    /// An SCC of a directed graph is a maximal subset S ⊆ V of vertices such that there is a directed 
-    /// path from any vertex in S to any other vertex in S.
+    /// Kosaraju's Algorithm is a two-pass strategy to find SCCs of the given graph.
+    /// - The first DFS pass computes a topological ordering in which to process the vertices.
+    /// - The scond DFS pass follows the ordering to discover the SCCs one by one.
+    /// Graph search algorithms (DFS or BFS) can uncover SCCs, provided they starts from 
+    /// the right vertex. We start from the graph's sink and then work backward.
     /// 
-    /// [AlgoIlluminated-2] p.54- Computing Strongly Connected Components
+    /// [AlgoIlluminated-2] p.55 SCC (Strongly Connected Component) Definition
+    /// An SCC of a directed graph is a maximal subset S ⊆ V of vertices such that there is 
+    /// a directed path from any vertex in S to any other vertex in S.
+    /// 
+    /// [AlgoIlluminated-2] p.54-66 Computing Strongly Connected Components
     /// </summary>
     public class StronglyConnectedComponents
     {
@@ -20,11 +26,12 @@ namespace WbsAlgorithms.Graphs
         private static int t;
 
         /// <summary>
-        /// TODO: Comment
+        /// Uses the Kosaraju's Algorithm to find SCCs of the given graph.
         /// </summary>
-        /// <param name="graph"></param>
-        /// <param name="graphReversed"></param>
-        /// <returns></returns>
+        /// <param name="graph">A directed graph G = (V,E) in adjacency-list representation with V = {1,2,3,...,n}</param>
+        /// <param name="graphReversed">A copy of the input graph G with all edges reversed</param>
+        /// <returns>An array containing sets of SCC numbers. Each SCC number corresponds to a single vertex.
+        /// Each set contains the same SCC numbers and indicates a single strongly connected component.</returns>
         public static int[] GetComponents(Graph graph, Graph graphReversed)
         {
             Debug.Assert(graph.VertexCount == graphReversed.VertexCount);
@@ -52,7 +59,7 @@ namespace WbsAlgorithms.Graphs
             // Reset the collection of explored vertices.
             explored = new BitArray(size);
 
-            // Create a map: finishing time to a vertex in the original graph.
+            // Create a map: finishing time to a vertex number in the original graph.
             var map = new int[size];
             foreach (var vertex in graph.ReversedVertices)
                 map[ft[vertex]] = vertex;
