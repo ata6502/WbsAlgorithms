@@ -57,7 +57,7 @@ namespace WbsAlgorithms.Graphs
             }
 
             // Reset the collection of explored vertices.
-            explored = new BitArray(size);
+            explored.SetAll(false);
 
             // Create a map: finishing time to a vertex number in the original graph.
             var map = new int[size];
@@ -76,7 +76,8 @@ namespace WbsAlgorithms.Graphs
                     DFS(graph, vertex, explored, ft, map, leaders);
             }
 
-            // Vertices with the same leader constitute a stronlgy connected component.
+            // Vertices with the same leader constitute a strongly connected component.
+            // The leader indices are the sample as in the original graph.
             return leaders;
         }
 
@@ -86,15 +87,13 @@ namespace WbsAlgorithms.Graphs
             // A stack used to discover vertices in the graph and mark them as explored.
             var s = new Stack<int>();
 
-            // A stack used to keep a path from the sourceVertex to the current vertex.
-            // It is used to determine finishing times.
-            var p = new Stack<int>();
-
             s.Push(sourceVertex);
 
             while (s.Count > 0)
             {
-                var v = s.Pop();
+                // Just peek a vertex, not pop. We need to keep it on the stack
+                // to assign a finishing time later.
+                var v = s.Peek();
 
                 // Check if the vertex v is unexplored.
                 if (!explored[v])
@@ -102,38 +101,27 @@ namespace WbsAlgorithms.Graphs
                     // Mark the vertex v as explored.
                     explored[v] = true;
 
-                    // Traverse each edge in the v's adjacency list.
+                    // Traverse each edge in the v's adjacency list. Explore each 
+                    // adjacent vertex if it has not been explored yet.
                     foreach (var w in g[v])
-                        s.Push(w);
-
+                    {
+                        if (!explored[w])
+                            s.Push(w);
+                    }
+                }
+                else
+                {
                     // Check if all the v's adjacent vertices have been explored.
                     var allExplored = g[v].All(i => explored[i]);
                     if (allExplored)
                     {
-                        // If so, assign the finishing time to the vertex v.
-                        ft[v] = t;
-                        ++t;
-                    }
-                    else
-                    {
-                        // If not, add the vertex v to the path.
-                        p.Push(v);
-                    }
+                        // If so, remove v from the stack.
+                        s.Pop();
 
-                    while (allExplored && p.Count > 0)
-                    {
-                        // Check the latest vertex in the path.
-                        var w = p.Peek();
-
-                        // Check if all the adjacent vertices of w have been explored.
-                        allExplored = g[w].All(i => explored[i]);
-
-                        // If all the adjacent vertices have been explored, remove 
-                        // the vertex w from the path and set its finishing time.
-                        if (allExplored)
+                        if (ft[v] == 0)
                         {
-                            p.Pop();
-                            ft[w] = t;
+                            // Assign the finishing time to the vertex v.
+                            ft[v] = t;
                             ++t;
                         }
                     }
@@ -163,7 +151,8 @@ namespace WbsAlgorithms.Graphs
 
                     // Keep the leader of the vertex v. Vertices with the same
                     // leader constitute a stronlgy connected component.
-                    leaders[v] = leader;
+                    // The leader indices are the sample as in the original graph.
+                    leaders[map[v]] = leader;
 
                     // Traverse each edge in the v's adjacency list.
                     foreach (var w in g[map[v]])
