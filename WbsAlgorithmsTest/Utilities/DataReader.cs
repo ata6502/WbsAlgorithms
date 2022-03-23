@@ -68,9 +68,9 @@ namespace WbsAlgorithmsTest.Utilities
 
         public static Graph ReadGraph(string filename)
         {
-            var graph = new Graph();
-
             string[] lines = File.ReadAllLines(filename);
+
+            var graph = new Graph(lines.Length);
 
             foreach (var line in lines)
             {
