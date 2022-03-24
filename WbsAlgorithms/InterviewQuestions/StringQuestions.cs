@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace WbsAlgorithms.InterviewQuestions
 {
@@ -10,22 +11,54 @@ namespace WbsAlgorithms.InterviewQuestions
     // 1. How to reverse a string? [ReverseString]
     // 2. How to determine if a string is a palindrome? [IsPalindrome]
     // 3. How to find duplicated characters in a string? [FindDuplicatedCharacters]
+    // 4. How to calculate the number of vowels and consonants in a string? [CountVowelsAndConsonants]
+    // 5. How to count the number of occurrences of a given character in a string? [CountCharacter]
     public class StringQuestions
     {
-        // Returns a string formed from characters that are duplicated in the input 
-        // string at least twice.
-        public static string FindDuplicatedCharactersUsingLinq(string s)
+        public static int CountCharacter(string s, char ch)
         {
-            var groups = from c in s
-                         group c by c into g
-                         where g.Count() > 1
-                         select g.Key;
+            Debug.Assert(s != null);
 
-            return new string(groups.ToArray());
+            var counter = 0;
+            foreach (var c in s)
+                if (c == ch)
+                    ++counter;
+            return counter;
         }
 
-        public static string FindDuplicatedCharactersUsingDictionary(string s)
+        public static int CountCharacterUsingRegEx(string s, char ch)
         {
+            Debug.Assert(s != null);
+
+            return Regex.Matches(s, ch.ToString()).Count;
+        }
+
+        // Counts the number of vowels and consonants in a string containing only letters.
+        public static (int VowelCount, int ConsonantCount) CountVowelsAndConsonants(string s)
+        {
+            Debug.Assert(s != null);
+
+            var lowerCaseStr = Regex.Replace(s.ToLower(), "[^a-z]", "");
+
+            if (lowerCaseStr.Length != s.Length)
+                throw new ArgumentException($"The input string {s} should contain only letters.");
+
+            // Count vowels.
+            var counter = 0;
+            foreach (var c in lowerCaseStr)
+                if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
+                    ++counter;
+
+            // Returns the number of vowels and consonants.
+            return (counter, lowerCaseStr.Length - counter);
+        }
+
+        // Returns a string formed from characters that are duplicated in the input 
+        // string at least twice.
+        public static char[] FindDuplicatedCharactersUsingDictionary(string s)
+        {
+            Debug.Assert(s != null);
+
             var d = new Dictionary<char, int>();
 
             foreach (var c in s)
@@ -36,18 +69,32 @@ namespace WbsAlgorithms.InterviewQuestions
                     d[c] = 1;
             }
 
-            var sb = new StringBuilder();
+            var dublicates = new List<char>();
             foreach (var kvp in d)
                 if (kvp.Value > 1)
-                    sb.Append(kvp.Key);
+                    dublicates.Add(kvp.Key);
 
-            return sb.ToString();
+            return dublicates.ToArray();
+        }
+
+        public static char[] FindDuplicatedCharactersUsingLinq(string s)
+        {
+            Debug.Assert(s != null);
+
+            var groups = from c in s
+                         group c by c into g
+                         where g.Count() > 1
+                         select g.Key;
+
+            return groups.ToArray();
         }
 
         // Determines if the input string is a palindrome. A palindrome is
         // a string that reads the same backward as forward.
         public static bool IsPalindrome(string s)
         {
+            Debug.Assert(s != null);
+
             for (int i = 0, j = s.Length - 1; i < j; ++i, --j)
             {
                 if (s[i] != s[j])
