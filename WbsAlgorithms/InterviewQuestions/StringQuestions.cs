@@ -16,9 +16,7 @@ namespace WbsAlgorithms.InterviewQuestions
         // string at least twice.
         public static string FindDuplicatedCharactersUsingLinq(string s)
         {
-            var a = s.ToCharArray();
-
-            var groups = from c in a
+            var groups = from c in s
                          group c by c into g
                          where g.Count() > 1
                          select g.Key;
