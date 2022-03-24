@@ -8,7 +8,7 @@ Below, there are a few examples of algorithms implemented in this repository:
 
 * [Karatsuba Integer Multiplication](./WbsAlgorithms/Arithmetics/IntegerMultiplication.cs)
 * [Strassen's Matrix Multiplication](./WbsAlgorithms/Arithmetics/MatrixMultiplication.cs)
-* Sorting algoritms: [MergeSort](./WbsAlgorithms/Sorting/MergeSort.cs) and [QuickSort](./WbsAlgorithms/Sorting/QuickSort.cs)
+* Sorting algoritms: [MergeSort](./WbsAlgorithms/Sorting/MergeSort.cs), [QuickSort](./WbsAlgorithms/Sorting/QuickSort.cs), [InsertionSort](./WbsAlgorithms/Sorting/InsertionSort.cs)
 * [Finding the closest pair of points in O(n&#183;log(n))](./WbsAlgorithms/PairMinMax/ClosestPair2D.cs)
 * [RSelect](./WbsAlgorithms/Searching/RSelect.cs) (Randomized Selection) and [DSelect](./WbsAlgorithms/Searching/DSelect.cs) (Deterministic Selection)
 * [BFS](./WbsAlgorithms/Graphs/BreathFirstSearch.cs) (Breath First Search) and [DFS](./WbsAlgorithms/Graphs/DephFirstSearch.cs) (Deph First Search)
