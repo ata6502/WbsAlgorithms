@@ -36,16 +36,20 @@ namespace WbsAlgorithms.InterviewQuestions
             if (a.Length == 0)
                 return -1;
 
+            // Add all elements in the array.
             var sum = 0;
             foreach (var n in a)
                 sum += n;
 
-            var len = a.Length + 1;
+            var len = a.Length + 1; // +1 because we know one value is missing
+
+            // The formula for the sum of an arithmetic sequence: S = N/2 * (2a + (N - 1))
+            // where 'N' is the number of elements of the sequence, 'a' is the first element in the sequence
+            // Note that for a=1, the formula simplifies to S = N * (N + 1) / 2
             var calculatedSum = len * (2 * a[0] + (len - 1)) / 2;
 
+            // Calculate the missing value.
             var missingValue = calculatedSum - sum;
-            if (missingValue == 0)
-                return -1;
             return missingValue;
         }
 
