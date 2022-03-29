@@ -3,7 +3,7 @@
 namespace WbsAlgorithms.PairPointMinMax
 {
     /// <summary>
-    /// Array Manipulation (hard) - the "slope" technique
+    /// Array Manipulation - the "slope" technique.
     /// 
     /// Starting with a 1-based index array of zeros and a list of operations, for each operation add a value 
     /// to each of the array element between two given indices, inclusive. Once all operations have been

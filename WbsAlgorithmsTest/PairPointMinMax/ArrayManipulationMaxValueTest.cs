@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using WbsAlgorithms.PairPointMinMax;
+using WbsAlgorithmsTest.Utilities;
 
 namespace WbsAlgorithmsTest.PairPointMinMax
 {
@@ -12,7 +13,7 @@ namespace WbsAlgorithmsTest.PairPointMinMax
         [TestCase(10, "2 6 8,3 5 7,1 8 1,5 9 15", 31)]
         [TestCase(9, "1 5 1,3 8 2,8 9 4,2 3 4", 7)]
         [TestCase(9, "1 5 1,3 8 2,8 9 6,2 3 4", 8)]
-        public void GetMaxValueTest(int size, string operationsAsString, int expectedMaxValue)
+        public void GetMaxValueTest(int size, string operationsAsString, long expectedMaxValue)
         {
             var operations = ConvertOperations(operationsAsString);
 
@@ -21,6 +22,16 @@ namespace WbsAlgorithmsTest.PairPointMinMax
 
             var actualMaxValueBruteForce = ArrayManipulationMaxValue.GetMaxValueBruteForce(size, operations);
             Assert.AreEqual(expectedMaxValue, actualMaxValueBruteForce);
+        }
+
+        [TestCase(4000, @"Data\ArrayManipulationMaxValue1.txt", 30_000, 3, 7542539201)]
+        [TestCase(10_000_000, @"Data\ArrayManipulationMaxValue2.txt", 100_000, 3, 2497169732)]
+        public void GetMaxValueLargeTestCases(int size, string operationsFile, int rowCount, int columnCount, long expectedMaxValue)
+        {
+            var operations = DataReader.ReadIntegerMatrix(operationsFile, rowCount, columnCount);
+
+            var actualMaxValue = ArrayManipulationMaxValue.GetMaxValue(size, operations);
+            Assert.AreEqual(expectedMaxValue, actualMaxValue);
         }
 
         private int[,] ConvertOperations(string operationsAsString)

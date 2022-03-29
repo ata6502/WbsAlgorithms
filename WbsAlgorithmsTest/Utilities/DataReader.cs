@@ -26,6 +26,38 @@ namespace WbsAlgorithmsTest.Utilities
             return nums.ToArray();
         }
 
+        public static int[,] ReadIntegerMatrix(string filename, int rowCount, int columnCount)
+        {
+            var matrix = new int[rowCount, columnCount];
+
+            string line;
+            using (var reader = new StreamReader(filename))
+            {
+                for(var n = 0; n < rowCount; ++n)
+                {
+                    line = reader.ReadLine();
+                    if (line == null)
+                        throw new ArgumentException($"The expected number of rows is {rowCount}.");
+
+                    for (var m = 0; m < columnCount; ++m)
+                    {
+                        var nums = line.Split(' ');
+
+                        if (nums.Length != columnCount)
+                            throw new ArgumentException($"The expected number of columns is {columnCount}.");
+
+                        if (!int.TryParse(nums[m], out var val))
+                            throw new ArgumentException($"The value '{nums[m]}' cannot be converted to an integer.");
+
+                        matrix[n, m] = val;
+
+                    }
+                }
+            }
+
+            return matrix;
+        }
+
         public static Point[] CreatePoints(string filename)
         {
             var str = File.ReadAllText(filename).Split(',');
