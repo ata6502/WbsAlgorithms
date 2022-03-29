@@ -6,6 +6,34 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
     [TestFixture]
     public class ArrayQuestionsTest
     {
+        [TestCase(new int[] { 1 }, new int[] { 1 })]
+        [TestCase(new int[] { 1, 2 }, new int[] { 2, 1 })]
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 3, 2, 1 })]
+        [TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 4, 3, 2, 1 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 5, 4, 3, 2, 1 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, new int[] { 6, 5, 4, 3, 2, 1 })]
+        public void ReverseArrayTest(int[] inputArray, int[] expectedReversedArray)
+        {
+            // ReverseArray modifies the input array. It reverses the input array in-place.
+            CollectionAssert.AreEqual(expectedReversedArray, ArrayQuestions.ReverseArray(inputArray));
+        }
+
+        [TestCase(new int[] { 1, 2 }, 1)]
+        [TestCase(new int[] { 2, 1 }, 1)]
+        [TestCase(new int[] { 3, 2, 1 }, 2)]
+        [TestCase(new int[] { 2, 3, 1 }, 2)]
+        [TestCase(new int[] { 3, 1, 2 }, 2)]
+        [TestCase(new int[] { 4, 3, 3, 2, 5, 5, 3, 4, 4, 6 }, 5)]
+        [TestCase(new int[] { 5, 3, 3, 2, 4 }, 4)]
+        [TestCase(new int[] { 3, 4, 6, 7, 8 }, 7)]
+        [TestCase(new int[] { }, -1)]
+        [TestCase(new int[] { 1 }, -1)]
+        [TestCase(new int[] { 1, 1, 1 }, -1)]
+        public void FindSecondLargestValueTest(int[] inputArray, int expectedSecondLargestValue)
+        {
+            Assert.AreEqual(expectedSecondLargestValue, ArrayQuestions.FindSecondLargestValue(inputArray));
+        }
+
         [TestCase(new int[] { 1, 3 }, 2)]
         [TestCase(new int[] { 2, 4 }, 3)]
         [TestCase(new int[] { 1, 2, 3, 5 }, 4)]

@@ -6,6 +6,23 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
     [TestFixture]
     public class StringQuestionsTest
     {
+        [TestCase("", "")]
+        [TestCase("@", "")]
+        [TestCase("#$%^&*", "")]
+        [TestCase("a", "a")]
+        [TestCase("#A", "A")]
+        [TestCase("#A#", "A")]
+        [TestCase("a #1", "a1")]
+        [TestCase("   !a1", "a1")]
+        [TestCase("wup*iOp|", "wupiOp")]
+        [TestCase("A aQ,...1?", "AaQ1")]
+        [TestCase("34$%", "34")]
+        [TestCase("3gy7^yy    -", "3gy7yy")]
+        public void RemoveNonAlphanumericCharactersTest(string inputString, string expectedString)
+        {
+            Assert.AreEqual(expectedString, StringQuestions.RemoveNonAlphanumericCharacters(inputString));
+        }
+
         [TestCase("a", 'a', 1)]
         [TestCase("ab", 'a', 1)]
         [TestCase("ab", 'b', 1)]
