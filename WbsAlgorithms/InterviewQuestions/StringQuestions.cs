@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace WbsAlgorithms.InterviewQuestions
@@ -13,8 +12,15 @@ namespace WbsAlgorithms.InterviewQuestions
     // 3. How to find duplicated characters in a string? [FindDuplicatedCharacters]
     // 4. How to calculate the number of vowels and consonants in a string? [CountVowelsAndConsonants]
     // 5. How to count the number of occurrences of a given character in a string? [CountCharacter]
+    // 6. How to remove all non-alphanumeric characters from a string? [RemoveNonAlphanumericCharacters]
     public class StringQuestions
     {
+        // Removes all non-alphanumeric characters from a string and leaves only letters and numbers.
+        public static string RemoveNonAlphanumericCharacters(string s)
+        {
+            return Regex.Replace(s, "[^a-zA-Z0-9]", "");
+        }
+
         public static int CountCharacter(string s, char ch)
         {
             Debug.Assert(s != null);
