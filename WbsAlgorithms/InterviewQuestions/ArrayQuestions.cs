@@ -8,8 +8,51 @@ namespace WbsAlgorithms.InterviewQuestions
     // 1. How to find duplicated numbers in an array? [FindDuplicatedNumbers]
     // 2. How to remove duplicates from an array? [RemoveDuplicates]
     // 3. How to find a missing integer in an array that contains a range of consecutive integers? [FindMissingValue]
+    // 4. How to find the second largest element in an array? [FindSecondLargestValue]
+    // 5. How to reverse an array? [ReverseArray]
     public class ArrayQuestions
     {
+        // Reverses elements in-place in an array. Returns the reversed input array.
+        public static int[] ReverseArray(int[] a)
+        {
+            for(int i = 0, j = a.Length-1; i < j; ++i, --j)
+            {
+                var tmp = a[i];
+                a[i] = a[j];
+                a[j] = tmp;
+            }
+
+            return a;
+        }
+
+        // Returns the second largest value from an array; -1 if the array does not have the second largest value
+        // for example when it has fewer than two elements or when all elements have the same value.
+        public static int FindSecondLargestValue(int[] a)
+        {
+            Debug.Assert(a != null);
+
+            if (a.Length < 2)
+                return -1;
+
+            var max = int.MinValue;
+            var secondMax = int.MinValue;
+
+            foreach(var n in a)
+            {
+                if (n > max)
+                {
+                    secondMax = max;
+                    max = n;
+                }
+                else if (n > secondMax)
+                {
+                    secondMax = n;
+                }
+            }
+
+            return secondMax == int.MinValue || secondMax == max ? -1 : secondMax;
+        }
+
         // Returns a missing value from an array containing a range of consecutive integers; -1 if no value is missing.
         public static int FindMissingValue(int[] a)
         {
@@ -53,7 +96,7 @@ namespace WbsAlgorithms.InterviewQuestions
             return missingValue;
         }
 
-        // Returns an array without duplicates i.e., only with distinct elements.
+        // Returns an array without duplicates i.e., an array containing only distinct values.
         public static int[] RemoveDuplicates(int[] a)
         {
             Debug.Assert(a != null);
