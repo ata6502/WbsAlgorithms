@@ -150,5 +150,51 @@ namespace WbsAlgorithmsTest.Utilities
 
             return reversed;
         }
+
+        public static WeightedGraph ReadWeightedGraph(string filename)
+        {
+            string[] lines = File.ReadAllLines(filename);
+
+            var graph = new WeightedGraph(lines.Length);
+
+            foreach (var line in lines)
+            {
+                (int u, List<(int,int)> AdjacentVertices) = GetVertices(line);
+                graph.AddEdge(u, AdjacentVertices);
+            }
+
+            return graph;
+
+            (int v, List<(int,int)> AdjacentVertices) GetVertices(string line)
+            {
+                char[] VertexSeparator = new char[] { ' ', '\t' };
+
+                string[] nums = line.Trim().Split(VertexSeparator);
+
+                var u = GetInt(nums[0]); // vertex#
+                var vertices = new List<(int,int)>(nums.Length - 1); // adjacent vertices and their weights
+                for (var i = 1; i < nums.Length; ++i)
+                {
+                    if (nums[i] == string.Empty)
+                        continue;
+
+                    var separatorIndex = nums[i].IndexOf(",");
+
+                    var v = GetInt(nums[i].Substring(0, separatorIndex));
+                    var weight = GetInt(nums[i].Substring(separatorIndex + 1));
+
+                    vertices.Add((v, weight));
+                }
+
+                return (u, vertices);
+
+                int GetInt(string str)
+                {
+                    if (!int.TryParse(str, out var n))
+                        throw new ArgumentException("not a number");
+                    return n;
+                }
+            }
+        }
     }
 }
