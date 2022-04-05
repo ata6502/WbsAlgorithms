@@ -100,16 +100,18 @@ namespace WbsAlgorithmsTest.Utilities
 
         public static Graph ReadGraph(string filename)
         {
-            string[] lines = File.ReadAllLines(filename);
+            var graph = new Graph();
 
-            var graph = new Graph(lines.Length);
-
-            foreach (var line in lines)
+            using (var reader = new StreamReader(filename))
             {
-                (int v, List<int> AdjacentVertices) = GetVertices(line);
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    (int v, List<int> AdjacentVertices) = GetVertices(line);
 
-                foreach (var w in AdjacentVertices)
-                    graph.AddEdge(v, w);
+                    foreach (var w in AdjacentVertices)
+                        graph.AddEdge(v, w);
+                }
             }
 
             return graph;
