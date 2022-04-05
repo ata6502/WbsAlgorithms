@@ -1,4 +1,4 @@
-﻿namespace WbsAlgorithms.Collections
+﻿namespace WbsAlgorithms.DataStructures
 {
     /// <summary>
     /// [Sedgewick] 1.3.48 p.171 - Implementat two stacks using a single deque. 

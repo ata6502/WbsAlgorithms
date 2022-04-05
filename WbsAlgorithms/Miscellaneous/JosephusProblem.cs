@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using WbsAlgorithms.Collections;
+using WbsAlgorithms.DataStructures;
 
 namespace WbsAlgorithms.Miscellaneous
 {

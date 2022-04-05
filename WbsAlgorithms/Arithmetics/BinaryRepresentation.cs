@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using WbsAlgorithms.Collections;
+using WbsAlgorithms.DataStructures;
 
 namespace WbsAlgorithms.Arithmetics
 {

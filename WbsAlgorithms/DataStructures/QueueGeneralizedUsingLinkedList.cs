@@ -1,7 +1,7 @@
 ﻿using System;
 using WbsAlgorithms.Common;
 
-namespace WbsAlgorithms.Collections
+namespace WbsAlgorithms.DataStructures
 {
     /// <summary>
     /// GeneralizedQueue is a kind of queue that allows deleting a k-th item.

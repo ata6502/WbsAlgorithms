@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
 using System;
-using WbsAlgorithms.Collections;
+using WbsAlgorithms.DataStructures;
 using WbsAlgorithms.Common;
 
-namespace WbsAlgorithmsTest.Collections
+namespace WbsAlgorithmsTest.DataStructures
 {
     [TestFixture]
     public class SinglyLinkedListTest

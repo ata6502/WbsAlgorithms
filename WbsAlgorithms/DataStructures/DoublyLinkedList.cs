@@ -1,7 +1,7 @@
 ﻿using System;
 using WbsAlgorithms.Common;
 
-namespace WbsAlgorithms.Collections
+namespace WbsAlgorithms.DataStructures
 {
     /// <summary>
     /// A doubly-linked list enables arbitrary insertions and deletions unlike singly-linked list

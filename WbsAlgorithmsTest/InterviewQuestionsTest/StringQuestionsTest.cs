@@ -6,6 +6,17 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
     [TestFixture]
     public class StringQuestionsTest
     {
+        [TestCase("a", "a", TestName = "Permutations of A")]
+        [TestCase("ab", "ab,ba", TestName = "Permutations of AB")]
+        [TestCase("abc", "abc,acb,bac,bca,cab,cba", TestName = "Permutations of ABC")]
+        [TestCase("abcd", "abcd,abdc,acbd,acdb,adbc,adcb,bacd,badc,bcad,bcda,bdac,bdca,cabd,cadb,cbad,cbda,cdab,cdba,dabc,dacb,dbac,dbca,dcab,dcba", TestName = "Permutations of ABCD")]
+        public void GetPermutationsTest(string inputString, string expectedPermutations)
+        {
+            var permutations = StringQuestions.GetPermutations(inputString);
+            var actualPermutations = string.Join(',', permutations);
+            Assert.AreEqual(expectedPermutations, actualPermutations);
+        }
+
         [TestCase("", "")]
         [TestCase("@", "")]
         [TestCase("#$%^&*", "")]

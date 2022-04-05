@@ -1,7 +1,7 @@
 ﻿using System;
 using WbsAlgorithms.Common;
 
-namespace WbsAlgorithms.Collections
+namespace WbsAlgorithms.DataStructures
 {
     /// <summary>
     /// Steque is a stack-ended queue. It supports Push, Pop, and Enqueue operations.

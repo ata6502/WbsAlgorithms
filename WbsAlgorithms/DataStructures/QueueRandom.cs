@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WbsAlgorithms.Collections
+namespace WbsAlgorithms.DataStructures
 {
     /// <summary>
     /// A random queue stores a collection of items. It returns a random item rather than 

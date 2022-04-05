@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
-using WbsAlgorithms.Collections;
+using WbsAlgorithms.DataStructures;
 
-namespace WbsAlgorithmsTest.Collections
+namespace WbsAlgorithmsTest.DataStructures
 {
     [TestFixture]
     public class QueueTest

@@ -1,7 +1,7 @@
 ﻿using System;
 using WbsAlgorithms.Common;
 
-namespace WbsAlgorithms.Collections
+namespace WbsAlgorithms.DataStructures
 {
     /// <summary>
     /// A queue implementation using a circular linked list.

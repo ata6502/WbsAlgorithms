@@ -1,7 +1,7 @@
 ﻿using System;
 using WbsAlgorithms.Common;
 
-namespace WbsAlgorithms.Collections
+namespace WbsAlgorithms.DataStructures
 {
     /// <summary>
     /// The move-to-front strategy maintains a linked list with no duplicates:

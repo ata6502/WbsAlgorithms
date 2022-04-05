@@ -2,7 +2,7 @@
 using System;
 using WbsAlgorithms.DataStructs;
 
-namespace WbsAlgorithmsTest.Collections
+namespace WbsAlgorithmsTest.DataStructures
 {
     [TestFixture]
     class RingBufferTest

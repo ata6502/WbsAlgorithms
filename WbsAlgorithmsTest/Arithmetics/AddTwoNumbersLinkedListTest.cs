@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using WbsAlgorithms.Arithmetics;
-using WbsAlgorithms.Collections;
+using WbsAlgorithms.DataStructures;
 
 namespace WbsAlgorithmsTest.Arithmetics
 {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using WbsAlgorithms.Collections;
+using WbsAlgorithms.DataStructures;
 
-namespace WbsAlgorithmsTest.Collections
+namespace WbsAlgorithmsTest.DataStructures
 {
     [TestFixture]
     public class BagTest

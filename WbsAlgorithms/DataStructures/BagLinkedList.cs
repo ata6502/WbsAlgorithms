@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using WbsAlgorithms.Common;
 
-namespace WbsAlgorithms.Collections
+namespace WbsAlgorithms.DataStructures
 {
     /// <summary>
     /// A bag is a collection where removing items is not supported. 

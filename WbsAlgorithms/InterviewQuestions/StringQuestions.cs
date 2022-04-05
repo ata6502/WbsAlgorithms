@@ -13,8 +13,32 @@ namespace WbsAlgorithms.InterviewQuestions
     // 4. How to calculate the number of vowels and consonants in a string? [CountVowelsAndConsonants]
     // 5. How to count the number of occurrences of a given character in a string? [CountCharacter]
     // 6. How to remove all non-alphanumeric characters from a string? [RemoveNonAlphanumericCharacters]
+    // 7. How to obtain all permutations of letters in a given string? [GetPermutations]
     public class StringQuestions
     {
+        public static string[] GetPermutations(string s)
+        {
+            var permutations = new List<string>();
+            GetPermuationsRecursive(s, "");
+            return permutations.ToArray();
+
+            void GetPermuationsRecursive(string s, string prefix)
+            {
+                if (s.Length == 0)
+                {
+                    permutations.Add(prefix);
+                }
+                else
+                {
+                    for (var i = 0; i < s.Length; ++i)
+                    {
+                        var rem = s.Substring(0, i) + s.Substring(i + 1);
+                        GetPermuationsRecursive(rem, prefix + s[i]);
+                    }
+                }
+            }
+        }
+
         // Removes all non-alphanumeric characters from a string and leaves only letters and numbers.
         public static string RemoveNonAlphanumericCharacters(string s)
         {

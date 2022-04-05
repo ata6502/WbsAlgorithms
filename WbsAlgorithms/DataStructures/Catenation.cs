@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WbsAlgorithms.Collections
+namespace WbsAlgorithms.DataStructures
 {
     /// <summary>
     /// Catenable queue, stack, or steque.

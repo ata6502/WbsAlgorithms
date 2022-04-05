@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace WbsAlgorithms.Collections
+namespace WbsAlgorithms.DataStructures
 {
     /// <summary>
     /// The stack collection allows users to add and remove items based on LIFO policy.

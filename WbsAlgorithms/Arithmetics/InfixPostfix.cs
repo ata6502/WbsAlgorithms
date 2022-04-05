@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using WbsAlgorithms.Collections;
+using WbsAlgorithms.DataStructures;
 
 namespace WbsAlgorithms.Arithmetics
 {

@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using WbsAlgorithms.Common;
 
-namespace WbsAlgorithms.Collections
+namespace WbsAlgorithms.DataStructures
 {
     /// <summary>
     /// A circular linked list has no null links and the value of the tail.next pointer

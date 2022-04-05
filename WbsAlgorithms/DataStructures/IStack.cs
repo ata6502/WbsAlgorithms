@@ -1,4 +1,4 @@
-﻿namespace WbsAlgorithms.Collections
+﻿namespace WbsAlgorithms.DataStructures
 {
     public interface IStack<T>
     {

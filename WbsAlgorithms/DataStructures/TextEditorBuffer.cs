@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WbsAlgorithms.Collections
+namespace WbsAlgorithms.DataStructures
 {
     /// <summary>
     /// [Sedgewick] 1.3.44 p.170 - Develop a data type for a buffer in 

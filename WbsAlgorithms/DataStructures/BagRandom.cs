@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace WbsAlgorithms.Collections
+namespace WbsAlgorithms.DataStructures
 {
     /// <summary>
     /// A random bag stores a collection of items and supports the Add(item) operation.

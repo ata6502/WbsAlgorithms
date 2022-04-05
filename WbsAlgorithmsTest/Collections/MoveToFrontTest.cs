@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using WbsAlgorithms.Collections;
+using WbsAlgorithms.DataStructures;
 
-namespace WbsAlgorithmsTest.Collections
+namespace WbsAlgorithmsTest.DataStructures
 {
     [TestFixture]
     class MoveToFrontTest
