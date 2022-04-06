@@ -63,6 +63,11 @@ namespace WbsAlgorithmsTest.Utilities
             return sb.ToString();
         }
 
+        public static int[] CovertStringToIntArray(string str)
+        {
+            return str.Split(',').Select(int.Parse).ToArray();
+        }
+
         private static (T Value, bool IsSucceeded) Convert<T>(string str)
         {
             try
