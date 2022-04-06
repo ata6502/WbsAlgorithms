@@ -416,6 +416,44 @@ namespace WbsAlgorithms.DataStructures
 
         /// <summary>
         /// Reverses a linked list using an iterative approach. 
+        /// 
+        /// Example: 
+        /// 
+        /// Input:
+        ///     first = [A] -> [B] -> [C] -> NULL
+        ///     reversed = NULL
+        /// 
+        /// 1st iteration:
+        ///     first = [A] -> [B] -> [C] -> NULL
+        ///     second = [B] -> [C] -> NULL
+        ///     first.Next = NULL
+        ///         first = [A] -> NULL
+        ///     reversed = first
+        ///         reversed = [A] -> NULL
+        ///     first = second
+        ///         first = [B] -> [C] -> NULL
+        ///         
+        /// 2nd iteration:
+        ///     first = [B] -> [C] -> NULL
+        ///     second = [C] -> NULL
+        ///     first.Next = [A] -> NULL
+        ///         first = [B] -> [A] -> NULL
+        ///     reversed = first
+        ///         reversed = [B] -> [A] -> NULL
+        ///     first = second
+        ///         first = [C] -> NULL
+        ///         
+        /// 3nd iteration:
+        ///     first = [C] -> NULL
+        ///     second = NULL
+        ///     first.Next = [B] -> [A] -> NULL
+        ///         first = [C] -> [B] -> [A] -> NULL
+        ///     reversed = first
+        ///         reversed = [C] -> [B] -> [A] -> NULL
+        ///     first = second
+        ///         first = NULL
+        ///         
+        /// end of while loop
         /// </summary>
         /// <param name="head">The head of the linked list</param>
         /// <returns>The head of the reversed linked list</returns>
