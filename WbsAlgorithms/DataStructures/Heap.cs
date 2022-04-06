@@ -38,17 +38,23 @@ namespace WbsAlgorithms.DataStructures
     public class Heap
     {
         private int[] _data;
+
+        // The current size of the heap i.e., the number of items.
+        // Also, a 1-based index of the last item in the heap.
+        // 0 if the heap is empty.
         private int _currentIndex = 0;
 
         public Heap(int capacity)
         {
+            // Add 1 to make 1-based indices.
             _data = new int[capacity + 1];
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// Adds a list of keys to the heap. Throws an exception if the heap
+        /// is too small to accommodate all the input keys.
         /// </summary>
-        /// <param name="keys"></param>
+        /// <param name="keys">The list of keys</param>
         public void Insert(int[] keys)
         {
             foreach (var k in keys)
@@ -56,9 +62,10 @@ namespace WbsAlgorithms.DataStructures
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// Adds a single key to the heap. Throws an exception if the heap
+        /// is full.
         /// </summary>
-        /// <param name="key"></param>
+        /// <param name="key">The key to add</param>
         public void Insert(int key)
         {
             if (_currentIndex == _data.Length - 1)
@@ -74,9 +81,10 @@ namespace WbsAlgorithms.DataStructures
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// Removes and returns from the heap the smallest key. Throws an 
+        /// exception if the heap is empty.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The smallest key in the heap</returns>
         public int ExtractMinimum()
         {
             if (_currentIndex == 0)
@@ -98,6 +106,19 @@ namespace WbsAlgorithms.DataStructures
             BubbleDown(1);
 
             return min;
+        }
+
+        /// <summary>
+        /// Returns the smallest key in the heap without removing it.
+        /// Throws an exception if the heap is empty.
+        /// </summary>
+        /// <returns>The smallest key in the heap</returns>
+        public int PeekMinimum()
+        {
+            if (_currentIndex == 0)
+                throw new IndexOutOfRangeException("Heap is empty.");
+
+            return _data[1];
         }
 
         private void BubbleUp(int index)
