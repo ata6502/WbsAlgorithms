@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -14,8 +15,176 @@ namespace WbsAlgorithms.InterviewQuestions
     // 5. How to count the number of occurrences of a given character in a string? [CountCharacter]
     // 6. How to remove all non-alphanumeric characters from a string? [RemoveNonAlphanumericCharacters]
     // 7. How to obtain all permutations of letters in a given string? [GetPermutations]
+    // 8. How to determine if a string has all unique characters? [IsUnique] [CodingInterview] 1.1 p.90
+    // 9. How to check if a string is a permutation of another one? [CheckPermution] [CodingInterview] 1.2 p.90
     public class StringQuestions
     {
+        public static bool CheckPermutationUsingSorting(string s, string t)
+        {
+            if (s.Length != t.Length)
+                return false;
+
+            var a1 = s.ToCharArray();
+            Array.Sort(a1);
+            var a2 = t.ToCharArray();
+            Array.Sort(a2);
+
+            for(var i = 0; i < s.Length; ++i)
+            {
+                if (a1[i] != a2[i])
+                    return false;
+            }
+
+            return true;
+        }
+
+        public static bool CheckPermutationUsingSortingAndLinq(string s, string t)
+        {
+            if (s.Length != t.Length)
+                return false;
+
+            return Sort(s).SequenceEqual(Sort(t));
+
+            char[] Sort(string s)
+            {
+                var a = s.ToCharArray();
+                Array.Sort(a);
+                return a;
+            }
+        }
+
+        // Constraint: ASCII codes of the characters in the input strings are in the range 0-128.
+        public static bool CheckPermutationConstrained(string s, string t)
+        {
+            if (s.Length != t.Length)
+                return false;
+
+            var h = new int[128];
+
+            foreach(var c in s)
+            {
+                var code = (byte)c;
+                ++h[code];
+            }
+
+            foreach(var c in t)
+            {
+                var code = (byte)c;
+                --h[code];
+                if (h[code] < 0)
+                    return false;
+            }
+
+            // The histogram h has no negative values. It means it also does not have any positive values.
+
+            return true;
+        }
+
+        public static bool CheckPermutation(string s, string t)
+        {
+            if (s.Length != t.Length)
+                return false;
+
+            var hs = ComputeHistogram(s);
+            var ht = ComputeHistogram(t);
+
+            // Compare histograms for both strings.
+            foreach(var x in hs)
+            {
+                if (!ht.TryGetValue(x.Key, out var y))
+                    return false;
+                if (x.Value != y)
+                    return false;
+            }
+
+            return true;
+
+            Dictionary<char, int> ComputeHistogram(string s)
+            {
+                var a = s.ToCharArray();
+                var d = new Dictionary<char, int>(s.Length);
+
+                foreach(var c in a)
+                {
+                    if (d.TryGetValue(c, out _))
+                        ++d[c];
+                    else
+                        d[c] = 1;
+                }
+
+                return d;
+            }
+        }
+
+        // Constraint: ASCII codes of the characters in the string s are in the range 0-128.
+        public static bool IsUniqueConstrained(string s)
+        {
+            if (s.Length > 128)
+                return false;
+
+            var a = s.ToCharArray();
+            var b = new bool[128];
+
+            foreach(var c in a)
+            {
+                var code = (byte)c;
+                if (b[code])
+                    return false;
+                b[code] = true;
+            }
+
+            return true;
+        }
+
+        // Constraint: ASCII codes of the characters in the string s are in the range 0-128.
+        public static bool IsUniqueConstrainedUsingBitArray(string s)
+        {
+            if (s.Length > 128)
+                return false;
+
+            var a = s.ToCharArray();
+            var b = new BitArray(128);
+
+            foreach (var c in a)
+            {
+                var code = (byte)c;
+                if (b[code])
+                    return false;
+                b[code] = true;
+            }
+
+            return true;
+        }
+
+        public static bool IsUniqueBruteForce(string s)
+        {
+            var a = s.ToCharArray();
+
+            for (var i = 0; i < a.Length; ++i)
+                for (var j = i + 1; j < a.Length; ++j)
+                    if (a[i] == a[j])
+                        return false;
+
+            return true;
+        }
+
+        public static bool IsUniqueUsingHashSet(string s)
+        {
+            Debug.Assert(s != null);
+
+            var t = new HashSet<char>();
+            var a = s.ToCharArray();
+
+            foreach(var c in a)
+            {
+                if (t.TryGetValue(c, out _))
+                    return false;
+                t.Add(c);
+            }
+
+            return true;
+        }
+
         public static string[] GetPermutations(string s)
         {
             var permutations = new List<string>();

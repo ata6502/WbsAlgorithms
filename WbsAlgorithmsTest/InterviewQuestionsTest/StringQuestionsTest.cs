@@ -6,6 +6,48 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
     [TestFixture]
     public class StringQuestionsTest
     {
+        [TestCase("a", "a", true)]
+        [TestCase("ab", "ab", true)]
+        [TestCase("ab", "ba", true)]
+        [TestCase("abc", "abc", true)]
+        [TestCase("abc", "acb", true)]
+        [TestCase("abc", "bac", true)]
+        [TestCase("abc", "bca", true)]
+        [TestCase("abc", "cab", true)]
+        [TestCase("abc", "cba", true)]
+        [TestCase("a", "b", false)]
+        [TestCase("ab", "bc", false)]
+        [TestCase("abc", "bcd", false)]
+        [TestCase("aba", "baa", true)]
+        [TestCase("aba", "aab", true)]
+        [TestCase("ab", "abb", false)]
+        public void CheckPermutationTest(string inputString1, string inputString2, bool isPermutation)
+        {
+            Assert.AreEqual(isPermutation, StringQuestions.CheckPermutation(inputString1, inputString2));
+            Assert.AreEqual(isPermutation, StringQuestions.CheckPermutationConstrained(inputString1, inputString2));
+            Assert.AreEqual(isPermutation, StringQuestions.CheckPermutationUsingSorting(inputString1, inputString2));
+            Assert.AreEqual(isPermutation, StringQuestions.CheckPermutationUsingSortingAndLinq(inputString1, inputString2));
+        }
+
+        [TestCase("", true)]
+        [TestCase("a", true)]
+        [TestCase("ab", true)]
+        [TestCase("abc", true)]
+        [TestCase("aa", false)]
+        [TestCase("aba", false)]
+        [TestCase("abb", false)]
+        [TestCase("bba", false)]
+        [TestCase("bbb", false)]
+        [TestCase("abcd", true)]
+        [TestCase("abcb", false)]
+        public void IsUniqueTest(string inputString, bool isUnique)
+        {
+            Assert.AreEqual(isUnique, StringQuestions.IsUniqueUsingHashSet(inputString));
+            Assert.AreEqual(isUnique, StringQuestions.IsUniqueBruteForce(inputString));
+            Assert.AreEqual(isUnique, StringQuestions.IsUniqueConstrained(inputString));
+            Assert.AreEqual(isUnique, StringQuestions.IsUniqueConstrainedUsingBitArray(inputString));
+        }
+
         [TestCase("a", "a", TestName = "Permutations of A")]
         [TestCase("ab", "ab,ba", TestName = "Permutations of AB")]
         [TestCase("abc", "abc,acb,bac,bca,cab,cba", TestName = "Permutations of ABC")]
