@@ -6,6 +6,34 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
     [TestFixture]
     public class StringQuestionsTest
     {
+        [TestCase("a", true)]
+        [TestCase("ab", false)]
+        [TestCase("aba", true)]
+        [TestCase("aab", true)]
+        [TestCase("baa", true)]
+        [TestCase("abc", false)]
+        [TestCase("abcd", false)]
+        [TestCase("abccab", true)]
+        [TestCase("cacabb", true)]
+        [TestCase("cacabbd", true)]
+        [TestCase("cdadcabbd", true)] // abcdddcba
+        [TestCase("cdadcabbda", false)] // abcdddcbaa
+        public void IsPalindromePermutationTest(string inputString, bool isPalindromePermutation)
+        {
+            Assert.AreEqual(isPalindromePermutation, StringQuestions.IsPalindromePermutation(inputString));
+        }
+
+        [TestCase("a   ", 2, "a%20")]
+        [TestCase(" a  ", 2, "%20a")]
+        [TestCase("a a  ", 3, "a%20a")]
+        [TestCase("abc def  ghi   jkl            ", 18, "abc%20def%20%20ghi%20%20%20jkl")]
+        [TestCase("a abc d       ", 8, "a%20abc%20d%20")]
+        [TestCase("a     a          ", 7, "a%20%20%20%20%20a")]
+        public void URLifyTest(string inputString, int length, string expectedURLifiedString)
+        {
+            Assert.AreEqual(expectedURLifiedString, StringQuestions.URLify(inputString, length));
+        }
+
         [TestCase("a", "a", true)]
         [TestCase("ab", "ab", true)]
         [TestCase("ab", "ba", true)]

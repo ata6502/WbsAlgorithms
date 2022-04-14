@@ -13,7 +13,7 @@ namespace WbsAlgorithms.Graphs
         /// (from right to left).
         /// </summary>
         /// <param name="g">A directed acycling graph in adjacency list represenation</param>
-        /// <param name="vertexOrder"> An optional array that determines the order of exploration of the vertices.
+        /// <param name="vertexOrder">An optional array that determines the order of exploration of the vertices.
         /// All orders of exploration should return the same topological ordering. If not specified, the vertices
         /// are explored from left to right.</param>
         /// <returns>A collection of vertices that constitutes a topological ordering of the input graph.</returns>

@@ -17,8 +17,72 @@ namespace WbsAlgorithms.InterviewQuestions
     // 7. How to obtain all permutations of letters in a given string? [GetPermutations]
     // 8. How to determine if a string has all unique characters? [IsUnique] [CodingInterview] 1.1 p.90
     // 9. How to check if a string is a permutation of another one? [CheckPermution] [CodingInterview] 1.2 p.90
+    // 10. How to replace spaces with %20? [URLify] [CodingInterview] 1.3 p.90
+    // 11. How to check if a given permutation is a palindrome? [IsPalindromePermutation] [CodingInterview] 1.4 p.91 (simplification: case-sensitive and with special characters)
     public class StringQuestions
     {
+        // Check if the input string s is a palindrome permutation.
+        // Assumption: The input string is made of characters that have ASCII codes in the range 0-128.
+        public static bool IsPalindromePermutation(string s)
+        {
+            if (string.IsNullOrWhiteSpace(s))
+                return false;
+
+            var frequency = new int[128];
+
+            // Count frequencies of each letter in the input string.
+            // For even-length strings, all frequencies should be even.
+            // For odd-length string, all frequencies should be even except one that should be odd.
+            foreach (var ch in s)
+                ++frequency[(byte)ch];
+
+            // Keeps a track if we've already encountered an odd frequency of a character.
+            var hasOneOddCharacter = false;
+
+            // Test if the frequencies have no more than one odd character.
+            foreach (var f in frequency)
+            {
+                if (f % 2 == 1)
+                {
+                    if (hasOneOddCharacter)
+                        return false;
+                    hasOneOddCharacter = true;
+                }
+            }
+
+            return true;
+        }
+
+        // The input string s has exact space at the end to hold the additional characters i.e., the length
+        // of the string s is the length after the space-to-%20 replacement.
+        // The len parameter is the true length of the string (without the trailing spaces).
+        // For this excercise, you need to convert the string to an array to perform the replace
+        // operation in-place.
+        public static string URLify(string s, int len)
+        {
+            var a = s.ToCharArray();
+
+            var j = a.Length - 1; // new index
+            for(var i = len - 1; i >= 0; --i) // traverse the original string
+            {
+                if (a[i] == ' ')
+                {
+                    a[j] = '0';
+                    a[j - 1] = '2';
+                    a[j - 2] = '%';
+
+                    j -= 3;
+                }
+                else
+                {
+                    a[j] = a[i];
+                    j--;
+                }
+            }
+
+            return new string(a);
+        }
+
         public static bool CheckPermutationUsingSorting(string s, string t)
         {
             if (s.Length != t.Length)
