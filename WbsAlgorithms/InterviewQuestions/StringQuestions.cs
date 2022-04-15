@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace WbsAlgorithms.InterviewQuestions
@@ -20,8 +21,71 @@ namespace WbsAlgorithms.InterviewQuestions
     // 10. How to replace spaces with %20? [URLify] [CodingInterview] 1.3 p.90
     // 11. How to check if a given permutation is a palindrome? [IsPalindromePermutation] [CodingInterview] 1.4 p.91 (simplification: case-sensitive; includes special characters)
     // 12. How to check if two strings are one edit (or zero edits) away? [AreOneEditAway] 1.5 p.91
+    // 13. How to compress a string e.g., aabcccccaaa --> a2b1c5a3 ? [CompressString] 1.6 p.91
     public class StringQuestions
     {
+        // Assumption: the input string contains only letters 'a'-'z' and 'A'-'Z'.
+        public static string CompressString(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+                return s;
+
+            var prev = s[0];
+            var cnt = 1;
+            var sb = new StringBuilder();
+
+            for(var i = 1; i < s.Length; ++i)
+            {
+                var c = s[i];
+
+                if (c != prev)
+                {
+                    sb.Append($"{prev}{cnt}");
+                    cnt = 0;
+                }
+
+                prev = c;
+                ++cnt;
+            }
+
+            sb.Append($"{prev}{cnt}");
+
+            var compressed = sb.ToString();
+
+            // Return the original string if the compressed string is not smaller.
+            return compressed.Length < s.Length ? compressed : s;
+        }
+
+        // This method checks the next character rather than keeping track of the previous one.
+        public static string CompressStringWithCheckingNext(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+                return s;
+
+            var cnt = 0;
+            var sb = new StringBuilder();
+
+            for (var i = 0; i < s.Length; ++i)
+            {
+                ++cnt;
+
+                // The i + 1 >= s.Length condition detects if the loop reached
+                // the last character (i.e., the last index) in the string.
+                // If so, it short circuits the other condition that would 
+                // throw IndexOutOfRange exception.
+                if (i + 1 >= s.Length || s[i] != s[i + 1])
+                {
+                    sb.Append($"{s[i]}{cnt}");
+                    cnt = 0;
+                }
+            }
+
+            var compressed = sb.ToString();
+
+            // Return the original string if the compressed string is not smaller.
+            return compressed.Length < s.Length ? compressed : s;
+        }
+
         public static bool AreOneEditAway(string s, string t)
         {
             // If both strings have the same length it means that they may differ

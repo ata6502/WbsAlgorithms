@@ -6,6 +6,20 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
     [TestFixture]
     public class StringQuestionsTest
     {
+        [TestCase("a", "a")]
+        [TestCase("abbcb", "abbcb")]
+        [TestCase("abbb", "abbb")]
+        [TestCase("abbbb", "a1b4")]
+        [TestCase("aabbbcc", "a2b3c2")]
+        [TestCase("aaaaa", "a5")]
+        [TestCase("aaaaab", "a5b1")]
+        [TestCase("aabcccccaaa", "a2b1c5a3")]
+        public void CompressStringTest(string inputString, string expectedCompressedString)
+        {
+            Assert.AreEqual(expectedCompressedString, StringQuestions.CompressString(inputString));
+            Assert.AreEqual(expectedCompressedString, StringQuestions.CompressStringWithCheckingNext(inputString));
+        }
+
         [TestCase("pale", "ple", true)]
         [TestCase("ple", "pale", true)]
         [TestCase("pale", "pales", true)]
