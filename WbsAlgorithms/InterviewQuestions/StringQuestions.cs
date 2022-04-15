@@ -18,9 +18,74 @@ namespace WbsAlgorithms.InterviewQuestions
     // 8. How to determine if a string has all unique characters? [IsUnique] [CodingInterview] 1.1 p.90
     // 9. How to check if a string is a permutation of another one? [CheckPermution] [CodingInterview] 1.2 p.90
     // 10. How to replace spaces with %20? [URLify] [CodingInterview] 1.3 p.90
-    // 11. How to check if a given permutation is a palindrome? [IsPalindromePermutation] [CodingInterview] 1.4 p.91 (simplification: case-sensitive and with special characters)
+    // 11. How to check if a given permutation is a palindrome? [IsPalindromePermutation] [CodingInterview] 1.4 p.91 (simplification: case-sensitive; includes special characters)
+    // 12. How to check if two strings are one edit (or zero edits) away? [AreOneEditAway] 1.5 p.91
     public class StringQuestions
     {
+        public static bool AreOneEditAway(string s, string t)
+        {
+            // If both strings have the same length it means that they may differ
+            // only by replacing any character(s).
+            if (s.Length == t.Length)
+                return CheckReplace();
+            // If a string has one more character than the other string we can treat
+            // it as an insertion of the character. Alternatively, we can view it as
+            // deletion of the same character from the shorter string.
+            else if (Math.Abs(s.Length - t.Length) == 1)
+                return CheckInsertOrDelete();
+            return false;
+
+            bool CheckReplace()
+            {
+                var foundReplacedChar = false;
+                for(var i = 0; i < s.Length; ++i)
+                {
+                    if (s[i] != t[i])
+                    {
+                        if (foundReplacedChar)
+                            return false;
+                        foundReplacedChar = true;
+                    }
+                }
+                return true;
+            }
+
+            // Inserting a char in one string is an equivalent to deleting the same char
+            // from the other string.
+            bool CheckInsertOrDelete()
+            {
+                var isCharSkipped = false;
+
+                var i = 0;
+                var j = 0;
+
+                while(i < s.Length && j < t.Length)
+                {
+                    if (s[i] != t[j])
+                    {
+                        if (isCharSkipped)
+                            return false;
+
+                        isCharSkipped = true;
+
+                        // Skip the missing char in the longer string. We are allowed to 
+                        // skip a char only once.
+                        if (s.Length > t.Length)
+                            ++i;
+                        else
+                            ++j;
+                    }
+                    else
+                    {
+                        ++i;
+                        ++j;
+                    }
+                }
+
+                return true;
+            }
+        }
+
         // Check if the input string s is a palindrome permutation.
         // Assumption: The input string is made of characters that have ASCII codes in the range 0-128.
         public static bool IsPalindromePermutation(string s)

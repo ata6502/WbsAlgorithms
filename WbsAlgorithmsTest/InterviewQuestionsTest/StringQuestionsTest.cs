@@ -6,6 +6,21 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
     [TestFixture]
     public class StringQuestionsTest
     {
+        [TestCase("pale", "ple", true)]
+        [TestCase("ple", "pale", true)]
+        [TestCase("pale", "pales", true)]
+        [TestCase("pale", "bale", true)]
+        [TestCase("abc", "aabc", true)]
+        [TestCase("abc", "abbc", true)]
+        [TestCase("abc", "abcc", true)]
+        [TestCase("abc", "abbcc", false)]
+        [TestCase("pale", "bake", false)]
+        [TestCase("pale", "pke", false)]
+        public void AreOneEditAwayTest(string firstString, string secondString, bool areOneEditAway)
+        {
+            Assert.AreEqual(areOneEditAway, StringQuestions.AreOneEditAway(firstString, secondString));
+        }
+
         [TestCase("a", true)]
         [TestCase("ab", false)]
         [TestCase("aba", true)]
