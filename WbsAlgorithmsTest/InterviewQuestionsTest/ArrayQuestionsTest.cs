@@ -6,6 +6,25 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
     [TestFixture]
     public class ArrayQuestionsTest
     {
+        [Test]
+        public void RotateMatrixTest()
+        {
+            var matrix1 = new[,] { { 1, 2 }, { 3, 4 } };
+            var expectedRotatedMatrix1 = new[,] { { 3, 1 }, { 4, 2 } };
+            ArrayQuestions.RotateMatrix(matrix1);
+            CollectionAssert.AreEqual(expectedRotatedMatrix1, matrix1);
+
+            var matrix2 = new [,] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+            var expectedRotatedMatrix2 = new [,] { { 7, 4, 1 }, { 8, 5, 2 }, { 9, 6, 3 } };
+            ArrayQuestions.RotateMatrix(matrix2);
+            CollectionAssert.AreEqual(expectedRotatedMatrix2, matrix2);
+
+            var matrix3 = new[,] { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 }, { 13, 14, 15, 16 } };
+            var expectedRotatedMatrix3 = new[,] { { 13, 9, 5, 1 }, { 14, 10, 6, 2 }, { 15, 11, 7, 3 }, { 16, 12, 8, 4 } };
+            ArrayQuestions.RotateMatrix(matrix3);
+            CollectionAssert.AreEqual(expectedRotatedMatrix3, matrix3);
+        }
+
         [TestCase(new int[] { 1 }, new int[] { 1 })]
         [TestCase(new int[] { 1, 2 }, new int[] { 2, 1 })]
         [TestCase(new int[] { 1, 2, 3 }, new int[] { 3, 2, 1 })]

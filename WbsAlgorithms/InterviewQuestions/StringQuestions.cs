@@ -69,11 +69,11 @@ namespace WbsAlgorithms.InterviewQuestions
             {
                 ++cnt;
 
-                // The i + 1 >= s.Length condition detects if the loop reached
+                // The i == s.Length - 1 condition detects if the loop reached
                 // the last character (i.e., the last index) in the string.
                 // If so, it short circuits the other condition that would 
                 // throw IndexOutOfRange exception.
-                if (i + 1 >= s.Length || s[i] != s[i + 1])
+                if (i == s.Length - 1 || s[i] != s[i + 1])
                 {
                     sb.Append($"{s[i]}{cnt}");
                     cnt = 0;

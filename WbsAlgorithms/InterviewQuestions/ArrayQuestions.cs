@@ -10,8 +10,44 @@ namespace WbsAlgorithms.InterviewQuestions
     // 3. How to find a missing integer in an array that contains a range of consecutive integers? [FindMissingValue]
     // 4. How to find the second largest element in an array? [FindSecondLargestValue]
     // 5. How to reverse an array? [ReverseArray]
+    // 6. How to rotate in-place an N x N matrix by 90 degress clockwise?
     public class ArrayQuestions
     {
+        public static void RotateMatrix(int[,] m)
+        {
+            Debug.Assert(m.GetLowerBound(0) == m.GetLowerBound(1));
+            Debug.Assert(m.GetLowerBound(0) == 0);
+            Debug.Assert(m.GetUpperBound(0) == m.GetUpperBound(1));
+
+            // The size of the matrix is N x N where N == size.
+            var size = m.GetUpperBound(0) + 1;
+
+            // Traverse the square "layers" of the matrix starting
+            // from the outer layer.
+            //
+            //         [4]
+            //     X------->|         X is m[k,i]
+            //     ^        |         we move [4] --> tmp
+            // [1] |        | [3]             [1] --> [4]
+            //     |        v                 [2] --> [1]
+            //     |<--------                 [3] --> [2]
+            //         [2]                    tmp --> [3]
+            //
+            for (var k = 0; k < size / 2; ++k)
+            {
+                // Traverse the entire row or a column.
+                for(var i = k; i <= size - 2 - k; ++i)
+                {
+                    // Swap elements in each layer index-by-index.
+                    var tmp = m[k, i];                                  // temp = top
+                    m[k, i] = m[size - 1 - i, k];                       // top = left
+                    m[size - 1 - i, k] = m[size - 1 - k, size - 1 - i]; // left = bottom
+                    m[size - 1 - k, size - 1 - i] = m[i, size - 1 - k]; // bottom = right
+                    m[i, size - 1 - k] = tmp;                           // right = temp
+                }
+            }
+        }
+
         // Reverses elements in-place in an array. Returns the reversed input array.
         public static int[] ReverseArray(int[] a)
         {
