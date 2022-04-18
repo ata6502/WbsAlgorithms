@@ -20,8 +20,8 @@ namespace WbsAlgorithms.InterviewQuestions
     // 9. How to check if a string is a permutation of another one? [CheckPermution] [CodingInterview] 1.2 p.90
     // 10. How to replace spaces with %20? [URLify] [CodingInterview] 1.3 p.90
     // 11. How to check if a given permutation is a palindrome? [IsPalindromePermutation] [CodingInterview] 1.4 p.91 (simplification: case-sensitive; includes special characters)
-    // 12. How to check if two strings are one edit (or zero edits) away? [AreOneEditAway] 1.5 p.91
-    // 13. How to compress a string e.g., aabcccccaaa --> a2b1c5a3 ? [CompressString] 1.6 p.91
+    // 12. How to check if two strings are one edit (or zero edits) away? [AreOneEditAway] [CodingInterview] 1.5 p.91
+    // 13. How to compress a string e.g., aabcccccaaa --> a2b1c5a3 ? [CompressString] [CodingInterview] 1.6 p.91
     public class StringQuestions
     {
         // Assumption: the input string contains only letters 'a'-'z' and 'A'-'Z'.

@@ -10,7 +10,7 @@ namespace WbsAlgorithms.InterviewQuestions
     // 3. How to find a missing integer in an array that contains a range of consecutive integers? [FindMissingValue]
     // 4. How to find the second largest element in an array? [FindSecondLargestValue]
     // 5. How to reverse an array? [ReverseArray]
-    // 6. How to rotate in-place an N x N matrix by 90 degress clockwise?
+    // 6. How to rotate in-place an N x N matrix by 90 degress clockwise? [RotateMatrix] [CodingInterview] 1.7 p.91
     public class ArrayQuestions
     {
         public static void RotateMatrix(int[,] m)
