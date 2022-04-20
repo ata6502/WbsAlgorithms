@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
 using WbsAlgorithms.InterviewQuestions;
 
 namespace WbsAlgorithmsTest.InterviewQuestionsTest
@@ -6,6 +7,22 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
     [TestFixture]
     public class ArrayQuestionsTest
     {
+        [TestCaseSource(nameof(MatrixTestCases))]
+        public void SetZerosInMatrixTest(int[,] inputMatrix, int[,] expectedZeroMatrix)
+        {
+            ArrayQuestions.SetZerosInMatrix(inputMatrix); // works in-place
+            CollectionAssert.AreEqual(expectedZeroMatrix, inputMatrix);
+        }
+
+        private static IEnumerable<TestCaseData> MatrixTestCases()
+        {
+            yield return new TestCaseData(new[,] { { 1, 0 }, { 2, 3 } }, new[,] { { 0, 0 }, { 2, 0 } }).SetName("ZeroMatrix_2x2_1");
+            yield return new TestCaseData(new[,] { { 1, 2 }, { 0, 3 } }, new[,] { { 0, 2 }, { 0, 0 } }).SetName("ZeroMatrix_2x2_2");
+            yield return new TestCaseData(new[,] { { 1, 2, 0 }, { 3, 4, 5 } }, new[,] { { 0, 0, 0 }, { 3, 4, 0 } }).SetName("ZeroMatrix_2x3_1");
+            yield return new TestCaseData(new[,] { { 1, 2, 3 }, { 4, 0, 5 } }, new[,] { { 1, 0, 3 }, { 0, 0, 0 } }).SetName("ZeroMatrix_2x3_2");
+            yield return new TestCaseData(new[,] { { 0, 2, 3, 4 }, { 5, 6, 0, 8 }, { 9, 10, 11, 12 } }, new[,] { { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 10, 0, 12 } }).SetName("ZeroMatrix_4x4_1");
+        }
+
         [Test]
         public void RotateMatrixTest()
         {

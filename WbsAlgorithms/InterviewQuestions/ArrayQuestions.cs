@@ -11,8 +11,34 @@ namespace WbsAlgorithms.InterviewQuestions
     // 4. How to find the second largest element in an array? [FindSecondLargestValue]
     // 5. How to reverse an array? [ReverseArray]
     // 6. How to rotate in-place an N x N matrix by 90 degress clockwise? [RotateMatrix] [CodingInterview] 1.7 p.91
+    // 7. How to zero columns and rows in a matrix? [ZeroMatrix/SetZerosInMatrix] [CodingInterview] 1.8 p.91
     public class ArrayQuestions
     {
+        // If an element in an M x N matrix is 0, set the entire row and column to 0.
+        public static void SetZerosInMatrix(int[,] a)
+        {
+            // Determine the dimensions M x N of the input matrix A.
+            var m = a.GetUpperBound(0) - a.GetLowerBound(0) + 1;
+            var n = a.GetUpperBound(1) - a.GetLowerBound(1) + 1;
+
+            // Collect elements that have a value 0.
+            var zeros = new List<(int row, int column)>(); // could be a pair of bool arrays
+            for (var i = 0; i < m; ++i)
+                for (var j = 0; j < n; ++j)
+                    if (a[i, j] == 0)
+                        zeros.Add((i, j));
+
+            // Set 0s in the columns and rows of each zero element.
+            foreach(var zero in zeros)
+            {
+                for (var j = 0; j < n; ++j)
+                    a[zero.row, j] = 0;
+
+                for (var i = 0; i < m; ++i)
+                    a[i, zero.column] = 0;
+            }
+        }
+
         public static void RotateMatrix(int[,] m)
         {
             Debug.Assert(m.GetLowerBound(0) == m.GetLowerBound(1));
