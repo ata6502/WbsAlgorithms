@@ -136,24 +136,26 @@ namespace WbsAlgorithms.DataStructures
             if (head == null)
                 return null;
 
-            // Try to find a node at the given index. Also, keep the node previous to the found one.
-            ListNode<T> prev = null;
             ListNode<T> node = head;
+
+            // Remove the head if the requested index is 0.
+            if (index == 0)
+                return node.Next;
+
             var i = 0;
-            while (node != null && i < index)
+            while(node.Next != null)
             {
-                prev = node;
+                if (i == index - 1)
+                {
+                    node.Next = node.Next.Next;
+                    return head; // the head remains the same
+                }
+
                 node = node.Next;
                 ++i;
             }
 
-            if (node == null)
-                throw new ArgumentException($"The node with the given index {index} does not exist in the linked list.");
-            else
-            {
-                head = RemoveNode(head, prev, node);
-                return head;
-            }
+            throw new ArgumentException($"The node with the given index {index} does not exist in the linked list.");
         }
 
         /// <summary>
@@ -161,7 +163,7 @@ namespace WbsAlgorithms.DataStructures
         /// </summary>
         /// <param name="head">The head of the linked list</param>
         /// <param name="item">The item we want to remove</param>
-        /// <returns>The head of the linked list</returns>
+        /// <returns>The head of the modified linked list</returns>
         public static ListNode<T> RemoveByValue<T>(ListNode<T> head, T item)
             where T : IComparable<T>
         {
@@ -189,41 +191,6 @@ namespace WbsAlgorithms.DataStructures
             }
 
             throw new ArgumentException($"The value {item} not found in the linked list.");
-        }
-
-        /// <summary>
-        /// A helper method used by RemoveByIndex and RemoveByValue.
-        /// </summary>
-        /// <param name="head">The head of a linked list to modify</param>
-        /// <param name="prev">The node before the one to remove</param>
-        /// <param name="node">The node to remove</param>
-        /// <returns></returns>
-        private static ListNode<T> RemoveNode<T>(ListNode<T> head, ListNode<T> prev, ListNode<T> node)
-        {
-            // There are four possibilities:
-
-            // 1. The found node is the first one. Remove the first node.
-            if (prev == null && node != null && node.Next != null)
-            {
-                head = node.Next;
-            }
-            // 2. The found node is the last one. Remove the last node.
-            else if (prev != null && node != null && node.Next == null)
-            {
-                prev.Next = null;
-            }
-            // 3. The found node is somewhere in the middle of the list.
-            else if (prev != null && node != null && node.Next != null)
-            {
-                prev.Next = node.Next;
-            }
-            // 4. Otherwise, there is only one node. Remove it.
-            else if (prev == null && node != null && node.Next == null)
-            {
-                head = null;
-            }
-
-            return head;
         }
 
         /// <summary>
