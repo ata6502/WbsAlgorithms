@@ -160,8 +160,8 @@ namespace WbsAlgorithms.DataStructures
         /// Removes the first occurence of a node with the given value.
         /// </summary>
         /// <param name="head">The head of the linked list</param>
-        /// <param name="item">The value of the item we want to remove</param>
-        /// <returns></returns>
+        /// <param name="item">The item we want to remove</param>
+        /// <returns>The head of the linked list</returns>
         public static ListNode<T> RemoveByValue<T>(ListNode<T> head, T item)
             where T : IComparable<T>
         {
@@ -169,23 +169,26 @@ namespace WbsAlgorithms.DataStructures
             if (head == null)
                 return null;
 
-            // Try to find a node with the value 'item'. Also, keep the node previous to the found one.
-            ListNode<T> prev = null;
             ListNode<T> node = head;
 
-            while (node != null && node.Item.CompareTo(item) != 0)
+            // Check if the head has the input item. If so, return the next
+            // node as the new head.
+            if (node.Item.CompareTo(item) == 0)
+                return node.Next;
+
+            while(node.Next != null)
             {
-                prev = node;
+                if (node.Next.Item.CompareTo(item) == 0)
+                {
+                    node.Next = node.Next.Next;
+                    return head; // the head remains the same
+                }
+
+                // Proceed to the next node.
                 node = node.Next;
             }
 
-            if (node == null || node.Item.CompareTo(item) != 0)
-                throw new ArgumentException($"The value {item} not found in the linked list.");
-            else
-            {
-                head = RemoveNode(head, prev, node);
-                return head;
-            }
+            throw new ArgumentException($"The value {item} not found in the linked list.");
         }
 
         /// <summary>
