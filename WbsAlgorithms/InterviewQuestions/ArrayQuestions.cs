@@ -39,6 +39,88 @@ namespace WbsAlgorithms.InterviewQuestions
             }
         }
 
+        // If an element in an M x N matrix is 0, set the entire row and column to 0.
+        // Do not use any additional storage i.e., keep space complexity O(1).
+        public static void SetZerosInMatrixWithoutAdditionalStorage(int[,] a)
+        {
+            // Determine the dimensions M x N of the input matrix A.
+            var m = a.GetUpperBound(0) - a.GetLowerBound(0) + 1;
+            var n = a.GetUpperBound(1) - a.GetLowerBound(1) + 1;
+
+            // The idea is to keep track of which column and row has 0 in the first column
+            // and the first row.
+
+            // Check if the first row has any 0s.
+            var firstRowHasZero = false;
+            for(var j = 0; j < n; ++j)
+            {
+                if (a[0,j] == 0)
+                {
+                    firstRowHasZero = true;
+                    break;
+                }
+            }
+
+            // Check if the first column has any 0s.
+            var firstColumnHasZero = false;
+            for(var i = 0; i < m; ++i)
+            {
+                if (a[i,0] == 0)
+                {
+                    firstColumnHasZero = true;
+                    break;
+                }
+            }
+
+            // Iterate through the rest of the matrix. Set 0 in the first column
+            // and the first row if an element in the matrix is 0.
+            for (var i = 1; i < m; ++i)
+            {
+                for (var j = 1; j < n; ++j)
+                {
+                    if (a[i, j] == 0)
+                    {
+                        a[0, j] = 0;
+                        a[i, 0] = 0;
+                    }
+                }
+            }
+
+            // Set 0s in the rows.
+            for(var i = 1; i < m; ++i)
+            {
+                if (a[i, 0] == 0)
+                {
+                    for (var j = 1; j < n; ++j)
+                        a[i, j] = 0;
+                }
+            }
+
+            // Set 0s in the columns.
+            for(var j = 1; j < n; ++j)
+            {
+                if (a[0, j] == 0)
+                {
+                    for (var i = 1; i < m; ++i)
+                        a[i, j] = 0;
+                }
+            }
+
+            // Set 0s in the first row.
+            if (firstRowHasZero)
+            {
+                for (var j = 0; j < n; ++j)
+                    a[0, j] = 0;
+            }
+
+            // Set 0s in the first column.
+            if (firstColumnHasZero)
+            {
+                for (var i = 0; i < m; ++i)
+                    a[i, 0] = 0;
+            }
+        }
+
         public static void RotateMatrix(int[,] m)
         {
             Debug.Assert(m.GetLowerBound(0) == m.GetLowerBound(1));

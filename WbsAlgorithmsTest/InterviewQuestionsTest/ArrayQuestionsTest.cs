@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using WbsAlgorithms.InterviewQuestions;
 
@@ -10,8 +11,17 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         [TestCaseSource(nameof(MatrixTestCases))]
         public void SetZerosInMatrixTest(int[,] inputMatrix, int[,] expectedZeroMatrix)
         {
-            ArrayQuestions.SetZerosInMatrix(inputMatrix); // works in-place
-            CollectionAssert.AreEqual(expectedZeroMatrix, inputMatrix);
+            var m = inputMatrix.GetUpperBound(0) - inputMatrix.GetLowerBound(0) + 1;
+            var n = inputMatrix.GetUpperBound(1) - inputMatrix.GetLowerBound(1) + 1;
+            var matrix = new int[m, n];
+
+            Array.Copy(inputMatrix, matrix, m * n);
+            ArrayQuestions.SetZerosInMatrix(matrix); // works in-place
+            CollectionAssert.AreEqual(expectedZeroMatrix, matrix);
+
+            Array.Copy(inputMatrix, matrix, m * n);
+            ArrayQuestions.SetZerosInMatrixWithoutAdditionalStorage(matrix); // works in-place
+            CollectionAssert.AreEqual(expectedZeroMatrix, matrix);
         }
 
         private static IEnumerable<TestCaseData> MatrixTestCases()
@@ -20,7 +30,9 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
             yield return new TestCaseData(new[,] { { 1, 2 }, { 0, 3 } }, new[,] { { 0, 2 }, { 0, 0 } }).SetName("ZeroMatrix_2x2_2");
             yield return new TestCaseData(new[,] { { 1, 2, 0 }, { 3, 4, 5 } }, new[,] { { 0, 0, 0 }, { 3, 4, 0 } }).SetName("ZeroMatrix_2x3_1");
             yield return new TestCaseData(new[,] { { 1, 2, 3 }, { 4, 0, 5 } }, new[,] { { 1, 0, 3 }, { 0, 0, 0 } }).SetName("ZeroMatrix_2x3_2");
-            yield return new TestCaseData(new[,] { { 0, 2, 3, 4 }, { 5, 6, 0, 8 }, { 9, 10, 11, 12 } }, new[,] { { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 10, 0, 12 } }).SetName("ZeroMatrix_4x4_1");
+            yield return new TestCaseData(new[,] { { 0, 2, 3, 4 }, { 5, 6, 0, 8 }, { 9, 10, 11, 12 } }, new[,] { { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 10, 0, 12 } }).SetName("ZeroMatrix_3x4_1");
+            yield return new TestCaseData(new[,] { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 0, 12 }, { 13, 14, 15, 16 } }, new[,] { { 1, 2, 0, 4 }, { 5, 6, 0, 8 }, { 0, 0, 0, 0 }, { 13, 14, 0, 16 } }).SetName("ZeroMatrix_4x4_1");
+            yield return new TestCaseData(new[,] { { 1, 2, 3, 4 }, { 5, 0, 7, 0 }, { 9, 10, 11, 12 }, { 13, 14, 0, 16 } }, new[,] { { 1, 0, 0, 0 }, { 0, 0, 0, 0 }, { 9, 0, 0, 0 }, { 0, 0, 0, 0 } }).SetName("ZeroMatrix_4x4_2");
         }
 
         [Test]
