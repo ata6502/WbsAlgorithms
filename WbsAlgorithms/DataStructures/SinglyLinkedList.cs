@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using WbsAlgorithms.Common;
 
 namespace WbsAlgorithms.DataStructures
@@ -28,6 +29,7 @@ namespace WbsAlgorithms.DataStructures
     /// [Sedgewick] 1.3.30 - Reverse iteratively nodes in a linked list (ReverseIteratively).
     /// [Sedgewick] 1.3.30 - Reverse recursively nodes in a linked list (ReverseRecursively).
     /// [Leetcode] #206 - Reverse linked list (iteratively): https://leetcode.com/problems/reverse-linked-list/
+    /// [CodingInterview] 2.1 p.94 - Remove duplicates from an unsorted linked list (RemoveDuplicates).
     /// </summary>
     public class SinglyLinkedList
     {
@@ -73,23 +75,23 @@ namespace WbsAlgorithms.DataStructures
         /// <returns>The head of the modified linked list</returns>
         public static ListNode<T> AddLast<T>(ListNode<T> head, ListNode<T> node)
         {
-            // nothing to add
+            // There is nothing to add.
             if (node == null)
                 return head;
 
-            // add the input node to an empty list
+            // If the list is empty add the new node as the head.
             if (head == null)
             {
                 head = node;
                 return head;
             }
 
-            // find the last node
+            // Find the last node in the list.
             var last = head;
             while (last.Next != null)
                 last = last.Next;
 
-            // add the input node at the end of the linked list
+            // Add the new node at the end of the linked list.
             last.Next = node;
 
             return head;
@@ -497,6 +499,80 @@ namespace WbsAlgorithms.DataStructures
                     prev.Next = node;
 
                 prev = node;
+            }
+
+            return head;
+        }
+
+        /// <summary>
+        /// Remove duplicates from an unsorted linked list. 
+        /// Use a HashSet to keep track of duplicated items.
+        /// Time complexity O(N), where N is the number of nodes in the linked list.
+        /// </summary>
+        /// <param name="head">The head of the linked list</param>
+        /// <returns>The head of the linked list</returns>
+        public static ListNode<T> RemoveDuplicates<T>(ListNode<T> head)
+            where T : IComparable<T>
+        {
+            if (head == null)
+                return head;
+
+            var h = new HashSet<T>();
+
+            var node = head;
+            h.Add(node.Item);
+
+            // Iterate over the linked list.
+            while(node.Next != null)
+            {
+                if (h.TryGetValue(node.Next.Item, out _))
+                    // Remove the node if it has a duplicated value.
+                    node.Next = node.Next.Next;
+                else
+                {
+                    // Keep track of the items.
+                    h.Add(node.Next.Item);
+                    node = node.Next;
+                }
+            }
+
+            return head;
+        }
+
+        /// <summary>
+        /// Remove duplicates from an unsorted linked list.
+        /// Use a "runner technique" by using two pointers:
+        /// - one pointer iterates through the linked list
+        /// - another pointer (the runner) checks subsequent nodes for duplicates
+        /// Time complexity O(N^2); space complexity O(1)
+        /// </summary>
+        /// <param name="head">The head of the linked list</param>
+        /// <returns>The head of the linked list</returns>
+        public static ListNode<T> RemoveDuplicatesUsingRunner<T>(ListNode<T> head)
+            where T : IComparable<T>
+        {
+            if (head == null)
+                return head;
+
+            var node = head;
+
+            // Iterate over the linked list.
+            while (node != null)
+            {
+                var runner = node;
+
+                // Iterate over subsequent nodes.
+                while (runner.Next != null)
+                {
+                    if (node.Item.CompareTo(runner.Next.Item) == 0)
+                        // Remove the node pointed by runner.Next if it has
+                        // the same value as the node.
+                        runner.Next = runner.Next.Next;
+                    else
+                        runner = runner.Next;
+                }
+
+                node = node.Next;
             }
 
             return head;

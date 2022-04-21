@@ -500,5 +500,106 @@ namespace WbsAlgorithmsTest.DataStructures
             Assert.AreEqual(0, reversed.Next.Next.Next.Next.Item);
             Assert.IsNull(reversed.Next.Next.Next.Next.Next);
         }
+
+        [Test]
+        public void RemoveDuplicatesTest() => RemoveDuplicatesTestHelper(SinglyLinkedList.RemoveDuplicates);
+
+        [Test]
+        public void RemoveDuplicatesUsingRunnerTest() => RemoveDuplicatesTestHelper(SinglyLinkedList.RemoveDuplicatesUsingRunner);
+
+        private void RemoveDuplicatesTestHelper(Func<ListNode<int>, ListNode<int>> func)
+        {
+            ListNode<int> head = null;
+
+            // An empty list.
+            head = func(head);
+            Assert.IsNull(head);
+
+            // A one-element list.
+            head = new ListNode<int>(1);
+            head = func(head);
+            Assert.AreEqual(1, head.Item);
+            Assert.IsNull(head.Next);
+
+            // A two-element list - no duplicates.
+            head = SinglyLinkedList.Create(new int[] { 1, 2 });
+            head = func(head);
+            Assert.AreEqual(1, head.Item);
+            Assert.AreEqual(2, head.Next.Item);
+            Assert.IsNull(head.Next.Next);
+
+            // A two-element list - one duplicate.
+            head = SinglyLinkedList.Create(new int[] { 1, 1 });
+            head = func(head);
+            Assert.AreEqual(1, head.Item);
+            Assert.IsNull(head.Next);
+
+            // A three-element list - no duplicates.
+            head = SinglyLinkedList.Create(new int[] { 1, 2, 3 });
+            head = func(head);
+            Assert.AreEqual(1, head.Item);
+            Assert.AreEqual(2, head.Next.Item);
+            Assert.AreEqual(3, head.Next.Next.Item);
+            Assert.IsNull(head.Next.Next.Next);
+
+            // A three-element list - one duplicate.
+            head = SinglyLinkedList.Create(new int[] { 1, 2, 2 });
+            head = func(head);
+            Assert.AreEqual(1, head.Item);
+            Assert.AreEqual(2, head.Next.Item);
+            Assert.IsNull(head.Next.Next);
+
+            // A three-element list - two duplicates.
+            head = SinglyLinkedList.Create(new int[] { 1, 1, 1 });
+            head = func(head);
+            Assert.AreEqual(1, head.Item);
+            Assert.IsNull(head.Next);
+
+            // A four-element list - one duplicate.
+            head = SinglyLinkedList.Create(new int[] { 1, 2, 3, 2 });
+            head = func(head);
+            Assert.AreEqual(1, head.Item);
+            Assert.AreEqual(2, head.Next.Item);
+            Assert.AreEqual(3, head.Next.Next.Item);
+            Assert.IsNull(head.Next.Next.Next);
+
+            // A four-element list - one duplicate.
+            head = SinglyLinkedList.Create(new int[] { 1, 2, 2, 3 });
+            head = func(head);
+            Assert.AreEqual(1, head.Item);
+            Assert.AreEqual(2, head.Next.Item);
+            Assert.AreEqual(3, head.Next.Next.Item);
+            Assert.IsNull(head.Next.Next.Next);
+
+            // A four-element list - two duplicates.
+            head = SinglyLinkedList.Create(new int[] { 1, 2, 2, 1 });
+            head = func(head);
+            Assert.AreEqual(1, head.Item);
+            Assert.AreEqual(2, head.Next.Item);
+            Assert.IsNull(head.Next.Next);
+
+            // A four-element list - two duplicates.
+            head = SinglyLinkedList.Create(new int[] { 1, 2, 2, 2 });
+            head = func(head);
+            Assert.AreEqual(1, head.Item);
+            Assert.AreEqual(2, head.Next.Item);
+            Assert.IsNull(head.Next.Next);
+
+            // A four-element list - three duplicates.
+            head = SinglyLinkedList.Create(new int[] { 1, 1, 1, 1 });
+            head = func(head);
+            Assert.AreEqual(1, head.Item);
+            Assert.IsNull(head.Next);
+
+            // A six-element list - one duplicate.
+            head = SinglyLinkedList.Create(new int[] { 1, 2, 3, 4, 3, 5 });
+            head = func(head);
+            Assert.AreEqual(head.Item, 1);
+            Assert.AreEqual(head.Next.Item, 2);
+            Assert.AreEqual(head.Next.Next.Item, 3);
+            Assert.AreEqual(head.Next.Next.Next.Item, 4);
+            Assert.AreEqual(head.Next.Next.Next.Next.Item, 5);
+            Assert.IsNull(head.Next.Next.Next.Next.Next);
+        }
     }
 }
