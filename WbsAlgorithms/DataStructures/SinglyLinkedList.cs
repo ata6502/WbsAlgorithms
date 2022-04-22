@@ -30,6 +30,7 @@ namespace WbsAlgorithms.DataStructures
     /// [Sedgewick] 1.3.30 - Reverse recursively nodes in a linked list (ReverseRecursively).
     /// [Leetcode] #206 - Reverse linked list (iteratively): https://leetcode.com/problems/reverse-linked-list/
     /// [CodingInterview] 2.1 p.94 - Remove duplicates from an unsorted linked list (RemoveDuplicates).
+    /// [CodingInterview] 2.2 p.94 - Find the k-th to last element in a linked list (FindFromLast).
     /// </summary>
     public class SinglyLinkedList
     {
@@ -576,6 +577,48 @@ namespace WbsAlgorithms.DataStructures
             }
 
             return head;
+        }
+
+        /// <summary>
+        /// Finds the k-th to last element in a linked list. Uses an iterative approach.
+        /// Time complexity: O(n); space: O(1)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public static ListNode<T> FindFromLast<T>(ListNode<T> head, int k)
+        {
+            if (head == null)
+                return null;
+
+            var current = head;
+
+            // Wind up the runner k nodes forward. This places the runner and
+            // the current pointer k nodes apart.
+            var i = 0;
+            var runner = head;
+            while(runner != null && i < k)
+            {
+                runner = runner.Next;
+                ++i;
+            }
+
+            // i < k means that k is out of bounds: there are fewer nodes
+            // in the list than k.
+            if (i < k)
+                return null;
+
+            // Move both pointers at the same pace. If the runner hits the end
+            // of the list after k steps, the current pointer will be len - k
+            // nodes into the list where len is the number of nodes in the list.
+            while(runner != null)
+            {
+                current = current.Next;
+                runner = runner.Next;
+            }
+
+            // The current pointer is k nodes from the end of the list.
+            return current;
         }
     }
 }

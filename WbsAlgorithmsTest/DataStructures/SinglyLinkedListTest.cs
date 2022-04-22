@@ -601,5 +601,40 @@ namespace WbsAlgorithmsTest.DataStructures
             Assert.AreEqual(head.Next.Next.Next.Next.Item, 5);
             Assert.IsNull(head.Next.Next.Next.Next.Next);
         }
+
+        [Test]
+        public void FindFromLastTest()
+        {
+            ListNode<int> head = null;
+
+            // An empty list.
+            Assert.IsNull(SinglyLinkedList.FindFromLast(head, 1));
+
+            head = SinglyLinkedList.Create(new int[] { 10, 20 });
+            Assert.AreEqual(20, SinglyLinkedList.FindFromLast(head, 1).Item);
+            Assert.AreEqual(10, SinglyLinkedList.FindFromLast(head, 2).Item);
+            Assert.IsNull(SinglyLinkedList.FindFromLast(head, 3));
+
+            head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
+            Assert.AreEqual(30, SinglyLinkedList.FindFromLast(head, 1).Item);
+            Assert.AreEqual(20, SinglyLinkedList.FindFromLast(head, 2).Item);
+            Assert.AreEqual(10, SinglyLinkedList.FindFromLast(head, 3).Item);
+            Assert.IsNull(SinglyLinkedList.FindFromLast(head, 4));
+
+            head = SinglyLinkedList.Create(new int[] { 10, 20, 30, 40 });
+            Assert.AreEqual(40, SinglyLinkedList.FindFromLast(head, 1).Item);
+            Assert.AreEqual(30, SinglyLinkedList.FindFromLast(head, 2).Item);
+            Assert.AreEqual(20, SinglyLinkedList.FindFromLast(head, 3).Item);
+            Assert.AreEqual(10, SinglyLinkedList.FindFromLast(head, 4).Item);
+            Assert.IsNull(SinglyLinkedList.FindFromLast(head, 5));
+
+            head = SinglyLinkedList.Create(new int[] { 10, 20, 30, 40, 50 });
+            Assert.AreEqual(50, SinglyLinkedList.FindFromLast(head, 1).Item);
+            Assert.AreEqual(40, SinglyLinkedList.FindFromLast(head, 2).Item);
+            Assert.AreEqual(30, SinglyLinkedList.FindFromLast(head, 3).Item);
+            Assert.AreEqual(20, SinglyLinkedList.FindFromLast(head, 4).Item);
+            Assert.AreEqual(10, SinglyLinkedList.FindFromLast(head, 5).Item);
+            Assert.IsNull(SinglyLinkedList.FindFromLast(head, 7));
+        }
     }
 }
