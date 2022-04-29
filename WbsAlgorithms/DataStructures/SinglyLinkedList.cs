@@ -31,6 +31,7 @@ namespace WbsAlgorithms.DataStructures
     /// [Leetcode] #206 - Reverse linked list (iteratively): https://leetcode.com/problems/reverse-linked-list/
     /// [CodingInterview] 2.1 p.94 - Remove duplicates from an unsorted linked list (RemoveDuplicates).
     /// [CodingInterview] 2.2 p.94 - Find the k-th to last element in a linked list (FindFromLast).
+    /// [CodingInterview] 2.3 p.94 - Remove a node in the middle i.e., any node but the last one, not necessarily the exact middle (RemoveMiddleNode)
     /// </summary>
     public class SinglyLinkedList
     {
@@ -580,12 +581,12 @@ namespace WbsAlgorithms.DataStructures
         }
 
         /// <summary>
-        /// Finds the k-th to last element in a linked list. Uses an iterative approach.
+        /// Finds the k-th to last node in a linked list. Uses an iterative approach.
         /// Time complexity: O(n); space: O(1)
         /// </summary>
-        /// <param name="head"></param>
-        /// <param name="k"></param>
-        /// <returns></returns>
+        /// <param name="head">The head of the linked list</param>
+        /// <param name="k">Specifies the position of a node to find. k = 1 returns the last node, k = 2 returns the second to the last node, etc.</param>
+        /// <returns>The k-th to last node or null if the size of the list is less than k</returns>
         public static ListNode<T> FindFromLast<T>(ListNode<T> head, int k)
         {
             if (head == null)
@@ -619,6 +620,27 @@ namespace WbsAlgorithms.DataStructures
 
             // The current pointer is k nodes from the end of the list.
             return current;
+        }
+
+        /// <summary>
+        /// Remove a node in the middle of a linked list i.e., any node but the last one, 
+        /// not necessarily the exact middle. 
+        /// </summary>
+        /// <param name="node">A node to remove</param>
+        /// <returns>A node after the removed node</returns>
+        public static ListNode<T> DeleteMiddleNode<T>(ListNode<T> node)
+        {
+            if (node == null)
+                return node;
+
+            if (node.Next == null)
+                throw new ArgumentException("Cannot remove the last node.");
+
+            // Override the node we want to delete with the next node.
+            node.Item = node.Next.Item;
+            node.Next = node.Next.Next;
+
+            return node;
         }
     }
 }

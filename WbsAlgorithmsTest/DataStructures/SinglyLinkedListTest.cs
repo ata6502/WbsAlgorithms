@@ -636,5 +636,42 @@ namespace WbsAlgorithmsTest.DataStructures
             Assert.AreEqual(10, SinglyLinkedList.FindFromLast(head, 5).Item);
             Assert.IsNull(SinglyLinkedList.FindFromLast(head, 7));
         }
+
+        [Test]
+        public void DeleteMiddleNodeTest()
+        {
+            ListNode<int> head = null;
+
+            // An empty list.
+            Assert.IsNull(SinglyLinkedList.DeleteMiddleNode(head));
+
+            head = SinglyLinkedList.Create(new int[] { 1, 2, 3 });
+
+            Assert.Throws<ArgumentException>(() => SinglyLinkedList.DeleteMiddleNode(head.Next.Next)); // try to remove the last node
+            SinglyLinkedList.DeleteMiddleNode(head.Next); // 2
+            Assert.AreEqual(1, head.Item);
+            Assert.AreEqual(3, head.Next.Item);
+            Assert.IsNull(head.Next.Next);
+
+            head = SinglyLinkedList.Create(new int[] { 1, 2, 3, 4, 5 });
+
+            SinglyLinkedList.DeleteMiddleNode(head.Next.Next); // 3
+            Assert.AreEqual(1, head.Item);
+            Assert.AreEqual(2, head.Next.Item);
+            Assert.AreEqual(4, head.Next.Next.Item);
+            Assert.AreEqual(5, head.Next.Next.Next.Item);
+            Assert.IsNull(head.Next.Next.Next.Next);
+
+            SinglyLinkedList.DeleteMiddleNode(head.Next); // 2
+            Assert.AreEqual(1, head.Item);
+            Assert.AreEqual(4, head.Next.Item);
+            Assert.AreEqual(5, head.Next.Next.Item);
+            Assert.IsNull(head.Next.Next.Next);
+
+            SinglyLinkedList.DeleteMiddleNode(head); // 1
+            Assert.AreEqual(4, head.Item);
+            Assert.AreEqual(5, head.Next.Item);
+            Assert.IsNull(head.Next.Next);
+        }
     }
 }
