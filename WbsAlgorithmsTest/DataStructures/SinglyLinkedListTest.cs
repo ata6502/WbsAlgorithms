@@ -673,5 +673,19 @@ namespace WbsAlgorithmsTest.DataStructures
             Assert.AreEqual(5, head.Next.Item);
             Assert.IsNull(head.Next.Next);
         }
+
+        [TestCase(new int[] { 3, 5, 8, 5, 9, 2, 1 }, 5, new int[] { 3, 2, 1, 5, 8, 5, 9 })]
+        [TestCase(new int[] { 3, 5, 8, 5, 9, 2, 1 }, 8, new int[] { 3, 5, 5, 2, 1, 8, 9 })]
+        public void PartitionTest(int[] inputList, int partitionItem, int[] expectedList)
+        {
+            var linkedList = SinglyLinkedList.Create(inputList);
+
+            var node = SinglyLinkedList.Partition(linkedList, partitionItem);
+            foreach (var item in expectedList)
+            {
+                Assert.AreEqual(item, node.Item);
+                node = node.Next;
+            }
+        }
     }
 }

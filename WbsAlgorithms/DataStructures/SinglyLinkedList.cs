@@ -642,5 +642,60 @@ namespace WbsAlgorithms.DataStructures
 
             return node;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="head"></param>
+        /// <param name="partitionItem"></param>
+        /// <returns></returns>
+        public static ListNode<T> Partition<T>(ListNode<T> head, T partitionItem)
+            where T : IComparable<T>
+        {
+            // leftHead -> ... -> left -> ... -> rightHead -> ... -> right
+            ListNode<T> leftHead = null;
+            ListNode<T> left = null;
+            ListNode<T> rightHead = null;
+            ListNode<T> right = null;
+
+            var node = head;
+
+            while(node != null)
+            {
+                if (node.Item.CompareTo(partitionItem) < 0)
+                {
+                    if (left == null)
+                    {
+                        left = node;
+                        leftHead = left;
+                    }
+                    else
+                    {
+                        left.Next = node;
+                        left = node;
+                    }
+                }
+                else
+                {
+                    if (right == null)
+                    {
+                        right = node;
+                        rightHead = node;
+                    }
+                    else
+                    {
+                        right.Next = node;
+                        right = node;
+                    }
+                }
+
+                node = node.Next;
+            }
+
+            right.Next = null;
+            left.Next = rightHead;
+
+            return leftHead;
+        }
     }
 }
