@@ -674,13 +674,22 @@ namespace WbsAlgorithmsTest.DataStructures
             Assert.IsNull(head.Next.Next);
         }
 
+        [TestCase(new int[] { 1 }, 1, new int[] { 1 })]
+        [TestCase(new int[] { 1, 2 }, 1, new int[] { 1, 2 })]
+        [TestCase(new int[] { 1, 2 }, 2, new int[] { 1, 2 })]
+        [TestCase(new int[] { 3, 1, 2 }, 3, new int[] { 1, 2, 3 })]
+        [TestCase(new int[] { 3, 1, 2 }, 1, new int[] { 3, 1, 2 })]
+        [TestCase(new int[] { 3, 1, 2 }, 2, new int[] { 1, 3, 2 })]
         [TestCase(new int[] { 3, 5, 8, 5, 9, 2, 1 }, 5, new int[] { 3, 2, 1, 5, 8, 5, 9 })]
         [TestCase(new int[] { 3, 5, 8, 5, 9, 2, 1 }, 8, new int[] { 3, 5, 5, 2, 1, 8, 9 })]
+        [TestCase(new int[] { 5, 6, 1, 3, 6, 7, 3, 4, 8, 9, 5, 2 }, 6, new int[] { 5, 1, 3, 3, 4, 5, 2, 6, 6, 7, 8, 9 })]
+        [TestCase(new int[] { 5, 6, 1, 3, 6, 7, 3, 4, 8, 9, 5, 2 }, 3, new int[] { 1, 2, 5, 6, 3, 6, 7, 3, 4, 8, 9, 5 })]
+        [TestCase(new int[] { 5, 6, 1, 3, 6, 7, 3, 4, 8, 9, 5, 2 }, 8, new int[] { 5, 6, 1, 3, 6, 7, 3, 4, 5, 2, 8, 9 })]
         public void PartitionTest(int[] inputList, int partitionItem, int[] expectedList)
         {
             var linkedList = SinglyLinkedList.Create(inputList);
 
-            var node = SinglyLinkedList.Partition(linkedList, partitionItem);
+            var node = SinglyLinkedList.PartitionPreserveOrder(linkedList, partitionItem);
             foreach (var item in expectedList)
             {
                 Assert.AreEqual(item, node.Item);

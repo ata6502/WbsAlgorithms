@@ -32,6 +32,7 @@ namespace WbsAlgorithms.DataStructures
     /// [CodingInterview] 2.1 p.94 - Remove duplicates from an unsorted linked list (RemoveDuplicates).
     /// [CodingInterview] 2.2 p.94 - Find the k-th to last element in a linked list (FindFromLast).
     /// [CodingInterview] 2.3 p.94 - Remove a node in the middle i.e., any node but the last one, not necessarily the exact middle (RemoveMiddleNode)
+    /// [CodingInterview] 2.4 p.94 - Partition a linked list around a given value (Partition).
     /// </summary>
     public class SinglyLinkedList
     {
@@ -584,7 +585,7 @@ namespace WbsAlgorithms.DataStructures
         /// Finds the k-th to last node in a linked list. Uses an iterative approach.
         /// Time complexity: O(n); space: O(1)
         /// </summary>
-        /// <param name="head">The head of the linked list</param>
+        /// <param name="head">The head of a linked list</param>
         /// <param name="k">Specifies the position of a node to find. k = 1 returns the last node, k = 2 returns the second to the last node, etc.</param>
         /// <returns>The k-th to last node or null if the size of the list is less than k</returns>
         public static ListNode<T> FindFromLast<T>(ListNode<T> head, int k)
@@ -644,57 +645,84 @@ namespace WbsAlgorithms.DataStructures
         }
 
         /// <summary>
+        /// Partitions a linked list around a value x, such that all nodes less than x
+        /// come before all nodes greater than or equal to x. The nodes stay in their
+        /// original order except around the partition item.
         /// 
+        /// Note that the partition item x can appear anywhere on the right side of
+        /// the partition. It does not need to appear between the left and right partitions.
+        /// 
+        /// Example:
+        /// Input:  3 -> 5 -> 8 -> 5 -> 9 -> 2 -> 1; partitionItem = 5
+        /// Output: 3 -> 1 -> 2 -> 9 -> 5 -> 5 -> 8; partition is between 2 and 9
         /// </summary>
-        /// <param name="head"></param>
-        /// <param name="partitionItem"></param>
-        /// <returns></returns>
-        public static ListNode<T> Partition<T>(ListNode<T> head, T partitionItem)
+        /// <param name="head">The head of a linked list</param>
+        /// <param name="partitionItem">A value in the linked list we want to partition around</param>
+        /// <returns>The head of the partitioned linked list</returns>
+        public static ListNode<T> PartitionPreserveOrder<T>(ListNode<T> head, T partitionItem)
             where T : IComparable<T>
         {
-            // leftHead -> ... -> left -> ... -> rightHead -> ... -> right
+            if (head == null)
+                return head;
+
+            // We use two linked lists:
+            // - leftHead/leftTail - includes items less than the partitionItem
+            // - rightHead/rightTail - includes items greater than or equal to the partitionItem
             ListNode<T> leftHead = null;
-            ListNode<T> left = null;
+            ListNode<T> leftTail = null;
             ListNode<T> rightHead = null;
-            ListNode<T> right = null;
+            ListNode<T> rightTail = null;
 
             var node = head;
 
+            // Iterate through the input linked list.
             while(node != null)
             {
                 if (node.Item.CompareTo(partitionItem) < 0)
                 {
-                    if (left == null)
+                    // Insert a node at the end of the left list.
+                    if (leftTail == null)
                     {
-                        left = node;
-                        leftHead = left;
+                        leftTail = node;
+                        leftHead = leftTail;
                     }
                     else
                     {
-                        left.Next = node;
-                        left = node;
+                        leftTail.Next = node;
+                        leftTail = node;
                     }
                 }
                 else
                 {
-                    if (right == null)
+                    // Insert a node at the end of the right list.
+                    if (rightTail == null)
                     {
-                        right = node;
+                        rightTail = node;
                         rightHead = node;
                     }
                     else
                     {
-                        right.Next = node;
-                        right = node;
+                        rightTail.Next = node;
+                        rightTail = node;
                     }
                 }
 
                 node = node.Next;
             }
 
-            right.Next = null;
-            left.Next = rightHead;
+            // Reset the end of the list.
+            rightTail.Next = null;
 
+            // Check if there are any nodes in the left list. If not, then it means
+            // that all nodes have been partitioned to the right list.
+            if (leftHead == null)
+                return rightHead;
+
+            // Merge the two lists.
+            leftTail.Next = rightHead;
+
+            // The final partitioned linked list:
+            // leftHead -> ... -> leftTail -> rightHead -> ... -> rightTail -> null
             return leftHead;
         }
     }
