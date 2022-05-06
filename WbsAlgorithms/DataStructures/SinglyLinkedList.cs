@@ -646,8 +646,8 @@ namespace WbsAlgorithms.DataStructures
 
         /// <summary>
         /// Partitions a linked list around a value x, such that all nodes less than x
-        /// come before all nodes greater than or equal to x. The nodes stay in their
-        /// original order except around the partition item.
+        /// come before all nodes greater than or equal to x. The nodes are rearranged
+        /// i.e., they are not in the same order as in the original linked list.
         /// 
         /// Note that the partition item x can appear anywhere on the right side of
         /// the partition. It does not need to appear between the left and right partitions.
@@ -655,6 +655,54 @@ namespace WbsAlgorithms.DataStructures
         /// Example:
         /// Input:  3 -> 5 -> 8 -> 5 -> 9 -> 2 -> 1; partitionItem = 5
         /// Output: 3 -> 1 -> 2 -> 9 -> 5 -> 5 -> 8; partition is between 2 and 9
+        /// </summary>
+        /// <param name="head">The head of a linked list</param>
+        /// <param name="partitionItem">A value in the linked list we want to partition around</param>
+        /// <returns>The head of the partitioned linked list</returns>
+        public static ListNode<T> Partition<T>(ListNode<T> head, T partitionItem)
+            where T : IComparable<T>
+        {
+            // Do not partition the list if it's empty or it has one node.
+            if (head == null || head.Next == null)
+                return head;
+
+            ListNode<T> newHead = head;
+            ListNode<T> newTail = head;
+
+            var node = head;
+
+            while (node != null)
+            {
+                // Keep the pointer to the next node.
+                var next = node.Next;
+
+                if (node.Item.CompareTo(partitionItem) < 0)
+                {
+                    // Insert the node at the head of the linked list.
+                    node.Next = newHead;
+                    newHead = node;
+                }
+                else
+                {
+                    // Insert the node at the tail of the linked list.
+                    newTail.Next = node;
+                    newTail = node;
+                }
+
+                // Proceed to the previous next node.
+                node = next;
+            }
+
+            // Mark the last node as the tail of the new linked list.
+            newTail.Next = null;
+
+            return newHead;
+        }
+
+        /// <summary>
+        /// Partitions a linked list around a value x, such that all nodes less than x
+        /// come before all nodes greater than or equal to x. The nodes stay in their
+        /// original order except around the partition item.
         /// </summary>
         /// <param name="head">The head of a linked list</param>
         /// <param name="partitionItem">A value in the linked list we want to partition around</param>
