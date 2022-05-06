@@ -14,10 +14,8 @@ namespace WbsAlgorithms.Common
         /// </summary>
         public int VertexCount => _vertices.Count - 1; // we need to subtract 1 because the list of indices is 1-based
 
-        public WeightedGraph()
+        public WeightedGraph() : this(0)
         {
-            _vertices = new List<List<(int, int)>>();
-            _vertices.Add(null);
         }
 
         public WeightedGraph(int capacity)
@@ -39,10 +37,12 @@ namespace WbsAlgorithms.Common
         }
 
         /// <summary>
-        /// Returns the list of adjacent vertices to a given vertex together with their weights.
+        /// Returns the list of adjacent vertices of a given vertex together with their weights.
+        /// The weights are for an edge starting from the given vertex s to each vertex in 
+        /// the s's adjacency list.
         /// </summary>
-        /// <param name="vertex">The vertex index</param>
-        /// <returns>The list of adjacent vertices</returns>
+        /// <param name="vertex">The index of a vertex s</param>
+        /// <returns>The list of adjacent vertices and their weights: (adjVertexIndex, adjVertexWeight)</returns>
         public List<(int, int)> this[int vertex]
         {
             get
