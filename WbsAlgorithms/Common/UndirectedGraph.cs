@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace WbsAlgorithms.Common
 {
     /// <summary>
     /// An implementation of an undirected graph using an array of bags.
+    /// - Space usage proportional to V + E
+    /// - Constant time to add an edge
+    /// - Time proportional to the degree of v to iterate through vertices adjacent to v
+    /// - Parallel edges and self-loops are allowed
     /// [Sedgewick] p.526 Graph data type
     /// </summary>
     public class UndirectedGraph
     {
-        // An array of adjacent vertices for each vertex represented as an index in the array.
+        // A vertex-indexed array pf lists of integers.
         private Bag<int>[] _adjacencyLists; 
 
         /// <summary>
@@ -64,6 +67,9 @@ namespace WbsAlgorithms.Common
         /// <param name="v">Another vertex in the graph</param>
         public void AddEdge(int v, int w)
         {
+            // Add an edge twice because the graph is undirected.
+            // If an edge connects v and w, the w appears in v's list
+            // and v appears in w's list.
             _adjacencyLists[v].Add(w);
             _adjacencyLists[w].Add(v);
             ++E;
