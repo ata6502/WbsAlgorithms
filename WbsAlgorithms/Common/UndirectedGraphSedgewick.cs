@@ -11,7 +11,7 @@ namespace WbsAlgorithms.Common
     /// - Parallel edges and self-loops are allowed
     /// [Sedgewick] p.526 Graph data type
     /// </summary>
-    public class UndirectedGraph
+    public class UndirectedGraphSedgewick
     {
         // A vertex-indexed array pf lists of integers.
         private Bag<int>[] _adjacencyLists; 
@@ -47,7 +47,7 @@ namespace WbsAlgorithms.Common
         /// and no edges.
         /// </summary>
         /// <param name="vertexCount">The number of vertices in the graph</param>
-        public UndirectedGraph(int vertexCount)
+        public UndirectedGraphSedgewick(int vertexCount)
         {
             V = vertexCount;
             E = 0;

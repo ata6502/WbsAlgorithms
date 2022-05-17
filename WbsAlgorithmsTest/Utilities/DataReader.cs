@@ -198,5 +198,73 @@ namespace WbsAlgorithmsTest.Utilities
                 }
             }
         }
+
+        // Based on https://algs4.cs.princeton.edu/41graph/Graph.java.html
+        public static UndirectedGraphSedgewick ReadUndirectedGraphSedgewick(string filename)
+        {
+            // An example of a graph:
+            // 13 <-- the number of vertices V
+            // 13 <-- the number of edges E
+            // 0 5 <-- vertex indices are 0-based
+            // 4 3
+            // 0 1
+            // 9 12
+            // etc.
+
+            using (var reader = new StreamReader(filename))
+            {
+                // The first line is the number of vertices V.
+                var vertexCount = ReadPositiveInteger(reader.ReadLine());
+
+                // The second line is the number of edges.
+                var edgeCount = ReadPositiveInteger(reader.ReadLine());
+
+                // Create the undirected graph Sedgewick-style.
+                var graph = new UndirectedGraphSedgewick(vertexCount);
+
+                for (var i = 0; i < edgeCount; ++i)
+                {
+                    var (v, w) = ReadIntegerPair(reader.ReadLine());
+
+                    if (v >= vertexCount || w >= vertexCount)
+                        throw new ArgumentOutOfRangeException("Vertex out of range");
+
+                    graph.AddEdge(v, w);
+                }
+
+                return graph;
+            }
+
+            int ReadPositiveInteger(string str)
+            {
+                if (string.IsNullOrEmpty(str))
+                    throw new ArgumentException("The number is missing.");
+
+                if (!int.TryParse(str, out var n))
+                    throw new FormatException($"The number '{str}' is not a valid integer.");
+
+                if (n < 0)
+                    throw new ArgumentException("The number must be non-negative.");
+
+                return n;
+            }
+
+            (int, int) ReadIntegerPair(string str)
+            {
+                char[] VertexSeparator = new char[] { ' ' };
+
+                if (string.IsNullOrEmpty(str))
+                    throw new ArgumentException("The numbers are missing.");
+
+                string[] nums = str.Trim().Split(VertexSeparator);
+                if (nums.Length != 2)
+                    throw new ArgumentException("Two numbers expected.");
+
+                var v = ReadPositiveInteger(nums[0]);
+                var w = ReadPositiveInteger(nums[1]);
+
+                return (v, w);
+            }
+        }
     }
 }
