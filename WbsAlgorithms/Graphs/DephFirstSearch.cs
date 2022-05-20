@@ -4,6 +4,12 @@ using WbsAlgorithms.Common;
 
 namespace WbsAlgorithms.Graphs
 {
+    /// <summary>
+    /// Deph-First Search (DFS) marks all the vertices connected to a given 
+    /// source vertex in time proportional to the sum of their degrees.
+    /// 
+    /// [Sedgewick] p.531
+    /// </summary>
     public class DephFirstSearch
     {
         /// <summary>
@@ -54,17 +60,22 @@ namespace WbsAlgorithms.Graphs
         /// <returns>A list of explored vertices</returns>
         public static List<int> ExploreRecursively(Graph g, int sourceVertex)
         {
-            // A collection of explored vertices. Vertex indices are 1-based.
+            // A collection of all vertices connected to the sourceVertex.
+            // Vertex indices are 1-based.
             var e = new bool[g.VertexCount + 1];
 
             ExploreRecursivelyInternal(g, sourceVertex, e);
 
             return GetVertexList(e);
 
+            // The recursive method explores vertices.
             bool[] ExploreRecursivelyInternal(Graph g, int v, bool[] e)
             {
+                // Mark the vertex v as explored.
                 e[v] = true;
 
+                // Explored recursively all the vertices that are adjacent to 
+                // the vertex v and that have not yet been visited.
                 foreach (var w in g[v])
                 {
                     if (!e[w])
