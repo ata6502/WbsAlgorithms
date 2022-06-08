@@ -21,8 +21,8 @@ namespace WbsAlgorithms.Graphs
             var q = new Queue<int>();
             q.Enqueue(sourceVertex);
 
-            // A collection of explored vertices. Vertex indices are 1-based.
-            var e = new bool[g.VertexCount + 1];
+            // A collection of explored vertices.
+            var e = new bool[g.VertexCount];
 
             // Mark the source vertex as explored.
             e[sourceVertex] = true;
@@ -49,11 +49,11 @@ namespace WbsAlgorithms.Graphs
             return GetVertexList(e);
         }
 
-        // Convert a collection of explored vertices to a list of 1-based vertex indices.
+        // Convert a collection of explored vertices to a list vertex indices.
         private static List<int> GetVertexList(bool[] e)
         {
             var exploredVertices = new List<int>();
-            for (var i = 1; i < e.Length; ++i)
+            for (var i = 0; i < e.Length; ++i)
                 if (e[i])
                     exploredVertices.Add(i);
             return exploredVertices;

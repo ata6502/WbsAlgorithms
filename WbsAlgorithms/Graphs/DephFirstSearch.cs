@@ -28,8 +28,8 @@ namespace WbsAlgorithms.Graphs
 
             s.Push(sourceVertex);
 
-            // A collection of explored vertices. Vertex indices are 1-based.
-            var e = new bool[g.VertexCount + 1];
+            // A collection of explored vertices.
+            var e = new bool[g.VertexCount];
 
             while (s.Count > 0)
             {
@@ -61,8 +61,7 @@ namespace WbsAlgorithms.Graphs
         public static List<int> ExploreRecursively(Graph g, int sourceVertex)
         {
             // A collection of all vertices connected to the sourceVertex.
-            // Vertex indices are 1-based.
-            var e = new bool[g.VertexCount + 1];
+            var e = new bool[g.VertexCount];
 
             ExploreRecursivelyInternal(g, sourceVertex, e);
 
@@ -86,11 +85,11 @@ namespace WbsAlgorithms.Graphs
             }
         }
 
-        // Convert a collection of explored vertices to a list of 1-based vertex indices.
+        // Convert a collection of explored vertices to a list vertex indices.
         private static List<int> GetVertexList(bool[] e)
         {
             var exploredVertices = new List<int>();
-            for (var i = 1; i < e.Length; ++i)
+            for (var i = 0; i < e.Length; ++i)
                 if (e[i])
                     exploredVertices.Add(i);
             return exploredVertices;

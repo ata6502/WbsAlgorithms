@@ -28,7 +28,7 @@ namespace WbsAlgorithms.Graphs
         /// <summary>
         /// Uses the Kosaraju's Algorithm to find SCCs of the given graph.
         /// </summary>
-        /// <param name="graph">A directed graph G = (V,E) in adjacency-list representation with V = {1,2,3,...,n}</param>
+        /// <param name="graph">A directed graph G = (V,E) in adjacency-list representation with V = {0,1,2,...,n-1}</param>
         /// <param name="graphReversed">A copy of the input graph G with all edges reversed</param>
         /// <returns>An array containing sets of SCC numbers. Each SCC number corresponds to a single vertex.
         /// Each set contains the same SCC numbers and indicates a single strongly connected component.</returns>
@@ -37,10 +37,10 @@ namespace WbsAlgorithms.Graphs
             Debug.Assert(graph.VertexCount == graphReversed.VertexCount);
 
             // Reset the global state.
-            t = 1;
+            t = 0;
 
-            // Collections' indices are 1-based.
-            var size = graph.VertexCount + 1;
+            // Collections' indices.
+            var size = graph.VertexCount;
 
             // A collection of explored vertices.
             var explored = new BitArray(size);

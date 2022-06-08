@@ -20,12 +20,12 @@ namespace WbsAlgorithms.Graphs
         public static int[] Sort(Graph g, int[] vertexOrder = null)
         {
             // Initialize the current ordering position to be the index of the last vertex.
-            _ordinalPosition = g.VertexCount;
+            _ordinalPosition = g.VertexCount - 1;
 
-            // A collection of explored vertices. Vertex indices are 1-based.
-            var e = new bool[g.VertexCount + 1];
+            // A collection of explored vertices.
+            var e = new bool[g.VertexCount];
 
-            // A collection of vertices that constitutes a topological ordering. Vertex indices are 0-based.
+            // A collection of vertices that constitutes a topological ordering.
             var f = new int[g.VertexCount];
 
             // Iterate over all vertex labels.
@@ -67,8 +67,8 @@ namespace WbsAlgorithms.Graphs
                     DFSTopo(g, v, e, f);
 
             // This is additional code in DFS to determine topological ordering.
-            f[s-1] = _ordinalPosition; // keep the s's position in ordering
-            --_ordinalPosition;        // work right-to-left in recursive DFS
+            f[s] = _ordinalPosition; // keep the s's position in ordering
+            --_ordinalPosition;      // work right-to-left in recursive DFS
         }
     }
 }

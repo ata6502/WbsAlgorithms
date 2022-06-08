@@ -5,46 +5,44 @@ namespace WbsAlgorithms.Common
 {
     public class Graph
     {
-        // A list of adjacent vertices. Vertex indices are 1-based.
+        // A list of adjacent vertices. Vertex indices are 0-based.
         private List<List<int>> _vertices { get; }
 
         /// <summary>
         /// The number of vertices in the graph.
         /// </summary>
-        public int VertexCount => _vertices.Count - 1; // we need to subtract 1 because the list of indices is 1-based
+        public int VertexCount => _vertices.Count;
 
         public Graph()
         {
             _vertices = new List<List<int>>();
-            _vertices.Add(null);
         }
 
         public Graph(int capacity)
         {
-            _vertices = new List<List<int>>(capacity + 1);
-            _vertices.Add(null);
+            _vertices = new List<List<int>>(capacity);
         }
 
         /// <summary>
-        /// The graph's vertices enumerated from index 1 to VertexCount.
+        /// The graph's vertices enumerated from index 0 to VertexCount-1.
         /// </summary>
         public IEnumerable<int> Vertices
         {
             get
             {
-                for (var i = 1; i <= VertexCount; ++i)
+                for (var i = 0; i <= VertexCount-1; ++i)
                     yield return i;
             }
         }
 
         /// <summary>
-        /// The graph's vertices enumerated from index VertexCount down to 1.
+        /// The graph's vertices enumerated from index VertexCount-1 down to 0.
         /// </summary>
         public IEnumerable<int> ReversedVertices
         {
             get
             {
-                for (var i = VertexCount; i >= 1; --i)
+                for (var i = VertexCount-1; i >= 0; --i)
                     yield return i;
             }
         }
@@ -58,7 +56,7 @@ namespace WbsAlgorithms.Common
         {
             get
             {
-                if (vertex < 1 || vertex > VertexCount)
+                if (vertex < 0 || vertex > VertexCount-1)
                     throw new IndexOutOfRangeException(nameof(vertex));
 
                 return _vertices[vertex];
@@ -74,12 +72,12 @@ namespace WbsAlgorithms.Common
         {
             var maxVertexIndex = Math.Max(u, v);
 
-            if (VertexCount < maxVertexIndex)
+            if (VertexCount < maxVertexIndex + 1)
             {
                 // Resize the list if needed.
-                _vertices.Capacity = maxVertexIndex + 1; // +1 because indices are 1-based
-                var sizeIncrease = maxVertexIndex - VertexCount;
-                for (var i = 1; i <= sizeIncrease; ++i)
+                _vertices.Capacity = maxVertexIndex + 1;
+                var sizeIncrease = maxVertexIndex + 1 - VertexCount;
+                for (var i = 0; i < sizeIncrease; ++i)
                     _vertices.Add(new List<int>());
             }
 

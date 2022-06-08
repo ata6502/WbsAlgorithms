@@ -31,31 +31,31 @@ namespace WbsAlgorithmsTest.Graphs
 
         private static IEnumerable<TestCaseData> TestCases()
         {
-            yield return new TestCaseData(@"Data\GraphDAG1.txt", new int[] { 1, 3, 2, 4 }).SetName("GraphDAG1"); // alternatively: 1, 2, 3, 4
-            yield return new TestCaseData(@"Data\GraphDAG2.txt", new int[] { 1, 3, 2, 4, 5, 6, }).SetName("GraphDAG2"); // alternatively: 1, 2, 3, 4, 5, 6
+            yield return new TestCaseData(@"Data\GraphDAG1.txt", new int[] { 0, 2, 1, 3 }).SetName("GraphDAG1"); // alternatively: 0, 1, 2, 3
+            yield return new TestCaseData(@"Data\GraphDAG2.txt", new int[] { 0, 2, 1, 3, 4, 5, }).SetName("GraphDAG2"); // alternatively: 0, 1, 2, 3, 4, 5
         }
 
-        // Test all possible orders of exploration of vertices in a 4-vertex DAG (GraphDAG1.txt).
+        // Test all possible orders of exploration of vertices in a 4-vertex DAG (GraphDAG1.txt)
         [Test]
         public void FourVertexOrderTest()
         {
-            var vertices = new int[] { 1, 2, 3, 4 };
+            var vertices = new int[] { 0, 1, 2, 3 };
 
             foreach (var vertexOrderString in HeapPermutation(vertices))
             {
                 var vertexOrder = Array.ConvertAll(vertexOrderString.Split(' '), s => int.Parse(s));
                 var f = TopologicalSorting.Sort(_graphFourVertices, vertexOrder); // f has 0-based indices
 
-                Assert.AreEqual(1, f[0]);
+                Assert.AreEqual(0, f[0]);
 
-                if (f[1] == 2) // tests 1, 2, 3, 4
-                    Assert.AreEqual(3, f[2]);
-                else if (f[1] == 3) // tests 1, 3, 2, 4
+                if (f[1] == 1) // tests 0, 1, 2, 3
                     Assert.AreEqual(2, f[2]);
+                else if (f[1] == 2) // tests 0, 2, 1, 3
+                    Assert.AreEqual(1, f[2]);
                 else
-                    Assert.Fail($"f[1]={f[1]}; expected 2 or 3");
+                    Assert.Fail($"f[1]={f[1]}; expected 1 or 2");
 
-                Assert.AreEqual(4, f[3]);
+                Assert.AreEqual(3, f[3]);
             }
         }
 
@@ -64,7 +64,7 @@ namespace WbsAlgorithmsTest.Graphs
         [Test]
         public void SixVertexOrderTest()
         {
-            var vertices = new int[] { 1, 2, 3, 4, 5, 6 };
+            var vertices = new int[] { 0, 1, 2, 3, 4, 5 };
 
             foreach (var vertexOrderString in HeapPermutation(vertices))
             {
@@ -72,21 +72,21 @@ namespace WbsAlgorithmsTest.Graphs
                 var f = TopologicalSorting.Sort(_graphSixVertices, vertexOrder); // f has 0-based indices
 
                 // There are two possible orderings:
-                // 1, 2, 3, 4, 5, 6
-                // 1, 3, 2, 4, 5, 6
+                // 0, 1, 2, 3, 4, 5
+                // 0, 2, 1, 3, 4, 5
 
-                Assert.AreEqual(1, f[0]);
+                Assert.AreEqual(0, f[0]);
 
-                if (f[1] == 2) // tests 1, 2, 3, 4, 5, 6
-                    Assert.AreEqual(3, f[2]);
-                else if (f[1] == 3) // tests 1, 3, 2, 4, 5, 6
+                if (f[1] == 1) // tests 0, 1, 2, 3, 4, 5
                     Assert.AreEqual(2, f[2]);
+                else if (f[1] == 2) // tests 0, 2, 1, 3, 4, 5
+                    Assert.AreEqual(1, f[2]);
                 else
-                    Assert.Fail($"f[1]={f[1]}; expected 2 or 3");
+                    Assert.Fail($"f[1]={f[1]}; expected 1 or 2");
 
-                Assert.AreEqual(4, f[3]);
-                Assert.AreEqual(5, f[4]);
-                Assert.AreEqual(6, f[5]);
+                Assert.AreEqual(3, f[3]);
+                Assert.AreEqual(4, f[4]);
+                Assert.AreEqual(5, f[5]);
             }
         }
 

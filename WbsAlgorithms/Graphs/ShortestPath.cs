@@ -23,8 +23,8 @@ namespace WbsAlgorithms.Graphs
             var q = new Queue<int>();
             q.Enqueue(sourceVertex);
 
-            // A collection of explored vertices. Vertex indices are 1-based.
-            var e = new bool[g.VertexCount + 1];
+            // A collection of explored vertices.
+            var e = new bool[g.VertexCount];
             e[sourceVertex] = true;
 
             // A collection of distances from the sourceVertex to the vertex inticated by the index.
@@ -33,7 +33,7 @@ namespace WbsAlgorithms.Graphs
             // Initialize the collections of distances.
             // Initially, assume that all the vertices except the starting vertex are unreachable.
             foreach(var v in g.Vertices)
-                l[v - 1] = v == sourceVertex ? 0 : -1;
+                l[v] = v == sourceVertex ? 0 : -1;
 
             // While the queue is not empty.
             while (q.Count > 0)
@@ -51,7 +51,7 @@ namespace WbsAlgorithms.Graphs
 
                         // The vertex w is discovered for the first time. Set the w's shortest
                         // path as one more than that of the vertex v that triggered w's discovery.
-                        l[w - 1] = l[v - 1] + 1;
+                        l[w] = l[v] + 1;
 
                         // Add the vertex w to the end of the queue.
                         q.Enqueue(w);

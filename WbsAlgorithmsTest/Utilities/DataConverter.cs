@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -85,5 +87,41 @@ namespace WbsAlgorithmsTest.Utilities
 
         private static object ApplyTolerance(object num, int numberOfDecimalPlaces)
             => num is double ? Math.Round((double)num, numberOfDecimalPlaces) : num;
+
+        public static void ConvertOneBasedGraphToZeroBasedGraph(string filename)
+        {
+            var sb = new StringBuilder();
+            using (var reader = new StreamReader(filename))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    sb.AppendLine(ConvertToZeroBasedVertices(line));
+                }
+            }
+            File.WriteAllText(filename, sb.ToString());
+
+            string ConvertToZeroBasedVertices(string line)
+            {
+                char[] VertexSeparator = new char[] { ' ', '\t' };
+                string[] nums = line.Trim().Split(VertexSeparator);
+
+                var vert = new StringBuilder();
+                for (var i = 0; i < nums.Length; ++i)
+                {
+                    vert.Append(GetInt(nums[i]) - 1);
+                    if (i < nums.Length - 1)
+                        vert.Append(" ");
+                }
+                return vert.ToString();
+
+                int GetInt(string str)
+                {
+                    if (!int.TryParse(str, out var n))
+                        throw new ArgumentException("not a number");
+                    return n;
+                }
+            }
+        }
     }
 }
