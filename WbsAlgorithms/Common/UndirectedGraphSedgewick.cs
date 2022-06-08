@@ -13,7 +13,7 @@ namespace WbsAlgorithms.Common
     /// </summary>
     public class UndirectedGraphSedgewick
     {
-        // A vertex-indexed array pf lists of integers.
+        // A vertex-indexed array of lists of integers.
         private Bag<int>[] _adjacencyLists; 
 
         /// <summary>
