@@ -102,22 +102,24 @@ namespace WbsAlgorithmsTest.Utilities
         {
             // An example of a graph:
             // 13 <-- the number of vertices V
-            // 21 <-- the number of edges E
+            // 21 <-- TODO: the number of edges E
             // 0 5 <-- vertex indices are 0-based
             // 4 3
             // 0 1
             // 9 12
             // etc.
 
-            var graph = new Graph();
+            Graph graph;
 
             using (var reader = new StreamReader(filename))
             {
-                // TODO: The first line is the number of vertices V.
-                //var vertexCount = ReadPositiveInteger(reader.ReadLine());
+                // The first line is the number of vertices V.
+                var vertexCount = ReadPositiveInteger(reader.ReadLine());
 
                 // TODO: The second line is the number of edges E.
                 //var edgeCount = ReadPositiveInteger(reader.ReadLine());
+
+                graph = new Graph(vertexCount);
 
                 string line;
                 while ((line = reader.ReadLine()) != null)
