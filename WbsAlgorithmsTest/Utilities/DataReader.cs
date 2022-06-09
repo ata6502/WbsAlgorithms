@@ -102,7 +102,7 @@ namespace WbsAlgorithmsTest.Utilities
         {
             // An example of a graph:
             // 13 <-- the number of vertices V
-            // 21 <-- TODO: the number of edges E
+            // 21 <-- the number of edges E
             // 0 5 <-- vertex indices are 0-based
             // 4 3
             // 0 1
@@ -116,8 +116,8 @@ namespace WbsAlgorithmsTest.Utilities
                 // The first line is the number of vertices V.
                 var vertexCount = ReadPositiveInteger(reader.ReadLine());
 
-                // TODO: The second line is the number of edges E.
-                //var edgeCount = ReadPositiveInteger(reader.ReadLine());
+                // The second line is the number of edges E.
+                var edgeCount = ReadPositiveInteger(reader.ReadLine());
 
                 graph = new Graph(vertexCount, isDirected);
 
@@ -129,6 +129,10 @@ namespace WbsAlgorithmsTest.Utilities
                     foreach (var w in AdjacentVertices)
                         graph.AddEdge(v, w);
                 }
+
+                // Verify the number of edges
+                if (edgeCount != graph.EdgeCount)
+                    throw new ArgumentException($"The number of edges mismatch in {filename}. Expected: {edgeCount}, Actual: {graph.EdgeCount}");
             }
 
             return graph;
