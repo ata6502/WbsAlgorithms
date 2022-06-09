@@ -71,7 +71,13 @@
     <None Update="Data\TreeBig.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Data\UndirectedGraphSedgewickMedium.txt">
+    <None Update="Data\UndirectedGraph7.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\UndirectedGraph8.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\UndirectedGraphBig2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Data\UndirectedGraphSedgewickTiny.txt">
@@ -167,7 +173,7 @@
     <None Update="Data\UndirectedGraph6.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Data\UndirectedGraphBig.txt">
+    <None Update="Data\UndirectedGraphBig1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Data\WeightedGraph2.txt">
