@@ -16,23 +16,38 @@ namespace WbsAlgorithms.Common
         // A vertex-indexed array of bags of integers.
         private Bag<int>[] _adjacencyLists;
 
+        // Indicates if the graph is directed.
+        private bool _isDirected;
+
+        // The number of edges in the graph. For undirected graphs, this value is doubled.
+        private int _edgeCount;
+
         /// <summary>
         /// The number of vertices V.
         /// </summary>
         public int VertexCount => _adjacencyLists.Length;
 
-        // TODO: The number of edges depends on the type of graph: directed or undirected.
-        ///// <summary>
-        ///// The number of edges E.
-        ///// </summary>
-        //public int EdgeCount { get; private set; }
+        /// <summary>
+        /// The number of edges E.
+        /// </summary>
+        public int EdgeCount
+        {
+            get
+            {
+                // The number of edges depends on the type of graph: directed or undirected.
+                // For undirected graphs, _edgeCount has to be divided by two.
+                return _isDirected ? _edgeCount : _edgeCount / 2;
+            }
+        }
 
         /// <summary>
         /// Creates an empty graph with a given number of vertices and no edges.
         /// </summary>
         /// <param name="vertexCount">The number of vertices in the graph</param>
-        public Graph(int vertexCount)
+        public Graph(int vertexCount, bool isDirected)
         {
+            _isDirected = isDirected;
+
             // Create an array of adjacency lists.
             _adjacencyLists = new Bag<int>[vertexCount];
 
@@ -92,6 +107,8 @@ namespace WbsAlgorithms.Common
             // There is no need to add v to the w's list because vertices of undirected
             // graphs are already duplicated in the data files.
             _adjacencyLists[v].Add(w);
+
+            ++_edgeCount;
         }
     }
 }

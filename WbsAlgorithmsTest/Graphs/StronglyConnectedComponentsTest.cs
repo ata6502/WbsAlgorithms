@@ -12,8 +12,8 @@ namespace WbsAlgorithmsTest.Graphs
         [TestCaseSource(nameof(TestCases))]
         public void GetComponentsTest(string filename, string expectedTopSccSizesWithLeaders)
         {
-            var graph = DataReader.ReadGraph(filename);
-            var reversed = DataReader.ReverseGraph(graph);
+            var graph = DataReader.ReadGraph(filename, true);
+            var reversed = DataReader.ReverseGraph(graph, true);
             var components = StronglyConnectedComponents.GetComponents(graph, reversed);
 
             // Grab the sizes of the biggest five strongly connected components.

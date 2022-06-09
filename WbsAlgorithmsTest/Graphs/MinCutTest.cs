@@ -43,7 +43,7 @@ namespace WbsAlgorithmsTest.Graphs
 
             foreach (var d in data)
             {
-                var graph = DataReader.ReadGraph(d.InputFile);
+                var graph = DataReader.ReadGraph(d.InputFile, false);
 
                 yield return new TestCaseData(graph, d.MinCut, d.Cuts).SetName(d.TestName);
             }

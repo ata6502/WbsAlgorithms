@@ -98,7 +98,7 @@ namespace WbsAlgorithmsTest.Utilities
             return JsonSerializer.Deserialize<T[]>(json);
         }
 
-        public static Graph ReadGraph(string filename)
+        public static Graph ReadGraph(string filename, bool isDirected)
         {
             // An example of a graph:
             // 13 <-- the number of vertices V
@@ -119,7 +119,7 @@ namespace WbsAlgorithmsTest.Utilities
                 // TODO: The second line is the number of edges E.
                 //var edgeCount = ReadPositiveInteger(reader.ReadLine());
 
-                graph = new Graph(vertexCount);
+                graph = new Graph(vertexCount, isDirected);
 
                 string line;
                 while ((line = reader.ReadLine()) != null)
@@ -166,9 +166,9 @@ namespace WbsAlgorithmsTest.Utilities
             }
         }
 
-        public static Graph ReverseGraph(Graph graph)
+        public static Graph ReverseGraph(Graph graph, bool isDirected)
         {
-            var reversed = new Graph(graph.VertexCount);
+            var reversed = new Graph(graph.VertexCount, isDirected);
 
             foreach (var v in graph.Vertices)
             {
