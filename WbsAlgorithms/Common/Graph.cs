@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace WbsAlgorithms.Common
 {
     /// <summary>
-    /// An implementation of an undirected graph using an array of lists.
+    /// An implementation of an undirected graph using an array of bags.
     /// - Space usage proportional to V + E
     /// - Constant time to add an edge
     /// - Time proportional to the degree of v to iterate through vertices adjacent to v
@@ -13,27 +13,31 @@ namespace WbsAlgorithms.Common
     /// </summary>
     public class Graph
     {
-        // A vertex-indexed array of lists of integers.
-        private List<List<int>> _adjacencyLists;
+        // A vertex-indexed array of bags of integers.
+        private Bag<int>[] _adjacencyLists;
 
         /// <summary>
         /// The number of vertices V.
         /// </summary>
-        public int VertexCount => _adjacencyLists.Count;
+        public int VertexCount => _adjacencyLists.Length;
+
+        // TODO: The number of edges depends on the type of graph: directed or undirected.
+        ///// <summary>
+        ///// The number of edges E.
+        ///// </summary>
+        //public int EdgeCount { get; private set; }
 
         /// <summary>
-        /// The number of edges E.
+        /// Creates an empty graph with a given number of vertices and no edges.
         /// </summary>
-        public int EdgeCount { get; private set; }
-
+        /// <param name="vertexCount">The number of vertices in the graph</param>
         public Graph(int vertexCount)
         {
             // Create an array of adjacency lists.
-            _adjacencyLists = new List<List<int>>(vertexCount);
+            _adjacencyLists = new Bag<int>[vertexCount];
 
-            // Initialize all elements in the array to empty lists.
             for (var v = 0; v < vertexCount; ++v)
-                _adjacencyLists.Add(new List<int>());
+                _adjacencyLists[v] = new Bag<int>();
         }
 
         /// <summary>
@@ -83,8 +87,11 @@ namespace WbsAlgorithms.Common
         /// <param name="w">A vertex index representing the head of the edge</param>
         public void AddEdge(int v, int w)
         {
+            // For undirected graphs, if an edge connects v and w, the w appears in
+            // v's list and v appears in w's list.
+            // There is no need to add v to the w's list because vertices of undirected
+            // graphs are already duplicated in the data files.
             _adjacencyLists[v].Add(w);
-            ++EdgeCount;
         }
     }
 }

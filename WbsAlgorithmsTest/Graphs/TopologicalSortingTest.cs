@@ -31,8 +31,8 @@ namespace WbsAlgorithmsTest.Graphs
 
         private static IEnumerable<TestCaseData> TestCases()
         {
-            yield return new TestCaseData(@"Data\GraphDAG1.txt", new int[] { 0, 2, 1, 3 }).SetName("GraphDAG1"); // alternatively: 0, 1, 2, 3
-            yield return new TestCaseData(@"Data\GraphDAG2.txt", new int[] { 0, 2, 1, 3, 4, 5, }).SetName("GraphDAG2"); // alternatively: 0, 1, 2, 3, 4, 5
+            yield return new TestCaseData(@"Data\GraphDAG1.txt", new int[] { 0, 1, 2, 3 }).SetName("GraphDAG1"); // alternatively: 0, 2, 1, 3
+            yield return new TestCaseData(@"Data\GraphDAG2.txt", new int[] { 0, 1, 2, 3, 4, 5, }).SetName("GraphDAG2"); // alternatively: 0, 2, 1, 3, 4, 5
         }
 
         // Test all possible orders of exploration of vertices in a 4-vertex DAG (GraphDAG1.txt)
