@@ -100,10 +100,25 @@ namespace WbsAlgorithmsTest.Utilities
 
         public static Graph ReadGraph(string filename)
         {
+            // An example of a graph:
+            // 13 <-- the number of vertices V
+            // 21 <-- the number of edges E
+            // 0 5 <-- vertex indices are 0-based
+            // 4 3
+            // 0 1
+            // 9 12
+            // etc.
+
             var graph = new Graph();
 
             using (var reader = new StreamReader(filename))
             {
+                // TODO: The first line is the number of vertices V.
+                //var vertexCount = ReadPositiveInteger(reader.ReadLine());
+
+                // TODO: The second line is the number of edges E.
+                //var edgeCount = ReadPositiveInteger(reader.ReadLine());
+
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
@@ -123,19 +138,29 @@ namespace WbsAlgorithmsTest.Utilities
                 string[] nums = line.Trim().Split(VertexSeparator);
                 Debug.Assert(nums.Length >= 2);
 
-                var v = GetInt(nums[0]);
-                var vertices = new List<int>(nums.Length - 1); // adjacent vertices
+                // Read a vertex v.
+                var v = ReadPositiveInteger(nums[0]);
+
+                // Read vertices adjacent to the vertex v.
+                var vertices = new List<int>(nums.Length - 1);
                 for (var i = 1; i < nums.Length; ++i)
-                    vertices.Add(GetInt(nums[i]));
+                    vertices.Add(ReadPositiveInteger(nums[i]));
 
                 return (v, vertices);
+            }
 
-                int GetInt(string str)
-                {
-                    if (!int.TryParse(str, out var n))
-                        throw new ArgumentException("not a number");
-                    return n;
-                }
+            int ReadPositiveInteger(string str)
+            {
+                if (string.IsNullOrEmpty(str))
+                    throw new ArgumentException("The number is missing.");
+
+                if (!int.TryParse(str, out var n))
+                    throw new FormatException($"The number '{str}' is not a valid integer.");
+
+                if (n < 0)
+                    throw new ArgumentException("The number must be non-negative.");
+
+                return n;
             }
         }
 
@@ -196,74 +221,6 @@ namespace WbsAlgorithmsTest.Utilities
                         throw new ArgumentException("not a number");
                     return n;
                 }
-            }
-        }
-
-        // Based on https://algs4.cs.princeton.edu/41graph/Graph.java.html
-        public static UndirectedGraphSedgewick ReadUndirectedGraphSedgewick(string filename)
-        {
-            // An example of a graph:
-            // 13 <-- the number of vertices V
-            // 13 <-- the number of edges E
-            // 0 5 <-- vertex indices are 0-based
-            // 4 3
-            // 0 1
-            // 9 12
-            // etc.
-
-            using (var reader = new StreamReader(filename))
-            {
-                // The first line is the number of vertices V.
-                var vertexCount = ReadPositiveInteger(reader.ReadLine());
-
-                // The second line is the number of edges.
-                var edgeCount = ReadPositiveInteger(reader.ReadLine());
-
-                // Create the undirected graph Sedgewick-style.
-                var graph = new UndirectedGraphSedgewick(vertexCount);
-
-                for (var i = 0; i < edgeCount; ++i)
-                {
-                    var (v, w) = ReadIntegerPair(reader.ReadLine());
-
-                    if (v >= vertexCount || w >= vertexCount)
-                        throw new ArgumentOutOfRangeException("Vertex out of range");
-
-                    graph.AddEdge(v, w);
-                }
-
-                return graph;
-            }
-
-            int ReadPositiveInteger(string str)
-            {
-                if (string.IsNullOrEmpty(str))
-                    throw new ArgumentException("The number is missing.");
-
-                if (!int.TryParse(str, out var n))
-                    throw new FormatException($"The number '{str}' is not a valid integer.");
-
-                if (n < 0)
-                    throw new ArgumentException("The number must be non-negative.");
-
-                return n;
-            }
-
-            (int, int) ReadIntegerPair(string str)
-            {
-                char[] VertexSeparator = new char[] { ' ' };
-
-                if (string.IsNullOrEmpty(str))
-                    throw new ArgumentException("The numbers are missing.");
-
-                string[] nums = str.Trim().Split(VertexSeparator);
-                if (nums.Length != 2)
-                    throw new ArgumentException("Two numbers expected.");
-
-                var v = ReadPositiveInteger(nums[0]);
-                var w = ReadPositiveInteger(nums[1]);
-
-                return (v, w);
             }
         }
     }
