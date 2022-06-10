@@ -32,7 +32,7 @@ namespace WbsAlgorithms.Graphs
         /// <param name="graphReversed">A copy of the input graph G with all edges reversed</param>
         /// <returns>An array containing sets of SCC numbers. Each SCC number corresponds to a single vertex.
         /// Each set contains the same SCC numbers and indicates a single strongly connected component.</returns>
-        public static int[] GetComponents(Graph graph, Graph graphReversed)
+        public static int[] GetComponents(Graph graph, Graph graphReversed) 
         {
             Debug.Assert(graph.VertexCount == graphReversed.VertexCount);
 
@@ -77,7 +77,7 @@ namespace WbsAlgorithms.Graphs
             }
 
             // Vertices with the same leader constitute a strongly connected component.
-            // The leader indices are the sample as in the original graph.
+            // The elements in the leader array reflect the vertices in the original graph.
             return leaders;
         }
 
