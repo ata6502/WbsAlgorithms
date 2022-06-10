@@ -11,7 +11,7 @@ namespace WbsAlgorithmsTest.Graphs
         [TestCaseSource(nameof(TestCases))]
         public void FindShortestPathsTest(string graphFile, int sourceVertex, int[] expectedDistances)
         {
-            var g = DataReader.ReadGraph(graphFile, true);
+            var g = DataReader.ReadGraph(graphFile);
             var actualDistances = ShortestPath.FindShortestPaths(g, sourceVertex); // the result distances have 0-based indices
             CollectionAssert.AreEqual(expectedDistances, actualDistances);
         }

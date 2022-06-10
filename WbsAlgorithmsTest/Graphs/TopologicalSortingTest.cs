@@ -16,14 +16,14 @@ namespace WbsAlgorithmsTest.Graphs
         [OneTimeSetUp]
         public void ReadGraphs()
         {
-            _graphFourVertices = DataReader.ReadGraph(@"Data\GraphDAG1.txt", true);
-            _graphSixVertices = DataReader.ReadGraph(@"Data\GraphDAG2.txt", true);
+            _graphFourVertices = DataReader.ReadGraph(@"Data\GraphDAG1.txt");
+            _graphSixVertices = DataReader.ReadGraph(@"Data\GraphDAG2.txt");
         }
 
         [TestCaseSource(nameof(TestCases))]
         public void SimpleTests(string filename, int[] expectedSorting)
         {
-            var g = DataReader.ReadGraph(filename, true);
+            var g = DataReader.ReadGraph(filename);
             var f = TopologicalSorting.Sort(g);
 
             CollectionAssert.AreEqual(expectedSorting, f);

@@ -12,7 +12,7 @@ namespace WbsAlgorithmsTest.Graphs
         public void SingleComponentTest()
         {
             // GraphDAG2 contains one component.
-            var g = DataReader.ReadGraph(@"Data\GraphDAG2.txt", true);
+            var g = DataReader.ReadGraph(@"Data\GraphDAG2.txt");
 
             // The vertex 0 is the source vertex. We can reach the entire graph from this vertex.
             var expected = new List<int> { 0, 1, 2, 3, 4, 5 };
@@ -34,7 +34,7 @@ namespace WbsAlgorithmsTest.Graphs
         public void MultipleComponentsTest()
         {
             // Graph1 contains three components.
-            var g = DataReader.ReadGraph(@"Data\Graph1.txt", true);
+            var g = DataReader.ReadGraph(@"Data\Graph1.txt");
 
             // From vertex 0 we can reach vertices 3 and 6 (a single component).
             // Vertex 0 (as well as 3 and 6) belongs to the sink component.

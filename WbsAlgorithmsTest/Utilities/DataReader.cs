@@ -98,9 +98,10 @@ namespace WbsAlgorithmsTest.Utilities
             return JsonSerializer.Deserialize<T[]>(json);
         }
 
-        public static Graph ReadGraph(string filename, bool isDirected)
+        public static Graph ReadGraph(string filename)
         {
             // An example of a graph:
+            // D <-- the type of graph: D - directed, U - undirected
             // 13 <-- the number of vertices V
             // 21 <-- the number of edges E
             // 0 5 <-- vertex indices are 0-based
@@ -113,10 +114,13 @@ namespace WbsAlgorithmsTest.Utilities
 
             using (var reader = new StreamReader(filename))
             {
-                // The first line is the number of vertices V.
+                // The first line is the graph type: 'D' - directed graph, 'U' - undirected graph
+                var isDirected = ReadGraphType(reader.ReadLine()) == 'D';
+
+                // The second line is the number of vertices V.
                 var vertexCount = ReadPositiveInteger(reader.ReadLine());
 
-                // The second line is the number of edges E.
+                // The third line is the number of edges E.
                 var edgeCount = ReadPositiveInteger(reader.ReadLine());
 
                 graph = new Graph(vertexCount, isDirected);
@@ -168,11 +172,24 @@ namespace WbsAlgorithmsTest.Utilities
 
                 return n;
             }
+
+            char ReadGraphType(string str)
+            {
+                switch(str.ToUpper().Trim())
+                {
+                    case "D":
+                        return 'D';
+                    case "U":
+                        return 'U';
+                    default:
+                        throw new ArgumentException($"An unrecognized graph type {str}.");
+                }
+            }
         }
 
-        public static Graph ReverseGraph(Graph graph, bool isDirected)
+        public static Graph ReverseDirectedGraph(Graph graph)
         {
-            var reversed = new Graph(graph.VertexCount, isDirected);
+            var reversed = new Graph(graph.VertexCount, isDirected: true);
 
             foreach (var v in graph.Vertices)
             {
