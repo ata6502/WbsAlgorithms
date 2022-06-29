@@ -111,19 +111,14 @@ namespace WbsAlgorithms.Graphs
                 }
                 else
                 {
-                    // Check if all the v's adjacent vertices have been explored.
-                    var allExplored = g[v].All(i => explored[i]);
-                    if (allExplored)
-                    {
-                        // If so, remove v from the stack.
-                        s.Pop();
+                    // Remove v from the stack.
+                    s.Pop();
 
-                        if (ft[v] == 0)
-                        {
-                            // Assign the finishing time to the vertex v.
-                            ft[v] = t;
-                            ++t;
-                        }
+                    // Assign the finishing time to the vertex v if it has not been assigned yet.
+                    if (ft[v] == 0)
+                    {
+                        ft[v] = t;
+                        ++t;
                     }
                 }
             }
