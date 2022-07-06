@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 namespace WbsAlgorithms.Common
 {
@@ -48,5 +49,21 @@ namespace WbsAlgorithms.Common
 
         // Required by IEnumerable<T>
         IEnumerator IEnumerable.GetEnumerator() => throw new NotImplementedException();
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            var node = _head;
+            
+            while(node != null)
+            {
+                sb.Append(node.Item.ToString());
+                if (node.Next != null)
+                    sb.Append(", ");
+                node = node.Next;
+            }
+
+            return sb.ToString();
+        }
     }
 }
