@@ -71,10 +71,10 @@
     <None Update="Data\TreeBig.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Data\UndirectedGraph7.txt">
+    <None Update="Data\UndirectedGraph8.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Data\UndirectedGraph8.txt">
+    <None Update="Data\UndirectedGraph7.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Data\UndirectedGraphBig2.txt">
