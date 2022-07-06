@@ -21,9 +21,9 @@ namespace WbsAlgorithmsTest.Graphs
         }
 
         [TestCaseSource(nameof(TestCases))]
-        public void SimpleTests(string filename, int[] expectedSorting)
+        public void SimpleTests(string graphFile, int[] expectedSorting)
         {
-            var g = DataReader.ReadGraph(filename);
+            var g = DataReader.ReadGraph(graphFile);
             var f = TopologicalSorting.Sort(g);
 
             CollectionAssert.AreEqual(expectedSorting, f);
