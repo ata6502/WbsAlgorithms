@@ -6,7 +6,7 @@ namespace WbsAlgorithms.Graphs
 {
     /// <summary>
     /// The DepthFirstPaths algorithm solves the single-source paths problem.
-    /// 
+    /// The algorithm works on undirected graphs and it uses DFS.
     /// [Sedgewick] p.536
     /// </summary>
     public class DepthFirstPaths
@@ -14,6 +14,13 @@ namespace WbsAlgorithms.Graphs
         private Graph _graph;
         private int _sourceVertex;
         private bool[] _explored;
+
+        // The edgeTo[] is a vertex-index array that gives a way to find a path back
+        // to the sourceVertex for *every* vertex connected to the sourceVertex.
+        // We store the edge v-w that takes us to each vertex w *for the first time*,
+        // by setting edgeTo[w] = v.
+        // Note that elements in edgeTo depend on the traversal order of adjacent
+        // vertices of each vertex.
         private int[] _edgeTo;
 
         /// <summary>
@@ -32,6 +39,7 @@ namespace WbsAlgorithms.Graphs
 
             ExplorePaths(_sourceVertex);
 
+            // Populates edgeTo[] which is a tree rooted at the sourceVertex.
             void ExplorePaths(int v)
             {
                 // Mark the vertex v as explored.
@@ -67,11 +75,15 @@ namespace WbsAlgorithms.Graphs
             if (!HasPathTo(v))
                 return null;
 
+            // Recover the path from the sourceVertex to the destination vertex v.
+            // We use the variable x to travel up the tree (represented by edgeTo)
+            // putting each vertex encountered onto a stack until reaching the sourceVertex.
             var path = new Stack<int>();
             for (var x = v; x != _sourceVertex; x = _edgeTo[x])
                 path.Push(x);
             path.Push(_sourceVertex);
 
+            // Return the stack as IEnumerable.
             return path;
         }
     }
