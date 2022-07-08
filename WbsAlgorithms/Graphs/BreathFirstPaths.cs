@@ -5,54 +5,64 @@ using WbsAlgorithms.Common;
 namespace WbsAlgorithms.Graphs
 {
     /// <summary>
-    /// The DepthFirstPaths algorithm solves the single-source paths problem.
-    /// The algorithm works on undirected graphs and it uses DFS.
-    /// [Sedgewick] p.536
+    /// The BreathFirstPaths algorithm solves the shortest path problem. It uses BFS to find
+    /// paths in an undirected graph with the fewest number of edges from a source vertex.
+    /// [Sedgewick] p.540
     /// </summary>
-    public class DepthFirstPaths
+    public class BreathFirstPaths
     {
-        private Graph _graph;
         private int _sourceVertex;
         private bool[] _explored;
 
-        // The edgeTo[] is a vertex-index array that gives a way to find a path back
-        // to the sourceVertex for *every* vertex connected to the sourceVertex.
-        // We store the edge v-w that takes us to each vertex w *for the first time*,
-        // by setting edgeTo[w] = v.
-        // Note that elements in edgeTo depend on the traversal order of adjacent
-        // vertices of each vertex.
+        // Contains the result of search - a parent-link representation of a tree
+        // rooted at the sourceVertex, which defines the shortest paths from
+        // the sourceVertex to every vertex that is connected to s.
         private int[] _edgeTo;
 
         /// <summary>
-        /// Finds paths in the input graph from the source vertex to each vertex of the graph.
+        /// Finds the shortest paths in the input graph from the source vertex to each vertex of the graph.
         /// <param name="g">The input graph</param>
         /// <param name="sourceVertex">The source vertex</param>
         /// </summary>
-        public DepthFirstPaths(Graph g, int sourceVertex)
+        public BreathFirstPaths(Graph g, int sourceVertex)
         {
             Debug.Assert(sourceVertex < g.VertexCount);
 
-            _graph = g;
             _sourceVertex = sourceVertex;
             _explored = new bool[g.VertexCount];
             _edgeTo = new int[g.VertexCount];
 
-            ExplorePaths(_sourceVertex);
+            ExplorePaths(g, _sourceVertex);
+        }
 
-            // Populates edgeTo[] which represents a tree rooted at the sourceVertex.
-            void ExplorePaths(int v)
+        // Populates edgeTo[] which represents a tree rooted at the sourceVertex.
+        private void ExplorePaths(Graph g, int s)
+        {
+            var q = new Queue<int>();
+            q.Enqueue(s);
+
+            // Mark the vertex s as explored.
+            _explored[s] = true;
+
+            while (q.Count > 0)
             {
-                // Mark the vertex v as explored.
-                _explored[v] = true;
+                var v = q.Dequeue();
 
-                // Explored recursively all the vertices that are adjacent to 
-                // the vertex v and that have not yet been visited.
-                foreach (var w in _graph[v])
+                // Traverse each vertex in the v's adjacency list.
+                foreach (var w in g[v])
                 {
+                    // Check if the vertex w is unexplored.
                     if (!_explored[w])
                     {
+                        // Keep the last edge on a shortest path.
                         _edgeTo[w] = v;
-                        ExplorePaths(w);
+
+                        // Mark the vertex w as explored i.e., the shortest
+                        // path to w is already known.
+                        _explored[w] = true;
+
+                        // Add the vertex w to the queue.
+                        q.Enqueue(w);
                     }
                 }
             }
@@ -66,7 +76,8 @@ namespace WbsAlgorithms.Graphs
         public bool HasPathTo(int v) => _explored[v];
 
         /// <summary>
-        /// Returns a path from the source vertex to the destination vertex.
+        /// Returns a path from the source vertex s to the destination vertex v with 
+        /// the property that no other such path from s to v has fewer edges.
         /// </summary>
         /// <param name="v">The destination vertex</param>
         /// <returns>A path from the source vertex to the destination vertex; null if no such path exists</returns>
@@ -76,8 +87,6 @@ namespace WbsAlgorithms.Graphs
                 return null;
 
             // Recover the path from the sourceVertex to the destination vertex v.
-            // We use the variable x to travel up the tree (represented by edgeTo)
-            // putting each vertex encountered onto a stack until reaching the sourceVertex.
             var path = new Stack<int>();
             for (var x = v; x != _sourceVertex; x = _edgeTo[x])
                 path.Push(x);
