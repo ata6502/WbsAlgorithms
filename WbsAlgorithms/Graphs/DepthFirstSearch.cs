@@ -5,15 +5,15 @@ using WbsAlgorithms.Common;
 namespace WbsAlgorithms.Graphs
 {
     /// <summary>
-    /// Deph-First Search (DFS) marks all the vertices connected to a given 
+    /// Depth-First Search (DFS) marks all the vertices connected to a given 
     /// source vertex in time proportional to the sum of their degrees.
     /// 
     /// [Sedgewick] p.531
     /// </summary>
-    public class DephFirstSearch
+    public class DepthFirstSearch
     {
         /// <summary>
-        /// Perfroms Deph-First Search on the given graph. Uses an iterative approach.
+        /// Perfroms Depth-First Search on the given graph. Uses an iterative approach.
         /// 
         /// [AlgoIlluminated-2] p.42 Depth-First Search - Iterative Implementation
         /// </summary>
@@ -51,7 +51,7 @@ namespace WbsAlgorithms.Graphs
         }
 
         /// <summary>
-        /// Perfroms Deph-First Search on the given graph. Uses a recursive approach.
+        /// Perfroms Depth-First Search on the given graph. Uses a recursive approach.
         ///
         /// [AlgoIlluminated-2] p.43 Depth-First Search - Recursive Implementation
         /// </summary>
