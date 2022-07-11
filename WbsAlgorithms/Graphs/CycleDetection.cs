@@ -3,7 +3,8 @@
 namespace WbsAlgorithms.Graphs
 {
     /// <summary>
-    /// Detects if a graph has at least one cycle.
+    /// Detects if a graph has at least one cycle i.e., if the graph is acyclic.
+    /// Assumes the graph is undirected with no self-loops or parallel edges.
     /// [Sedgewick] p.547
     /// </summary>
     public class CycleDetection
