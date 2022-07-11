@@ -43,7 +43,7 @@
     },
     {
         "TestName": "Large",
-        "Description": "A graph with 200 vertices (verify the min-cut 17)",
+        "Description": "A graph with 200 vertices",
         "InputFile": "Data\\UndirectedGraphBig1.txt",
         "MinCut": 17,
         "Cuts": null

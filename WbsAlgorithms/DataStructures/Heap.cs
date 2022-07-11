@@ -24,7 +24,7 @@ namespace WbsAlgorithms.DataStructures
     /// 
     /// IMPORATNT: This simplified heap implementation stores only
     /// integer keys. A fully-fledged implementation would be able to use
-    /// keys of any type (as long as they key type supports IComparable). 
+    /// keys of any type (as long as the key type supports IComparable). 
     /// Additionally, it would store an object (or a pointer to an object) 
     /// corresponding to each key.
     /// Also, we use 1-based index rather than 0-based in the undelying 
