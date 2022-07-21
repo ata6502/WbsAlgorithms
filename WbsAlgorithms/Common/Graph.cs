@@ -98,13 +98,17 @@ namespace WbsAlgorithms.Common
         /// </summary>
         /// <param name="v">A vertex index representing the tail of the edge</param>
         /// <param name="w">A vertex index representing the head of the edge</param>
-        public void AddEdge(int v, int w)
+        /// <param name="includeReversedEdge">Includes a reversed edge, usually for undirected graphs</param>
+        public void AddEdge(int v, int w, bool includeReversedEdge = false)
         {
             // For undirected graphs, if an edge connects v and w, the w appears in
             // v's list and v appears in w's list.
-            // There is no need to add v to the w's list because vertices of undirected
-            // graphs are already duplicated in the data files.
             _adjacencyLists[v].Add(w);
+
+            // Some undirected graph data files do not include reversed edges. For such
+            // data files we can add v to the w's list .
+            if (includeReversedEdge)
+                _adjacencyLists[w].Add(v);
 
             ++_edgeCount;
         }
