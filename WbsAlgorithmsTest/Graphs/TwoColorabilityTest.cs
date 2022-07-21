@@ -19,6 +19,7 @@ namespace WbsAlgorithmsTest.Graphs
 
         private static IEnumerable<TestCaseData> TestCases()
         {
+            yield return new TestCaseData(@"Data\BipartiteGraph.txt", true).SetName("BipartiteGraph");
             yield return new TestCaseData(@"Data\UndirectedGraph6.txt", true).SetName("Graph6");
             yield return new TestCaseData(@"Data\UndirectedGraph7.txt", false).SetName("Graph7");
             yield return new TestCaseData(@"Data\UndirectedGraph8.txt", false).SetName("Graph8");
