@@ -4,12 +4,10 @@ using System.Collections.Generic;
 namespace WbsAlgorithms.Common
 {
     /// <summary>
-    /// An implementation of an undirected graph using an array of bags.
+    /// An implementation of a graph using an array of bags.
     /// - Space usage proportional to V + E
     /// - Constant time to add an edge
     /// - Time proportional to the degree of v to iterate through vertices adjacent to v
-    /// - Parallel edges and self-loops are allowed
-    /// [Sedgewick] p.526 Graph data type
     /// </summary>
     public class Graph
     {
