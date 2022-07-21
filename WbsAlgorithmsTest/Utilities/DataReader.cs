@@ -201,10 +201,13 @@ namespace WbsAlgorithmsTest.Utilities
             return reversed;
         }
 
-        public static SymbolGraph ReadSymbolGraph(string filename)
+        // A delimiter separates vertex names.
+        public static SymbolGraph ReadSymbolGraph(string filename, string delimiter, bool includeReversedEdge)
         {
             var map = new Dictionary<string, int>();
 
+            // Each line represents a set of edges, connecting the first vertex name on the line
+            // to each of the other vertices on the line.
             using (var reader = new StreamReader(filename))
             {
                 string line;
@@ -231,7 +234,7 @@ namespace WbsAlgorithmsTest.Utilities
                     string[] symbols = GetSymbolVertices(line);
                     int v = map[symbols[0]];
                     for (var i = 1; i < symbols.Length; ++i)
-                        graph.AddEdge(v, map[symbols[i]]);
+                        graph.AddEdge(v, map[symbols[i]], includeReversedEdge);
                 }
             }
 
@@ -239,9 +242,7 @@ namespace WbsAlgorithmsTest.Utilities
 
             string[] GetSymbolVertices(string line)
             {
-                char[] VertexSeparator = new char[] { ' ', '\t' };
-
-                string[] symbolVertices = line.Trim().Split(VertexSeparator);
+                string[] symbolVertices = line.Trim().Split(delimiter);
                 Debug.Assert(symbolVertices.Length >= 2);
 
                 return symbolVertices;
