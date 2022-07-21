@@ -201,6 +201,53 @@ namespace WbsAlgorithmsTest.Utilities
             return reversed;
         }
 
+        public static SymbolGraph ReadSymbolGraph(string filename)
+        {
+            var map = new Dictionary<string, int>();
+
+            using (var reader = new StreamReader(filename))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    string[] symbols = GetSymbolVertices(line);
+                    foreach (var symbol in symbols)
+                        if (!map.TryGetValue(symbol, out var _))
+                            map.Add(symbol, map.Count);
+                }
+            }
+
+            var indexToKeyMap = new string[map.Count];
+            foreach (var key in map.Keys)
+                indexToKeyMap[map[key]] = key;
+
+            Graph graph = new Graph(map.Count, isDirected: false);
+
+            using (var reader = new StreamReader(filename))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    string[] symbols = GetSymbolVertices(line);
+                    int v = map[symbols[0]];
+                    for (var i = 1; i < symbols.Length; ++i)
+                        graph.AddEdge(v, map[symbols[i]]);
+                }
+            }
+
+            return new SymbolGraph(map, indexToKeyMap, graph);
+
+            string[] GetSymbolVertices(string line)
+            {
+                char[] VertexSeparator = new char[] { ' ', '\t' };
+
+                string[] symbolVertices = line.Trim().Split(VertexSeparator);
+                Debug.Assert(symbolVertices.Length >= 2);
+
+                return symbolVertices;
+            }
+        }
+
         public static WeightedGraph ReadWeightedGraph(string filename)
         {
             string[] lines = File.ReadAllLines(filename);
