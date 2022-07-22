@@ -202,7 +202,7 @@ namespace WbsAlgorithmsTest.Utilities
         }
 
         // A delimiter separates vertex names.
-        public static SymbolGraph ReadSymbolGraph(string filename, string delimiter, bool includeReversedEdge)
+        public static SymbolGraph ReadSymbolGraph(string filename, string delimiter, bool includeReversedEdges)
         {
             var map = new Dictionary<string, int>();
 
@@ -240,7 +240,7 @@ namespace WbsAlgorithmsTest.Utilities
                     string[] symbols = GetSymbolVertices(line);
                     int v = map[symbols[0]];
                     for (var i = 1; i < symbols.Length; ++i)
-                        graph.AddEdge(v, map[symbols[i]], includeReversedEdge);
+                        graph.AddEdge(v, map[symbols[i]], includeReversedEdges);
                 }
             }
 
