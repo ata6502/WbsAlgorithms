@@ -208,11 +208,14 @@ namespace WbsAlgorithmsTest.Utilities
 
             // Each line represents a set of edges, connecting the first vertex name on the line
             // to each of the other vertices on the line.
+
+            // First pass determines the number of vertices.
             using (var reader = new StreamReader(filename))
             {
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
+                    // Build the key-to-index map.
                     string[] symbols = GetSymbolVertices(line);
                     foreach (var symbol in symbols)
                         if (!map.TryGetValue(symbol, out var _))
@@ -220,12 +223,15 @@ namespace WbsAlgorithmsTest.Utilities
                 }
             }
 
+            // Build the index-to-key map (the inverted index map).
             var indexToKeyMap = new string[map.Count];
             foreach (var key in map.Keys)
                 indexToKeyMap[map[key]] = key;
 
             Graph graph = new Graph(map.Count, isDirected: false);
 
+            // Second pass: knowing the number of vertices we can build the graph
+            // by connecting the first vertex on each line to all the others.
             using (var reader = new StreamReader(filename))
             {
                 string line;
