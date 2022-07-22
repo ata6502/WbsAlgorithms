@@ -44,6 +44,9 @@ namespace WbsAlgorithmsTest.Graphs
 
             // Verifies performers who appear in a given movie.
             yield return new TestCaseData(@"Data\SymbolGraph3.txt", "Tin Men (1987)", "/", true, "Hershey, Barbara/Geppi, Cindy/Jones, Kathy (II)/Herr, Marcia/Munchel, Lois Raymond/O'Connell, Deirdre/Weidner, Becky/Kelbaugh, Geri Lynn/Duvall, Susan/Moody, Florence/Barth, Karen/Rappaport, Barbara/Nichols, Penny (I)/Wilson, Shirley Ann/Crofoot, Sharon/Sills, Ellen/Pohlman, Patricia/Ellis, Katherine (II)/Goldpaugh, Kathleen/Morgan, Mary (II)/Ziman, Sharon/Berg, Eva Jean/Posner, Norma/Ford, Lisa/McCauley, Sheila/Stevens, Freddie (I)/Tucker, Michael (I)/Cox, Andy (I)/Portnow, Richard/Levinson, Herb/Sullivan, Brad/Gayle, Jackie/Dreyfuss, Richard/Danoff, Bill/Mahoney, John (I)/Godsey, William C./Kirby, Bruno/Gift, Roland/Jackson, Todd (I)/Tabakin, Ralph/Costantini, Brian/Goldman, Theodore/Brock, Stanley/Craven, Matt (I)/Citronbaum, Myron/Cassel, Seymour/Billings, Joshua/Walsh, J.T./Willis, Michael (I)/DeVito, Danny/Moser, Jeffrey/Steele, David (I)/MacPherson, Walt/Blumenfeld, Alan/DeBoy, David".Split("/")).SetName("Graph3_Performers");
+
+            // Verifies movies in which a given performer appeared (inverted index).
+            yield return new TestCaseData(@"Data\SymbolGraph3.txt", "Bacon, Kevin", "/", true, "Woodsman, The (2004)/Wild Things (1998)/Where the Truth Lies (2005)/Tremors (1990)/Trapped (2002)/Stir of Echoes (1999)/Sleepers (1996)/She's Having a Baby (1988)/River Wild, The (1994)/Planes, Trains & Automobiles (1987)/Picture Perfect (1997)/Novocaine (2001)/Mystic River (2003)/My Dog Skip (2000)/Murder in the First (1995)/JFK (1991)/In the Cut (2003)/Hollow Man (2000)/He Said, She Said (1991)/Friday the 13th (1980)/Footloose (1984)/Flatliners (1990)/Few Good Men, A (1992)/Diner (1982)/Beauty Shop (2005)/Apollo 13 (1995)/Animal House (1978)".Split("/")).SetName("Graph3_Movies");
         }
     }
 }
