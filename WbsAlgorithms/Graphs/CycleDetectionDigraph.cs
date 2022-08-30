@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
 using WbsAlgorithms.Common;
 
 namespace WbsAlgorithms.Graphs
@@ -7,7 +7,10 @@ namespace WbsAlgorithms.Graphs
     /// <summary>
     /// Detects if a directed graph (a digraph) has at least one cycle.
     /// Also, finds a path represencting a cycle (if any) in the graph.
-    /// [Sedgewick] p.577
+    /// [Baeldung] has detailed description of the algorithm with flow charts.
+    /// 
+    /// [Sedgewick] p.577 - PRB: the algorithm does not detect if a graph is acyclic.
+    /// [Baeldung] https://www.baeldung.com/cs/detecting-cycles-in-directed-graph
     /// </summary>
     public class CycleDetectionDigraph
     {
@@ -59,34 +62,43 @@ namespace WbsAlgorithms.Graphs
         /// <param name="v">The source vertex</param>
         private void Dfs(Graph g, int v)
         {
-            Debug.Assert(v < g.VertexCount);
-
             _onStack[v] = true;
             _explored[v] = true;
 
-            foreach(var w in g[v])
-            {
-                if (HasCycle)
-                    return;
-                else if (!_explored[w])
-                {
-                    _edgeTo[w] = v;
-                    Dfs(g, w);
-                }
-                // Check if there is an edge v->w that is on the recursive call stack.
-                // If so, we have discovered a directed cycle.
-                else if (_onStack[w])
-                {
-                    // Recover the cycle by following the _edgeTo links.
-                    _cycle = new Stack<int>();
-                    for (var i = v; i != w; i = _edgeTo[i])
-                        _cycle.Push(i);
-                    _cycle.Push(w);
-                    _cycle.Push(v);
-                }
+            var adjacentVertices = g[v].ToList();
 
+            // This condition fixes the cases when a cycle is not found.
+            // Otherwise, we go into an infinite loop when we try to
+            // recover a non-existing cycle.
+            if (adjacentVertices.Count == 0)
                 _onStack[v] = false;
+            else
+            {
+                foreach (var w in adjacentVertices)
+                {
+                    if (HasCycle)
+                        return;
+                    else if (!_explored[w])
+                    {
+                        _edgeTo[w] = v;
+                        Dfs(g, w);
+                    }
+                    // Check if there is an edge v->w that is on the recursive call stack.
+                    // If so, we have discovered a directed cycle.
+                    else if (_onStack[w])
+                    {
+                        // Recover the cycle by following the _edgeTo links.
+                        _cycle = new Stack<int>();
+                        for (var i = v; i != w; i = _edgeTo[i])
+                            _cycle.Push(i);
+                        _cycle.Push(w);
+                        _cycle.Push(v);
+                    }
+
+                    _onStack[v] = false;
+                }
             }
         }
     }
 }
+
