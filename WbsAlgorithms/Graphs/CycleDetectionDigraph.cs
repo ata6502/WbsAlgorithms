@@ -7,10 +7,13 @@ namespace WbsAlgorithms.Graphs
     /// <summary>
     /// Detects if a directed graph (a digraph) has at least one cycle.
     /// Also, finds a path represencting a cycle (if any) in the graph.
-    /// [Baeldung] has detailed description of the algorithm with flow charts.
     /// 
-    /// [Sedgewick] p.577 - PRB: the algorithm does not detect if a graph is acyclic.
-    /// [Baeldung] https://www.baeldung.com/cs/detecting-cycles-in-directed-graph
+    /// [Sedgewick] p.577 - The algorithm from the book does not detect if a graph is acyclic.
+    /// The implementation below fixes that problem.
+    ///
+    /// [Baeldung] describes another algorithm to detect a cycle in a digraph. The website 
+    /// includes detailed description and flow charts.
+    /// https://www.baeldung.com/cs/detecting-cycles-in-directed-graph
     /// </summary>
     public class CycleDetectionDigraph
     {
