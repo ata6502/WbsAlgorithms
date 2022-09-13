@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WbsAlgorithms.Arithmetics
+namespace WbsAlgorithms.Arithmetic
 {
     /// <summary>
     /// [Sedgewick] 1.1.20 p.58 - Write a recursive method that computes ln(n!)

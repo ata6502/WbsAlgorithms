@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WbsAlgorithms.Arithmetics
+namespace WbsAlgorithms.Arithmetic
 {
     /// <summary>
     /// Given a 32-bit signed integer, reverse digits of the integer.

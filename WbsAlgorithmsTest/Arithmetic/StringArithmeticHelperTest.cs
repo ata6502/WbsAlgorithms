@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using WbsAlgorithms.Arithmetics;
+using WbsAlgorithms.Arithmetic;
 
-namespace WbsAlgorithmsTest.Arithmetics
+namespace WbsAlgorithmsTest.Arithmetic
 {
     [TestFixture]
     public class StringArithmeticHelperTest

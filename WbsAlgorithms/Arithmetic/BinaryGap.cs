@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WbsAlgorithms.Arithmetics
+namespace WbsAlgorithms.Arithmetic
 {
     /// <summary>
     /// A binary gap within a positive integer N is any maximal sequence of consecutive zeros

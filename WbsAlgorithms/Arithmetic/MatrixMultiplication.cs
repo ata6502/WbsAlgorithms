@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace WbsAlgorithms.Arithmetics
+namespace WbsAlgorithms.Arithmetic
 {
     public class MatrixMultiplication
     {

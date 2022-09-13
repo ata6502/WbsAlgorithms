@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
-using WbsAlgorithms.Arithmetics;
+using WbsAlgorithms.Arithmetic;
 using WbsAlgorithmsTest.Utilities;
 
-namespace WbsAlgorithmsTest.Arithmetics
+namespace WbsAlgorithmsTest.Arithmetic
 {
     [TestFixture]
     public class MatrixMultiplicationTest

@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using WbsAlgorithms.Arithmetics;
+using WbsAlgorithms.Arithmetic;
 
-namespace WbsAlgorithmsTest.Arithmetics
+namespace WbsAlgorithmsTest.Arithmetic
 {
     [TestFixture]
     public class FibonacciSequenceTest

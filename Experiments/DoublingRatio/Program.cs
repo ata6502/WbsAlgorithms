@@ -348,7 +348,7 @@ namespace DoublingRatio
         /// Counts pairs that sum to zero. Complexity O(n)
         /// The input array needs to be sorted.
         /// 
-        /// This algorithm is identical to WbsAlgorithms.Arithmetics.ZeroSum.CountPairsLinear
+        /// This algorithm is identical to WbsAlgorithms.Arithmetic.ZeroSum.CountPairsLinear
         /// Refer to CountPairsLinear for description and more comments.
         /// </summary>
         /// <param name="a">An array of integers</param>
@@ -432,7 +432,7 @@ namespace DoublingRatio
         /// Counts triples that sum to zero. Complexity O(n^2)
         /// The input array needs to be sorted.
         /// 
-        /// This algorithm is identical to WbsAlgorithms.Arithmetics.ZeroSum.CountTripletsQuadratic
+        /// This algorithm is identical to WbsAlgorithms.Arithmetic.ZeroSum.CountTripletsQuadratic
         /// Refer to CountTripletsQuadratic for description and more comments.
         /// </summary>
         /// <param name="a">A sorted array of integers</param>

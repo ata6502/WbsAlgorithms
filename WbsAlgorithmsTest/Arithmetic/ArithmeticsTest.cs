@@ -1,10 +1,10 @@
 ﻿using NUnit.Framework;
-using WbsAlgorithms.Arithmetics;
+using WbsAlgorithms.Arithmetic;
 
-namespace WbsAlgorithmsTest.Arithmetics
+namespace WbsAlgorithmsTest.Arithmetic
 {
     [TestFixture]
-    public class ArithmeticsTest
+    public class ArithmeticTest
     {
         // The arithmetic expressions have to be fully parenthesized with numbers and
         // characters separated by whitespace.

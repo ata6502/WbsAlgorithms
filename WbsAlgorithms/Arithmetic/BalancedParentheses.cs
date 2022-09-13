@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using WbsAlgorithms.DataStructures;
 
-namespace WbsAlgorithms.Arithmetics
+namespace WbsAlgorithms.Arithmetic
 {
     public class BalancedParentheses
     {

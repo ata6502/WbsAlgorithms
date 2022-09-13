@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using WbsAlgorithms.DataStructures;
 
-namespace WbsAlgorithms.Arithmetics
+namespace WbsAlgorithms.Arithmetic
 {
     /// <summary>
     /// [Sedgewick] 1.1.9 p.55 - Convert a decimal number to its binary representation. Provide a concise implementation.

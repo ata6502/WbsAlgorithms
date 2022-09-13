@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace WbsAlgorithms.Arithmetics
+namespace WbsAlgorithms.Arithmetic
 {
     /// <summary>
     /// The StringArithmetic class provides static methods that perform arithmetic

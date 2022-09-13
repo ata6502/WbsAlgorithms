@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WbsAlgorithms.Arithmetics
+namespace WbsAlgorithms.Arithmetic
 {
     public class FibonacciSequence
     {

@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using WbsAlgorithms.DataStructures;
 
-namespace WbsAlgorithms.Arithmetics
+namespace WbsAlgorithms.Arithmetic
 {
     /// <summary>
     /// The EvaluateExpression method evaluates an arithmetic expression provided as a string and returns a numerical 

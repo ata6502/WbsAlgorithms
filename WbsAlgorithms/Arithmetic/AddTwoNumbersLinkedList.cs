@@ -1,6 +1,6 @@
 ﻿using WbsAlgorithms.Common;
 
-namespace WbsAlgorithms.Arithmetics
+namespace WbsAlgorithms.Arithmetic
 {
     /// <summary>
     /// You are given two non-empty linked lists representing two non-negative integers.

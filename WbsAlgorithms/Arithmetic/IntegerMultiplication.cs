@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace WbsAlgorithms.Arithmetics
+namespace WbsAlgorithms.Arithmetic
 {
     public class IntegerMultiplication
     {

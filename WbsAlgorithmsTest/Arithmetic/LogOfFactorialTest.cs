@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
-using WbsAlgorithms.Arithmetics;
+using WbsAlgorithms.Arithmetic;
 
-namespace WbsAlgorithmsTest.Arithmetics
+namespace WbsAlgorithmsTest.Arithmetic
 {
     [TestFixture]
     public class LogOfFactorialTest
