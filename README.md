@@ -6,12 +6,12 @@ from the series "Algorithms Illuminated" by Tim Roughgarden.
 
 Below, there are a few examples of algorithms implemented in this repository:
 
-* [Karatsuba Integer Multiplication](./WbsAlgorithms/Arithmetics/IntegerMultiplication.cs)
-* [Strassen's Matrix Multiplication](./WbsAlgorithms/Arithmetics/MatrixMultiplication.cs)
+* [Karatsuba Integer Multiplication](./WbsAlgorithms/Arithmetic/IntegerMultiplication.cs)
+* [Strassen's Matrix Multiplication](./WbsAlgorithms/Arithmetic/MatrixMultiplication.cs)
 * Sorting algoritms: [MergeSort](./WbsAlgorithms/Sorting/MergeSort.cs), [QuickSort](./WbsAlgorithms/Sorting/QuickSort.cs), [InsertionSort](./WbsAlgorithms/Sorting/InsertionSort.cs)
 * [Finding the closest pair of points in O(n&#183;log(n))](./WbsAlgorithms/PairPointMinMax/ClosestPair2D.cs)
 * [RSelect](./WbsAlgorithms/Searching/RSelect.cs) (Randomized Selection) and [DSelect](./WbsAlgorithms/Searching/DSelect.cs) (Deterministic Selection)
-* [BFS](./WbsAlgorithms/Graphs/BreathFirstSearch.cs) (Breath First Search) and [DFS](./WbsAlgorithms/Graphs/DephFirstSearch.cs) (Deph First Search)
+* [BFS](./WbsAlgorithms/Graphs/BreathFirstSearch.cs) (Breath First Search) and [DFS](./WbsAlgorithms/Graphs/DepthFirstSearch.cs) (Deph First Search)
 * [MinCut](./WbsAlgorithms/Graphs/MinCut.cs) (Karger's Random Contraction)
 * [Topological Sorting](./WbsAlgorithms/Graphs/TopologicalSorting.cs)
 * [Strongly Connected Components](./WbsAlgorithms/Graphs/StronglyConnectedComponents.cs) (Kosaraju's Two-pass Algorithm) 
