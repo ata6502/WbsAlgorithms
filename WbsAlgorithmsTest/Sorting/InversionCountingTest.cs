@@ -14,10 +14,10 @@ namespace WbsAlgorithmsTest.Sorting
         public void CountInversionsTest(int[] inputArray, uint expectedInversionCount)
         {
             var inversionCountBruteForce = InversionCounting.CountInversionsBruteForce(inputArray);
-            Assert.AreEqual(expectedInversionCount, inversionCountBruteForce);
+            Assert.That(inversionCountBruteForce, Is.EqualTo(expectedInversionCount));
 
             var inversionCountSortAndCount = InversionCounting.SortAndCountInversions(inputArray, 0, inputArray.Length - 1);
-            Assert.AreEqual(expectedInversionCount, inversionCountSortAndCount.InversionCount);
+            Assert.That(inversionCountSortAndCount.InversionCount, Is.EqualTo(expectedInversionCount));
         }
 
         [TestCase(@"Data\SortingMediumDataset.txt", 2379u, TestName = "InversionCounting_SortingMediumDataset")]
@@ -28,7 +28,7 @@ namespace WbsAlgorithmsTest.Sorting
             var inputArray = DataReader.ReadIntegers(filename);
 
             var inversionCount = InversionCounting.SortAndCountInversions(inputArray, 0, inputArray.Length - 1);
-            Assert.AreEqual(expectedInversionCount, inversionCount.InversionCount);
+            Assert.That(inversionCount.InversionCount, Is.EqualTo(expectedInversionCount));
         }
 
         private static IEnumerable<TestCaseData> CountInversionsTestCases() => TestCaseHelper.InversionCountingTestCases(JsonDataFilename, "InversionCounting");

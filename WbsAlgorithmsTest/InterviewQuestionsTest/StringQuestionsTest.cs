@@ -16,8 +16,8 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         [TestCase("aabcccccaaa", "a2b1c5a3")]
         public void CompressStringTest(string inputString, string expectedCompressedString)
         {
-            Assert.AreEqual(expectedCompressedString, StringQuestions.CompressString(inputString));
-            Assert.AreEqual(expectedCompressedString, StringQuestions.CompressStringWithCheckingNext(inputString));
+            Assert.That(StringQuestions.CompressString(inputString), Is.EqualTo(expectedCompressedString));
+            Assert.That(StringQuestions.CompressStringWithCheckingNext(inputString), Is.EqualTo(expectedCompressedString));
         }
 
         [TestCase("pale", "ple", true)]
@@ -32,7 +32,7 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         [TestCase("pale", "pke", false)]
         public void AreOneEditAwayTest(string firstString, string secondString, bool areOneEditAway)
         {
-            Assert.AreEqual(areOneEditAway, StringQuestions.AreOneEditAway(firstString, secondString));
+            Assert.That(StringQuestions.AreOneEditAway(firstString, secondString), Is.EqualTo(areOneEditAway));
         }
 
         [TestCase("a", true)]
@@ -49,7 +49,7 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         [TestCase("cdadcabbda", false)] // abcdddcbaa
         public void IsPalindromePermutationTest(string inputString, bool isPalindromePermutation)
         {
-            Assert.AreEqual(isPalindromePermutation, StringQuestions.IsPalindromePermutation(inputString));
+            Assert.That(StringQuestions.IsPalindromePermutation(inputString), Is.EqualTo(isPalindromePermutation));
         }
 
         [TestCase("a   ", 2, "a%20")]
@@ -60,7 +60,7 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         [TestCase("a     a          ", 7, "a%20%20%20%20%20a")]
         public void URLifyTest(string inputString, int length, string expectedURLifiedString)
         {
-            Assert.AreEqual(expectedURLifiedString, StringQuestions.URLify(inputString, length));
+            Assert.That(StringQuestions.URLify(inputString, length), Is.EqualTo(expectedURLifiedString));
         }
 
         [TestCase("a", "a", true)]
@@ -80,10 +80,10 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         [TestCase("ab", "abb", false)]
         public void CheckPermutationTest(string inputString1, string inputString2, bool isPermutation)
         {
-            Assert.AreEqual(isPermutation, StringQuestions.CheckPermutation(inputString1, inputString2));
-            Assert.AreEqual(isPermutation, StringQuestions.CheckPermutationConstrained(inputString1, inputString2));
-            Assert.AreEqual(isPermutation, StringQuestions.CheckPermutationUsingSorting(inputString1, inputString2));
-            Assert.AreEqual(isPermutation, StringQuestions.CheckPermutationUsingSortingAndLinq(inputString1, inputString2));
+            Assert.That(StringQuestions.CheckPermutation(inputString1, inputString2), Is.EqualTo(isPermutation));
+            Assert.That(StringQuestions.CheckPermutationConstrained(inputString1, inputString2), Is.EqualTo(isPermutation));
+            Assert.That(StringQuestions.CheckPermutationUsingSorting(inputString1, inputString2), Is.EqualTo(isPermutation));
+            Assert.That(StringQuestions.CheckPermutationUsingSortingAndLinq(inputString1, inputString2), Is.EqualTo(isPermutation));
         }
 
         [TestCase("", true)]
@@ -99,10 +99,10 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         [TestCase("abcb", false)]
         public void IsUniqueTest(string inputString, bool isUnique)
         {
-            Assert.AreEqual(isUnique, StringQuestions.IsUniqueUsingHashSet(inputString));
-            Assert.AreEqual(isUnique, StringQuestions.IsUniqueBruteForce(inputString));
-            Assert.AreEqual(isUnique, StringQuestions.IsUniqueConstrained(inputString));
-            Assert.AreEqual(isUnique, StringQuestions.IsUniqueConstrainedUsingBitArray(inputString));
+            Assert.That(StringQuestions.IsUniqueUsingHashSet(inputString), Is.EqualTo(isUnique));
+            Assert.That(StringQuestions.IsUniqueBruteForce(inputString), Is.EqualTo(isUnique));
+            Assert.That(StringQuestions.IsUniqueConstrained(inputString), Is.EqualTo(isUnique));
+            Assert.That(StringQuestions.IsUniqueConstrainedUsingBitArray(inputString), Is.EqualTo(isUnique));
         }
 
         [TestCase("a", "a", TestName = "Permutations of A")]
@@ -113,7 +113,7 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         {
             var permutations = StringQuestions.GetPermutations(inputString);
             var actualPermutations = string.Join(',', permutations);
-            Assert.AreEqual(expectedPermutations, actualPermutations);
+            Assert.That(actualPermutations, Is.EqualTo(expectedPermutations));
         }
 
         [TestCase("", "")]
@@ -130,7 +130,7 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         [TestCase("3gy7^yy    -", "3gy7yy")]
         public void RemoveNonAlphanumericCharactersTest(string inputString, string expectedString)
         {
-            Assert.AreEqual(expectedString, StringQuestions.RemoveNonAlphanumericCharacters(inputString));
+            Assert.That(StringQuestions.RemoveNonAlphanumericCharacters(inputString), Is.EqualTo(expectedString));
         }
 
         [TestCase("a", 'a', 1)]
@@ -147,8 +147,8 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         [TestCase("abracadabra", 'r', 2)]
         public void CountCharacterTest(string inputString, char inputCharacter, int expectedCount)
         {
-            Assert.AreEqual(expectedCount, StringQuestions.CountCharacter(inputString, inputCharacter));
-            Assert.AreEqual(expectedCount, StringQuestions.CountCharacterUsingRegEx(inputString, inputCharacter));
+            Assert.That(StringQuestions.CountCharacter(inputString, inputCharacter), Is.EqualTo(expectedCount));
+            Assert.That(StringQuestions.CountCharacterUsingRegEx(inputString, inputCharacter), Is.EqualTo(expectedCount));
         }
 
         [TestCase("a", 1, 0)]
@@ -165,8 +165,8 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         public void CountVowelsAndConsonantsTest(string inputString, int expectedVowelCount, int expectedConsonantCount)
         {
             var (actualVowelCount, actualConsonantCount) = StringQuestions.CountVowelsAndConsonants(inputString);
-            Assert.AreEqual(expectedVowelCount, actualVowelCount);
-            Assert.AreEqual(expectedConsonantCount, actualConsonantCount);
+            Assert.That(actualVowelCount, Is.EqualTo(expectedVowelCount));
+            Assert.That(actualConsonantCount, Is.EqualTo(expectedConsonantCount));
         }
 
         [TestCase("a", new char[] { })]
@@ -177,8 +177,8 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         [TestCase("abcdefghte", new char[] { 'e' })]
         public void FindDuplicatedCharactersTest(string inputString, char[] expectedDuplicates)
         {
-            CollectionAssert.AreEqual(expectedDuplicates, StringQuestions.FindDuplicatedCharactersUsingDictionary(inputString));
-            CollectionAssert.AreEqual(expectedDuplicates, StringQuestions.FindDuplicatedCharactersUsingLinq(inputString));
+            Assert.That(StringQuestions.FindDuplicatedCharactersUsingDictionary(inputString), Is.EqualTo(expectedDuplicates).AsCollection);
+            Assert.That(StringQuestions.FindDuplicatedCharactersUsingLinq(inputString), Is.EqualTo(expectedDuplicates).AsCollection);
         }
 
         [TestCase("a", true)]
@@ -200,7 +200,7 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         [TestCase("aaaaaa", true)]
         public void IsPalindromeTest(string inputString, bool isPalindrome)
         {
-            Assert.AreEqual(isPalindrome, StringQuestions.IsPalindrome(inputString));
+            Assert.That(StringQuestions.IsPalindrome(inputString), Is.EqualTo(isPalindrome));
         }
 
         [TestCase("a", "a")]
@@ -210,9 +210,9 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         [TestCase("abcde", "edcba")]
         public void ReverseStringTest(string inputString, string expectedResult)
         {
-            Assert.AreEqual(expectedResult, StringQuestions.ReverseString(inputString));
-            Assert.AreEqual(expectedResult, StringQuestions.ReverseStringWithoutUsingArrayReverse(inputString));
-            Assert.AreEqual(expectedResult, StringQuestions.ReverseStringUsingXorSwapping(inputString));
+            Assert.That(StringQuestions.ReverseString(inputString), Is.EqualTo(expectedResult));
+            Assert.That(StringQuestions.ReverseStringWithoutUsingArrayReverse(inputString), Is.EqualTo(expectedResult));
+            Assert.That(StringQuestions.ReverseStringUsingXorSwapping(inputString), Is.EqualTo(expectedResult));
         }
     }
 }

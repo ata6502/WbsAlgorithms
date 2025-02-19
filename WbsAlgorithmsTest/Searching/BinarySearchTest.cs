@@ -45,10 +45,10 @@ namespace WbsAlgorithmsTest.Searching
             var actualIndexLinearly = BinarySearch.FindIndexLinearly(inputElement, inputArray);
             var actualIndexFibonacci = BinarySearch.FindIndexUsingFibonacci(inputElement, inputArray);
 
-            Assert.AreEqual(expectedIndex, actualIndexIteratively);
-            Assert.AreEqual(expectedIndex, actualIndexRecusively);
-            Assert.AreEqual(expectedIndex, actualIndexLinearly);
-            Assert.AreEqual(expectedIndex, actualIndexFibonacci);
+            Assert.That(actualIndexIteratively, Is.EqualTo(expectedIndex));
+            Assert.That(actualIndexRecusively, Is.EqualTo(expectedIndex));
+            Assert.That(actualIndexLinearly, Is.EqualTo(expectedIndex));
+            Assert.That(actualIndexFibonacci, Is.EqualTo(expectedIndex));
         }
 
         [TestCase(new int[] { 1 }, 1, 0, TestName = "Rank_OneElement")]
@@ -85,7 +85,7 @@ namespace WbsAlgorithmsTest.Searching
         {
             var actualCount = BinarySearch.Rank(inputElement, inputArray);
 
-            Assert.AreEqual(expectedCount, actualCount);
+            Assert.That(actualCount, Is.EqualTo(expectedCount));
         }
 
         [TestCase(new int[] { 1 }, 1, 1, TestName = "Count_OneElement")]
@@ -115,7 +115,7 @@ namespace WbsAlgorithmsTest.Searching
         {
             var actualCount = BinarySearch.Count(inputElement, inputArray);
 
-            Assert.AreEqual(expectedCount, actualCount);
+            Assert.That(actualCount, Is.EqualTo(expectedCount));
         }
 
         [TestCase(new int[] { 1 }, 1, 0, TestName = "FirstIndex_OneElement")]
@@ -162,8 +162,8 @@ namespace WbsAlgorithmsTest.Searching
             var actualIndexIteratively = BinarySearch.FirstFirstIndexIteratively(inputElement, inputArray);
             var actualIndexRecursively = BinarySearch.FindFirstIndexRecursively(inputElement, inputArray);
 
-            Assert.AreEqual(expectedIndex, actualIndexIteratively);
-            Assert.AreEqual(expectedIndex, actualIndexRecursively);
+            Assert.That(actualIndexIteratively, Is.EqualTo(expectedIndex));
+            Assert.That(actualIndexRecursively, Is.EqualTo(expectedIndex));
         }
 
         [TestCase(@"Data\IntegersWithRepetitions.txt", 752524, 867, TestName = "FirstIndex_BigDataSet")]
@@ -176,8 +176,8 @@ namespace WbsAlgorithmsTest.Searching
             var actualIndexIteratively = BinarySearch.FirstFirstIndexIteratively(inputElement, inputArray);
             var actualIndexRecursively = BinarySearch.FindFirstIndexRecursively(inputElement, inputArray);
 
-            Assert.AreEqual(expectedIndex, actualIndexIteratively);
-            Assert.AreEqual(expectedIndex, actualIndexRecursively);
+            Assert.That(actualIndexIteratively, Is.EqualTo(expectedIndex));
+            Assert.That(actualIndexRecursively, Is.EqualTo(expectedIndex));
         }
     }
 }

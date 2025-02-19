@@ -13,10 +13,10 @@ namespace WbsAlgorithmsTest.Miscellaneous
         public void RotateTest(int[] inputArray, int shiftValue, int[] expectedArray)
         {
             var actualArray = CyclicRotation.Rotate(inputArray, shiftValue);
-            CollectionAssert.AreEqual(expectedArray, actualArray);
+            Assert.That(actualArray, Is.EqualTo(expectedArray).AsCollection);
 
             var actualArrayBruteForce = CyclicRotation.RotateUsingBruteForce(inputArray, shiftValue);
-            CollectionAssert.AreEqual(expectedArray, actualArrayBruteForce);
+            Assert.That(actualArrayBruteForce, Is.EqualTo(expectedArray).AsCollection);
         }
     }
 }

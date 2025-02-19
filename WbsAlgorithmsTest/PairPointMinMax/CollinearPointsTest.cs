@@ -13,15 +13,15 @@ namespace WbsAlgorithmsTest.PairPointMinMax
         public void CountTripletsBruteForceTest(Point[] points, int expectedTripletCount, bool useForCubicYTest)
         {
             var actualTripletCountBruteForce = CollinearPoints.CountTriplesBruteForce(points);
-            Assert.AreEqual(expectedTripletCount, actualTripletCountBruteForce);
+            Assert.That(actualTripletCountBruteForce, Is.EqualTo(expectedTripletCount));
 
             var actualTripletCountUsingSlopes = CollinearPoints.CountTriplesUsingSlopes(points);
-            Assert.AreEqual(expectedTripletCount, actualTripletCountUsingSlopes);
+            Assert.That(actualTripletCountUsingSlopes, Is.EqualTo(expectedTripletCount));
 
             if (useForCubicYTest)
             {
                 var actualTripletCountWithCubicY = CollinearPoints.CountTriplesWithCubicY(points);
-                Assert.AreEqual(expectedTripletCount, actualTripletCountWithCubicY);
+                Assert.That(actualTripletCountWithCubicY, Is.EqualTo(expectedTripletCount));
             }
         }
 

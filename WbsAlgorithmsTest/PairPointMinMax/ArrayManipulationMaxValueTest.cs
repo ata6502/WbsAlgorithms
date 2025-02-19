@@ -18,10 +18,10 @@ namespace WbsAlgorithmsTest.PairPointMinMax
             var operations = ConvertOperations(operationsAsString);
 
             var actualMaxValue = ArrayManipulationMaxValue.GetMaxValue(size, operations);
-            Assert.AreEqual(expectedMaxValue, actualMaxValue);
+            Assert.That(actualMaxValue, Is.EqualTo(expectedMaxValue));
 
             var actualMaxValueBruteForce = ArrayManipulationMaxValue.GetMaxValueBruteForce(size, operations);
-            Assert.AreEqual(expectedMaxValue, actualMaxValueBruteForce);
+            Assert.That(actualMaxValueBruteForce, Is.EqualTo(expectedMaxValue));
         }
 
         [TestCase(4000, @"Data\ArrayManipulationMaxValue1.txt", 30_000, 3, 7542539201)]
@@ -31,7 +31,7 @@ namespace WbsAlgorithmsTest.PairPointMinMax
             var operations = DataReader.ReadIntegerMatrix(operationsFile, rowCount, columnCount);
 
             var actualMaxValue = ArrayManipulationMaxValue.GetMaxValue(size, operations);
-            Assert.AreEqual(expectedMaxValue, actualMaxValue);
+            Assert.That(actualMaxValue, Is.EqualTo(expectedMaxValue));
         }
 
         private int[,] ConvertOperations(string operationsAsString)

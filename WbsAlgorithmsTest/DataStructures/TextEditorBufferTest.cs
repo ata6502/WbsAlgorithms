@@ -10,19 +10,19 @@ namespace WbsAlgorithmsTest.DataStructures
         public void EmptyBufferTest()
         {
             var b = new TextEditorBuffer();
-            Assert.AreEqual(0, b.Size);
-            Assert.AreEqual(" | ", b.ToString());
+            Assert.That(b.Size, Is.EqualTo(0));
+            Assert.That(b.ToString(), Is.EqualTo(" | "));
 
             b.Insert('A');
-            Assert.AreEqual(1, b.Size);
+            Assert.That(b.Size, Is.EqualTo(1));
 
-            Assert.AreEqual('A', b.Delete());
-            Assert.AreEqual(0, b.Size);
-            Assert.AreEqual(" | ", b.ToString());
+            Assert.That(b.Delete(), Is.EqualTo('A'));
+            Assert.That(b.Size, Is.EqualTo(0));
+            Assert.That(b.ToString(), Is.EqualTo(" | "));
 
-            Assert.AreEqual(default(char), b.Delete());
-            Assert.AreEqual(0, b.Size);
-            Assert.AreEqual(" | ", b.ToString());
+            Assert.That(b.Delete(), Is.EqualTo(default(char)));
+            Assert.That(b.Size, Is.EqualTo(0));
+            Assert.That(b.ToString(), Is.EqualTo(" | "));
         }
 
         [Test]
@@ -31,28 +31,28 @@ namespace WbsAlgorithmsTest.DataStructures
             var b = new TextEditorBuffer();
 
             b.Insert('A');
-            Assert.AreEqual(1, b.Size);
-            Assert.AreEqual("A | ", b.ToString());
+            Assert.That(b.Size, Is.EqualTo(1));
+            Assert.That(b.ToString(), Is.EqualTo("A | "));
 
             b.Right(1);
-            Assert.AreEqual("A | ", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo("A | "));
 
             b.Left(1);
-            Assert.AreEqual(" | A", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo(" | A"));
 
             b.Left(1);
-            Assert.AreEqual(" | A", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo(" | A"));
 
             b.Delete();
-            Assert.AreEqual(1, b.Size);
-            Assert.AreEqual(" | A", b.ToString());
+            Assert.That(b.Size, Is.EqualTo(1));
+            Assert.That(b.ToString(), Is.EqualTo(" | A"));
 
             b.Right(1);
-            Assert.AreEqual("A | ", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo("A | "));
 
-            Assert.AreEqual('A', b.Delete());
-            Assert.AreEqual(0, b.Size);
-            Assert.AreEqual(" | ", b.ToString());
+            Assert.That(b.Delete(), Is.EqualTo('A'));
+            Assert.That(b.Size, Is.EqualTo(0));
+            Assert.That(b.ToString(), Is.EqualTo(" | "));
         }
 
         [Test]
@@ -62,28 +62,28 @@ namespace WbsAlgorithmsTest.DataStructures
 
             b.Insert('A');
             b.Insert('B');
-            Assert.AreEqual(2, b.Size);
-            Assert.AreEqual("A B | ", b.ToString());
+            Assert.That(b.Size, Is.EqualTo(2));
+            Assert.That(b.ToString(), Is.EqualTo("A B | "));
 
             b.Right(1);
-            Assert.AreEqual("A B | ", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo("A B | "));
 
             b.Left(1);
-            Assert.AreEqual("A | B", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo("A | B"));
 
             b.Left(1);
-            Assert.AreEqual(" | A B", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo(" | A B"));
 
-            Assert.AreEqual(default(char), b.Delete());
-            Assert.AreEqual(2, b.Size);
-            Assert.AreEqual(" | A B", b.ToString());
+            Assert.That(b.Delete(), Is.EqualTo(default(char)));
+            Assert.That(b.Size, Is.EqualTo(2));
+            Assert.That(b.ToString(), Is.EqualTo(" | A B"));
 
             b.Right(1);
-            Assert.AreEqual("A | B", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo("A | B"));
 
-            Assert.AreEqual('A', b.Delete());
-            Assert.AreEqual(1, b.Size);
-            Assert.AreEqual(" | B", b.ToString());
+            Assert.That(b.Delete(), Is.EqualTo('A'));
+            Assert.That(b.Size, Is.EqualTo(1));
+            Assert.That(b.ToString(), Is.EqualTo(" | B"));
         }
 
         [Test]
@@ -96,75 +96,75 @@ namespace WbsAlgorithmsTest.DataStructures
             b.Insert('D');
             b.Insert('E');
             b.Insert('F');
-            Assert.AreEqual("A B C D E F | ", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo("A B C D E F | "));
 
             b.Left(4);
-            Assert.AreEqual("A B | C D E F", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo("A B | C D E F"));
 
             b.Right(3);
-            Assert.AreEqual("A B C D E | F", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo("A B C D E | F"));
 
             b.Right(1);
-            Assert.AreEqual("A B C D E F | ", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo("A B C D E F | "));
 
             b.Right(1); // try to move cursor beyond the last element
-            Assert.AreEqual("A B C D E F | ", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo("A B C D E F | "));
 
             b.Left(3);
-            Assert.AreEqual("A B C | D E F", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo("A B C | D E F"));
 
             b.Right(10); // try to move cursor beyond the last element
-            Assert.AreEqual("A B C D E F | ", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo("A B C D E F | "));
 
             b.Left(4);
-            Assert.AreEqual("A B | C D E F", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo("A B | C D E F"));
 
             b.Left(1);
-            Assert.AreEqual("A | B C D E F", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo("A | B C D E F"));
 
             b.Left(1);
-            Assert.AreEqual(" | A B C D E F", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo(" | A B C D E F"));
 
             b.Left(1); // try to move cursor before the first element
-            Assert.AreEqual(" | A B C D E F", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo(" | A B C D E F"));
 
             b.Right(3);
-            Assert.AreEqual("A B C | D E F", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo("A B C | D E F"));
 
             b.Left(15); // try to move cursor before the first element
-            Assert.AreEqual(" | A B C D E F", b.ToString());
-            Assert.AreEqual(b.Delete(), default(char));
+            Assert.That(b.ToString(), Is.EqualTo(" | A B C D E F"));
+            Assert.That(b.Delete(), Is.EqualTo(default(char)));
 
             b.Right(2);
-            Assert.AreEqual("A B | C D E F", b.ToString());
-            Assert.AreEqual(b.Delete(), 'B');
-            Assert.AreEqual("A | C D E F", b.ToString());
-            Assert.AreEqual(b.Get(), 'A');
-            Assert.AreEqual("A | C D E F", b.ToString());
+            Assert.That(b.ToString(), Is.EqualTo("A B | C D E F"));
+            Assert.That(b.Delete(), Is.EqualTo('B'));
+            Assert.That(b.ToString(), Is.EqualTo("A | C D E F"));
+            Assert.That(b.Get(), Is.EqualTo('A'));
+            Assert.That(b.ToString(), Is.EqualTo("A | C D E F"));
 
             b.Right(1);
-            Assert.AreEqual("A C | D E F", b.ToString());
-            Assert.AreEqual(b.Get(), 'C');
+            Assert.That(b.ToString(), Is.EqualTo("A C | D E F"));
+            Assert.That(b.Get(), Is.EqualTo('C'));
 
             b.Left(10);
-            Assert.AreEqual(" | A C D E F", b.ToString());
-            Assert.AreEqual(b.Get(), default(char));
-            Assert.AreEqual(b.Delete(), default(char));
+            Assert.That(b.ToString(), Is.EqualTo(" | A C D E F"));
+            Assert.That(b.Get(), Is.EqualTo(default(char)));
+            Assert.That(b.Delete(), Is.EqualTo(default(char)));
 
             b.Right(10);
-            Assert.AreEqual("A C D E F | ", b.ToString());
-            Assert.AreEqual(b.Get(), 'F');
-            Assert.AreEqual(b.Delete(), 'F');
-            Assert.AreEqual("A C D E | ", b.ToString());
-            Assert.AreEqual(b.Delete(), 'E');
-            Assert.AreEqual("A C D | ", b.ToString());
-            Assert.AreEqual(b.Delete(), 'D');
-            Assert.AreEqual("A C | ", b.ToString());
-            Assert.AreEqual(b.Delete(), 'C');
-            Assert.AreEqual("A | ", b.ToString());
-            Assert.AreEqual(b.Delete(), 'A');
-            Assert.AreEqual(" | ", b.ToString());
-            Assert.AreEqual(0, b.Size);
+            Assert.That(b.ToString(), Is.EqualTo("A C D E F | "));
+            Assert.That(b.Get(), Is.EqualTo('F'));
+            Assert.That(b.Delete(), Is.EqualTo('F'));
+            Assert.That(b.ToString(), Is.EqualTo("A C D E | "));
+            Assert.That(b.Delete(), Is.EqualTo('E'));
+            Assert.That(b.ToString(), Is.EqualTo("A C D | "));
+            Assert.That(b.Delete(), Is.EqualTo('D'));
+            Assert.That(b.ToString(), Is.EqualTo("A C | "));
+            Assert.That(b.Delete(), Is.EqualTo('C'));
+            Assert.That(b.ToString(), Is.EqualTo("A | "));
+            Assert.That(b.Delete(), Is.EqualTo('A'));
+            Assert.That(b.ToString(), Is.EqualTo(" | "));
+            Assert.That(b.Size, Is.EqualTo(0));
         }
     }
 }

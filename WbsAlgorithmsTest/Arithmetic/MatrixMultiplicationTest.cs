@@ -35,18 +35,18 @@ namespace WbsAlgorithmsTest.Arithmetic
 
             var productBruteForce = MatrixMultiplication.MultiplyBruteForce(matrixSize, X, Y);
             AssertMatrixIsSquare(productBruteForce);
-            Assert.AreEqual(Z, DataConverter.ConvertMatrixToString(productBruteForce, NumberOfDecimalPlaces));
+            Assert.That(DataConverter.ConvertMatrixToString(productBruteForce, NumberOfDecimalPlaces), Is.EqualTo(Z));
 
             var productRecursive = MatrixMultiplication.MultiplyRecursive(matrixSize, X, Y);
             AssertMatrixIsSquare(productRecursive);
-            Assert.AreEqual(Z, DataConverter.ConvertMatrixToString(productRecursive, NumberOfDecimalPlaces));
+            Assert.That(DataConverter.ConvertMatrixToString(productRecursive, NumberOfDecimalPlaces), Is.EqualTo(Z));
 
             var productStrassen = MatrixMultiplication.MultiplyStrassen(matrixSize, X, Y);
             AssertMatrixIsSquare(productStrassen);
-            Assert.AreEqual(Z, DataConverter.ConvertMatrixToString(productStrassen, NumberOfDecimalPlaces));
+            Assert.That(DataConverter.ConvertMatrixToString(productStrassen, NumberOfDecimalPlaces), Is.EqualTo(Z));
         }
 
         private void AssertMatrixIsSquare(double[,] matrix)
-            => Assert.AreEqual(matrix.GetLength(0), matrix.GetLength(1));
+            => Assert.That(matrix.GetLength(1), Is.EqualTo(matrix.GetLength(0)));
     }
 }

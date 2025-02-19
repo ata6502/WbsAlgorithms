@@ -12,8 +12,8 @@ namespace WbsAlgorithmsTest.DataStructures
         {
             var s = new StequeLinkedList<int>();
 
-            Assert.IsTrue(s.IsEmpty);
-            Assert.AreEqual(0, s.Size);
+            Assert.That(s.IsEmpty, Is.True);
+            Assert.That(s.Size, Is.EqualTo(0));
 
             // If the steque is empty, it should throw an exception.
             Assert.Throws<NullReferenceException>(() => s.Pop());
@@ -26,11 +26,11 @@ namespace WbsAlgorithmsTest.DataStructures
 
             s.Push(1);
 
-            Assert.IsFalse(s.IsEmpty);
-            Assert.AreEqual(1, s.Size);
+            Assert.That(s.IsEmpty, Is.False);
+            Assert.That(s.Size, Is.EqualTo(1));
 
             var val = s.Pop();
-            Assert.AreEqual(1, val);
+            Assert.That(val, Is.EqualTo(1));
         }
 
         [Test]
@@ -40,19 +40,19 @@ namespace WbsAlgorithmsTest.DataStructures
 
             s.Push(1);
 
-            Assert.IsFalse(s.IsEmpty);
-            Assert.AreEqual(1, s.Size);
+            Assert.That(s.IsEmpty, Is.False);
+            Assert.That(s.Size, Is.EqualTo(1));
 
             s.Push(2);
 
-            Assert.IsFalse(s.IsEmpty);
-            Assert.AreEqual(2, s.Size);
+            Assert.That(s.IsEmpty, Is.False);
+            Assert.That(s.Size, Is.EqualTo(2));
 
             var val = s.Pop();
-            Assert.AreEqual(2, val);
+            Assert.That(val, Is.EqualTo(2));
 
             val = s.Pop();
-            Assert.AreEqual(1, val);
+            Assert.That(val, Is.EqualTo(1));
         }
 
         [Test]
@@ -62,27 +62,27 @@ namespace WbsAlgorithmsTest.DataStructures
 
             s.Push(1);
 
-            Assert.IsFalse(s.IsEmpty);
-            Assert.AreEqual(1, s.Size);
+            Assert.That(s.IsEmpty, Is.False);
+            Assert.That(s.Size, Is.EqualTo(1));
 
             s.Push(2);
 
-            Assert.IsFalse(s.IsEmpty);
-            Assert.AreEqual(2, s.Size);
+            Assert.That(s.IsEmpty, Is.False);
+            Assert.That(s.Size, Is.EqualTo(2));
 
             s.Push(3);
 
-            Assert.IsFalse(s.IsEmpty);
-            Assert.AreEqual(3, s.Size);
+            Assert.That(s.IsEmpty, Is.False);
+            Assert.That(s.Size, Is.EqualTo(3));
 
             var val = s.Pop();
-            Assert.AreEqual(3, val);
+            Assert.That(val, Is.EqualTo(3));
 
             val = s.Pop();
-            Assert.AreEqual(2, val);
+            Assert.That(val, Is.EqualTo(2));
 
             val = s.Pop();
-            Assert.AreEqual(1, val);
+            Assert.That(val, Is.EqualTo(1));
         }
 
         [Test]
@@ -92,60 +92,60 @@ namespace WbsAlgorithmsTest.DataStructures
 
             s.Push(1);
 
-            Assert.IsFalse(s.IsEmpty);
-            Assert.AreEqual(1, s.Size);
+            Assert.That(s.IsEmpty, Is.False);
+            Assert.That(s.Size, Is.EqualTo(1));
 
             s.Push(2);
 
-            Assert.IsFalse(s.IsEmpty);
-            Assert.AreEqual(2, s.Size);
+            Assert.That(s.IsEmpty, Is.False);
+            Assert.That(s.Size, Is.EqualTo(2));
 
             s.Enqueue(3);
 
-            Assert.IsFalse(s.IsEmpty);
-            Assert.AreEqual(3, s.Size);
+            Assert.That(s.IsEmpty, Is.False);
+            Assert.That(s.Size, Is.EqualTo(3));
 
             var v = s.Pop();
 
-            Assert.IsFalse(s.IsEmpty);
-            Assert.AreEqual(2, s.Size);
-            Assert.AreEqual(2, v);
+            Assert.That(s.IsEmpty, Is.False);
+            Assert.That(s.Size, Is.EqualTo(2));
+            Assert.That(v, Is.EqualTo(2));
 
             v = s.Pop();
 
-            Assert.IsFalse(s.IsEmpty);
-            Assert.AreEqual(1, s.Size);
-            Assert.AreEqual(1, v);
+            Assert.That(s.IsEmpty, Is.False);
+            Assert.That(s.Size, Is.EqualTo(1));
+            Assert.That(v, Is.EqualTo(1));
 
             v = s.Pop();
 
-            Assert.IsTrue(s.IsEmpty);
-            Assert.AreEqual(0, s.Size);
-            Assert.AreEqual(3, v);
+            Assert.That(s.IsEmpty, Is.True);
+            Assert.That(s.Size, Is.EqualTo(0));
+            Assert.That(v, Is.EqualTo(3));
 
             Assert.Throws<NullReferenceException>(() => s.Pop());
 
             s.Enqueue(4);
 
-            Assert.IsFalse(s.IsEmpty);
-            Assert.AreEqual(1, s.Size);
+            Assert.That(s.IsEmpty, Is.False);
+            Assert.That(s.Size, Is.EqualTo(1));
 
             s.Enqueue(5);
 
-            Assert.IsFalse(s.IsEmpty);
-            Assert.AreEqual(2, s.Size);
+            Assert.That(s.IsEmpty, Is.False);
+            Assert.That(s.Size, Is.EqualTo(2));
 
             v = s.Pop();
 
-            Assert.IsFalse(s.IsEmpty);
-            Assert.AreEqual(1, s.Size);
-            Assert.AreEqual(4, v);
+            Assert.That(s.IsEmpty, Is.False);
+            Assert.That(s.Size, Is.EqualTo(1));
+            Assert.That(v, Is.EqualTo(4));
 
             v = s.Pop();
 
-            Assert.IsTrue(s.IsEmpty);
-            Assert.AreEqual(0, s.Size);
-            Assert.AreEqual(5, v);
+            Assert.That(s.IsEmpty, Is.True);
+            Assert.That(s.Size, Is.EqualTo(0));
+            Assert.That(v, Is.EqualTo(5));
         }
 
         [Test]
@@ -157,9 +157,9 @@ namespace WbsAlgorithmsTest.DataStructures
             s.Enqueue(11);
             s.Enqueue(12);
 
-            Assert.AreEqual(10, s.Pop());
-            Assert.AreEqual(11, s.Pop());
-            Assert.AreEqual(12, s.Pop());
+            Assert.That(s.Pop(), Is.EqualTo(10));
+            Assert.That(s.Pop(), Is.EqualTo(11));
+            Assert.That(s.Pop(), Is.EqualTo(12));
         }
 
         [Test]
@@ -178,16 +178,16 @@ namespace WbsAlgorithmsTest.DataStructures
             s.Push(9);      // 9,7,6,2,1,3,4,5,8
             s.Enqueue(10);  // 9,7,6,2,1,3,4,5,8,10
 
-            Assert.AreEqual(9, s.Pop());
-            Assert.AreEqual(7, s.Pop());
-            Assert.AreEqual(6, s.Pop());
-            Assert.AreEqual(2, s.Pop());
-            Assert.AreEqual(1, s.Pop());
-            Assert.AreEqual(3, s.Pop());
-            Assert.AreEqual(4, s.Pop());
-            Assert.AreEqual(5, s.Pop());
-            Assert.AreEqual(8, s.Pop());
-            Assert.AreEqual(10, s.Pop());
+            Assert.That(s.Pop(), Is.EqualTo(9));
+            Assert.That(s.Pop(), Is.EqualTo(7));
+            Assert.That(s.Pop(), Is.EqualTo(6));
+            Assert.That(s.Pop(), Is.EqualTo(2));
+            Assert.That(s.Pop(), Is.EqualTo(1));
+            Assert.That(s.Pop(), Is.EqualTo(3));
+            Assert.That(s.Pop(), Is.EqualTo(4));
+            Assert.That(s.Pop(), Is.EqualTo(5));
+            Assert.That(s.Pop(), Is.EqualTo(8));
+            Assert.That(s.Pop(), Is.EqualTo(10));
 
             Assert.Throws<NullReferenceException>(() => s.Pop());
         }

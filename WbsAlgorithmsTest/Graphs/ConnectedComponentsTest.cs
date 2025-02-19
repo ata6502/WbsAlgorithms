@@ -16,7 +16,7 @@ namespace WbsAlgorithmsTest.Graphs
             var cnt = alg.ComponentCount;
 
             // Verify the number of connected components.
-            Assert.AreEqual(expectedComponentCount, cnt);
+            Assert.That(cnt, Is.EqualTo(expectedComponentCount));
 
             // Create queues that will contain vertices of each component.
             var components = new Queue<int>[cnt];
@@ -34,7 +34,7 @@ namespace WbsAlgorithmsTest.Graphs
                 var j = 0;
                 foreach (var v in components[i])
                 {
-                    Assert.AreEqual(expectedComponents[i][j], v);
+                    Assert.That(v, Is.EqualTo(expectedComponents[i][j]));
                     ++j;
                 }
             }

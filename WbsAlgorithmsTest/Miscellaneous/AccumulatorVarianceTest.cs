@@ -24,9 +24,9 @@ namespace WbsAlgorithmsTest.Miscellaneous
             foreach (var v in values)
                 acc.AddValue(v);
 
-            Assert.AreEqual(expectedMean, acc.Mean, Tolerance);
-            Assert.AreEqual(expectedVariance, acc.Variance, Tolerance);
-            Assert.AreEqual(expectedStdDev, acc.StdDev, Tolerance);
+            Assert.That(acc.Mean, Is.EqualTo(expectedMean).Within(Tolerance));
+            Assert.That(acc.Variance, Is.EqualTo(expectedVariance).Within(Tolerance));
+            Assert.That(acc.StdDev, Is.EqualTo(expectedStdDev).Within(Tolerance));
         }
     }
 }

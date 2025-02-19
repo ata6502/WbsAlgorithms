@@ -12,8 +12,8 @@ namespace WbsAlgorithmsTest.DataStructures
         {
             var queue = new QueueCircularLinkedList<int>();
 
-            Assert.IsTrue(queue.IsEmpty);
-            Assert.AreEqual(0, queue.Size);
+            Assert.That(queue.IsEmpty, Is.True);
+            Assert.That(queue.Size, Is.EqualTo(0));
 
             // If the queue is empty, it should throw an exception.
             Assert.Throws<ArgumentException>(() => queue.Dequeue());
@@ -26,11 +26,11 @@ namespace WbsAlgorithmsTest.DataStructures
 
             queue.Enqueue(1);
 
-            Assert.IsFalse(queue.IsEmpty);
-            Assert.AreEqual(1, queue.Size);
+            Assert.That(queue.IsEmpty, Is.False);
+            Assert.That(queue.Size, Is.EqualTo(1));
 
             var item = queue.Dequeue();
-            Assert.AreEqual(1, item);
+            Assert.That(item, Is.EqualTo(1));
         }
 
         [Test]
@@ -40,19 +40,19 @@ namespace WbsAlgorithmsTest.DataStructures
 
             queue.Enqueue(1);
 
-            Assert.IsFalse(queue.IsEmpty);
-            Assert.AreEqual(1, queue.Size);
+            Assert.That(queue.IsEmpty, Is.False);
+            Assert.That(queue.Size, Is.EqualTo(1));
 
             queue.Enqueue(2);
 
-            Assert.IsFalse(queue.IsEmpty);
-            Assert.AreEqual(2, queue.Size);
+            Assert.That(queue.IsEmpty, Is.False);
+            Assert.That(queue.Size, Is.EqualTo(2));
 
             var item = queue.Dequeue();
-            Assert.AreEqual(1, item);
+            Assert.That(item, Is.EqualTo(1));
 
             item = queue.Dequeue();
-            Assert.AreEqual(2, item);
+            Assert.That(item, Is.EqualTo(2));
         }
 
         [Test]
@@ -62,27 +62,27 @@ namespace WbsAlgorithmsTest.DataStructures
 
             queue.Enqueue(1);
 
-            Assert.IsFalse(queue.IsEmpty);
-            Assert.AreEqual(1, queue.Size);
+            Assert.That(queue.IsEmpty, Is.False);
+            Assert.That(queue.Size, Is.EqualTo(1));
 
             queue.Enqueue(2);
 
-            Assert.IsFalse(queue.IsEmpty);
-            Assert.AreEqual(2, queue.Size);
+            Assert.That(queue.IsEmpty, Is.False);
+            Assert.That(queue.Size, Is.EqualTo(2));
 
             queue.Enqueue(3);
 
-            Assert.IsFalse(queue.IsEmpty);
-            Assert.AreEqual(3, queue.Size);
+            Assert.That(queue.IsEmpty, Is.False);
+            Assert.That(queue.Size, Is.EqualTo(3));
 
             var item = queue.Dequeue();
-            Assert.AreEqual(1, item);
+            Assert.That(item, Is.EqualTo(1));
 
             item = queue.Dequeue();
-            Assert.AreEqual(2, item);
+            Assert.That(item, Is.EqualTo(2));
 
             item = queue.Dequeue();
-            Assert.AreEqual(3, item);
+            Assert.That(item, Is.EqualTo(3));
         }
     }
 }

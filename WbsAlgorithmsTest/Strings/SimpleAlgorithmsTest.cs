@@ -25,7 +25,7 @@ namespace WbsAlgorithmsTest.Strings
         public void AreStringsCircularRotationsTest(string s1, string s2, bool expectedResult)
         {
             var actualResult = SimpleAlgorithms.AreStringsCircularRotations(s1, s2);
-            Assert.AreEqual(expectedResult, actualResult);
+            Assert.That(actualResult, Is.EqualTo(expectedResult));
         }
 
         [TestCase("a", "a", TestName = "Reverse1")]
@@ -46,7 +46,7 @@ namespace WbsAlgorithmsTest.Strings
         public void ReverseStringRecursivelyTest(string inputString, string expectedString)
         {
             var reversedString = SimpleAlgorithms.ReverseStringRecursively(inputString);
-            Assert.AreEqual(expectedString, reversedString);
+            Assert.That(reversedString, Is.EqualTo(expectedString));
         }
     }
 }

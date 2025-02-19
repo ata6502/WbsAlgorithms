@@ -12,8 +12,8 @@ namespace WbsAlgorithmsTest.DataStructures
         {
             var deque = new DequeLinkedList<int>();
 
-            Assert.IsTrue(deque.IsEmpty);
-            Assert.AreEqual(0, deque.Size);
+            Assert.That(deque.IsEmpty, Is.True);
+            Assert.That(deque.Size, Is.EqualTo(0));
 
             Assert.Throws<ArgumentException>(() => deque.PopLeft());
             Assert.Throws<ArgumentException>(() => deque.PopRight());
@@ -25,20 +25,20 @@ namespace WbsAlgorithmsTest.DataStructures
             var deque = new DequeLinkedList<int>();
 
             deque.PushRight(1);
-            Assert.AreEqual(1, deque.PopRight());
-            Assert.IsTrue(deque.IsEmpty);
+            Assert.That(deque.PopRight(), Is.EqualTo(1));
+            Assert.That(deque.IsEmpty, Is.True);
 
             deque.PushRight(1);
-            Assert.AreEqual(1, deque.PopLeft());
-            Assert.IsTrue(deque.IsEmpty);
+            Assert.That(deque.PopLeft(), Is.EqualTo(1));
+            Assert.That(deque.IsEmpty, Is.True);
 
             deque.PushLeft(1);
-            Assert.AreEqual(1, deque.PopRight());
-            Assert.IsTrue(deque.IsEmpty);
+            Assert.That(deque.PopRight(), Is.EqualTo(1));
+            Assert.That(deque.IsEmpty, Is.True);
 
             deque.PushLeft(1);
-            Assert.AreEqual(1, deque.PopLeft());
-            Assert.IsTrue(deque.IsEmpty);
+            Assert.That(deque.PopLeft(), Is.EqualTo(1));
+            Assert.That(deque.IsEmpty, Is.True);
         }
 
         [Test]
@@ -48,9 +48,9 @@ namespace WbsAlgorithmsTest.DataStructures
 
             deque.PushLeft(1);
             deque.PushRight(2);
-            Assert.AreEqual(1, deque.PopLeft());
-            Assert.AreEqual(2, deque.PopRight());
-            Assert.IsTrue(deque.IsEmpty);
+            Assert.That(deque.PopLeft(), Is.EqualTo(1));
+            Assert.That(deque.PopRight(), Is.EqualTo(2));
+            Assert.That(deque.IsEmpty, Is.True);
         }
 
         [Test]
@@ -61,10 +61,10 @@ namespace WbsAlgorithmsTest.DataStructures
             deque.PushLeft(2);
             deque.PushRight(3);
             deque.PushLeft(1);
-            Assert.AreEqual(1, deque.PopLeft());
-            Assert.AreEqual(3, deque.PopRight());
-            Assert.AreEqual(2, deque.PopLeft());
-            Assert.IsTrue(deque.IsEmpty);
+            Assert.That(deque.PopLeft(), Is.EqualTo(1));
+            Assert.That(deque.PopRight(), Is.EqualTo(3));
+            Assert.That(deque.PopLeft(), Is.EqualTo(2));
+            Assert.That(deque.IsEmpty, Is.True);
         }
 
         [Test]
@@ -75,28 +75,28 @@ namespace WbsAlgorithmsTest.DataStructures
             deque.PushLeft(3);
             deque.PushLeft(2);
             deque.PushLeft(1);
-            Assert.AreEqual(3, deque.Size);
+            Assert.That(deque.Size, Is.EqualTo(3));
 
-            Assert.AreEqual(1, deque.PopLeft());
-            Assert.AreEqual(2, deque.Size);
+            Assert.That(deque.PopLeft(), Is.EqualTo(1));
+            Assert.That(deque.Size, Is.EqualTo(2));
 
-            Assert.AreEqual(3, deque.PopRight());
-            Assert.AreEqual(1, deque.Size);
+            Assert.That(deque.PopRight(), Is.EqualTo(3));
+            Assert.That(deque.Size, Is.EqualTo(1));
 
             deque.PushRight(4);
             deque.PushRight(5);
-            Assert.AreEqual(3, deque.Size);
+            Assert.That(deque.Size, Is.EqualTo(3));
 
-            Assert.AreEqual(2, deque.PopLeft());
-            Assert.AreEqual(2, deque.Size);
+            Assert.That(deque.PopLeft(), Is.EqualTo(2));
+            Assert.That(deque.Size, Is.EqualTo(2));
 
-            Assert.AreEqual(4, deque.PopLeft());
-            Assert.AreEqual(1, deque.Size);
+            Assert.That(deque.PopLeft(), Is.EqualTo(4));
+            Assert.That(deque.Size, Is.EqualTo(1));
 
-            Assert.AreEqual(5, deque.PopLeft());
-            Assert.AreEqual(0, deque.Size);
+            Assert.That(deque.PopLeft(), Is.EqualTo(5));
+            Assert.That(deque.Size, Is.EqualTo(0));
 
-            Assert.IsTrue(deque.IsEmpty);
+            Assert.That(deque.IsEmpty, Is.True);
         }
     }
 }

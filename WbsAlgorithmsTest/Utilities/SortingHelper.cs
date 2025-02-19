@@ -8,7 +8,7 @@ namespace WbsAlgorithmsTest.Utilities
         {
             for (int i = 0; i < values.Length - 1; ++i)
             {
-                Assert.GreaterOrEqual(values[i + 1], values[i]);
+                Assert.That(values[i + 1], Is.GreaterThanOrEqualTo(values[i]));
             }
         }
 
@@ -16,7 +16,7 @@ namespace WbsAlgorithmsTest.Utilities
         {
             for (int i = 0; i < values.Length - 1; ++i)
             {
-                Assert.LessOrEqual(values[i + 1], values[i]);
+                Assert.That(values[i + 1], Is.LessThanOrEqualTo(values[i]));
             }
         }
     }

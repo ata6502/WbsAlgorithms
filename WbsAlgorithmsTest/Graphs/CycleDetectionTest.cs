@@ -14,7 +14,7 @@ namespace WbsAlgorithmsTest.Graphs
             var g = DataReader.ReadGraph(graphFile);
             var alg = new CycleDetection(g);
 
-            Assert.AreEqual(hasCycle, alg.HasCycle);
+            Assert.That(alg.HasCycle, Is.EqualTo(hasCycle));
         }
 
         private static IEnumerable<TestCaseData> TestCases()

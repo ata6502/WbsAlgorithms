@@ -28,7 +28,7 @@ namespace WbsAlgorithmsTest.Graphs
             var actualTopSccSizesWithLeaders = string.Join("", topFive).Replace(" ", "");
 
             // Assert sizes and leaders of the top five strongly connected components. 
-            Assert.AreEqual(expectedTopSccSizesWithLeaders, actualTopSccSizesWithLeaders);
+            Assert.That(actualTopSccSizesWithLeaders, Is.EqualTo(expectedTopSccSizesWithLeaders));
         }
 
         private static IEnumerable<TestCaseData> TestCases()

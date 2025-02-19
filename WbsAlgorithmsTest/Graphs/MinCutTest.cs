@@ -30,11 +30,11 @@ namespace WbsAlgorithmsTest.Graphs
                     // Format the results to compare with the expected cuts.
                     var formattedCut = $"{string.Join(' ', setA)},{string.Join(' ', setB)}";
                     var cutExists = expectedCuts.Any(c => c.Equals(formattedCut));
-                    Assert.IsTrue(cutExists, $"The cut {formattedCut} is not correct.");
+                    Assert.That(cutExists, Is.True, $"The cut {formattedCut} is not correct.");
                 }
             }
 
-            Assert.AreEqual(expectedMinCut, minCut);
+            Assert.That(minCut, Is.EqualTo(expectedMinCut));
         }
 
         private static IEnumerable<TestCaseData> TestCases()

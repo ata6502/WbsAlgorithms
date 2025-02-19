@@ -20,7 +20,7 @@ namespace WbsAlgorithmsTest.DataStructures
 
             var min = h.ExtractMinimum();
 
-            Assert.AreEqual(expectedMinimum, min);
+            Assert.That(min, Is.EqualTo(expectedMinimum));
         }
     }
 }

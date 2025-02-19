@@ -22,8 +22,8 @@ namespace WbsAlgorithmsTest.Arithmetic
         {
             var result = StringArithmeticHelper.PadLeftZeros(x, y);
 
-            Assert.AreEqual(paddedX, result.x);
-            Assert.AreEqual(paddedY, result.y);
+            Assert.That(result.x, Is.EqualTo(paddedX));
+            Assert.That(result.y, Is.EqualTo(paddedY));
         }
 
         [TestCase("1", "2", "3")]
@@ -38,7 +38,7 @@ namespace WbsAlgorithmsTest.Arithmetic
         {
             var result = StringArithmeticHelper.AddNumbers(x, y);
 
-            Assert.AreEqual(expectedResult, result);
+            Assert.That(result, Is.EqualTo(expectedResult));
         }
 
         [TestCase("2", "1", "1")]
@@ -53,7 +53,7 @@ namespace WbsAlgorithmsTest.Arithmetic
         {
             var result = StringArithmeticHelper.SubtractNumbers(x, y);
 
-            Assert.AreEqual(expectedResult, result);
+            Assert.That(result, Is.EqualTo(expectedResult));
         }
     }
 }

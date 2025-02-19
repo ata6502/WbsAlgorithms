@@ -19,13 +19,13 @@ namespace WbsAlgorithmsTest.Arithmetic
         public void ReverseTest(int inputInteger, int expectedReversedInteger)
         {
             var actualReversedInteger = IntegerReversal.Reverse(inputInteger);
-            Assert.AreEqual(expectedReversedInteger, actualReversedInteger);
+            Assert.That(actualReversedInteger, Is.EqualTo(expectedReversedInteger));
 
             var actualReversedIntegerWithoutChecked = IntegerReversal.ReverseWithoutChecked(inputInteger);
-            Assert.AreEqual(expectedReversedInteger, actualReversedIntegerWithoutChecked);
+            Assert.That(actualReversedIntegerWithoutChecked, Is.EqualTo(expectedReversedInteger));
 
             var actualReversedIntegerUsingString = IntegerReversal.ReverseUsingString(inputInteger);
-            Assert.AreEqual(expectedReversedInteger, actualReversedIntegerUsingString);
+            Assert.That(actualReversedIntegerUsingString, Is.EqualTo(expectedReversedInteger));
         }
     }
 }

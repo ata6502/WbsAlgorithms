@@ -17,15 +17,15 @@ namespace WbsAlgorithmsTest.DataStructures
             q.Insert(40); // index 3
             q.Insert(50); // index 4
 
-            Assert.AreEqual(5, q.Size);
-            Assert.AreEqual(30, q.Delete(2)); // 10,20,30,40,50 --> 10,20,40,50
-            Assert.AreEqual(50, q.Delete(3)); // 10,20,40,50 --> 10,20,40
-            Assert.AreEqual(10, q.Delete(0)); // 10,20,40 --> 20,40
-            Assert.AreEqual(40, q.Delete(1)); // 20,40 --> 20
-            Assert.AreEqual(20, q.Delete(0)); // 20 --> empty
-            Assert.AreEqual(0, q.Size);
+            Assert.That(q.Size, Is.EqualTo(5));
+            Assert.That(q.Delete(2), Is.EqualTo(30)); // 10,20,30,40,50 --> 10,20,40,50
+            Assert.That(q.Delete(3), Is.EqualTo(50)); // 10,20,40,50 --> 10,20,40
+            Assert.That(q.Delete(0), Is.EqualTo(10)); // 10,20,40 --> 20,40
+            Assert.That(q.Delete(1), Is.EqualTo(40)); // 20,40 --> 20
+            Assert.That(q.Delete(0), Is.EqualTo(20)); // 20 --> empty
+            Assert.That(q.Size, Is.EqualTo(0));
 
-            Assert.IsTrue(q.IsEmpty);
+            Assert.That(q.IsEmpty, Is.True);
             Assert.Throws<ArgumentOutOfRangeException>(() => q.Delete(0));
 
             q.Insert(60);

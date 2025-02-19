@@ -20,15 +20,15 @@ namespace WbsAlgorithmsTest.Arithmetic
         [TestCase("7900", "8945", "70665500")]
         [TestCase("8", "999999", "7999992")]
         [TestCase("98975", "231", "22863225")]
-        public void MultiplyTest(string x, string y, string result)
+        public void MultiplyTest(string x, string y, string expectedResult)
         {
             var resultSimple = IntegerMultiplication.SimpleMultiply(x, y);
             var resultRecursive = IntegerMultiplication.RecursiveMultiply(x, y);
             var resultKaratsuba = IntegerMultiplication.KaratsubaMultiply(x, y);
 
-            Assert.AreEqual(result, resultSimple, "Simple algorithm");
-            Assert.AreEqual(result, resultRecursive, "Recursive algorithm");
-            Assert.AreEqual(result, resultKaratsuba, "Karatsuba algorithm");
+            Assert.That(resultSimple, Is.EqualTo(expectedResult), "Simple algorithm");
+            Assert.That(resultRecursive, Is.EqualTo(expectedResult), "Recursive algorithm");
+            Assert.That(resultKaratsuba, Is.EqualTo(expectedResult), "Karatsuba algorithm");
         }
     }
 }

@@ -25,24 +25,24 @@ namespace WbsAlgorithmsTest.DataStructures
         {
             var b = new BagLinkedList<int>();
 
-            Assert.IsTrue(b.IsEmpty);
+            Assert.That(b.IsEmpty, Is.True);
 
             var elementsToAdd = new List<int> { 4, 1, 3, 6, 8 };
 
             foreach (var v in elementsToAdd)
                 b.Add(v);
 
-            Assert.IsFalse(b.IsEmpty);
-            Assert.AreEqual(5, b.Size);
+            Assert.That(b.IsEmpty, Is.False);
+            Assert.That(b.Size, Is.EqualTo(5));
 
             var elementsInBag = new List<int>(b.Size);
             foreach (var v in b)
                 elementsInBag.Add(v);
 
             // Compare both collections.
-            CollectionAssert.AreEqual(
-                elementsToAdd.OrderBy(v => v),
-                elementsInBag.OrderBy(v => v));
+            Assert.That(
+                elementsInBag.OrderBy(v => v), 
+                Is.EqualTo(elementsToAdd.OrderBy(v => v)).AsCollection);
         }
 
         [Test]
@@ -74,7 +74,7 @@ namespace WbsAlgorithmsTest.DataStructures
             double delta = expected * 0.05; // +/- 5%
             foreach (var p in _permutations)
             {
-                Assert.AreEqual(expected, p.Value, delta);
+                Assert.That(p.Value, Is.EqualTo(expected).Within(delta));
             }
         }
     }

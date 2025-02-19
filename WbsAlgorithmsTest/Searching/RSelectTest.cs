@@ -14,7 +14,7 @@ namespace WbsAlgorithmsTest.Searching
         public void FindValueTest(int[] inputArray, int inputOrderStatistic, int expectedOrderStatistic)
         {
             var actualOrderStatistic = RSelect.FindValue(inputArray, inputOrderStatistic);
-            Assert.AreEqual(expectedOrderStatistic, actualOrderStatistic);
+            Assert.That(actualOrderStatistic, Is.EqualTo(expectedOrderStatistic));
         }
 
         [TestCase(@"Data\Selection100.txt", 49, 4715, TestName = "RSelect_100numbers")]
@@ -23,7 +23,7 @@ namespace WbsAlgorithmsTest.Searching
             var inputArray = DataReader.ReadIntegers(filename);
 
             var actualOrderStatistic = RSelect.FindValue(inputArray, inputOrderStatistic);
-            Assert.AreEqual(expectedOrderStatistic, actualOrderStatistic);
+            Assert.That(actualOrderStatistic, Is.EqualTo(expectedOrderStatistic));
         }
 
         private static IEnumerable<TestCaseData> TestCases() => TestCaseHelper.SelectionTestCases(JsonDataFilename, nameof(RSelect));

@@ -13,7 +13,7 @@ namespace WbsAlgorithmsTest.Graphs
         {
             var g = DataReader.ReadGraph(graphFile);
             var actualDistances = ShortestPath.FindShortestPaths(g, sourceVertex); // the result distances have 0-based indices
-            CollectionAssert.AreEqual(expectedDistances, actualDistances);
+            Assert.That(actualDistances, Is.EqualTo(expectedDistances).AsCollection);
         }
 
         private static IEnumerable<TestCaseData> TestCases()

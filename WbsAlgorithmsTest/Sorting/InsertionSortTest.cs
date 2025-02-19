@@ -20,7 +20,7 @@ namespace WbsAlgorithmsTest.Sorting
 
             InsertionSort.SortAscending(sortedArray);
 
-            Assert.AreEqual(inputArray.Length, sortedArray.Length);
+            Assert.That(sortedArray.Length, Is.EqualTo(inputArray.Length));
             SortingHelper.AssertAscendingOrder(sortedArray);
         }
 
@@ -33,7 +33,7 @@ namespace WbsAlgorithmsTest.Sorting
 
             InsertionSort.SortDescending(sortedArray);
 
-            Assert.AreEqual(inputArray.Length, sortedArray.Length);
+            Assert.That(sortedArray.Length, Is.EqualTo(inputArray.Length));
             SortingHelper.AssertDescendingOrder(sortedArray);
         }
 

@@ -27,29 +27,29 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
 
         private void AssertLevels(List<LinkedList<TreeNode>> lists)
         {
-            Assert.AreEqual(4, lists.Count);
+            Assert.That(lists.Count, Is.EqualTo(4));
 
             var L0 = lists[0];
-            Assert.AreEqual(1, L0.Count);
-            Assert.AreEqual("A", L0.First.Value.Name);
+            Assert.That(L0.Count, Is.EqualTo(1));
+            Assert.That(L0.First.Value.Name, Is.EqualTo("A"));
 
             var L1 = lists[1];
-            Assert.AreEqual(2, L1.Count);
-            Assert.AreEqual("B", L1.First.Value.Name);
-            Assert.AreEqual("C", L1.First.Next.Value.Name);
+            Assert.That(L1.Count, Is.EqualTo(2));
+            Assert.That(L1.First.Value.Name, Is.EqualTo("B"));
+            Assert.That(L1.First.Next.Value.Name, Is.EqualTo("C"));
 
             var L2 = lists[2];
-            Assert.AreEqual(4, L2.Count);
-            Assert.AreEqual("D", L2.First.Value.Name);
-            Assert.AreEqual("E", L2.First.Next.Value.Name);
-            Assert.AreEqual("F", L2.First.Next.Next.Value.Name);
-            Assert.AreEqual("G", L2.First.Next.Next.Next.Value.Name);
+            Assert.That(L2.Count, Is.EqualTo(4));
+            Assert.That(L2.First.Value.Name, Is.EqualTo("D"));
+            Assert.That(L2.First.Next.Value.Name, Is.EqualTo("E"));
+            Assert.That(L2.First.Next.Next.Value.Name, Is.EqualTo("F"));
+            Assert.That(L2.First.Next.Next.Next.Value.Name, Is.EqualTo("G"));
 
             var L3 = lists[3];
-            Assert.AreEqual(3, L3.Count);
-            Assert.AreEqual("H", L3.First.Value.Name);
-            Assert.AreEqual("I", L3.First.Next.Value.Name);
-            Assert.AreEqual("J", L3.First.Next.Next.Value.Name);
+            Assert.That(L3.Count, Is.EqualTo(3));
+            Assert.That(L3.First.Value.Name, Is.EqualTo("H"));
+            Assert.That(L3.First.Next.Value.Name, Is.EqualTo("I"));
+            Assert.That(L3.First.Next.Next.Value.Name, Is.EqualTo("J"));
         }
     }
 }

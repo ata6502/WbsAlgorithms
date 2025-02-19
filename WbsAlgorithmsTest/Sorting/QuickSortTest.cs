@@ -20,7 +20,7 @@ namespace WbsAlgorithmsTest.Sorting
 
             QuickSort.Sort(copyArray);
 
-            Assert.AreEqual(inputArray.Length, copyArray.Length);
+            Assert.That(copyArray.Length, Is.EqualTo(inputArray.Length));
             SortingHelper.AssertAscendingOrder(copyArray);
         }
 
@@ -34,7 +34,7 @@ namespace WbsAlgorithmsTest.Sorting
 
                 QuickSort.Sort(copyArray, strategy);
 
-                Assert.AreEqual(inputArray.Length, copyArray.Length);
+                Assert.That(copyArray.Length, Is.EqualTo(inputArray.Length));
                 SortingHelper.AssertAscendingOrder(copyArray);
             }
 
@@ -56,9 +56,9 @@ namespace WbsAlgorithmsTest.Sorting
                 return QuickSort.Sort(copyArray, strategy);
             }
 
-            Assert.AreEqual(expectedComparisonCountFirstElement, SortAndCountComparisons(PivotStrategy.First));
-            Assert.AreEqual(expectedComparisonCountLastElement, SortAndCountComparisons(PivotStrategy.Last));
-            Assert.AreEqual(expectedComparisonCountMedianElement, SortAndCountComparisons(PivotStrategy.Median));
+            Assert.That(SortAndCountComparisons(PivotStrategy.First), Is.EqualTo(expectedComparisonCountFirstElement));
+            Assert.That(SortAndCountComparisons(PivotStrategy.Last), Is.EqualTo(expectedComparisonCountLastElement));
+            Assert.That(SortAndCountComparisons(PivotStrategy.Median), Is.EqualTo(expectedComparisonCountMedianElement));
         }
 
         private static IEnumerable<TestCaseData> TestCases() => TestCaseHelper.SortTestCases(JsonDataFilename, nameof(QuickSort));

@@ -14,7 +14,7 @@ namespace WbsAlgorithmsTest.Miscellaneous
         public void GetEliminatedPositionsTest(int n, int m, int[] expectedOrder)
         {
             var actualOrder = JosephusProblem.GetEliminatedPositions(n, m);
-            CollectionAssert.AreEqual(expectedOrder, actualOrder);
+            Assert.That(actualOrder, Is.EqualTo(expectedOrder).AsCollection);
         }
     }
 }

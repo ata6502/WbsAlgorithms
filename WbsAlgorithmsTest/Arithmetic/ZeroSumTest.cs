@@ -35,10 +35,10 @@ namespace WbsAlgorithmsTest.Arithmetic
         public void CountPairsTest(int[] inputArray, int expectedCount)
         {
             var actualCount1 = ZeroSum.CountPairsQuadratic(inputArray);
-            Assert.AreEqual(expectedCount, actualCount1);
+            Assert.That(actualCount1, Is.EqualTo(expectedCount));
 
             var actualCount2 = ZeroSum.CountPairsLinear(inputArray); // the inputArray has to be sorted
-            Assert.AreEqual(expectedCount, actualCount2);
+            Assert.That(actualCount2, Is.EqualTo(expectedCount));
         }
 
         [TestCase(new[] { 1 }, 0)]
@@ -66,10 +66,10 @@ namespace WbsAlgorithmsTest.Arithmetic
         public void CountTripletsTest(int[] inputArray, int expectedCount)
         {
             var actualCount1 = ZeroSum.CountTripletsCubic(inputArray);
-            Assert.AreEqual(expectedCount, actualCount1);
+            Assert.That(actualCount1, Is.EqualTo(expectedCount));
 
             var actualCount2 = ZeroSum.CountTripletsQuadratic(inputArray); // the inputArray has to be sorted
-            Assert.AreEqual(expectedCount, actualCount2);
+            Assert.That(actualCount2, Is.EqualTo(expectedCount));
         }
     }
 }

@@ -23,10 +23,10 @@ namespace WbsAlgorithmsTest.PairPointMinMax
             var pairExpected = new Point(expectedX, expectedY);
 
             var pairBruteForce = ClosestPair1D.FindPairBruteForce(inputArray);
-            Assert.AreEqual(pairExpected, pairBruteForce);
+            Assert.That(pairBruteForce, Is.EqualTo(pairExpected));
 
             var pairLinearithmic = ClosestPair1D.FindPairLinearithmic(inputArray);
-            Assert.AreEqual(pairExpected, pairLinearithmic);
+            Assert.That(pairLinearithmic, Is.EqualTo(pairExpected));
         }
     }
 }

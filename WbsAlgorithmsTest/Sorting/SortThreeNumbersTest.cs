@@ -17,7 +17,7 @@ namespace WbsAlgorithmsTest.Sorting
             // Sorts the input array in-place.
             SortThreeNumbers.SortAscending(inputArray);
 
-            CollectionAssert.AreEqual(expectedResult, inputArray);
+            Assert.That(inputArray, Is.EqualTo(expectedResult).AsCollection);
         }
     }
 }

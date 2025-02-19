@@ -25,8 +25,7 @@ namespace WbsAlgorithmsTest.Arithmetic
         public void GetMaxBinaryGapTest(int inputValue, int expectedMaxBinaryGap)
         {
             var actualMaxBinaryGap = BinaryGap.GetMaxBinaryGap(inputValue);
-
-            Assert.AreEqual(expectedMaxBinaryGap, actualMaxBinaryGap);
+            Assert.That(actualMaxBinaryGap, Is.EqualTo(expectedMaxBinaryGap));
         }
     }
 }

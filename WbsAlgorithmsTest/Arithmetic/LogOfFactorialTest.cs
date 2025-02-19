@@ -21,8 +21,7 @@ namespace WbsAlgorithmsTest.Arithmetic
         public void ComputeLogOfFactorialTest(int inputNumber, double expectedValue)
         {
             var actualValue = LogOfFactorial.Compute(inputNumber);
-
-            Assert.AreEqual(expectedValue, actualValue, 0.00000000000001);
+            Assert.That(actualValue, Is.EqualTo(expectedValue).Within(0.00000000000001));
         }
 
         [Test]

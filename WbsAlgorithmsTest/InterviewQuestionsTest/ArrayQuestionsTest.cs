@@ -17,11 +17,11 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
 
             Array.Copy(inputMatrix, matrix, m * n);
             ArrayQuestions.SetZerosInMatrix(matrix); // works in-place
-            CollectionAssert.AreEqual(expectedZeroMatrix, matrix);
+            Assert.That(matrix, Is.EqualTo(expectedZeroMatrix).AsCollection);
 
             Array.Copy(inputMatrix, matrix, m * n);
             ArrayQuestions.SetZerosInMatrixWithoutAdditionalStorage(matrix); // works in-place
-            CollectionAssert.AreEqual(expectedZeroMatrix, matrix);
+            Assert.That(matrix, Is.EqualTo(expectedZeroMatrix).AsCollection);
         }
 
         private static IEnumerable<TestCaseData> MatrixTestCases()
@@ -41,17 +41,17 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
             var matrix1 = new[,] { { 1, 2 }, { 3, 4 } };
             var expectedRotatedMatrix1 = new[,] { { 3, 1 }, { 4, 2 } };
             ArrayQuestions.RotateMatrix(matrix1);
-            CollectionAssert.AreEqual(expectedRotatedMatrix1, matrix1);
+            Assert.That(matrix1, Is.EqualTo(expectedRotatedMatrix1).AsCollection);
 
             var matrix2 = new [,] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
             var expectedRotatedMatrix2 = new [,] { { 7, 4, 1 }, { 8, 5, 2 }, { 9, 6, 3 } };
             ArrayQuestions.RotateMatrix(matrix2);
-            CollectionAssert.AreEqual(expectedRotatedMatrix2, matrix2);
+            Assert.That(matrix2, Is.EqualTo(expectedRotatedMatrix2).AsCollection);
 
             var matrix3 = new[,] { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 }, { 13, 14, 15, 16 } };
             var expectedRotatedMatrix3 = new[,] { { 13, 9, 5, 1 }, { 14, 10, 6, 2 }, { 15, 11, 7, 3 }, { 16, 12, 8, 4 } };
             ArrayQuestions.RotateMatrix(matrix3);
-            CollectionAssert.AreEqual(expectedRotatedMatrix3, matrix3);
+            Assert.That(matrix3, Is.EqualTo(expectedRotatedMatrix3).AsCollection);
         }
 
         [TestCase(new int[] { 1 }, new int[] { 1 })]
@@ -63,7 +63,7 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         public void ReverseArrayTest(int[] inputArray, int[] expectedReversedArray)
         {
             // ReverseArray modifies the input array. It reverses the input array in-place.
-            CollectionAssert.AreEqual(expectedReversedArray, ArrayQuestions.ReverseArray(inputArray));
+            Assert.That(ArrayQuestions.ReverseArray(inputArray), Is.EqualTo(expectedReversedArray).AsCollection);
         }
 
         [TestCase(new int[] { 1, 2 }, 1)]
@@ -79,7 +79,7 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         [TestCase(new int[] { 1, 1, 1 }, -1)]
         public void FindSecondLargestValueTest(int[] inputArray, int expectedSecondLargestValue)
         {
-            Assert.AreEqual(expectedSecondLargestValue, ArrayQuestions.FindSecondLargestValue(inputArray));
+            Assert.That(ArrayQuestions.FindSecondLargestValue(inputArray), Is.EqualTo(expectedSecondLargestValue));
         }
 
         [TestCase(new int[] { 1, 3 }, 2)]
@@ -88,8 +88,8 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         [TestCase(new int[] { 3, 4, 6, 7, 8 }, 5)]
         public void FindMissingValueTest(int[] inputArray, int expectedMissingValue)
         {
-            Assert.AreEqual(expectedMissingValue, ArrayQuestions.FindMissingValue(inputArray));
-            Assert.AreEqual(expectedMissingValue, ArrayQuestions.FindMissingValueUsingFormula(inputArray));
+            Assert.That(ArrayQuestions.FindMissingValue(inputArray), Is.EqualTo(expectedMissingValue));
+            Assert.That(ArrayQuestions.FindMissingValueUsingFormula(inputArray), Is.EqualTo(expectedMissingValue));
         }
 
         [TestCase(new int[] { 1 }, new int[] { 1 })]
@@ -101,7 +101,7 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         [TestCase(new int[] { 3, 2, 1, 3, 4, 2, 1 }, new int[] { 3, 2, 1, 4 })]
         public void RemoveDuplicatesTest(int[] inputArray, int[] expectedDistinctValues)
         {
-            CollectionAssert.AreEqual(expectedDistinctValues, ArrayQuestions.RemoveDuplicates(inputArray));
+            Assert.That(ArrayQuestions.RemoveDuplicates(inputArray), Is.EqualTo(expectedDistinctValues).AsCollection);
         }
 
         [TestCase(new int[] { 1 }, new int[] { })]
@@ -112,8 +112,8 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         [TestCase(new int[] { 3, 2, 1, 3, 4, 2, 1 }, new int[] { 3, 2, 1 })]
         public void FindDuplicatedNumbersTest(int[] inputArray, int[] expectedDuplicates)
         {
-            CollectionAssert.AreEqual(expectedDuplicates, ArrayQuestions.FindDuplicatedNumbersUsingDictionary(inputArray));
-            CollectionAssert.AreEqual(expectedDuplicates, ArrayQuestions.FindDuplicatedNumbersUsingLinq(inputArray));
+            Assert.That(ArrayQuestions.FindDuplicatedNumbersUsingDictionary(inputArray), Is.EqualTo(expectedDuplicates).AsCollection);
+            Assert.That(ArrayQuestions.FindDuplicatedNumbersUsingLinq(inputArray), Is.EqualTo(expectedDuplicates).AsCollection);
         }
     }
 }

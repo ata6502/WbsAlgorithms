@@ -22,12 +22,11 @@ namespace WbsAlgorithmsTest.DataStructures
 
             var c = Catenation.ConcatenateQueues(q1, q2);
 
-            Assert.AreEqual(0, q1.Count);
-            Assert.AreEqual(0, q2.Count);
-            Assert.AreEqual(0, c.FirstItem.Item);
-            Assert.AreEqual(1, c.FirstItem.Next.Item);
-
-            Assert.AreEqual("0 1 2 3 4 5", c.ToString());
+            Assert.That(q1.Count, Is.EqualTo(0));
+            Assert.That(q2.Count, Is.EqualTo(0));
+            Assert.That(c.FirstItem.Item, Is.EqualTo(0));
+            Assert.That(c.FirstItem.Next.Item, Is.EqualTo(1));
+            Assert.That(c.ToString(), Is.EqualTo("0 1 2 3 4 5"));
         }
 
         [Test]
@@ -45,12 +44,11 @@ namespace WbsAlgorithmsTest.DataStructures
 
             var c = Catenation.ConcatenateStacks(s1, s2);
 
-            Assert.AreEqual(0, s1.Count);
-            Assert.AreEqual(0, s2.Count);
-            Assert.AreEqual(2, c.FirstItem.Item);
-            Assert.AreEqual(1, c.FirstItem.Next.Item);
-
-            Assert.AreEqual("2 1 0 5 4 3", c.ToString());
+            Assert.That(s1.Count, Is.EqualTo(0));
+            Assert.That(s2.Count, Is.EqualTo(0));
+            Assert.That(c.FirstItem.Item, Is.EqualTo(2));
+            Assert.That(c.FirstItem.Next.Item, Is.EqualTo(1));
+            Assert.That(c.ToString(), Is.EqualTo("2 1 0 5 4 3"));
         }
 
         [Test]
@@ -68,12 +66,11 @@ namespace WbsAlgorithmsTest.DataStructures
 
             var c = Catenation.ConcatenateSteques(s1, s2);
 
-            Assert.AreEqual(0, s1.Size);
-            Assert.AreEqual(0, s2.Size);
-            Assert.AreEqual(2, c.FirstItem.Item);
-            Assert.AreEqual(1, c.FirstItem.Next.Item);
-
-            Assert.AreEqual("2 1 0 3 4 5", c.ToString());
+            Assert.That(s1.Size, Is.EqualTo(0));
+            Assert.That(s2.Size, Is.EqualTo(0));
+            Assert.That(c.FirstItem.Item, Is.EqualTo(2));
+            Assert.That(c.FirstItem.Next.Item, Is.EqualTo(1));
+            Assert.That(c.ToString(), Is.EqualTo("2 1 0 3 4 5"));
         }
 
         [Test]
@@ -82,7 +79,7 @@ namespace WbsAlgorithmsTest.DataStructures
             var q1 = new Queue<int>();
             var q2 = new Queue<int>();
             var c1 = Catenation.ConcatenateQueues(q1, q2);
-            Assert.IsNull(c1.FirstItem);
+            Assert.That(c1.FirstItem, Is.Null);
 
             q1 = new Queue<int>();
             q1.Enqueue(0);
@@ -91,7 +88,7 @@ namespace WbsAlgorithmsTest.DataStructures
             q2 = new Queue<int>();
 
             var c2 = Catenation.ConcatenateQueues(q1, q2);
-            Assert.AreEqual("0 1 2", c2.ToString());
+            Assert.That(c2.ToString(), Is.EqualTo("0 1 2"));
 
             q1 = new Queue<int>();
             q2 = new Queue<int>();
@@ -100,12 +97,12 @@ namespace WbsAlgorithmsTest.DataStructures
             q2.Enqueue(5);
 
             var c3 = Catenation.ConcatenateQueues(q1, q2);
-            Assert.AreEqual("3 4 5", c3.ToString());
+            Assert.That(c3.ToString(), Is.EqualTo("3 4 5"));
 
             q1 = null;
             q2 = null;
             var c4 = Catenation.ConcatenateQueues(q1, q2);
-            Assert.IsNull(c4.FirstItem);
+            Assert.That(c4.FirstItem, Is.Null);
 
             q1 = new Queue<int>();
             q1.Enqueue(0);
@@ -114,7 +111,7 @@ namespace WbsAlgorithmsTest.DataStructures
             q2 = null;
 
             var c5 = Catenation.ConcatenateQueues(q1, q2);
-            Assert.AreEqual("0 1 2", c5.ToString());
+            Assert.That(c5.ToString(), Is.EqualTo("0 1 2"));
 
             q1 = null;
             q2 = new Queue<int>();
@@ -123,7 +120,7 @@ namespace WbsAlgorithmsTest.DataStructures
             q2.Enqueue(5);
 
             var c6 = Catenation.ConcatenateQueues(q1, q2);
-            Assert.AreEqual("3 4 5", c6.ToString());
+            Assert.That(c6.ToString(), Is.EqualTo("3 4 5"));
         }
 
         [Test]
@@ -132,7 +129,7 @@ namespace WbsAlgorithmsTest.DataStructures
             var s1 = new Stack<int>();
             var s2 = new Stack<int>();
             var c1 = Catenation.ConcatenateStacks(s1, s2);
-            Assert.IsNull(c1.FirstItem);
+            Assert.That(c1.FirstItem, Is.Null);
 
             s1 = new Stack<int>();
             s1.Push(0);
@@ -141,7 +138,7 @@ namespace WbsAlgorithmsTest.DataStructures
             s2 = new Stack<int>();
 
             var c2 = Catenation.ConcatenateStacks(s1, s2);
-            Assert.AreEqual("2 1 0", c2.ToString());
+            Assert.That(c2.ToString(), Is.EqualTo("2 1 0"));
 
             s1 = new Stack<int>();
             s2 = new Stack<int>();
@@ -150,12 +147,12 @@ namespace WbsAlgorithmsTest.DataStructures
             s2.Push(5);
 
             var c3 = Catenation.ConcatenateStacks(s1, s2);
-            Assert.AreEqual("5 4 3", c3.ToString());
+            Assert.That(c3.ToString(), Is.EqualTo("5 4 3"));
 
             s1 = null;
             s2 = null;
             var c4 = Catenation.ConcatenateStacks(s1, s2);
-            Assert.IsNull(c4.FirstItem);
+            Assert.That(c4.FirstItem, Is.Null);
 
             s1 = new Stack<int>();
             s1.Push(0);
@@ -164,7 +161,7 @@ namespace WbsAlgorithmsTest.DataStructures
             s2 = null;
 
             var c5 = Catenation.ConcatenateStacks(s1, s2);
-            Assert.AreEqual("2 1 0", c5.ToString());
+            Assert.That(c5.ToString(), Is.EqualTo("2 1 0"));
 
             s1 = null;
             s2 = new Stack<int>();
@@ -173,7 +170,7 @@ namespace WbsAlgorithmsTest.DataStructures
             s2.Push(5);
 
             var c6 = Catenation.ConcatenateStacks(s1, s2);
-            Assert.AreEqual("5 4 3", c6.ToString());
+            Assert.That(c6.ToString(), Is.EqualTo("5 4 3"));
         }
 
         [Test]
@@ -182,7 +179,7 @@ namespace WbsAlgorithmsTest.DataStructures
             var s1 = new StequeLinkedList<int>();
             var s2 = new StequeLinkedList<int>();
             var c1 = Catenation.ConcatenateSteques(s1, s2);
-            Assert.IsNull(c1.FirstItem);
+            Assert.That(c1.FirstItem, Is.Null);
 
             s1 = new StequeLinkedList<int>();
             s1.Push(0);
@@ -191,7 +188,7 @@ namespace WbsAlgorithmsTest.DataStructures
             s2 = new StequeLinkedList<int>();
 
             var c2 = Catenation.ConcatenateSteques(s1, s2);
-            Assert.AreEqual("2 1 0", c2.ToString());
+            Assert.That(c2.ToString(), Is.EqualTo("2 1 0"));
 
             s1 = new StequeLinkedList<int>();
             s2 = new StequeLinkedList<int>();
@@ -200,12 +197,12 @@ namespace WbsAlgorithmsTest.DataStructures
             s2.Enqueue(5);
 
             var c3 = Catenation.ConcatenateSteques(s1, s2);
-            Assert.AreEqual("3 4 5", c3.ToString());
+            Assert.That(c3.ToString(), Is.EqualTo("3 4 5"));
 
             s1 = null;
             s2 = null;
             var c4 = Catenation.ConcatenateSteques(s1, s2);
-            Assert.IsNull(c4.FirstItem);
+            Assert.That(c4.FirstItem, Is.Null);
 
             s1 = new StequeLinkedList<int>();
             s1.Push(0);
@@ -214,7 +211,7 @@ namespace WbsAlgorithmsTest.DataStructures
             s2 = null;
 
             var c5 = Catenation.ConcatenateSteques(s1, s2);
-            Assert.AreEqual("2 1 0", c5.ToString());
+            Assert.That(c5.ToString(), Is.EqualTo("2 1 0"));
 
             s1 = null;
             s2 = new StequeLinkedList<int>();
@@ -223,7 +220,7 @@ namespace WbsAlgorithmsTest.DataStructures
             s2.Enqueue(5);
 
             var c6 = Catenation.ConcatenateSteques(s1, s2);
-            Assert.AreEqual("3 4 5", c3.ToString());
+            Assert.That(c3.ToString(), Is.EqualTo("3 4 5"));
         }
     }
 }

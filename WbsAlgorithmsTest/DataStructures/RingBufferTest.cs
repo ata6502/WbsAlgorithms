@@ -12,8 +12,8 @@ namespace WbsAlgorithmsTest.DataStructures
         {
             var buffer = new RingBuffer<int>(3);
 
-            Assert.IsTrue(buffer.IsEmpty);
-            Assert.AreEqual(0, buffer.Size);
+            Assert.That(buffer.IsEmpty, Is.True);
+            Assert.That(buffer.Size, Is.EqualTo(0));
 
             // If the buffer is empty, it should throw an exception.
             Assert.Throws<IndexOutOfRangeException>(() => buffer.Get());
@@ -25,22 +25,22 @@ namespace WbsAlgorithmsTest.DataStructures
             var buffer = new RingBuffer<int>(3);
 
             buffer.Put(1);
-            Assert.AreEqual(1, buffer.Get());
-            Assert.IsTrue(buffer.IsEmpty);
+            Assert.That(buffer.Get(), Is.EqualTo(1));
+            Assert.That(buffer.IsEmpty, Is.True);
 
             buffer.Put(1);
             buffer.Put(2);
-            Assert.AreEqual(1, buffer.Get());
-            Assert.AreEqual(2, buffer.Get());
-            Assert.IsTrue(buffer.IsEmpty);
+            Assert.That(buffer.Get(), Is.EqualTo(1));
+            Assert.That(buffer.Get(), Is.EqualTo(2));
+            Assert.That(buffer.IsEmpty, Is.True);
 
             buffer.Put(1);
             buffer.Put(2);
             buffer.Put(3);
-            Assert.AreEqual(1, buffer.Get());
-            Assert.AreEqual(2, buffer.Get());
-            Assert.AreEqual(3, buffer.Get());
-            Assert.IsTrue(buffer.IsEmpty);
+            Assert.That(buffer.Get(), Is.EqualTo(1));
+            Assert.That(buffer.Get(), Is.EqualTo(2));
+            Assert.That(buffer.Get(), Is.EqualTo(3));
+            Assert.That(buffer.IsEmpty, Is.True);
         }
 
         [Test]
@@ -52,20 +52,20 @@ namespace WbsAlgorithmsTest.DataStructures
             buffer.Put(2);
             buffer.Put(3);
             buffer.Put(4); // overrides 1
-            Assert.AreEqual(2, buffer.Get());
-            Assert.AreEqual(3, buffer.Get());
-            Assert.AreEqual(4, buffer.Get());
-            Assert.IsTrue(buffer.IsEmpty);
+            Assert.That(buffer.Get(), Is.EqualTo(2));
+            Assert.That(buffer.Get(), Is.EqualTo(3));
+            Assert.That(buffer.Get(), Is.EqualTo(4));
+            Assert.That(buffer.IsEmpty, Is.True);
 
             buffer.Put(1);
             buffer.Put(2);
             buffer.Put(3);
             buffer.Put(4); // overrides 1 
             buffer.Put(5); // overrides 2
-            Assert.AreEqual(3, buffer.Get());
-            Assert.AreEqual(4, buffer.Get());
-            Assert.AreEqual(5, buffer.Get());
-            Assert.IsTrue(buffer.IsEmpty);
+            Assert.That(buffer.Get(), Is.EqualTo(3));
+            Assert.That(buffer.Get(), Is.EqualTo(4));
+            Assert.That(buffer.Get(), Is.EqualTo(5));
+            Assert.That(buffer.IsEmpty, Is.True);
 
             buffer.Put(1);
             buffer.Put(2);
@@ -73,10 +73,10 @@ namespace WbsAlgorithmsTest.DataStructures
             buffer.Put(4); // overrides 1 
             buffer.Put(5); // overrides 2
             buffer.Put(6); // overrides 3 
-            Assert.AreEqual(4, buffer.Get());
-            Assert.AreEqual(5, buffer.Get());
-            Assert.AreEqual(6, buffer.Get());
-            Assert.IsTrue(buffer.IsEmpty);
+            Assert.That(buffer.Get(), Is.EqualTo(4));
+            Assert.That(buffer.Get(), Is.EqualTo(5));
+            Assert.That(buffer.Get(), Is.EqualTo(6));
+            Assert.That(buffer.IsEmpty, Is.True);
 
             buffer.Put(1);
             buffer.Put(2);
@@ -85,10 +85,10 @@ namespace WbsAlgorithmsTest.DataStructures
             buffer.Put(5); // overrides 2
             buffer.Put(6); // overrides 3 
             buffer.Put(7); // overrides 4
-            Assert.AreEqual(5, buffer.Get());
-            Assert.AreEqual(6, buffer.Get());
-            Assert.AreEqual(7, buffer.Get());
-            Assert.IsTrue(buffer.IsEmpty);
+            Assert.That(buffer.Get(), Is.EqualTo(5));
+            Assert.That(buffer.Get(), Is.EqualTo(6));
+            Assert.That(buffer.Get(), Is.EqualTo(7));
+            Assert.That(buffer.IsEmpty, Is.True);
         }
 
         [Test]
@@ -101,25 +101,25 @@ namespace WbsAlgorithmsTest.DataStructures
             buffer.Put(3);
             buffer.Put(4); // overrides 1
             
-            Assert.AreEqual(2, buffer.Get());
+            Assert.That(buffer.Get(), Is.EqualTo(2));
 
             buffer.Put(5);
 
-            Assert.AreEqual(3, buffer.Get());
-            Assert.AreEqual(4, buffer.Get());
+            Assert.That(buffer.Get(), Is.EqualTo(3));
+            Assert.That(buffer.Get(), Is.EqualTo(4));
 
             buffer.Put(6);
             buffer.Put(7);
 
-            Assert.AreEqual(5, buffer.Get());
-            Assert.AreEqual(6, buffer.Get());
+            Assert.That(buffer.Get(), Is.EqualTo(5));
+            Assert.That(buffer.Get(), Is.EqualTo(6));
 
             buffer.Put(8);
 
-            Assert.AreEqual(7, buffer.Get());
-            Assert.AreEqual(8, buffer.Get());
+            Assert.That(buffer.Get(), Is.EqualTo(7));
+            Assert.That(buffer.Get(), Is.EqualTo(8));
 
-            Assert.IsTrue(buffer.IsEmpty);
+            Assert.That(buffer.IsEmpty, Is.True);
 
         }
     }

@@ -12,18 +12,18 @@ namespace WbsAlgorithmsTest.DataStructures
         {
             var queue = new QueueLinkedList<int>();
 
-            Assert.IsTrue(queue.IsEmpty);
+            Assert.That(queue.IsEmpty, Is.True);
 
             queue.Enqueue(1);
             queue.Dequeue();
 
-            Assert.IsTrue(queue.IsEmpty);
+            Assert.That(queue.IsEmpty, Is.True);
 
             queue.Enqueue(1);
             queue.Enqueue(2);
             queue.Dequeue();
 
-            Assert.IsFalse(queue.IsEmpty);
+            Assert.That(queue.IsEmpty, Is.False);
         }
 
         [Test]
@@ -32,22 +32,22 @@ namespace WbsAlgorithmsTest.DataStructures
             var queue = new QueueLinkedList<int>();
 
             queue.Enqueue(1);
-            Assert.AreEqual(1, queue.Size);
+            Assert.That(queue.Size, Is.EqualTo(1));
 
             queue.Enqueue(2);
-            Assert.AreEqual(2, queue.Size);
+            Assert.That(queue.Size, Is.EqualTo(2));
 
             queue.Enqueue(3);
-            Assert.AreEqual(3, queue.Size);
+            Assert.That(queue.Size, Is.EqualTo(3));
 
-            Assert.AreEqual(1, queue.Dequeue());
-            Assert.AreEqual(2, queue.Size);
+            Assert.That(queue.Dequeue(), Is.EqualTo(1));
+            Assert.That(queue.Size, Is.EqualTo(2));
 
-            Assert.AreEqual(2, queue.Dequeue());
-            Assert.AreEqual(1, queue.Size);
+            Assert.That(queue.Dequeue(), Is.EqualTo(2));
+            Assert.That(queue.Size, Is.EqualTo(1));
 
-            Assert.AreEqual(3, queue.Dequeue());
-            Assert.AreEqual(0, queue.Size);
+            Assert.That(queue.Dequeue(), Is.EqualTo(3));
+            Assert.That(queue.Size, Is.EqualTo(0));
 
             // The queue is empty. It should throw an exception.
             Assert.Throws<ArgumentException>(() => queue.Dequeue());
@@ -64,33 +64,33 @@ namespace WbsAlgorithmsTest.DataStructures
 
             var copy = new QueueLinkedList<int>(queue);
 
-            Assert.AreEqual(3, queue.Size);
-            Assert.AreEqual(3, copy.Size);
+            Assert.That(queue.Size, Is.EqualTo(3));
+            Assert.That(copy.Size, Is.EqualTo(3));
 
             // Assert that the original queue and the copy are independent.
             queue.Enqueue(4);
-            Assert.AreEqual(4, queue.Size);
+            Assert.That(queue.Size, Is.EqualTo(4));
 
-            Assert.AreEqual(1, copy.Dequeue());
-            Assert.AreEqual(2, copy.Size);
+            Assert.That(copy.Dequeue(), Is.EqualTo(1));
+            Assert.That(copy.Size, Is.EqualTo(2));
 
-            Assert.AreEqual(1, queue.Dequeue());
-            Assert.AreEqual(3, queue.Size);
+            Assert.That(queue.Dequeue(), Is.EqualTo(1));
+            Assert.That(queue.Size, Is.EqualTo(3));
 
-            Assert.AreEqual(2, copy.Dequeue());
-            Assert.AreEqual(1, copy.Size);
+            Assert.That(copy.Dequeue(), Is.EqualTo(2));
+            Assert.That(copy.Size, Is.EqualTo(1));
 
-            Assert.AreEqual(2, queue.Dequeue());
-            Assert.AreEqual(2, queue.Size);
+            Assert.That(queue.Dequeue(), Is.EqualTo(2));
+            Assert.That(queue.Size, Is.EqualTo(2));
 
-            Assert.AreEqual(3, copy.Dequeue());
-            Assert.IsTrue(copy.IsEmpty);
+            Assert.That(copy.Dequeue(), Is.EqualTo(3));
+            Assert.That(copy.IsEmpty);
 
-            Assert.AreEqual(3, queue.Dequeue());
-            Assert.AreEqual(1, queue.Size);
+            Assert.That(queue.Dequeue(), Is.EqualTo(3));
+            Assert.That(queue.Size, Is.EqualTo(1));
 
-            Assert.AreEqual(4, queue.Dequeue());
-            Assert.IsTrue(queue.IsEmpty);
+            Assert.That(queue.Dequeue(), Is.EqualTo(4));
+            Assert.That(queue.IsEmpty);
         }
 
         [Test]
@@ -104,10 +104,10 @@ namespace WbsAlgorithmsTest.DataStructures
 
             queue.Reverse();
 
-            Assert.AreEqual(3, queue.Size);
-            Assert.AreEqual(3, queue.Dequeue());
-            Assert.AreEqual(2, queue.Dequeue());
-            Assert.AreEqual(1, queue.Dequeue());
+            Assert.That(queue.Size, Is.EqualTo(3));
+            Assert.That(queue.Dequeue(), Is.EqualTo(3));
+            Assert.That(queue.Dequeue(), Is.EqualTo(2));
+            Assert.That(queue.Dequeue(), Is.EqualTo(1));
         }
 
         [Test]
@@ -123,13 +123,13 @@ namespace WbsAlgorithmsTest.DataStructures
             var item = queue.Dequeue();
 
             // The item can be any of the items.
-            Assert.IsTrue(item == "A" || item == "B" || item == "C");
+            Assert.That(item == "A" || item == "B" || item == "C", Is.True);
 
             // The Sample method may return any item in the queue
             // except the the one that has been dequeued.
             var sample = queue.Sample();
 
-            Assert.AreNotEqual(item, sample);
+            Assert.That(sample, Is.Not.EqualTo(item));
         }
     }
 }

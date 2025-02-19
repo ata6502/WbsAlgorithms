@@ -12,11 +12,11 @@ namespace WbsAlgorithmsTest.DataStructures
         {
             var ds = new DoubleStack<int>();
 
-            Assert.IsTrue(ds.IsLeftEmpty);
-            Assert.AreEqual(0, ds.LeftSize);
+            Assert.That(ds.IsLeftEmpty, Is.True);
+            Assert.That(ds.LeftSize, Is.EqualTo(0));
 
-            Assert.IsTrue(ds.IsRightEmpty);
-            Assert.AreEqual(0, ds.RightSize);
+            Assert.That(ds.IsRightEmpty, Is.True);
+            Assert.That(ds.RightSize, Is.EqualTo(0));
 
             Assert.Throws<ArgumentException>(() => ds.PopLeft());
             Assert.Throws<ArgumentException>(() => ds.PopRight());
@@ -28,16 +28,16 @@ namespace WbsAlgorithmsTest.DataStructures
             var ds = new DoubleStack<int>();
 
             ds.PushRight(1);
-            Assert.IsFalse(ds.IsRightEmpty);
-            Assert.IsTrue(ds.IsLeftEmpty);
-            Assert.AreEqual(1, ds.PopRight());
-            Assert.IsTrue(ds.IsRightEmpty);
+            Assert.That(ds.IsRightEmpty, Is.False);
+            Assert.That(ds.IsLeftEmpty, Is.True);
+            Assert.That(ds.PopRight(), Is.EqualTo(1));
+            Assert.That(ds.IsRightEmpty, Is.True);
 
             ds.PushLeft(1);
-            Assert.IsFalse(ds.IsLeftEmpty);
-            Assert.IsTrue(ds.IsRightEmpty);
-            Assert.AreEqual(1, ds.PopLeft());
-            Assert.IsTrue(ds.IsLeftEmpty);
+            Assert.That(ds.IsLeftEmpty, Is.False);
+            Assert.That(ds.IsRightEmpty, Is.True);
+            Assert.That(ds.PopLeft(), Is.EqualTo(1));
+            Assert.That(ds.IsLeftEmpty, Is.True);
         }
 
         [Test]
@@ -47,11 +47,11 @@ namespace WbsAlgorithmsTest.DataStructures
 
             ds.PushLeft(1);
             ds.PushRight(2);
-            Assert.AreEqual(1, ds.LeftSize);
-            Assert.AreEqual(1, ds.RightSize);
+            Assert.That(ds.LeftSize, Is.EqualTo(1));
+            Assert.That(ds.RightSize, Is.EqualTo(1));
 
-            Assert.AreEqual(1, ds.PopLeft());
-            Assert.AreEqual(2, ds.PopRight());
+            Assert.That(ds.PopLeft(), Is.EqualTo(1));
+            Assert.That(ds.PopRight(), Is.EqualTo(2));
         }
 
         [Test]
@@ -62,12 +62,12 @@ namespace WbsAlgorithmsTest.DataStructures
             ds.PushLeft(2);
             ds.PushRight(3);
             ds.PushLeft(1);
-            Assert.AreEqual(2, ds.LeftSize);
-            Assert.AreEqual(1, ds.RightSize);
+            Assert.That(ds.LeftSize, Is.EqualTo(2));
+            Assert.That(ds.RightSize, Is.EqualTo(1));
 
-            Assert.AreEqual(1, ds.PopLeft());
-            Assert.AreEqual(3, ds.PopRight());
-            Assert.AreEqual(2, ds.PopLeft());
+            Assert.That(ds.PopLeft(), Is.EqualTo(1));
+            Assert.That(ds.PopRight(), Is.EqualTo(3));
+            Assert.That(ds.PopLeft(), Is.EqualTo(2));
         }
 
         [Test]
@@ -78,29 +78,29 @@ namespace WbsAlgorithmsTest.DataStructures
             ds.PushLeft(3);
             ds.PushLeft(2);
             ds.PushLeft(1);
-            Assert.AreEqual(3, ds.LeftSize);
+            Assert.That(ds.LeftSize, Is.EqualTo(3));
 
-            Assert.AreEqual(1, ds.PopLeft());
-            Assert.AreEqual(2, ds.LeftSize);
+            Assert.That(ds.PopLeft(), Is.EqualTo(1));
+            Assert.That(ds.LeftSize, Is.EqualTo(2));
 
-            Assert.AreEqual(2, ds.PopLeft());
-            Assert.AreEqual(1, ds.LeftSize);
+            Assert.That(ds.PopLeft(), Is.EqualTo(2));
+            Assert.That(ds.LeftSize, Is.EqualTo(1));
 
             ds.PushRight(4);
             ds.PushRight(5);
-            Assert.AreEqual(2, ds.RightSize);
+            Assert.That(ds.RightSize, Is.EqualTo(2));
 
-            Assert.AreEqual(3, ds.PopLeft());
-            Assert.AreEqual(0, ds.LeftSize);
+            Assert.That(ds.PopLeft(), Is.EqualTo(3));
+            Assert.That(ds.LeftSize, Is.EqualTo(0));
 
-            Assert.AreEqual(5, ds.PopRight());
-            Assert.AreEqual(1, ds.RightSize);
+            Assert.That(ds.PopRight(), Is.EqualTo(5));
+            Assert.That(ds.RightSize, Is.EqualTo(1));
 
-            Assert.AreEqual(4, ds.PopRight());
-            Assert.AreEqual(0, ds.RightSize);
+            Assert.That(ds.PopRight(), Is.EqualTo(4));
+            Assert.That(ds.RightSize, Is.EqualTo(0));
 
-            Assert.IsTrue(ds.IsLeftEmpty);
-            Assert.IsTrue(ds.IsRightEmpty);
+            Assert.That(ds.IsLeftEmpty, Is.True);
+            Assert.That(ds.IsRightEmpty, Is.True);
         }
     }
 }

@@ -13,13 +13,13 @@ namespace WbsAlgorithmsTest.DataStructures
 
             m.Add(1);
 
-            Assert.AreEqual(1, m.Head.Item);
-            Assert.IsNull(m.Head.Next);
+            Assert.That(m.Head.Item, Is.EqualTo(1));
+            Assert.That(m.Head.Next, Is.Null);
 
             m.Add(1);
 
-            Assert.AreEqual(1, m.Head.Item);
-            Assert.IsNull(m.Head.Next);
+            Assert.That(m.Head.Item, Is.EqualTo(1));
+            Assert.That(m.Head.Next, Is.Null);
         }
 
         [Test]
@@ -29,44 +29,44 @@ namespace WbsAlgorithmsTest.DataStructures
 
             m.Add(1);
 
-            Assert.AreEqual(1, m.Head.Item);
-            Assert.IsNull(m.Head.Next);
+            Assert.That(m.Head.Item, Is.EqualTo(1));
+            Assert.That(m.Head.Next, Is.Null);
 
             m.Add(2);
 
-            Assert.AreEqual(2, m.Head.Item);
-            Assert.AreEqual(1, m.Head.Next.Item);
-            Assert.IsNull(m.Head.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo(2));
+            Assert.That(m.Head.Next.Item, Is.EqualTo(1));
+            Assert.That(m.Head.Next.Next, Is.Null);
 
             m.Add(1);
 
-            Assert.AreEqual(1, m.Head.Item);
-            Assert.AreEqual(2, m.Head.Next.Item);
-            Assert.IsNull(m.Head.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo(1));
+            Assert.That(m.Head.Next.Item, Is.EqualTo(2));
+            Assert.That(m.Head.Next.Next, Is.Null);
 
             m.Add(2);
 
-            Assert.AreEqual(2, m.Head.Item);
-            Assert.AreEqual(1, m.Head.Next.Item);
-            Assert.IsNull(m.Head.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo(2));
+            Assert.That(m.Head.Next.Item, Is.EqualTo(1));
+            Assert.That(m.Head.Next.Next, Is.Null);
 
             m.Add(2);
 
-            Assert.AreEqual(2, m.Head.Item);
-            Assert.AreEqual(1, m.Head.Next.Item);
-            Assert.IsNull(m.Head.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo(2));
+            Assert.That(m.Head.Next.Item, Is.EqualTo(1));
+            Assert.That(m.Head.Next.Next, Is.Null);
 
             m.Add(1);
 
-            Assert.AreEqual(1, m.Head.Item);
-            Assert.AreEqual(2, m.Head.Next.Item);
-            Assert.IsNull(m.Head.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo(1));
+            Assert.That(m.Head.Next.Item, Is.EqualTo(2));
+            Assert.That(m.Head.Next.Next, Is.Null);
 
             m.Add(1);
 
-            Assert.AreEqual(1, m.Head.Item);
-            Assert.AreEqual(2, m.Head.Next.Item);
-            Assert.IsNull(m.Head.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo(1));
+            Assert.That(m.Head.Next.Item, Is.EqualTo(2));
+            Assert.That(m.Head.Next.Next, Is.Null);
         }
 
         [Test]
@@ -79,24 +79,24 @@ namespace WbsAlgorithmsTest.DataStructures
             m.Add(3);
             m.Add(1);
 
-            Assert.AreEqual(1, m.Head.Item);
-            Assert.AreEqual(3, m.Head.Next.Item);
-            Assert.AreEqual(2, m.Head.Next.Next.Item);
-            Assert.IsNull(m.Head.Next.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo(1));
+            Assert.That(m.Head.Next.Item, Is.EqualTo(3));
+            Assert.That(m.Head.Next.Next.Item, Is.EqualTo(2));
+            Assert.That(m.Head.Next.Next.Next, Is.Null);
 
             m.Add(3);
 
-            Assert.AreEqual(3, m.Head.Item);
-            Assert.AreEqual(1, m.Head.Next.Item);
-            Assert.AreEqual(2, m.Head.Next.Next.Item);
-            Assert.IsNull(m.Head.Next.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo(3));
+            Assert.That(m.Head.Next.Item, Is.EqualTo(1));
+            Assert.That(m.Head.Next.Next.Item, Is.EqualTo(2));
+            Assert.That(m.Head.Next.Next.Next, Is.Null);
 
             m.Add(3);
 
-            Assert.AreEqual(3, m.Head.Item);
-            Assert.AreEqual(1, m.Head.Next.Item);
-            Assert.AreEqual(2, m.Head.Next.Next.Item);
-            Assert.IsNull(m.Head.Next.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo(3));
+            Assert.That(m.Head.Next.Item, Is.EqualTo(1));
+            Assert.That(m.Head.Next.Next.Item, Is.EqualTo(2));
+            Assert.That(m.Head.Next.Next.Next, Is.Null);
         }
 
         [Test]
@@ -105,94 +105,94 @@ namespace WbsAlgorithmsTest.DataStructures
             var m = new MoveToFront<char>();
 
             m.Add('A');
-            Assert.AreEqual('A', m.Head.Item);
-            Assert.IsNull(m.Head.Next);
+            Assert.That(m.Head.Item, Is.EqualTo('A'));
+            Assert.That(m.Head.Next, Is.Null);
 
             m.Add('B');
-            Assert.AreEqual('B', m.Head.Item);
-            Assert.AreEqual('A', m.Head.Next.Item);
-            Assert.IsNull(m.Head.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo('B'));
+            Assert.That(m.Head.Next.Item, Is.EqualTo('A'));
+            Assert.That(m.Head.Next.Next, Is.Null);
 
             m.Add('C');
-            Assert.AreEqual('C', m.Head.Item);
-            Assert.AreEqual('B', m.Head.Next.Item);
-            Assert.AreEqual('A', m.Head.Next.Next.Item);
-            Assert.IsNull(m.Head.Next.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo('C'));
+            Assert.That(m.Head.Next.Item, Is.EqualTo('B'));
+            Assert.That(m.Head.Next.Next.Item, Is.EqualTo('A'));
+            Assert.That(m.Head.Next.Next.Next, Is.Null);
 
             m.Add('C');
-            Assert.AreEqual('C', m.Head.Item);
-            Assert.AreEqual('B', m.Head.Next.Item);
-            Assert.AreEqual('A', m.Head.Next.Next.Item);
-            Assert.IsNull(m.Head.Next.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo('C'));
+            Assert.That(m.Head.Next.Item, Is.EqualTo('B'));
+            Assert.That(m.Head.Next.Next.Item, Is.EqualTo('A'));
+            Assert.That(m.Head.Next.Next.Next, Is.Null);
 
             m.Add('D');
-            Assert.AreEqual('D', m.Head.Item);
-            Assert.AreEqual('C', m.Head.Next.Item);
-            Assert.AreEqual('B', m.Head.Next.Next.Item);
-            Assert.AreEqual('A', m.Head.Next.Next.Next.Item);
-            Assert.IsNull(m.Head.Next.Next.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo('D'));
+            Assert.That(m.Head.Next.Item, Is.EqualTo('C'));
+            Assert.That(m.Head.Next.Next.Item, Is.EqualTo('B'));
+            Assert.That(m.Head.Next.Next.Next.Item, Is.EqualTo('A'));
+            Assert.That(m.Head.Next.Next.Next.Next, Is.Null);
 
             m.Add('A');
-            Assert.AreEqual('A', m.Head.Item);
-            Assert.AreEqual('D', m.Head.Next.Item);
-            Assert.AreEqual('C', m.Head.Next.Next.Item);
-            Assert.AreEqual('B', m.Head.Next.Next.Next.Item);
-            Assert.IsNull(m.Head.Next.Next.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo('A'));
+            Assert.That(m.Head.Next.Item, Is.EqualTo('D'));
+            Assert.That(m.Head.Next.Next.Item, Is.EqualTo('C'));
+            Assert.That(m.Head.Next.Next.Next.Item, Is.EqualTo('B'));
+            Assert.That(m.Head.Next.Next.Next.Next, Is.Null);
 
             m.Add('B');
-            Assert.AreEqual('B', m.Head.Item);
-            Assert.AreEqual('A', m.Head.Next.Item);
-            Assert.AreEqual('D', m.Head.Next.Next.Item);
-            Assert.AreEqual('C', m.Head.Next.Next.Next.Item);
-            Assert.IsNull(m.Head.Next.Next.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo('B'));
+            Assert.That(m.Head.Next.Item, Is.EqualTo('A'));
+            Assert.That(m.Head.Next.Next.Item, Is.EqualTo('D'));
+            Assert.That(m.Head.Next.Next.Next.Item, Is.EqualTo('C'));
+            Assert.That(m.Head.Next.Next.Next.Next, Is.Null);
 
             m.Add('E');
-            Assert.AreEqual('E', m.Head.Item);
-            Assert.AreEqual('B', m.Head.Next.Item);
-            Assert.AreEqual('A', m.Head.Next.Next.Item);
-            Assert.AreEqual('D', m.Head.Next.Next.Next.Item);
-            Assert.AreEqual('C', m.Head.Next.Next.Next.Next.Item);
-            Assert.IsNull(m.Head.Next.Next.Next.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo('E'));
+            Assert.That(m.Head.Next.Item, Is.EqualTo('B'));
+            Assert.That(m.Head.Next.Next.Item, Is.EqualTo('A'));
+            Assert.That(m.Head.Next.Next.Next.Item, Is.EqualTo('D'));
+            Assert.That(m.Head.Next.Next.Next.Next.Item, Is.EqualTo('C'));
+            Assert.That(m.Head.Next.Next.Next.Next.Next, Is.Null);
 
             m.Add('B');
-            Assert.AreEqual('B', m.Head.Item);
-            Assert.AreEqual('E', m.Head.Next.Item);
-            Assert.AreEqual('A', m.Head.Next.Next.Item);
-            Assert.AreEqual('D', m.Head.Next.Next.Next.Item);
-            Assert.AreEqual('C', m.Head.Next.Next.Next.Next.Item);
-            Assert.IsNull(m.Head.Next.Next.Next.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo('B'));
+            Assert.That(m.Head.Next.Item, Is.EqualTo('E'));
+            Assert.That(m.Head.Next.Next.Item, Is.EqualTo('A'));
+            Assert.That(m.Head.Next.Next.Next.Item, Is.EqualTo('D'));
+            Assert.That(m.Head.Next.Next.Next.Next.Item, Is.EqualTo('C'));
+            Assert.That(m.Head.Next.Next.Next.Next.Next, Is.Null);
 
             m.Add('A');
-            Assert.AreEqual('A', m.Head.Item);
-            Assert.AreEqual('B', m.Head.Next.Item);
-            Assert.AreEqual('E', m.Head.Next.Next.Item);
-            Assert.AreEqual('D', m.Head.Next.Next.Next.Item);
-            Assert.AreEqual('C', m.Head.Next.Next.Next.Next.Item);
-            Assert.IsNull(m.Head.Next.Next.Next.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo('A'));
+            Assert.That(m.Head.Next.Item, Is.EqualTo('B'));
+            Assert.That(m.Head.Next.Next.Item, Is.EqualTo('E'));
+            Assert.That(m.Head.Next.Next.Next.Item, Is.EqualTo('D'));
+            Assert.That(m.Head.Next.Next.Next.Next.Item, Is.EqualTo('C'));
+            Assert.That(m.Head.Next.Next.Next.Next.Next, Is.Null);
 
             m.Add('C');
-            Assert.AreEqual('C', m.Head.Item);
-            Assert.AreEqual('A', m.Head.Next.Item);
-            Assert.AreEqual('B', m.Head.Next.Next.Item);
-            Assert.AreEqual('E', m.Head.Next.Next.Next.Item);
-            Assert.AreEqual('D', m.Head.Next.Next.Next.Next.Item);
-            Assert.IsNull(m.Head.Next.Next.Next.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo('C'));
+            Assert.That(m.Head.Next.Item, Is.EqualTo('A'));
+            Assert.That(m.Head.Next.Next.Item, Is.EqualTo('B'));
+            Assert.That(m.Head.Next.Next.Next.Item, Is.EqualTo('E'));
+            Assert.That(m.Head.Next.Next.Next.Next.Item, Is.EqualTo('D'));
+            Assert.That(m.Head.Next.Next.Next.Next.Next, Is.Null);
 
             m.Add('A');
-            Assert.AreEqual('A', m.Head.Item);
-            Assert.AreEqual('C', m.Head.Next.Item);
-            Assert.AreEqual('B', m.Head.Next.Next.Item);
-            Assert.AreEqual('E', m.Head.Next.Next.Next.Item);
-            Assert.AreEqual('D', m.Head.Next.Next.Next.Next.Item);
-            Assert.IsNull(m.Head.Next.Next.Next.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo('A'));
+            Assert.That(m.Head.Next.Item, Is.EqualTo('C'));
+            Assert.That(m.Head.Next.Next.Item, Is.EqualTo('B'));
+            Assert.That(m.Head.Next.Next.Next.Item, Is.EqualTo('E'));
+            Assert.That(m.Head.Next.Next.Next.Next.Item, Is.EqualTo('D'));
+            Assert.That(m.Head.Next.Next.Next.Next.Next, Is.Null);
 
             m.Add('A');
-            Assert.AreEqual('A', m.Head.Item);
-            Assert.AreEqual('C', m.Head.Next.Item);
-            Assert.AreEqual('B', m.Head.Next.Next.Item);
-            Assert.AreEqual('E', m.Head.Next.Next.Next.Item);
-            Assert.AreEqual('D', m.Head.Next.Next.Next.Next.Item);
-            Assert.IsNull(m.Head.Next.Next.Next.Next.Next);
+            Assert.That(m.Head.Item, Is.EqualTo('A'));
+            Assert.That(m.Head.Next.Item, Is.EqualTo('C'));
+            Assert.That(m.Head.Next.Next.Item, Is.EqualTo('B'));
+            Assert.That(m.Head.Next.Next.Next.Item, Is.EqualTo('E'));
+            Assert.That(m.Head.Next.Next.Next.Next.Item, Is.EqualTo('D'));
+            Assert.That(m.Head.Next.Next.Next.Next.Next, Is.Null);
         }
     }
 }

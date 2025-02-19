@@ -22,7 +22,7 @@ namespace WbsAlgorithmsTest.PairPointMinMax
         {
             var pairExpected = new Point(expectedX, expectedY);
             var pairActual = FarthestPair1D.FindPair(inputArray);
-            Assert.AreEqual(pairExpected, pairActual);
+            Assert.That(pairActual, Is.EqualTo(pairExpected));
         }
     }
 }

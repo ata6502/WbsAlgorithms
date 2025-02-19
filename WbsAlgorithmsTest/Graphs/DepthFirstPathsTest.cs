@@ -15,14 +15,14 @@ namespace WbsAlgorithmsTest.Graphs
             var alg = new DepthFirstPaths(g, sourceVertex);
 
             foreach(var v in reachableVertices)
-                Assert.IsTrue(alg.HasPathTo(v));
+                Assert.That(alg.HasPathTo(v), Is.True);
 
             foreach(var path in paths)
             {
                 var i = 0;
                 foreach (var v in alg.GetPathTo(path.DestinationVertex))
                 {
-                    Assert.AreEqual(path.Path[i], v);
+                    Assert.That(v, Is.EqualTo(path.Path[i]));
                     ++i;
                 }
             }

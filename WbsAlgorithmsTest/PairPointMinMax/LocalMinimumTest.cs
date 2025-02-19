@@ -36,7 +36,7 @@ namespace WbsAlgorithmsTest.PairPointMinMax
             // In some cases the number of comparisons is greater than 2*lg(n), n = inputArray.Length
             TestContext.Out.WriteLine($"#of compares: {result.Counter} ~ 2*lg(n)={2*Math.Log(inputArray.Length, 2.0):F0}");
 
-            Assert.AreEqual(expectedIndex, result.Index);
+            Assert.That(result.Index, Is.EqualTo(expectedIndex));
         }
 
         [TestCase("1", 1, 1)]                // a[0,0] = 1
@@ -87,10 +87,10 @@ namespace WbsAlgorithmsTest.PairPointMinMax
             var a = DataConverter.ConvertStringToMatrix<int>(inputMatrixAsString);
 
             var (i, j) = LocalMinimum.FindLocalMinimumInMatrixSimple(a);
-            Assert.AreEqual(expectedValueSimple, a[i,j]);
+            Assert.That(a[i,j], Is.EqualTo(expectedValueSimple));
 
             (i, j) = LocalMinimum.FindLocalMinimumInMatrixLinear(a);
-            Assert.AreEqual(expectedValueLinear, a[i, j]);
+            Assert.That(a[i, j], Is.EqualTo(expectedValueLinear));
         }
     }
 }

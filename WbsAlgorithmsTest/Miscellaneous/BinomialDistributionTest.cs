@@ -26,14 +26,14 @@ namespace WbsAlgorithmsTest.Miscellaneous
             {
                 var result1 = binomial.Compute(n, k, p);
 
-                Assert.AreEqual(expectedProbability, result1.Probability, Delta);
-                Assert.AreEqual(extectedCounter1, result1.Counter);
+                Assert.That(result1.Probability, Is.EqualTo(expectedProbability).Within(Delta));
+                Assert.That(result1.Counter, Is.EqualTo(extectedCounter1));
             }
 
             var result2 = binomial.ComputeWithMemory(n, k, p);
 
-            Assert.AreEqual(expectedProbability, result2.Probability, Delta);
-            Assert.AreEqual(extectedCounter2, result2.Counter);
+            Assert.That(result2.Probability, Is.EqualTo(expectedProbability).Within(Delta));
+            Assert.That(result2.Counter, Is.EqualTo(extectedCounter2));
         }
     }
 }

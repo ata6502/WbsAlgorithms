@@ -92,7 +92,7 @@ namespace WbsAlgorithmsTest.Searching
             // - FindIndexTest([5, 6, 7, 8, 9, 10, 3, 2, 1],30,-1): #of compares = 10; 3*lg(n) = 9
             TestContext.Out.WriteLine($"#of compares: {result.Counter} <= 3*lg(n)={3 * Math.Round(Math.Log(inputArray.Length, 2.0)):F0}");
 
-            Assert.AreEqual(expectedIndex, result.Index);
+            Assert.That(result.Index, Is.EqualTo(expectedIndex));
         }
     }
 }

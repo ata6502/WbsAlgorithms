@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
-using System.Linq;
 using System.Collections.Generic;
-using System.Text;
 using WbsAlgorithms.Graphs;
 using WbsAlgorithmsTest.Utilities;
 
@@ -17,7 +15,7 @@ namespace WbsAlgorithmsTest.Graphs
             var d = new DegreesOfSeparation(g);
             var actualPath = d.GetShortestPath(sourceVertex, destVertex);
 
-            CollectionAssert.AreEqual(expectedPath, actualPath);
+            Assert.That(actualPath, Is.EqualTo(expectedPath).AsCollection);
         }
 
         private static IEnumerable<TestCaseData> TestCases()

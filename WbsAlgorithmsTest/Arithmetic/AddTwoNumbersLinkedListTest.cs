@@ -14,14 +14,14 @@ namespace WbsAlgorithmsTest.Arithmetic
             var l2 = SinglyLinkedList.Create(new int[] { 5, 6, 4 });
 
             var result1 = AddTwoNumbersLinkedList.AddTwoNumbers(l1, l2);
-            Assert.AreEqual(7, result1.Item);
-            Assert.AreEqual(0, result1.Next.Item);
-            Assert.AreEqual(8, result1.Next.Next.Item);
+            Assert.That(result1.Item, Is.EqualTo(7));
+            Assert.That(result1.Next.Item, Is.EqualTo(0));
+            Assert.That(result1.Next.Next.Item, Is.EqualTo(8));
 
             var result2 = AddTwoNumbersLinkedList.AddTwoNumbersDummyHead(l1, l2);
-            Assert.AreEqual(7, result2.Item);
-            Assert.AreEqual(0, result2.Next.Item);
-            Assert.AreEqual(8, result2.Next.Next.Item);
+            Assert.That(result2.Item, Is.EqualTo(7));
+            Assert.That(result2.Next.Item, Is.EqualTo(0));
+            Assert.That(result2.Next.Next.Item, Is.EqualTo(8));
         }
 
         [Test]
@@ -31,14 +31,14 @@ namespace WbsAlgorithmsTest.Arithmetic
             var l2 = SinglyLinkedList.Create(new int[] { 9, 9 });
 
             var result1 = AddTwoNumbersLinkedList.AddTwoNumbers(l1, l2);
-            Assert.AreEqual(0, result1.Item);
-            Assert.AreEqual(0, result1.Next.Item);
-            Assert.AreEqual(1, result1.Next.Next.Item);
+            Assert.That(result1.Item, Is.EqualTo(0));
+            Assert.That(result1.Next.Item, Is.EqualTo(0));
+            Assert.That(result1.Next.Next.Item, Is.EqualTo(1));
 
             var result2 = AddTwoNumbersLinkedList.AddTwoNumbersDummyHead(l1, l2);
-            Assert.AreEqual(0, result2.Item);
-            Assert.AreEqual(0, result2.Next.Item);
-            Assert.AreEqual(1, result2.Next.Next.Item);
+            Assert.That(result2.Item, Is.EqualTo(0));
+            Assert.That(result2.Next.Item, Is.EqualTo(0));
+            Assert.That(result2.Next.Next.Item, Is.EqualTo(1));
         }
 
         [Test]
@@ -48,12 +48,12 @@ namespace WbsAlgorithmsTest.Arithmetic
             var l2 = SinglyLinkedList.Create(new int[] { 5 });
 
             var result1 = AddTwoNumbersLinkedList.AddTwoNumbers(l1, l2);
-            Assert.AreEqual(0, result1.Item);
-            Assert.AreEqual(1, result1.Next.Item);
+            Assert.That(result1.Item, Is.EqualTo(0));
+            Assert.That(result1.Next.Item, Is.EqualTo(1));
 
             var result2 = AddTwoNumbersLinkedList.AddTwoNumbersDummyHead(l1, l2);
-            Assert.AreEqual(0, result2.Item);
-            Assert.AreEqual(1, result2.Next.Item);
+            Assert.That(result2.Item, Is.EqualTo(0));
+            Assert.That(result2.Next.Item, Is.EqualTo(1));
         }
     }
 }

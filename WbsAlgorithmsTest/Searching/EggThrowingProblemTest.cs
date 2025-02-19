@@ -53,10 +53,10 @@ namespace WbsAlgorithmsTest.Searching
         public void GetHighestFloorTest(string floors, int expectedFloor)
         {
             var actualFloor = EggThrowingProblem.GetHighestFloor(ConvertToBitArray(floors));
-            Assert.AreEqual(expectedFloor, actualFloor);
+            Assert.That(actualFloor, Is.EqualTo(expectedFloor));
 
             var actualFloorFaster = EggThrowingProblem.GetHighestFloorFaster(ConvertToBitArray(floors));
-            Assert.AreEqual(expectedFloor, actualFloorFaster);
+            Assert.That(actualFloorFaster, Is.EqualTo(expectedFloor));
         }
 
         private BitArray ConvertToBitArray(string s)

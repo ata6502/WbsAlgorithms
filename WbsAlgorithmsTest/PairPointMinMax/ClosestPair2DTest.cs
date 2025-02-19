@@ -16,19 +16,20 @@ namespace WbsAlgorithmsTest.PairPointMinMax
 
             var resultBruteForce = ClosestPair2D.ComputeBruteForce(points);
             AssertPair(expectedClosestPair, resultBruteForce.ClosestPair);
-            Assert.AreEqual(expectedDistance, resultBruteForce.Distance, Tolerance);
+            Assert.That(resultBruteForce.Distance, Is.EqualTo(expectedDistance).Within(Tolerance));
 
             var resultRecursive = ClosestPair2D.ComputeRecursive(points);
             AssertPair(expectedClosestPair, resultRecursive.ClosestPair);
-            Assert.AreEqual(expectedDistance, resultRecursive.Distance, Tolerance);
+            Assert.That(resultRecursive.Distance, Is.EqualTo(expectedDistance).Within(Tolerance));
         }
 
         private void AssertPair(Point[] expectedPair, Point[] actualPair)
         {
-            Assert.AreEqual(2, actualPair.Length);
-            Assert.IsTrue(
+            Assert.That(actualPair.Length, Is.EqualTo(2));
+            Assert.That(
                 (expectedPair[0] == actualPair[0] && expectedPair[1] == actualPair[1]) ||
-                (expectedPair[1] == actualPair[0] && expectedPair[1] == actualPair[0]));
+                (expectedPair[1] == actualPair[0] && expectedPair[1] == actualPair[0]),
+                Is.True);
         }
 
         private static IEnumerable<TestCaseData> ComputeClosestPair2DTestCases()

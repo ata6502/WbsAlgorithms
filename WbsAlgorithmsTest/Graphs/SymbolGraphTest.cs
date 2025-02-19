@@ -14,12 +14,12 @@ namespace WbsAlgorithmsTest.Graphs
             var g = DataReader.ReadSymbolGraph(graphFile, delimiter, includeReversedEdges);
             var actualAdjacentVertices = g.Graph[g.Index(key)].ToList();
 
-            Assert.AreEqual(expectedAdjacentVertices.Length, actualAdjacentVertices.Count);
+            Assert.That(actualAdjacentVertices.Count, Is.EqualTo(expectedAdjacentVertices.Length));
             var cnt = actualAdjacentVertices.Count;
 
             // Verify the vertices adjacent to the given key.
             for (var i = 0; i < cnt; ++i)
-                Assert.AreEqual(expectedAdjacentVertices[i], g.Key(actualAdjacentVertices[i]));
+                Assert.That(g.Key(actualAdjacentVertices[i]), Is.EqualTo(expectedAdjacentVertices[i]));
         }
 
         [TestCaseSource(nameof(ContainsTestCases))]
@@ -27,7 +27,7 @@ namespace WbsAlgorithmsTest.Graphs
         {
             var g = DataReader.ReadSymbolGraph(graphFile, delimiter, includeReversedEdges);
 
-            Assert.AreEqual(expectedContains, g.Contains(key));
+            Assert.That(g.Contains(key), Is.EqualTo(expectedContains));
         }
 
         private static IEnumerable<TestCaseData> AdjacentVerticesTestCases()

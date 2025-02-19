@@ -26,7 +26,7 @@ namespace WbsAlgorithmsTest.Graphs
             var g = DataReader.ReadGraph(graphFile);
             var f = TopologicalSorting.Sort(g);
 
-            CollectionAssert.AreEqual(expectedSorting, f);
+            Assert.That(f, Is.EqualTo(expectedSorting).AsCollection);
         }
 
         private static IEnumerable<TestCaseData> TestCases()
@@ -46,16 +46,16 @@ namespace WbsAlgorithmsTest.Graphs
                 var vertexOrder = Array.ConvertAll(vertexOrderString.Split(' '), s => int.Parse(s));
                 var f = TopologicalSorting.Sort(_graphFourVertices, vertexOrder); // f has 0-based indices
 
-                Assert.AreEqual(0, f[0]);
+                Assert.That(f[0], Is.EqualTo(0));
 
                 if (f[1] == 1) // tests 0, 1, 2, 3
-                    Assert.AreEqual(2, f[2]);
+                    Assert.That(f[2], Is.EqualTo(2));
                 else if (f[1] == 2) // tests 0, 2, 1, 3
-                    Assert.AreEqual(1, f[2]);
+                    Assert.That(f[2], Is.EqualTo(1));
                 else
                     Assert.Fail($"f[1]={f[1]}; expected 1 or 2");
 
-                Assert.AreEqual(3, f[3]);
+                Assert.That(f[3], Is.EqualTo(3));
             }
         }
 
@@ -75,18 +75,18 @@ namespace WbsAlgorithmsTest.Graphs
                 // 0, 1, 2, 3, 4, 5
                 // 0, 2, 1, 3, 4, 5
 
-                Assert.AreEqual(0, f[0]);
+                Assert.That(f[0], Is.EqualTo(0));
 
                 if (f[1] == 1) // tests 0, 1, 2, 3, 4, 5
-                    Assert.AreEqual(2, f[2]);
+                    Assert.That(f[2], Is.EqualTo(2));
                 else if (f[1] == 2) // tests 0, 2, 1, 3, 4, 5
-                    Assert.AreEqual(1, f[2]);
+                    Assert.That(f[2], Is.EqualTo(1));
                 else
                     Assert.Fail($"f[1]={f[1]}; expected 1 or 2");
 
-                Assert.AreEqual(3, f[3]);
-                Assert.AreEqual(4, f[4]);
-                Assert.AreEqual(5, f[5]);
+                Assert.That(f[3], Is.EqualTo(3));
+                Assert.That(f[4], Is.EqualTo(4));
+                Assert.That(f[5], Is.EqualTo(5));
             }
         }
 

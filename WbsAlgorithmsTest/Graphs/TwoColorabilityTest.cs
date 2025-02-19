@@ -14,7 +14,7 @@ namespace WbsAlgorithmsTest.Graphs
             var g = DataReader.ReadGraph(graphFile);
             var alg = new TwoColorability(g);
 
-            Assert.AreEqual(isBipartite, alg.IsBipartite);
+            Assert.That(alg.IsBipartite, Is.EqualTo(isBipartite));
         }
 
         private static IEnumerable<TestCaseData> TestCases()

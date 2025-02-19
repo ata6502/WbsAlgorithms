@@ -30,8 +30,7 @@ namespace WbsAlgorithmsTest.Arithmetic
         public void ComputeFibonacciNumberTest(int inputNumber, string expectedSequence)
         {
             var actualSequence = string.Join(' ', FibonacciSequence.ComputeSequenceUsingArray(inputNumber));
-
-            Assert.AreEqual(expectedSequence, actualSequence);
+            Assert.That(actualSequence, Is.EqualTo(expectedSequence));
         }
     }
 }

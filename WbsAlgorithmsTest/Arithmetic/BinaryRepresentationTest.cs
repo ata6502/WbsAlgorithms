@@ -20,8 +20,8 @@ namespace WbsAlgorithmsTest.Arithmetic
             var actualBinary1 = BinaryRepresentation.GetBinary(inputNumber);
             var actualBinary2 = BinaryRepresentation.GetBinaryUsingStack(inputNumber);
 
-            Assert.AreEqual(expectedBinary, actualBinary1);
-            Assert.AreEqual(expectedBinary, actualBinary2);
+            Assert.That(actualBinary1, Is.EqualTo(expectedBinary));
+            Assert.That(actualBinary2, Is.EqualTo(expectedBinary));
         }
     }
 }

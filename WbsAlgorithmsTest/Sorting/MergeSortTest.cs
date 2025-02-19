@@ -15,7 +15,7 @@ namespace WbsAlgorithmsTest.Sorting
         {
             var sortedArray = MergeSort.Sort(inputArray);
 
-            Assert.AreEqual(inputArray.Length, sortedArray.Length);
+            Assert.That(sortedArray.Length, Is.EqualTo(inputArray.Length));
             SortingHelper.AssertAscendingOrder(sortedArray);
         }
 

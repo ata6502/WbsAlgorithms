@@ -14,8 +14,7 @@ namespace WbsAlgorithmsTest.Arithmetic
         {
             var eval = new DijkstraTwoStack();
             var actualResult = eval.EvaluateExpression(expression);
-
-            Assert.AreEqual(expectedResult, actualResult);
+            Assert.That(actualResult, Is.EqualTo(expectedResult));
         }
 
         [TestCase("[()]{}{[()()]()}", true)]
@@ -26,7 +25,7 @@ namespace WbsAlgorithmsTest.Arithmetic
         public void AreParenthesesBalancedTest(string parentheses, bool expectedValue)
         {
             var actualValue = BalancedParentheses.AreParenthesesBalanced(parentheses);
-            Assert.AreEqual(expectedValue, actualValue);
+            Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase("1 + 2 ) * 3 - 4 ) * 5 - 6 ) ) )", "( ( 1 + 2 ) * ( ( 3 - 4 ) * ( 5 - 6 ) ) )")]
@@ -35,7 +34,7 @@ namespace WbsAlgorithmsTest.Arithmetic
         public void InsertParenthesesTest(string expression, string expectedExpression)
         {
             var actualExpression = BalancedParentheses.InsertParentheses(expression);
-            Assert.AreEqual(expectedExpression, actualExpression);
+            Assert.That(actualExpression, Is.EqualTo(expectedExpression));
         }
 
         [TestCase("( x + y )", "( x y + )")]
@@ -47,7 +46,7 @@ namespace WbsAlgorithmsTest.Arithmetic
         public void ConvertToPostfixTest(string expression, string expectedExpression)
         {
             var actualExpression = InfixPostfix.ConvertToPostfix(expression);
-            Assert.AreEqual(expectedExpression, actualExpression);
+            Assert.That(actualExpression, Is.EqualTo(expectedExpression));
         }
 
         [TestCase("2 5 +", 7)]
@@ -60,7 +59,7 @@ namespace WbsAlgorithmsTest.Arithmetic
         public void EvaluatePostfixTest(string expression, double expectedValue)
         {
             var actualValue = InfixPostfix.EvaluatePostfix(expression);
-            Assert.AreEqual(expectedValue, actualValue);
+            Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
     }
 }

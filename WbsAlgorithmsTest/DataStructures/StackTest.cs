@@ -53,33 +53,33 @@ namespace WbsAlgorithmsTest.DataStructures
 
             var copy = new StackLinkedList<int>(stack);
 
-            Assert.IsFalse(stack.IsEmpty);
-            Assert.IsFalse(copy.IsEmpty);
+            Assert.That(stack.IsEmpty, Is.False);
+            Assert.That(copy.IsEmpty, Is.False);
 
-            Assert.AreEqual(3, stack.Size);
-            Assert.AreEqual(3, copy.Size);
+            Assert.That(stack.Size, Is.EqualTo(3));
+            Assert.That(copy.Size, Is.EqualTo(3));
 
-            Assert.AreEqual(3, stack.Pop());
-            Assert.AreEqual(3, copy.Pop());
-            Assert.AreEqual(2, stack.Size);
-            Assert.AreEqual(2, copy.Size);
+            Assert.That(stack.Pop(), Is.EqualTo(3));
+            Assert.That(copy.Pop(), Is.EqualTo(3));
+            Assert.That(stack.Size, Is.EqualTo(2));
+            Assert.That(copy.Size, Is.EqualTo(2));
 
-            Assert.AreEqual(2, stack.Pop());
-            Assert.AreEqual(2, copy.Pop());
-            Assert.AreEqual(1, stack.Size);
-            Assert.AreEqual(1, copy.Size);
+            Assert.That(stack.Pop(), Is.EqualTo(2));
+            Assert.That(copy.Pop(), Is.EqualTo(2));
+            Assert.That(stack.Size, Is.EqualTo(1));
+            Assert.That(copy.Size, Is.EqualTo(1));
 
-            Assert.AreEqual(1, stack.Pop());
-            Assert.AreEqual(1, copy.Pop());
-            Assert.AreEqual(0, stack.Size);
-            Assert.AreEqual(0, copy.Size);
+            Assert.That(stack.Pop(), Is.EqualTo(1));
+            Assert.That(copy.Pop(), Is.EqualTo(1));
+            Assert.That(stack.Size, Is.EqualTo(0));
+            Assert.That(copy.Size, Is.EqualTo(0));
         }
 
         #region Actual tests with asserts
         private void IsEmptyTest<T>(IStack<T> stack)
         {
-            Assert.IsTrue(stack.IsEmpty);
-            Assert.AreEqual(0, stack.Size);
+            Assert.That(stack.IsEmpty, Is.True);
+            Assert.That(stack.Size, Is.EqualTo(0));
 
             // If the stack is empty, it should throw an exception.
             Assert.Throws<NullReferenceException>(() => stack.Pop());
@@ -89,66 +89,66 @@ namespace WbsAlgorithmsTest.DataStructures
         {
             stack.Push(1);
 
-            Assert.IsFalse(stack.IsEmpty);
-            Assert.AreEqual(1, stack.Size);
-            Assert.AreEqual(1, stack.Peek());
+            Assert.That(stack.IsEmpty, Is.False);
+            Assert.That(stack.Size, Is.EqualTo(1));
+            Assert.That(stack.Peek(), Is.EqualTo(1));
 
             var item = stack.Pop();
-            Assert.AreEqual(1, item);
+            Assert.That(item, Is.EqualTo(1));
         }
 
         private void TwoElements(IStack<int> stack)
         {
             stack.Push(1);
 
-            Assert.IsFalse(stack.IsEmpty);
-            Assert.AreEqual(1, stack.Size);
-            Assert.AreEqual(1, stack.Peek());
+            Assert.That(stack.IsEmpty, Is.False);
+            Assert.That(stack.Size, Is.EqualTo(1));
+            Assert.That(stack.Peek(), Is.EqualTo(1));
 
             stack.Push(2);
 
-            Assert.IsFalse(stack.IsEmpty);
-            Assert.AreEqual(2, stack.Size);
-            Assert.AreEqual(2, stack.Peek());
+            Assert.That(stack.IsEmpty, Is.False);
+            Assert.That(stack.Size, Is.EqualTo(2));
+            Assert.That(stack.Peek(), Is.EqualTo(2));
 
             var item = stack.Pop();
-            Assert.AreEqual(2, item);
-            Assert.AreEqual(1, stack.Peek());
+            Assert.That(item, Is.EqualTo(2));
+            Assert.That(stack.Peek(), Is.EqualTo(1));
 
             item = stack.Pop();
-            Assert.AreEqual(1, item);
+            Assert.That(item, Is.EqualTo(1));
         }
 
         private void ThreeElements(IStack<int> stack)
         {
             stack.Push(1);
 
-            Assert.IsFalse(stack.IsEmpty);
-            Assert.AreEqual(1, stack.Size);
-            Assert.AreEqual(1, stack.Peek());
+            Assert.That(stack.IsEmpty, Is.False);
+            Assert.That(stack.Size, Is.EqualTo(1));
+            Assert.That(stack.Peek(), Is.EqualTo(1));
 
             stack.Push(2);
 
-            Assert.IsFalse(stack.IsEmpty);
-            Assert.AreEqual(2, stack.Size);
-            Assert.AreEqual(2, stack.Peek());
+            Assert.That(stack.IsEmpty, Is.False);
+            Assert.That(stack.Size, Is.EqualTo(2));
+            Assert.That(stack.Peek(), Is.EqualTo(2));
 
             stack.Push(3);
 
-            Assert.IsFalse(stack.IsEmpty);
-            Assert.AreEqual(3, stack.Size);
-            Assert.AreEqual(3, stack.Peek());
+            Assert.That(stack.IsEmpty, Is.False);
+            Assert.That(stack.Size, Is.EqualTo(3));
+            Assert.That(stack.Peek(), Is.EqualTo(3));
 
             var item = stack.Pop();
-            Assert.AreEqual(3, item);
-            Assert.AreEqual(2, stack.Peek());
+            Assert.That(item, Is.EqualTo(3));
+            Assert.That(stack.Peek(), Is.EqualTo(2));
 
             item = stack.Pop();
-            Assert.AreEqual(2, item);
-            Assert.AreEqual(1, stack.Peek());
+            Assert.That(item, Is.EqualTo(2));
+            Assert.That(stack.Peek(), Is.EqualTo(1));
 
             item = stack.Pop();
-            Assert.AreEqual(1, item);
+            Assert.That(item, Is.EqualTo(1));
         }
 
         private void MixedOperations(IStack<int> stack)
@@ -156,24 +156,24 @@ namespace WbsAlgorithmsTest.DataStructures
             stack.Push(1);
             stack.Push(2);
             stack.Push(3);
-            Assert.AreEqual(3, stack.Size);
-            Assert.AreEqual(3, stack.Pop());
-            Assert.AreEqual(2, stack.Pop());
-            Assert.AreEqual(1, stack.Size);
+            Assert.That(stack.Size, Is.EqualTo(3));
+            Assert.That(stack.Pop(), Is.EqualTo(3));
+            Assert.That(stack.Pop(), Is.EqualTo(2));
+            Assert.That(stack.Size, Is.EqualTo(1));
 
             stack.Push(4);
             stack.Push(5);
-            Assert.AreEqual(3, stack.Size);
-            Assert.AreEqual(5, stack.Pop());
-            Assert.AreEqual(4, stack.Pop());
-            Assert.AreEqual(1, stack.Size);
+            Assert.That(stack.Size, Is.EqualTo(3));
+            Assert.That(stack.Pop(), Is.EqualTo(5));
+            Assert.That(stack.Pop(), Is.EqualTo(4));
+            Assert.That(stack.Size, Is.EqualTo(1));
 
             stack.Push(6);
-            Assert.AreEqual(2, stack.Size);
-            Assert.AreEqual(6, stack.Pop());
-            Assert.AreEqual(1, stack.Pop());
+            Assert.That(stack.Size, Is.EqualTo(2));
+            Assert.That(stack.Pop(), Is.EqualTo(6));
+            Assert.That(stack.Pop(), Is.EqualTo(1));
 
-            Assert.IsTrue(stack.IsEmpty);
+            Assert.That(stack.IsEmpty, Is.True);
         }
         #endregion
     }

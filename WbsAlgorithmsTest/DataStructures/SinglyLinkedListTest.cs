@@ -15,14 +15,14 @@ namespace WbsAlgorithmsTest.DataStructures
 
             // Insert a node to an empty list.
             head = SinglyLinkedList.InsertFirst(head, new ListNode<int>(2));
-            Assert.AreEqual(head.Item, 2);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(2));
+            Assert.That(head.Next, Is.Null);
 
             // Insert a node at the beginning.
             head = SinglyLinkedList.InsertFirst(head, new ListNode<int>(1));
-            Assert.AreEqual(head.Item, 1);
-            Assert.AreEqual(head.Next.Item, 2);
-            Assert.IsNull(head.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Item, Is.EqualTo(2));
+            Assert.That(head.Next.Next, Is.Null);
         }
 
         [Test]
@@ -32,18 +32,18 @@ namespace WbsAlgorithmsTest.DataStructures
 
             // Nothing to remove from an empty list.
             head = SinglyLinkedList.RemoveFirst(head);
-            Assert.IsNull(head);
+            Assert.That(head, Is.Null);
 
             // Remove the first element from a one-element list.
             head = new ListNode<int>(1);
             head = SinglyLinkedList.RemoveFirst(head);
-            Assert.IsNull(head);
+            Assert.That(head, Is.Null);
 
             // Remove the first element from a two-element list.
             head = new ListNode<int>(1, new ListNode<int>(2));
             head = SinglyLinkedList.RemoveFirst(head);
-            Assert.AreEqual(head.Item, 2);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(2));
+            Assert.That(head.Next, Is.Null);
         }
 
         [Test]
@@ -53,22 +53,22 @@ namespace WbsAlgorithmsTest.DataStructures
 
             // Add a node at the end of an empty list.
             head = SinglyLinkedList.AddLast(head, new ListNode<int>(1));
-            Assert.AreEqual(head.Item, 1);
+            Assert.That(head.Item, Is.EqualTo(1));
 
             // Add a node at the end of a one-element list.
             head = new ListNode<int>(1);
             head = SinglyLinkedList.AddLast(head, new ListNode<int>(2));
-            Assert.AreEqual(head.Item, 1);
-            Assert.AreEqual(head.Next.Item, 2);
-            Assert.IsNull(head.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Item, Is.EqualTo(2));
+            Assert.That(head.Next.Next, Is.Null);
 
             // Add a node at the end of a two-element list.
             head = new ListNode<int>(1, new ListNode<int>(2));
             head = SinglyLinkedList.AddLast(head, new ListNode<int>(3));
-            Assert.AreEqual(head.Item, 1);
-            Assert.AreEqual(head.Next.Item, 2);
-            Assert.AreEqual(head.Next.Next.Item, 3);
-            Assert.IsNull(head.Next.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Item, Is.EqualTo(2));
+            Assert.That(head.Next.Next.Item, Is.EqualTo(3));
+            Assert.That(head.Next.Next.Next, Is.Null);
         }
 
         [Test]
@@ -78,25 +78,25 @@ namespace WbsAlgorithmsTest.DataStructures
 
             // An empty list.
             head = SinglyLinkedList.RemoveLast(head);
-            Assert.IsNull(head);
+            Assert.That(head, Is.Null);
 
             // A one-element list.
             head = new ListNode<int>(1);
             head = SinglyLinkedList.RemoveLast(head);
-            Assert.IsNull(head);
+            Assert.That(head, Is.Null);
 
             // A two-element list.
             head = new ListNode<int>(1, new ListNode<int>(2));
             head = SinglyLinkedList.RemoveLast(head);
-            Assert.AreEqual(head.Item, 1);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next, Is.Null);
 
             // A three-element list.
             head = new ListNode<int>(1, new ListNode<int>(2, new ListNode<int>(3)));
             head = SinglyLinkedList.RemoveLast(head);
-            Assert.AreEqual(head.Item, 1);
-            Assert.AreEqual(head.Next.Item, 2);
-            Assert.IsNull(head.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Item, Is.EqualTo(2));
+            Assert.That(head.Next.Next, Is.Null);
         }
 
         [Test]
@@ -106,12 +106,12 @@ namespace WbsAlgorithmsTest.DataStructures
 
             // An empty list.
             head = SinglyLinkedList.RemoveByIndex(head, 0);
-            Assert.IsNull(head);
+            Assert.That(head, Is.Null);
 
             // A one-element list - element found.
             head = new ListNode<int>(10);
             head = SinglyLinkedList.RemoveByIndex(head, 0);
-            Assert.IsNull(head);
+            Assert.That(head, Is.Null);
 
             // A one-element list - element not found.
             head = new ListNode<int>(10);
@@ -120,14 +120,14 @@ namespace WbsAlgorithmsTest.DataStructures
             // A two-element list - remove first element.
             head = SinglyLinkedList.Create(new int[] { 10, 20 });
             head = SinglyLinkedList.RemoveByIndex(head, 0);
-            Assert.AreEqual(head.Item, 20);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(20));
+            Assert.That(head.Next, Is.Null);
 
             // A two-element list - remove second element.
             head = SinglyLinkedList.Create(new int[] { 10, 20 });
             head = SinglyLinkedList.RemoveByIndex(head, 1);
-            Assert.AreEqual(head.Item, 10);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(10));
+            Assert.That(head.Next, Is.Null);
 
             // A two-element list - element not found.
             head = SinglyLinkedList.Create(new int[] { 10, 20 });
@@ -136,23 +136,23 @@ namespace WbsAlgorithmsTest.DataStructures
             // A three-element list - remove first element.
             head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
             head = SinglyLinkedList.RemoveByIndex(head, 0);
-            Assert.AreEqual(head.Item, 20);
-            Assert.AreEqual(head.Next.Item, 30);
-            Assert.IsNull(head.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(20));
+            Assert.That(head.Next.Item, Is.EqualTo(30));
+            Assert.That(head.Next.Next, Is.Null);
 
             // A three-element list - remove middle element.
             head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
             head = SinglyLinkedList.RemoveByIndex(head, 1);
-            Assert.AreEqual(head.Item, 10);
-            Assert.AreEqual(head.Next.Item, 30);
-            Assert.IsNull(head.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(10));
+            Assert.That(head.Next.Item, Is.EqualTo(30));
+            Assert.That(head.Next.Next, Is.Null);
 
             // A three-element list - remove last element.
             head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
             head = SinglyLinkedList.RemoveByIndex(head, 2);
-            Assert.AreEqual(head.Item, 10);
-            Assert.AreEqual(head.Next.Item, 20);
-            Assert.IsNull(head.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(10));
+            Assert.That(head.Next.Item, Is.EqualTo(20));
+            Assert.That(head.Next.Next, Is.Null);
 
             // A three-element list - element not found.
             head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
@@ -166,12 +166,12 @@ namespace WbsAlgorithmsTest.DataStructures
 
             // An empty list.
             head = SinglyLinkedList.RemoveByValue(head, 0);
-            Assert.IsNull(head);
+            Assert.That(head, Is.Null);
 
             // A one-element list - element found.
             head = new ListNode<int>(10);
             head = SinglyLinkedList.RemoveByValue(head, 10);
-            Assert.IsNull(head);
+            Assert.That(head, Is.Null);
 
             // A one-element list - element not found.
             head = new ListNode<int>(10);
@@ -180,14 +180,14 @@ namespace WbsAlgorithmsTest.DataStructures
             // A two-element list - remove first element.
             head = SinglyLinkedList.Create(new int[] { 10, 20 });
             head = SinglyLinkedList.RemoveByValue(head, 10);
-            Assert.AreEqual(head.Item, 20);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(20));
+            Assert.That(head.Next, Is.Null);
 
             // A two-element list - remove second element.
             head = SinglyLinkedList.Create(new int[] { 10, 20 });
             head = SinglyLinkedList.RemoveByValue(head, 20);
-            Assert.AreEqual(head.Item, 10);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(10));
+            Assert.That(head.Next, Is.Null);
 
             // A two-element list - element not found.
             head = SinglyLinkedList.Create(new int[] { 10, 20 });
@@ -196,23 +196,23 @@ namespace WbsAlgorithmsTest.DataStructures
             // A three-element list - remove first element.
             head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
             head = SinglyLinkedList.RemoveByValue(head, 10);
-            Assert.AreEqual(head.Item, 20);
-            Assert.AreEqual(head.Next.Item, 30);
-            Assert.IsNull(head.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(20));
+            Assert.That(head.Next.Item, Is.EqualTo(30));
+            Assert.That(head.Next.Next, Is.Null);
 
             // A three-element list - remove middle element.
             head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
             head = SinglyLinkedList.RemoveByValue(head, 20);
-            Assert.AreEqual(head.Item, 10);
-            Assert.AreEqual(head.Next.Item, 30);
-            Assert.IsNull(head.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(10));
+            Assert.That(head.Next.Item, Is.EqualTo(30));
+            Assert.That(head.Next.Next, Is.Null);
 
             // A three-element list - remove last element.
             head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
             head = SinglyLinkedList.RemoveByValue(head, 30);
-            Assert.AreEqual(head.Item, 10);
-            Assert.AreEqual(head.Next.Item, 20);
-            Assert.IsNull(head.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(10));
+            Assert.That(head.Next.Item, Is.EqualTo(20));
+            Assert.That(head.Next.Next, Is.Null);
 
             // A three-element list - element not found.
             head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
@@ -224,38 +224,38 @@ namespace WbsAlgorithmsTest.DataStructures
         {
             ListNode<int> head = null;
 
-            Assert.IsFalse(SinglyLinkedList.DoesNodeExist(head, 1));
+            Assert.That(SinglyLinkedList.DoesNodeExist(head, 1), Is.False);
 
             head = new ListNode<int>(1);
-            Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 1));
+            Assert.That(SinglyLinkedList.DoesNodeExist(head, 1), Is.True);
 
             head = new ListNode<int>(1);
-            Assert.IsFalse(SinglyLinkedList.DoesNodeExist(head, 8));
+            Assert.That(SinglyLinkedList.DoesNodeExist(head, 8), Is.False);
 
             head = SinglyLinkedList.Create(new int[] { 1, 2 });
-            Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 1));
-            Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 2));
-            Assert.IsFalse(SinglyLinkedList.DoesNodeExist(head, 8));
+            Assert.That(SinglyLinkedList.DoesNodeExist(head, 1), Is.True);
+            Assert.That(SinglyLinkedList.DoesNodeExist(head, 2), Is.True);
+            Assert.That(SinglyLinkedList.DoesNodeExist(head, 8), Is.False);
 
             head = SinglyLinkedList.Create(new int[] { 1, 1 });
-            Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 1));
-            Assert.IsFalse(SinglyLinkedList.DoesNodeExist(head, 2));
+            Assert.That(SinglyLinkedList.DoesNodeExist(head, 1), Is.True);
+            Assert.That(SinglyLinkedList.DoesNodeExist(head, 2), Is.False);
 
             head = SinglyLinkedList.Create(new int[] { 1, 1, 1 });
-            Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 1));
-            Assert.IsFalse(SinglyLinkedList.DoesNodeExist(head, 2));
+            Assert.That(SinglyLinkedList.DoesNodeExist(head, 1), Is.True);
+            Assert.That(SinglyLinkedList.DoesNodeExist(head, 2), Is.False);
 
             head = SinglyLinkedList.Create(new int[] { 2, 1, 1 });
-            Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 1));
-            Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 2));
+            Assert.That(SinglyLinkedList.DoesNodeExist(head, 1), Is.True);
+            Assert.That(SinglyLinkedList.DoesNodeExist(head, 2), Is.True);
 
             head = SinglyLinkedList.Create(new int[] { 1, 2, 1 });
-            Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 1));
-            Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 2));
+            Assert.That(SinglyLinkedList.DoesNodeExist(head, 1), Is.True);
+            Assert.That(SinglyLinkedList.DoesNodeExist(head, 2), Is.True);
 
             head = SinglyLinkedList.Create(new int[] { 1, 1, 2 });
-            Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 1));
-            Assert.IsTrue(SinglyLinkedList.DoesNodeExist(head, 2));
+            Assert.That(SinglyLinkedList.DoesNodeExist(head, 1), Is.True);
+            Assert.That(SinglyLinkedList.DoesNodeExist(head, 2), Is.True);
         }
 
         [Test]
@@ -265,19 +265,19 @@ namespace WbsAlgorithmsTest.DataStructures
 
             // Nothing to remove from an empty list.
             node = SinglyLinkedList.RemoveAfter(node);
-            Assert.IsNull(node);
+            Assert.That(node, Is.Null);
 
             // Nothing to remove from a one-element list (there is no element to remove after the first element).
             node = new ListNode<int>(1);
             node = SinglyLinkedList.RemoveAfter(node);
-            Assert.AreEqual(node.Item, 1);
-            Assert.IsNull(node.Next);
+            Assert.That(node.Item, Is.EqualTo(1));
+            Assert.That(node.Next, Is.Null);
 
             // Remove an element from a two-element list.
             node = new ListNode<int>(1, new ListNode<int>(2));
             node = SinglyLinkedList.RemoveAfter(node);
-            Assert.AreEqual(node.Item, 1);
-            Assert.IsNull(node.Next);
+            Assert.That(node.Item, Is.EqualTo(1));
+            Assert.That(node.Next, Is.Null);
         }
 
         [Test]
@@ -287,37 +287,37 @@ namespace WbsAlgorithmsTest.DataStructures
 
             // Do nothing if either argument is null.
             node = SinglyLinkedList.InsertAfter<int>(null, null);
-            Assert.IsNull(node);
+            Assert.That(node, Is.Null);
 
             node = SinglyLinkedList.InsertAfter(new ListNode<int>(1), null);
-            Assert.AreEqual(node.Item, 1);
-            Assert.IsNull(node.Next);
+            Assert.That(node.Item, Is.EqualTo(1));
+            Assert.That(node.Next, Is.Null);
 
             node = SinglyLinkedList.InsertAfter(null, new ListNode<int>(1));
-            Assert.IsNull(node);
+            Assert.That(node, Is.Null);
 
             // Insert a node into a one element list.
             node = new ListNode<int>(1);
             node = SinglyLinkedList.InsertAfter(node, new ListNode<int>(2));
-            Assert.AreEqual(node.Item, 1);
-            Assert.AreEqual(node.Next.Item, 2);
-            Assert.IsNull(node.Next.Next);
+            Assert.That(node.Item, Is.EqualTo(1));
+            Assert.That(node.Next.Item, Is.EqualTo(2));
+            Assert.That(node.Next.Next, Is.Null);
 
             // Insert a node into a two element list after the first element.
             node = new ListNode<int>(1, new ListNode<int>(2));
             node = SinglyLinkedList.InsertAfter(node, new ListNode<int>(3));
-            Assert.AreEqual(node.Item, 1);
-            Assert.AreEqual(node.Next.Item, 3);
-            Assert.AreEqual(node.Next.Next.Item, 2);
-            Assert.IsNull(node.Next.Next.Next);
+            Assert.That(node.Item, Is.EqualTo(1));
+            Assert.That(node.Next.Item, Is.EqualTo(3));
+            Assert.That(node.Next.Next.Item, Is.EqualTo(2));
+            Assert.That(node.Next.Next.Next, Is.Null);
 
             // Insert a node into a two element list after the second element.
             // InsertAfter returns the pointer to the second node.
             node = new ListNode<int>(1, new ListNode<int>(2));
             node = SinglyLinkedList.InsertAfter(node.Next, new ListNode<int>(3));
-            Assert.AreEqual(node.Item, 2);
-            Assert.AreEqual(node.Next.Item, 3);
-            Assert.IsNull(node.Next.Next);
+            Assert.That(node.Item, Is.EqualTo(2));
+            Assert.That(node.Next.Item, Is.EqualTo(3));
+            Assert.That(node.Next.Next, Is.Null);
         }
 
         [Test]
@@ -333,100 +333,100 @@ namespace WbsAlgorithmsTest.DataStructures
 
             // Nothing to remove from an empty list.
             head = removeAllByValue(head, 0);
-            Assert.IsNull(head);
+            Assert.That(head, Is.Null);
 
             // Remove one element from a one element list.
             head = new ListNode<int>(1);
             head = removeAllByValue(head, 1);
-            Assert.IsNull(head);
+            Assert.That(head, Is.Null);
 
             // Do not remove anything from a one element list.
             head = new ListNode<int>(1);
             head = removeAllByValue(head, 8);
-            Assert.AreEqual(head.Item, 1);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next, Is.Null);
 
             // Remove the first element from a two element list.
             head = SinglyLinkedList.Create(new int[] { 1, 2 });
             head = removeAllByValue(head, 1);
-            Assert.AreEqual(head.Item, 2);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(2));
+            Assert.That(head.Next, Is.Null);
 
             // Remove the second element from a two element list.
             head = SinglyLinkedList.Create(new int[] { 1, 2 });
             head = removeAllByValue(head, 2);
-            Assert.AreEqual(head.Item, 1);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next, Is.Null);
 
             // Remove 2nd and 3rd element from a list.
             head = SinglyLinkedList.Create(new int[] { 1, 2, 2 });
             head = removeAllByValue(head, 2);
-            Assert.AreEqual(head.Item, 1);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next, Is.Null);
 
             // Remove 1st and 2nd element from a list.
             head = SinglyLinkedList.Create(new int[] { 2, 2, 1 });
             head = removeAllByValue(head, 2);
-            Assert.AreEqual(head.Item, 1);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next, Is.Null);
 
             // Remove 1st and 3rd element from a list.
             head = SinglyLinkedList.Create(new int[] { 2, 1, 2 });
             head = removeAllByValue(head, 2);
-            Assert.AreEqual(head.Item, 1);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next, Is.Null);
 
             // Remove 2nd element from a list.
             head = SinglyLinkedList.Create(new int[] { 1, 2, 1 });
             head = removeAllByValue(head, 2);
-            Assert.AreEqual(head.Item, 1);
-            Assert.AreEqual(head.Next.Item, 1);
-            Assert.IsNull(head.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Next, Is.Null);
 
             // Remove all three elements from a list.
             head = SinglyLinkedList.Create(new int[] { 2, 2, 2 });
             head = removeAllByValue(head, 2);
-            Assert.IsNull(head);
+            Assert.That(head, Is.Null);
 
             // Do not remove anything from a list. 
             head = SinglyLinkedList.Create(new int[] { 3, 4, 5 });
             head = removeAllByValue(head, 8);
-            Assert.AreEqual(head.Item, 3);
-            Assert.AreEqual(head.Next.Item, 4);
-            Assert.AreEqual(head.Next.Next.Item, 5);
-            Assert.IsNull(head.Next.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(3));
+            Assert.That(head.Next.Item, Is.EqualTo(4));
+            Assert.That(head.Next.Next.Item, Is.EqualTo(5));
+            Assert.That(head.Next.Next.Next, Is.Null);
         }
 
         [Test]
         public void FindMaxValueTest()
         {
             ListNode<int> head = SinglyLinkedList.Create(new[] { 1 });
-            Assert.AreEqual(1, SinglyLinkedList.FindMaxValueIteratively(head));
-            Assert.AreEqual(1, SinglyLinkedList.FindMaxValueRecusively(head));
+            Assert.That(SinglyLinkedList.FindMaxValueIteratively(head), Is.EqualTo(1));
+            Assert.That(SinglyLinkedList.FindMaxValueRecusively(head), Is.EqualTo(1));
 
             head = SinglyLinkedList.Create(new[] { 1, 2 });
-            Assert.AreEqual(2, SinglyLinkedList.FindMaxValueIteratively(head));
-            Assert.AreEqual(2, SinglyLinkedList.FindMaxValueRecusively(head));
+            Assert.That(SinglyLinkedList.FindMaxValueIteratively(head), Is.EqualTo(2));
+            Assert.That(SinglyLinkedList.FindMaxValueRecusively(head), Is.EqualTo(2));
 
             head = SinglyLinkedList.Create(new[] { 2, 1 });
-            Assert.AreEqual(2, SinglyLinkedList.FindMaxValueIteratively(head));
-            Assert.AreEqual(2, SinglyLinkedList.FindMaxValueRecusively(head));
+            Assert.That(SinglyLinkedList.FindMaxValueIteratively(head), Is.EqualTo(2));
+            Assert.That(SinglyLinkedList.FindMaxValueRecusively(head), Is.EqualTo(2));
 
             head = SinglyLinkedList.Create(new[] { 1, 3, 2 });
-            Assert.AreEqual(3, SinglyLinkedList.FindMaxValueIteratively(head));
-            Assert.AreEqual(3, SinglyLinkedList.FindMaxValueRecusively(head));
+            Assert.That(SinglyLinkedList.FindMaxValueIteratively(head), Is.EqualTo(3));
+            Assert.That(SinglyLinkedList.FindMaxValueRecusively(head), Is.EqualTo(3));
 
             head = SinglyLinkedList.Create(new[] { 1, 2, 3 });
-            Assert.AreEqual(3, SinglyLinkedList.FindMaxValueIteratively(head));
-            Assert.AreEqual(3, SinglyLinkedList.FindMaxValueRecusively(head));
+            Assert.That(SinglyLinkedList.FindMaxValueIteratively(head), Is.EqualTo(3));
+            Assert.That(SinglyLinkedList.FindMaxValueRecusively(head), Is.EqualTo(3));
 
             head = SinglyLinkedList.Create(new[] { 3, 2, 1 });
-            Assert.AreEqual(3, SinglyLinkedList.FindMaxValueIteratively(head));
-            Assert.AreEqual(3, SinglyLinkedList.FindMaxValueRecusively(head));
+            Assert.That(SinglyLinkedList.FindMaxValueIteratively(head), Is.EqualTo(3));
+            Assert.That(SinglyLinkedList.FindMaxValueRecusively(head), Is.EqualTo(3));
 
             head = SinglyLinkedList.Create(new[] { 3, 7, 4, 14, 6, 10, 13, 1 });
-            Assert.AreEqual(14, SinglyLinkedList.FindMaxValueIteratively(head));
-            Assert.AreEqual(14, SinglyLinkedList.FindMaxValueRecusively(head));
+            Assert.That(SinglyLinkedList.FindMaxValueIteratively(head), Is.EqualTo(14));
+            Assert.That(SinglyLinkedList.FindMaxValueRecusively(head), Is.EqualTo(14));
         }
 
         [Test]
@@ -436,33 +436,33 @@ namespace WbsAlgorithmsTest.DataStructures
             ListNode<int> head = null;
             var reversed = SinglyLinkedList.ReverseIteratively(head);
 
-            Assert.IsNull(reversed);
+            Assert.That(reversed, Is.Null);
 
             // Reverse a one-node list.
             head = new ListNode<int>(0, null);
             reversed = SinglyLinkedList.ReverseIteratively(head);
 
-            Assert.AreEqual(0, reversed.Item);
-            Assert.IsNull(reversed.Next);
+            Assert.That(reversed.Item, Is.EqualTo(0));
+            Assert.That(reversed.Next, Is.Null);
 
             // Reverse a two-node list.
             head = SinglyLinkedList.Create(new int[] { 0, 1 });
             reversed = SinglyLinkedList.ReverseIteratively(head);
 
-            Assert.AreEqual(1, reversed.Item);
-            Assert.AreEqual(0, reversed.Next.Item);
-            Assert.IsNull(reversed.Next.Next);
+            Assert.That(reversed.Item, Is.EqualTo(1));
+            Assert.That(reversed.Next.Item, Is.EqualTo(0));
+            Assert.That(reversed.Next.Next, Is.Null);
 
             // Reverse a five-node list.
             head = SinglyLinkedList.Create(new int[] { 0, 1, 2, 3, 4 });
             reversed = SinglyLinkedList.ReverseIteratively(head);
 
-            Assert.AreEqual(4, reversed.Item);
-            Assert.AreEqual(3, reversed.Next.Item);
-            Assert.AreEqual(2, reversed.Next.Next.Item);
-            Assert.AreEqual(1, reversed.Next.Next.Next.Item);
-            Assert.AreEqual(0, reversed.Next.Next.Next.Next.Item);
-            Assert.IsNull(reversed.Next.Next.Next.Next.Next);
+            Assert.That(reversed.Item, Is.EqualTo(4));
+            Assert.That(reversed.Next.Item, Is.EqualTo(3));
+            Assert.That(reversed.Next.Next.Item, Is.EqualTo(2));
+            Assert.That(reversed.Next.Next.Next.Item, Is.EqualTo(1));
+            Assert.That(reversed.Next.Next.Next.Next.Item, Is.EqualTo(0));
+            Assert.That(reversed.Next.Next.Next.Next.Next, Is.Null);
         }
 
         [Test]
@@ -472,33 +472,33 @@ namespace WbsAlgorithmsTest.DataStructures
             ListNode<int> head = null;
             var reversed = SinglyLinkedList.ReverseRecursively(head);
 
-            Assert.IsNull(reversed);
+            Assert.That(reversed, Is.Null);
 
             // Reverse a one-node list.
             head = new ListNode<int>(0, null);
             reversed = SinglyLinkedList.ReverseRecursively(head);
 
-            Assert.AreEqual(0, reversed.Item);
-            Assert.IsNull(reversed.Next);
+            Assert.That(reversed.Item, Is.EqualTo(0));
+            Assert.That(reversed.Next, Is.Null);
 
             // Reverse a two-node list.
             head = SinglyLinkedList.Create(new int[] { 0, 1 });
             reversed = SinglyLinkedList.ReverseRecursively(head);
 
-            Assert.AreEqual(1, reversed.Item);
-            Assert.AreEqual(0, reversed.Next.Item);
-            Assert.IsNull(reversed.Next.Next);
+            Assert.That(reversed.Item, Is.EqualTo(1));
+            Assert.That(reversed.Next.Item, Is.EqualTo(0));
+            Assert.That(reversed.Next.Next, Is.Null);
 
             // Reverse a five-node list.
             head = SinglyLinkedList.Create(new int[] { 0, 1, 2, 3, 4 });
             reversed = SinglyLinkedList.ReverseRecursively(head);
 
-            Assert.AreEqual(4, reversed.Item);
-            Assert.AreEqual(3, reversed.Next.Item);
-            Assert.AreEqual(2, reversed.Next.Next.Item);
-            Assert.AreEqual(1, reversed.Next.Next.Next.Item);
-            Assert.AreEqual(0, reversed.Next.Next.Next.Next.Item);
-            Assert.IsNull(reversed.Next.Next.Next.Next.Next);
+            Assert.That(reversed.Item, Is.EqualTo(4));
+            Assert.That(reversed.Next.Item, Is.EqualTo(3));
+            Assert.That(reversed.Next.Next.Item, Is.EqualTo(2));
+            Assert.That(reversed.Next.Next.Next.Item, Is.EqualTo(1));
+            Assert.That(reversed.Next.Next.Next.Next.Item, Is.EqualTo(0));
+            Assert.That(reversed.Next.Next.Next.Next.Next, Is.Null);
         }
 
         [Test]
@@ -513,93 +513,93 @@ namespace WbsAlgorithmsTest.DataStructures
 
             // An empty list.
             head = func(head);
-            Assert.IsNull(head);
+            Assert.That(head, Is.Null);
 
             // A one-element list.
             head = new ListNode<int>(1);
             head = func(head);
-            Assert.AreEqual(1, head.Item);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next, Is.Null);
 
             // A two-element list - no duplicates.
             head = SinglyLinkedList.Create(new int[] { 1, 2 });
             head = func(head);
-            Assert.AreEqual(1, head.Item);
-            Assert.AreEqual(2, head.Next.Item);
-            Assert.IsNull(head.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Item, Is.EqualTo(2));
+            Assert.That(head.Next.Next, Is.Null);
 
             // A two-element list - one duplicate.
             head = SinglyLinkedList.Create(new int[] { 1, 1 });
             head = func(head);
-            Assert.AreEqual(1, head.Item);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next, Is.Null);
 
             // A three-element list - no duplicates.
             head = SinglyLinkedList.Create(new int[] { 1, 2, 3 });
             head = func(head);
-            Assert.AreEqual(1, head.Item);
-            Assert.AreEqual(2, head.Next.Item);
-            Assert.AreEqual(3, head.Next.Next.Item);
-            Assert.IsNull(head.Next.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Item, Is.EqualTo(2));
+            Assert.That(head.Next.Next.Item, Is.EqualTo(3));
+            Assert.That(head.Next.Next.Next, Is.Null);
 
             // A three-element list - one duplicate.
             head = SinglyLinkedList.Create(new int[] { 1, 2, 2 });
             head = func(head);
-            Assert.AreEqual(1, head.Item);
-            Assert.AreEqual(2, head.Next.Item);
-            Assert.IsNull(head.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Item, Is.EqualTo(2));
+            Assert.That(head.Next.Next, Is.Null);
 
             // A three-element list - two duplicates.
             head = SinglyLinkedList.Create(new int[] { 1, 1, 1 });
             head = func(head);
-            Assert.AreEqual(1, head.Item);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next, Is.Null);
 
             // A four-element list - one duplicate.
             head = SinglyLinkedList.Create(new int[] { 1, 2, 3, 2 });
             head = func(head);
-            Assert.AreEqual(1, head.Item);
-            Assert.AreEqual(2, head.Next.Item);
-            Assert.AreEqual(3, head.Next.Next.Item);
-            Assert.IsNull(head.Next.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Item, Is.EqualTo(2));
+            Assert.That(head.Next.Next.Item, Is.EqualTo(3));
+            Assert.That(head.Next.Next.Next, Is.Null);
 
             // A four-element list - one duplicate.
             head = SinglyLinkedList.Create(new int[] { 1, 2, 2, 3 });
             head = func(head);
-            Assert.AreEqual(1, head.Item);
-            Assert.AreEqual(2, head.Next.Item);
-            Assert.AreEqual(3, head.Next.Next.Item);
-            Assert.IsNull(head.Next.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Item, Is.EqualTo(2));
+            Assert.That(head.Next.Next.Item, Is.EqualTo(3));
+            Assert.That(head.Next.Next.Next, Is.Null);
 
             // A four-element list - two duplicates.
             head = SinglyLinkedList.Create(new int[] { 1, 2, 2, 1 });
             head = func(head);
-            Assert.AreEqual(1, head.Item);
-            Assert.AreEqual(2, head.Next.Item);
-            Assert.IsNull(head.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Item, Is.EqualTo(2));
+            Assert.That(head.Next.Next, Is.Null);
 
             // A four-element list - two duplicates.
             head = SinglyLinkedList.Create(new int[] { 1, 2, 2, 2 });
             head = func(head);
-            Assert.AreEqual(1, head.Item);
-            Assert.AreEqual(2, head.Next.Item);
-            Assert.IsNull(head.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Item, Is.EqualTo(2));
+            Assert.That(head.Next.Next, Is.Null);
 
             // A four-element list - three duplicates.
             head = SinglyLinkedList.Create(new int[] { 1, 1, 1, 1 });
             head = func(head);
-            Assert.AreEqual(1, head.Item);
-            Assert.IsNull(head.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next, Is.Null);
 
             // A six-element list - one duplicate.
             head = SinglyLinkedList.Create(new int[] { 1, 2, 3, 4, 3, 5 });
             head = func(head);
-            Assert.AreEqual(head.Item, 1);
-            Assert.AreEqual(head.Next.Item, 2);
-            Assert.AreEqual(head.Next.Next.Item, 3);
-            Assert.AreEqual(head.Next.Next.Next.Item, 4);
-            Assert.AreEqual(head.Next.Next.Next.Next.Item, 5);
-            Assert.IsNull(head.Next.Next.Next.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Item, Is.EqualTo(2));
+            Assert.That(head.Next.Next.Item, Is.EqualTo(3));
+            Assert.That(head.Next.Next.Next.Item, Is.EqualTo(4));
+            Assert.That(head.Next.Next.Next.Next.Item, Is.EqualTo(5));
+            Assert.That(head.Next.Next.Next.Next.Next, Is.Null);
         }
 
         [Test]
@@ -608,33 +608,33 @@ namespace WbsAlgorithmsTest.DataStructures
             ListNode<int> head = null;
 
             // An empty list.
-            Assert.IsNull(SinglyLinkedList.FindFromLast(head, 1));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 1), Is.Null);
 
             head = SinglyLinkedList.Create(new int[] { 10, 20 });
-            Assert.AreEqual(20, SinglyLinkedList.FindFromLast(head, 1).Item);
-            Assert.AreEqual(10, SinglyLinkedList.FindFromLast(head, 2).Item);
-            Assert.IsNull(SinglyLinkedList.FindFromLast(head, 3));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 1).Item, Is.EqualTo(20));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 2).Item, Is.EqualTo(10));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 3), Is.Null);
 
             head = SinglyLinkedList.Create(new int[] { 10, 20, 30 });
-            Assert.AreEqual(30, SinglyLinkedList.FindFromLast(head, 1).Item);
-            Assert.AreEqual(20, SinglyLinkedList.FindFromLast(head, 2).Item);
-            Assert.AreEqual(10, SinglyLinkedList.FindFromLast(head, 3).Item);
-            Assert.IsNull(SinglyLinkedList.FindFromLast(head, 4));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 1).Item, Is.EqualTo(30));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 2).Item, Is.EqualTo(20));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 3).Item, Is.EqualTo(10));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 4), Is.Null);
 
             head = SinglyLinkedList.Create(new int[] { 10, 20, 30, 40 });
-            Assert.AreEqual(40, SinglyLinkedList.FindFromLast(head, 1).Item);
-            Assert.AreEqual(30, SinglyLinkedList.FindFromLast(head, 2).Item);
-            Assert.AreEqual(20, SinglyLinkedList.FindFromLast(head, 3).Item);
-            Assert.AreEqual(10, SinglyLinkedList.FindFromLast(head, 4).Item);
-            Assert.IsNull(SinglyLinkedList.FindFromLast(head, 5));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 1).Item, Is.EqualTo(40));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 2).Item, Is.EqualTo(30));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 3).Item, Is.EqualTo(20));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 4).Item, Is.EqualTo(10));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 5), Is.Null);
 
             head = SinglyLinkedList.Create(new int[] { 10, 20, 30, 40, 50 });
-            Assert.AreEqual(50, SinglyLinkedList.FindFromLast(head, 1).Item);
-            Assert.AreEqual(40, SinglyLinkedList.FindFromLast(head, 2).Item);
-            Assert.AreEqual(30, SinglyLinkedList.FindFromLast(head, 3).Item);
-            Assert.AreEqual(20, SinglyLinkedList.FindFromLast(head, 4).Item);
-            Assert.AreEqual(10, SinglyLinkedList.FindFromLast(head, 5).Item);
-            Assert.IsNull(SinglyLinkedList.FindFromLast(head, 7));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 1).Item, Is.EqualTo(50));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 2).Item, Is.EqualTo(40));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 3).Item, Is.EqualTo(30));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 4).Item, Is.EqualTo(20));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 5).Item, Is.EqualTo(10));
+            Assert.That(SinglyLinkedList.FindFromLast(head, 7), Is.Null);
         }
 
         [Test]
@@ -643,35 +643,35 @@ namespace WbsAlgorithmsTest.DataStructures
             ListNode<int> head = null;
 
             // An empty list.
-            Assert.IsNull(SinglyLinkedList.DeleteMiddleNode(head));
+            Assert.That(SinglyLinkedList.DeleteMiddleNode(head), Is.Null);
 
             head = SinglyLinkedList.Create(new int[] { 1, 2, 3 });
 
             Assert.Throws<ArgumentException>(() => SinglyLinkedList.DeleteMiddleNode(head.Next.Next)); // try to remove the last node
             SinglyLinkedList.DeleteMiddleNode(head.Next); // 2
-            Assert.AreEqual(1, head.Item);
-            Assert.AreEqual(3, head.Next.Item);
-            Assert.IsNull(head.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Item, Is.EqualTo(3));
+            Assert.That(head.Next.Next, Is.Null);
 
             head = SinglyLinkedList.Create(new int[] { 1, 2, 3, 4, 5 });
 
             SinglyLinkedList.DeleteMiddleNode(head.Next.Next); // 3
-            Assert.AreEqual(1, head.Item);
-            Assert.AreEqual(2, head.Next.Item);
-            Assert.AreEqual(4, head.Next.Next.Item);
-            Assert.AreEqual(5, head.Next.Next.Next.Item);
-            Assert.IsNull(head.Next.Next.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Item, Is.EqualTo(2));
+            Assert.That(head.Next.Next.Item, Is.EqualTo(4));
+            Assert.That(head.Next.Next.Next.Item, Is.EqualTo(5));
+            Assert.That(head.Next.Next.Next.Next, Is.Null);
 
             SinglyLinkedList.DeleteMiddleNode(head.Next); // 2
-            Assert.AreEqual(1, head.Item);
-            Assert.AreEqual(4, head.Next.Item);
-            Assert.AreEqual(5, head.Next.Next.Item);
-            Assert.IsNull(head.Next.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(1));
+            Assert.That(head.Next.Item, Is.EqualTo(4));
+            Assert.That(head.Next.Next.Item, Is.EqualTo(5));
+            Assert.That(head.Next.Next.Next, Is.Null);
 
             SinglyLinkedList.DeleteMiddleNode(head); // 1
-            Assert.AreEqual(4, head.Item);
-            Assert.AreEqual(5, head.Next.Item);
-            Assert.IsNull(head.Next.Next);
+            Assert.That(head.Item, Is.EqualTo(4));
+            Assert.That(head.Next.Item, Is.EqualTo(5));
+            Assert.That(head.Next.Next, Is.Null);
         }
 
         [TestCase(new int[] { 1 }, 1, new int[] { 1 })]
@@ -692,7 +692,7 @@ namespace WbsAlgorithmsTest.DataStructures
             var node = SinglyLinkedList.Partition(linkedList, partitionItem);
             foreach (var item in expectedList)
             {
-                Assert.AreEqual(item, node.Item);
+                Assert.That(node.Item, Is.EqualTo(item));
                 node = node.Next;
             }
         }
@@ -715,7 +715,7 @@ namespace WbsAlgorithmsTest.DataStructures
             var node = SinglyLinkedList.PartitionPreserveOrder(linkedList, partitionItem);
             foreach (var item in expectedList)
             {
-                Assert.AreEqual(item, node.Item);
+                Assert.That(node.Item, Is.EqualTo(item));
                 node = node.Next;
             }
         }

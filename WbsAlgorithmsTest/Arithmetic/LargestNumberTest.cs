@@ -16,10 +16,10 @@ namespace WbsAlgorithmsTest.Arithmetic
         public void GetLargestNumberTest(int[] inputArray, string expectedLargestNumber)
         {
             var actualLargestNumber1 = LargestNumber.GetLargestNumber1(inputArray);
-            Assert.AreEqual(expectedLargestNumber, actualLargestNumber1);
+            Assert.That(actualLargestNumber1, Is.EqualTo(expectedLargestNumber));
 
             var actualLargestNumber2 = LargestNumber.GetLargestNumber2(inputArray);
-            Assert.AreEqual(expectedLargestNumber, actualLargestNumber2);
+            Assert.That(actualLargestNumber2, Is.EqualTo(expectedLargestNumber));
         }
     }
 }
