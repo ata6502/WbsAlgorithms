@@ -26,13 +26,13 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
 
         private static IEnumerable<TestCaseData> MatrixTestCases()
         {
-            yield return new TestCaseData(new[,] { { 1, 0 }, { 2, 3 } }, new[,] { { 0, 0 }, { 2, 0 } }).SetName("ZeroMatrix_2x2_1");
-            yield return new TestCaseData(new[,] { { 1, 2 }, { 0, 3 } }, new[,] { { 0, 2 }, { 0, 0 } }).SetName("ZeroMatrix_2x2_2");
-            yield return new TestCaseData(new[,] { { 1, 2, 0 }, { 3, 4, 5 } }, new[,] { { 0, 0, 0 }, { 3, 4, 0 } }).SetName("ZeroMatrix_2x3_1");
-            yield return new TestCaseData(new[,] { { 1, 2, 3 }, { 4, 0, 5 } }, new[,] { { 1, 0, 3 }, { 0, 0, 0 } }).SetName("ZeroMatrix_2x3_2");
-            yield return new TestCaseData(new[,] { { 0, 2, 3, 4 }, { 5, 6, 0, 8 }, { 9, 10, 11, 12 } }, new[,] { { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 10, 0, 12 } }).SetName("ZeroMatrix_3x4_1");
-            yield return new TestCaseData(new[,] { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 0, 12 }, { 13, 14, 15, 16 } }, new[,] { { 1, 2, 0, 4 }, { 5, 6, 0, 8 }, { 0, 0, 0, 0 }, { 13, 14, 0, 16 } }).SetName("ZeroMatrix_4x4_1");
-            yield return new TestCaseData(new[,] { { 1, 2, 3, 4 }, { 5, 0, 7, 0 }, { 9, 10, 11, 12 }, { 13, 14, 0, 16 } }, new[,] { { 1, 0, 0, 0 }, { 0, 0, 0, 0 }, { 9, 0, 0, 0 }, { 0, 0, 0, 0 } }).SetName("ZeroMatrix_4x4_2");
+            yield return new TestCaseData(new[,] { { 1, 0 }, { 2, 3 } }, new[,] { { 0, 0 }, { 2, 0 } }).SetName("SetZerosInMatrix_2x2_1");
+            yield return new TestCaseData(new[,] { { 1, 2 }, { 0, 3 } }, new[,] { { 0, 2 }, { 0, 0 } }).SetName("SetZerosInMatrix_2x2_2");
+            yield return new TestCaseData(new[,] { { 1, 2, 0 }, { 3, 4, 5 } }, new[,] { { 0, 0, 0 }, { 3, 4, 0 } }).SetName("SetZerosInMatrix_2x3_1");
+            yield return new TestCaseData(new[,] { { 1, 2, 3 }, { 4, 0, 5 } }, new[,] { { 1, 0, 3 }, { 0, 0, 0 } }).SetName("SetZerosInMatrix_2x3_2");
+            yield return new TestCaseData(new[,] { { 0, 2, 3, 4 }, { 5, 6, 0, 8 }, { 9, 10, 11, 12 } }, new[,] { { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 10, 0, 12 } }).SetName("SetZerosInMatrix_3x4_1");
+            yield return new TestCaseData(new[,] { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 0, 12 }, { 13, 14, 15, 16 } }, new[,] { { 1, 2, 0, 4 }, { 5, 6, 0, 8 }, { 0, 0, 0, 0 }, { 13, 14, 0, 16 } }).SetName("SetZerosInMatrix_4x4_1");
+            yield return new TestCaseData(new[,] { { 1, 2, 3, 4 }, { 5, 0, 7, 0 }, { 9, 10, 11, 12 }, { 13, 14, 0, 16 } }, new[,] { { 1, 0, 0, 0 }, { 0, 0, 0, 0 }, { 9, 0, 0, 0 }, { 0, 0, 0, 0 } }).SetName("SetZerosInMatrix_4x4_2");
         }
 
         [Test]
@@ -114,6 +114,21 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         {
             Assert.That(ArrayQuestions.FindDuplicatedNumbersUsingDictionary(inputArray), Is.EqualTo(expectedDuplicates).AsCollection);
             Assert.That(ArrayQuestions.FindDuplicatedNumbersUsingLinq(inputArray), Is.EqualTo(expectedDuplicates).AsCollection);
+        }
+
+        [TestCase(new int[] { -2, 0, 0, 4 }, 2, 0, 3)]
+        [TestCase(new int[] { 2, 7, 11, 15 }, 9, 0, 1)]
+        [TestCase(new int[] { -3, -1, 1, 2, 9, 11, 7, 6, 2 }, 9, 3, 6)]
+        [TestCase(new int[] { 230, 863, 916, 585, 981, 404, 316, 785, 88, 12, 70, 435, 384, 778, 887, 755, 740, 337, 86, 92, 325, 422, 815, 650, 920, 125, 277, 336, 221, 847, 168, 23, 677, 61, 400, 136, 874, 363, 394, 199, 863, 997, 794, 587, 124, 321, 212, 957, 764, 173, 314, 422, 927, 783, 930, 282, 306, 506, 44, 926, 691, 568, 68, 730, 933, 737, 531, 180, 414, 751, 28, 546, 60, 371, 493, 370, 527, 387, 43, 541, 13, 457, 328, 227, 652, 365, 430, 803, 59, 858, 538, 427, 583, 368, 375, 173, 809, 896, 370, 789 }, 542, 28, 45)]
+        public void TwoSumTest(int[] inputArray, int target, int expectedIndex1, int expectedIndex2)
+        {
+            var indicesHashTable = ArrayQuestions.TwoSumHashTable(inputArray, target);
+            Assert.That(indicesHashTable.index1, Is.EqualTo(expectedIndex1));
+            Assert.That(indicesHashTable.index2, Is.EqualTo(expectedIndex2));
+
+            var indicesBruteForce = ArrayQuestions.TwoSumBruteForce(inputArray, target);
+            Assert.That(indicesBruteForce.index1, Is.EqualTo(expectedIndex1));
+            Assert.That(indicesBruteForce.index2, Is.EqualTo(expectedIndex2));
         }
     }
 }

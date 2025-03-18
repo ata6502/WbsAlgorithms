@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -12,6 +13,7 @@ namespace WbsAlgorithms.InterviewQuestions
     // 5. How to reverse an array? [ReverseArray]
     // 6. How to rotate in-place an N x N matrix by 90 degress clockwise? [RotateMatrix] [CodingInterview] 1.7 p.91
     // 7. How to zero columns and rows in a matrix? [ZeroMatrix/SetZerosInMatrix] [CodingInterview] 1.8 p.91
+    // 8. How to find indices of the two numbers such that they add up to a specific target? [TwoSumHashTable,TwoSumBruteForce] [Leetcode] https://leetcode.com/problems/two-sum
     public class ArrayQuestions
     {
         // If an element in an M x N matrix is 0, set the entire row and column to 0.
@@ -294,6 +296,58 @@ namespace WbsAlgorithms.InterviewQuestions
                          select g.Key;
 
             return groups.ToArray();
+        }
+
+        /*
+            TwoSum (easy)
+            Source: https://leetcode.com/problems/two-sum
+
+            Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+            You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+            Example: nums = [2, 7, 11, 15], target = 9. Return (0, 1) because nums[0] + nums[1] = 2 + 7 = 9.
+
+            While we iterate and insert elements into the table, we also look back to check if current element's complement 
+            already exists in the table. If it exists, we have found a solution.
+
+            Time complexity : O(n). We traverse the list containing n elements only once. Each look up in the table costs only O(1) time.
+            Space complexity : O(n). The extra space required depends on the number of items stored in the hash table, which stores at most n elements.
+        */
+        public static (int index1, int index2) TwoSumHashTable(int[] nums, int target)
+        {
+            var d = new Dictionary<int, int>();
+
+            for (var i = 0; i < nums.Length; ++i)
+            {
+                // Calculate the complement. We know that n[i] + c = target hence c = target - n[i]
+                // The complement is just another number in the nums array e.g., n[j]
+                var complement = target - nums[i];
+
+                // Check if the calculated complement matches a number previously added to the dictionary. 
+                // If so, it means that we found our target and we can return the indices of both numbers: 
+                // the one kept in the dictionary and the complement's index.
+                if (d.TryGetValue(complement, out var v))
+                    return (v, i);
+
+                // If the complement was not found, add the current number to the dictionary together with its index.
+                // Also, make sure that the number is not already in the dictionary.
+                if (!d.TryGetValue(nums[i], out var _))
+                    d.Add(nums[i], i);
+            }
+
+            throw new ArgumentException("not found");
+        }
+
+        // Time complexity : O(n^2). For each element, we try to find its complement by looping through the rest of array which takes O(n) time.
+        // Space complexity : O(1)
+        public static (int index1, int index2) TwoSumBruteForce(int[] nums, int target)
+        {
+            for (var i = 0; i < nums.Length; ++i)
+                for (var j = i + 1; j < nums.Length; ++j)
+                    if (nums[i] + nums[j] == target)
+                        return (i, j);
+
+            throw new ArgumentException("not found");
         }
     }
 }
