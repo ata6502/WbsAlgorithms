@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using WbsAlgorithms.PairPointMinMax;
+using WbsAlgorithms.Arrays;
 
-namespace WbsAlgorithmsTest.PairPointMinMax
+namespace WbsAlgorithmsTest.Arrays
 {
     internal class UnimodalArrayTest
     {

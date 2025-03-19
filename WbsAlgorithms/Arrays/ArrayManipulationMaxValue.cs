@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WbsAlgorithms.PairPointMinMax
+namespace WbsAlgorithms.Arrays
 {
     /// <summary>
     /// Array Manipulation - the "slope" technique.

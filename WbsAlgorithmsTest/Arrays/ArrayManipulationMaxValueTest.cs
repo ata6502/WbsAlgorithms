@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
-using WbsAlgorithms.PairPointMinMax;
+using WbsAlgorithms.Arrays;
 using WbsAlgorithmsTest.Utilities;
 
-namespace WbsAlgorithmsTest.PairPointMinMax
+namespace WbsAlgorithmsTest.Arrays
 {
     [TestFixture]
     public class ArrayManipulationMaxValueTest

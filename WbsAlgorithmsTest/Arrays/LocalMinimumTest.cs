@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
 using System;
-using WbsAlgorithms.PairPointMinMax;
+using WbsAlgorithms.Arrays;
 using WbsAlgorithmsTest.Utilities;
 
-namespace WbsAlgorithmsTest.PairPointMinMax
+namespace WbsAlgorithmsTest.Arrays
 {
     [TestFixture]
     public class LocalMinimumTest
