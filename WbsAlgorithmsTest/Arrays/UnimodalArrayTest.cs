@@ -3,6 +3,7 @@ using WbsAlgorithms.Arrays;
 
 namespace WbsAlgorithmsTest.Arrays
 {
+    [TestFixture]
     internal class UnimodalArrayTest
     {
         [TestCase(new int[] { 1 }, 1)]
