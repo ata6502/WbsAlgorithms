@@ -9,20 +9,18 @@ using System.Text.RegularExpressions;
 namespace WbsAlgorithms.InterviewQuestions
 {
     // Questions:
-    // 1. How to reverse a string? [ReverseString]
-    // 2. How to determine if a string is a palindrome? [IsPalindrome]
-    // 3. How to find duplicated characters in a string? [FindDuplicatedCharacters]
-    // 4. How to calculate the number of vowels and consonants in a string? [CountVowelsAndConsonants]
-    // 5. How to count the number of occurrences of a given character in a string? [CountCharacter]
-    // 6. How to remove all non-alphanumeric characters from a string? [RemoveNonAlphanumericCharacters]
-    // 7. How to obtain all permutations of letters in a given string? [GetPermutations]
-    // 8. How to determine if a string has all unique characters? [IsUnique] [CodingInterview] 1.1 p.90
-    // 9. How to check if a string is a permutation of another one? [CheckPermution] [CodingInterview] 1.2 p.90
-    // 10. How to replace spaces with %20? [URLify] [CodingInterview] 1.3 p.90
-    // 11. How to check if a given permutation is a palindrome? [IsPalindromePermutation] [CodingInterview] 1.4 p.91 (simplification: case-sensitive; includes special characters)
-    // 12. How to check if two strings are one edit (or zero edits) away? [AreOneEditAway] [CodingInterview] 1.5 p.91
-    // 13. How to compress a string e.g., aabcccccaaa --> a2b1c5a3 ? [CompressString] [CodingInterview] 1.6 p.91
-    // 14. How to check if a string is a rotation of another string? [IsRotation] [CodingInterview] 1.9 p.91 --> SimpleAlgorithms.AreStringsCircularRotations
+    // - How to reverse a string? [ReverseString]
+    // - How to find duplicated characters in a string? [FindDuplicatedCharacters]
+    // - How to calculate the number of vowels and consonants in a string? [CountVowelsAndConsonants]
+    // - How to count the number of occurrences of a given character in a string? [CountCharacter]
+    // - How to remove all non-alphanumeric characters from a string? [RemoveNonAlphanumericCharacters]
+    // - How to obtain all permutations of letters in a given string? [GetPermutations]
+    // - How to determine if a string has all unique characters? [IsUnique] [CodingInterview] 1.1 p.90
+    // - How to check if a string is a permutation of another one? [CheckPermution] [CodingInterview] 1.2 p.90
+    // - How to replace spaces with %20? [URLify] [CodingInterview] 1.3 p.90
+    // - How to check if two strings are one edit (or zero edits) away? [AreOneEditAway] [CodingInterview] 1.5 p.91
+    // - How to compress a string e.g., aabcccccaaa --> a2b1c5a3 ? [CompressString] [CodingInterview] 1.6 p.91
+    // - How to check if a string is a rotation of another string? [IsRotation] [CodingInterview] 1.9 p.91 --> SimpleAlgorithms.AreStringsCircularRotations
     public class StringQuestions
     {
         // Assumption: the input string contains only letters 'a'-'z' and 'A'-'Z'.
@@ -149,38 +147,6 @@ namespace WbsAlgorithms.InterviewQuestions
 
                 return true;
             }
-        }
-
-        // Check if the input string s is a palindrome permutation.
-        // Assumption: The input string is made of characters that have ASCII codes in the range 0-128.
-        public static bool IsPalindromePermutation(string s)
-        {
-            if (string.IsNullOrWhiteSpace(s))
-                return false;
-
-            var frequency = new int[128];
-
-            // Count frequencies of each letter in the input string.
-            // For even-length strings, all frequencies should be even.
-            // For odd-length string, all frequencies should be even except one that should be odd.
-            foreach (var ch in s)
-                ++frequency[(byte)ch];
-
-            // Keeps a track if we've already encountered an odd frequency of a character.
-            var hasOneOddCharacter = false;
-
-            // Test if the frequencies have no more than one odd character.
-            foreach (var f in frequency)
-            {
-                if (f % 2 == 1)
-                {
-                    if (hasOneOddCharacter)
-                        return false;
-                    hasOneOddCharacter = true;
-                }
-            }
-
-            return true;
         }
 
         // The input string s has exact space at the end to hold the additional characters i.e., the length
@@ -480,21 +446,6 @@ namespace WbsAlgorithms.InterviewQuestions
                          select g.Key;
 
             return groups.ToArray();
-        }
-
-        // Determines if the input string is a palindrome. A palindrome is
-        // a string that reads the same backward as forward.
-        public static bool IsPalindrome(string s)
-        {
-            Debug.Assert(s != null);
-
-            for (int i = 0, j = s.Length - 1; i < j; ++i, --j)
-            {
-                if (s[i] != s[j])
-                    return false;
-            }
-
-            return true;
         }
 
         public static string ReverseString(string s)

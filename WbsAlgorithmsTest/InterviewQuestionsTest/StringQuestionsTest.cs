@@ -35,23 +35,6 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
             Assert.That(StringQuestions.AreOneEditAway(firstString, secondString), Is.EqualTo(areOneEditAway));
         }
 
-        [TestCase("a", true)]
-        [TestCase("ab", false)]
-        [TestCase("aba", true)]
-        [TestCase("aab", true)]
-        [TestCase("baa", true)]
-        [TestCase("abc", false)]
-        [TestCase("abcd", false)]
-        [TestCase("abccab", true)]
-        [TestCase("cacabb", true)]
-        [TestCase("cacabbd", true)]
-        [TestCase("cdadcabbd", true)] // abcdddcba
-        [TestCase("cdadcabbda", false)] // abcdddcbaa
-        public void IsPalindromePermutationTest(string inputString, bool isPalindromePermutation)
-        {
-            Assert.That(StringQuestions.IsPalindromePermutation(inputString), Is.EqualTo(isPalindromePermutation));
-        }
-
         [TestCase("a   ", 2, "a%20")]
         [TestCase(" a  ", 2, "%20a")]
         [TestCase("a a  ", 3, "a%20a")]
@@ -179,28 +162,6 @@ namespace WbsAlgorithmsTest.InterviewQuestionsTest
         {
             Assert.That(StringQuestions.FindDuplicatedCharactersUsingDictionary(inputString), Is.EqualTo(expectedDuplicates).AsCollection);
             Assert.That(StringQuestions.FindDuplicatedCharactersUsingLinq(inputString), Is.EqualTo(expectedDuplicates).AsCollection);
-        }
-
-        [TestCase("a", true)]
-        [TestCase("ab", false)]
-        [TestCase("aa", true)]
-        [TestCase("abb", false)]
-        [TestCase("aba", true)]
-        [TestCase("aaa", true)]
-        [TestCase("abca", false)]
-        [TestCase("abba", true)]
-        [TestCase("aaaa", true)]
-        [TestCase("abcad", false)]
-        [TestCase("bbcba", false)]
-        [TestCase("abbba", true)]
-        [TestCase("abcba", true)]
-        [TestCase("aaaaa", true)]
-        [TestCase("abcbaa", false)]
-        [TestCase("abccba", true)]
-        [TestCase("aaaaaa", true)]
-        public void IsPalindromeTest(string inputString, bool isPalindrome)
-        {
-            Assert.That(StringQuestions.IsPalindrome(inputString), Is.EqualTo(isPalindrome));
         }
 
         [TestCase("a", "a")]
