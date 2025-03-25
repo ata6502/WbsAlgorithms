@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using WbsAlgorithms.Common;
 
-namespace WbsAlgorithms.PairPointMinMax
+namespace WbsAlgorithms.PairPoint
 {
     /// [Sedgewick] 1.4.26 p.211 (3-collinearity)
     /// Suppose that you have an algorithm that takes as input N distinct points in the plane and 

@@ -1,10 +1,10 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
 using WbsAlgorithms.Common;
-using WbsAlgorithms.PairPointMinMax;
+using WbsAlgorithms.PairPoint;
 using static WbsAlgorithmsTest.Utilities.DataReader;
 
-namespace WbsAlgorithmsTest.PairPointMinMax
+namespace WbsAlgorithmsTest.PairPoint
 {
     [TestFixture]
     public class CollinearPointsTest

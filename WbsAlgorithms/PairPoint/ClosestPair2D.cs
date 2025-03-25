@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using WbsAlgorithms.Common;
 
-namespace WbsAlgorithms.PairPointMinMax
+namespace WbsAlgorithms.PairPoint
 {
     public class ClosestPair2D
     {

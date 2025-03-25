@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using WbsAlgorithms.Common;
-using WbsAlgorithms.PairPointMinMax;
+using WbsAlgorithms.PairPoint;
 
-namespace WbsAlgorithmsTest.PairPointMinMax
+namespace WbsAlgorithmsTest.PairPoint
 {
     [TestFixture]
     public class FarthestPair1DTest
