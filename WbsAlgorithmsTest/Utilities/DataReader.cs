@@ -98,17 +98,35 @@ namespace WbsAlgorithmsTest.Utilities
             return JsonSerializer.Deserialize<T[]>(json);
         }
 
+        /*
+            An example of an undirected graph:
+            
+            Index Adjacent vertices           
+            ----- -----------------
+            0:    1,2                        [1]  [4]
+            1:    0,3                        /\   /| 
+            2:    0,3                       /  \ / |
+            3:    1,2,4,5                 [0]  [3] |
+            4:    3,5                       \  / \ |
+            5:    2,3,4                      \/   \|            
+                                             [2]--[5]
+
+            Data in a file
+            --------------
+            U <-- the type of graph: D - directed, U - undirected
+            6 <-- the number of vertices V
+            7 <-- the number of edges E
+            0 1 2 <-- indices are 0-based
+            1 0 3
+            2 0 3
+            3 1 2 4 5
+            4 3 5
+            5 2 3 4
+            etc.
+        */
         public static Graph ReadGraph(string filename)
         {
-            // An example of a graph:
-            // D <-- the type of graph: D - directed, U - undirected
-            // 13 <-- the number of vertices V
-            // 21 <-- the number of edges E
-            // 0 5 <-- vertex indices are 0-based
-            // 4 3
-            // 0 1
-            // 9 12
-            // etc.
+
 
             Graph graph;
 
