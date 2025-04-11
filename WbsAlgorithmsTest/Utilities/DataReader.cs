@@ -273,50 +273,78 @@ namespace WbsAlgorithmsTest.Utilities
             }
         }
 
-        public static WeightedGraph ReadWeightedGraph(string filename)
+        /// <summary>
+        /// Reads a weighted graph from a file.
+        /// </summary>
+        /// <param name="filename">The filename containing vertices and weights of the graph in the adjacency list represenation</param>
+        /// <param name="baseKey">The key of the first vertex. Commonly, 0 or 1 are used as the first vertex.</param>
+        /// <returns>A weighted graph represented as a dictionary where each vertex maps to a list of (neighbor, weight) pairs.</returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static Dictionary<int, List<(int, int)>> ReadWeightedGraph(string filename, int baseKey = 0)
         {
+            var graph = new Dictionary<int, List<(int, int)>>();
             string[] lines = File.ReadAllLines(filename);
 
-            var graph = new WeightedGraph(lines.Length);
-
+            char[] VertexSeparator = { ' ', '\t' };
+            int vertexKey = baseKey;
+            int lineNumber = 0;
             foreach (var line in lines)
             {
-                (int u, List<(int,int)> AdjacentVertices) = GetVertices(line);
-                graph.AddEdge(u, AdjacentVertices);
+                string[] f = line.Trim().Split(VertexSeparator);
+                ++lineNumber;
+
+                // Skip empty lines.
+                if (f.Length == 0)
+                    continue;
+
+                // Verify that the first field represents the correct vertex.
+                if (int.TryParse(f[0], out int key) && key == vertexKey)
+                {
+                    // Add an empty adjacency list for the vertex.
+                    graph.Add(vertexKey, new List<(int, int)>());
+
+                    // Add adjacent vertices the weights. If the vertex does not have any outgoing
+                    // edges, it means it is a sink.
+                    if (f.Length > 1)
+                    {
+                        for (var i = 1; i < f.Length; ++i)
+                        {
+                            if (f[i] == string.Empty)
+                                continue;
+
+                            int separatorIndex = f[i].IndexOf(",");
+                            if (separatorIndex == -1)
+                            {
+                                throw new ArgumentException($"Invalid vertex/weight pair {f[i]} in line {lineNumber}.");
+                            }
+
+                            // Parse the vertex and weight.
+                            var vertexStr = f[i].Substring(0, separatorIndex);
+                            var weightStr = f[i].Substring(separatorIndex + 1);
+
+                            if (!int.TryParse(vertexStr, out int vertex))
+                            {
+                                throw new ArgumentException($"Invalid vertex key {vertexStr} in line {lineNumber}.");
+                            }
+
+                            if (!int.TryParse(weightStr, out int weight))
+                            {
+                                throw new ArgumentException($"Invalid weight {weightStr} in line {lineNumber}.");
+                            }
+
+                            graph[vertexKey].Add((vertex, weight));
+                        }
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException($"Invalid vertex key {f[0]} in line {lineNumber}.");
+                }
+
+                ++vertexKey;
             }
 
             return graph;
-
-            (int v, List<(int,int)> AdjacentVertices) GetVertices(string line)
-            {
-                char[] VertexSeparator = new char[] { ' ', '\t' };
-
-                string[] nums = line.Trim().Split(VertexSeparator);
-
-                var u = GetInt(nums[0]); // vertex#
-                var vertices = new List<(int,int)>(nums.Length - 1); // adjacent vertices and their weights
-                for (var i = 1; i < nums.Length; ++i)
-                {
-                    if (nums[i] == string.Empty)
-                        continue;
-
-                    var separatorIndex = nums[i].IndexOf(",");
-
-                    var v = GetInt(nums[i].Substring(0, separatorIndex));
-                    var weight = GetInt(nums[i].Substring(separatorIndex + 1));
-
-                    vertices.Add((v, weight));
-                }
-
-                return (u, vertices);
-
-                int GetInt(string str)
-                {
-                    if (!int.TryParse(str, out var n))
-                        throw new ArgumentException("not a number");
-                    return n;
-                }
-            }
         }
     }
 }
