@@ -28,7 +28,7 @@ namespace WbsAlgorithms.DataStructures
     /// [Sedgewick] 1.3.28 - Find the maximum value recursively (FindMaxValueRecursively).
     /// [Sedgewick] 1.3.30 - Reverse iteratively nodes in a linked list (ReverseIteratively).
     /// [Sedgewick] 1.3.30 - Reverse recursively nodes in a linked list (ReverseRecursively).
-    /// [Leetcode] #206 - Reverse linked list (iteratively): https://leetcode.com/problems/reverse-linked-list/
+    /// [LeetCode] #206 - Reverse linked list (iteratively): https://leetcode.com/problems/reverse-linked-list/
     /// [CodingInterview] 2.1 p.94 - Remove duplicates from an unsorted linked list (RemoveDuplicates).
     /// [CodingInterview] 2.2 p.94 - Find the k-th to last element in a linked list (FindFromLast).
     /// [CodingInterview] 2.3 p.94 - Remove a node in the middle i.e., any node but the last one, not necessarily the exact middle (RemoveMiddleNode)

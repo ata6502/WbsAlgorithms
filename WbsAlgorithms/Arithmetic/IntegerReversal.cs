@@ -11,7 +11,7 @@ namespace WbsAlgorithms.Arithmetic
     /// Example 4: Input: 1534236469, Output: 0 (overflow)
     /// Example 5: Input: Int32.MinValue, Output: 0 (overflow)
     /// 
-    /// [Leetcode] https://leetcode.com/problems/reverse-integer/submissions/
+    /// [LeetCode] https://leetcode.com/problems/reverse-integer/submissions/
     /// </summary>
     public class IntegerReversal
     {

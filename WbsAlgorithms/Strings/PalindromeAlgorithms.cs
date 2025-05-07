@@ -89,7 +89,7 @@ namespace WbsAlgorithms.Strings
 
         /*
             Find the longest palindrome substring in a given string.
-            [Leetcode]: https://leetcode.com/problems/longest-palindromic-substring/solution/
+            [LeetCode]: https://leetcode.com/problems/longest-palindromic-substring/solution/
 
             A palindrome can be expanded from its center as it mirrors its characters. There are 2n-1 such centers.
             The number 2n-1 comes from the fact that the center of a palindrome can be between two letters. Such 

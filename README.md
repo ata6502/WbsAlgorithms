@@ -22,9 +22,18 @@ Below, there is a list of sources used to create the C# code. The names in brack
 a particular source. For example, for exercises from the Robert Sedgewick's book "Algorithms" search for the comment ``[Sedgewick]``.
 
 - ``[Sedgewick]`` Robert Sedgewick, Kevin Wayne (2011) "Algorithms" 4th edition; Addison-Wesley Professional
+- ``[Cormen]`` Thomas H.Cormen et al. (2009) "Introduction to Algorithms" 3rd edition; Massachusetts Institute of Technology
 - ``[AlgoIlluminated-1]`` Tim Roughgarden (2017) "Algorithms Illuminated: Part 1: The Basics: Asymptotic Notation, Master Method, Sorting, Selection"; Soundlikeyourself Publishing
 - ``[AlgoIlluminated-2]`` Tim Roughgarden (2018) "Algorithms Illuminated: Part 2: Graph Algorithms and Data Structures"; Soundlikeyourself Publishing
-- ``[Leetcode]`` https://leetcode.com/problemset/all/
+- ``[CodingInterview]`` Gayle Laakmann McDowell (2020) "Cracking the Coding Interview" 6th edition; CareerCup
+- [LeetCode](https://leetcode.com/problemset/)
+- [Codility](https://app.codility.com/programmers/lessons)
+- [InterviewBit](https://www.interviewbit.com/coding-interview-questions/)
+- [HackerRank](https://www.hackerrank.com/challenges/crush/problem)
+- [Baeldung](https://www.baeldung.com/cs/)
+
+
+
 
 
 

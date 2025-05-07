@@ -13,7 +13,7 @@ namespace WbsAlgorithms.InterviewQuestions
     // 5. How to reverse an array? [ReverseArray]
     // 6. How to rotate in-place an N x N matrix by 90 degress clockwise? [RotateMatrix] [CodingInterview] 1.7 p.91
     // 7. How to zero columns and rows in a matrix? [ZeroMatrix/SetZerosInMatrix] [CodingInterview] 1.8 p.91
-    // 8. How to find indices of the two numbers such that they add up to a specific target? [TwoSumHashTable,TwoSumBruteForce] [Leetcode] https://leetcode.com/problems/two-sum
+    // 8. How to find indices of the two numbers such that they add up to a specific target? [TwoSumHashTable,TwoSumBruteForce] [LeetCode] https://leetcode.com/problems/two-sum
     public class ArrayQuestions
     {
         // If an element in an M x N matrix is 0, set the entire row and column to 0.

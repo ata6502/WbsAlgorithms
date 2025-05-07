@@ -1,5 +1,10 @@
 [
     {
+        "TestName": "Simple0",
+        "InputArray": [ 8 ],
+        "InputOrderStatistic": 0,
+        "ExpectedOrderStatistic": 8 },
+    {
         "TestName": "Simple1",
         "InputArray": [ 6, 8, 9, 2 ],
         "InputOrderStatistic": 0,

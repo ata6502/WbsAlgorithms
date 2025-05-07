@@ -15,7 +15,7 @@ namespace WbsAlgorithms.Arithmetic
     /// Output: 7 -> 0 -> 8
     /// Explanation: 342 + 465 = 807.
     /// 
-    /// [Leetcode] #2 - Add two numbers given as two linked lists: https://leetcode.com/problems/add-two-numbers/
+    /// [LeetCode] #2 - Add two numbers given as two linked lists: https://leetcode.com/problems/add-two-numbers/
     /// </summary>
     public class AddTwoNumbersLinkedList
     {
