@@ -1,10 +1,6 @@
 # WbsAlgorithms
 
-This repository contains C# implementations of selected algorithms and data structures each with a set of unit tests. Majority of code
-contains solutions to exercises from the book "Algorithms" by Robert Sedgewick (chapters 1.1, 1.2, 1.3, and partially 1.4) as well as
-from the series "Algorithms Illuminated" by Tim Roughgarden. 
-
-Below, there are a few examples of algorithms implemented in this repository:
+This repository contains C# implementations of selected algorithms, such as: 
 
 * [Karatsuba Integer Multiplication](./WbsAlgorithms/Arithmetic/IntegerMultiplication.cs)
 * [Strassen's Matrix Multiplication](./WbsAlgorithms/Arithmetic/MatrixMultiplication.cs)
@@ -16,10 +12,13 @@ Below, there are a few examples of algorithms implemented in this repository:
 * [Topological Sorting](./WbsAlgorithms/Graphs/TopologicalSorting.cs)
 * [Strongly Connected Components](./WbsAlgorithms/Graphs/StronglyConnectedComponents.cs) (Kosaraju's Two-pass Algorithm) 
 
+Each algorithm is accompanied by a set of tests.
+
 # References
 
-Below, there is a list of sources used to create the C# code. The names in brackets indicate a comment in the code that references 
-a particular source. For example, for exercises from the Robert Sedgewick's book "Algorithms" search for the comment ``[Sedgewick]``.
+Below is a list of sources used to create the C# code. Names in brackets correspond to comments in the code 
+that reference a particular source. For example, exercises from Robert Sedgewick's book Algorithms are marked 
+with the comment [Sedgewick].
 
 - ``[Sedgewick]`` Robert Sedgewick, Kevin Wayne (2011) "Algorithms" 4th edition; Addison-Wesley Professional
 - ``[Cormen]`` Thomas H.Cormen et al. (2009) "Introduction to Algorithms" 3rd edition; Massachusetts Institute of Technology
